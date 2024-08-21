@@ -72,8 +72,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ExerciseFormOne.resx">
+      <DependentUpon>ExerciseFormOne.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExerciseFormThree.resx">
       <DependentUpon>ExerciseFormThree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExerciseFormTwo.resx">
+      <DependentUpon>ExerciseFormTwo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

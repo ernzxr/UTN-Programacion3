@@ -17,10 +17,22 @@ namespace TP1
             InitializeComponent();
         }
 
+
+        private void btnExerciseOne_Click(object sender, EventArgs e)
+        {
+            ExerciseFormOne form1 = new ExerciseFormOne();
+            form1.ShowDialog();
+        }
+
+        private void btnExerciseTwo_Click(object sender, EventArgs e)
+        {
+            ExerciseFormTwo form2 = new ExerciseFormTwo();
+            form2.ShowDialog();
+        }
         private void btnExerciseThree_Click(object sender, EventArgs e)
         {
             ExerciseFormThree form = new ExerciseFormThree();
-            form.Show();
+            form.ShowDialog();
         }
     }
 }

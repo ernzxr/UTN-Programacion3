@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.gbxGenre = new System.Windows.Forms.GroupBox();
+            this.rbtnOther = new System.Windows.Forms.RadioButton();
             this.rbtnFemale = new System.Windows.Forms.RadioButton();
             this.rbtnMale = new System.Windows.Forms.RadioButton();
-            this.rbtnOther = new System.Windows.Forms.RadioButton();
             this.gbxGenre.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,22 +40,37 @@
             this.gbxGenre.Controls.Add(this.rbtnOther);
             this.gbxGenre.Controls.Add(this.rbtnFemale);
             this.gbxGenre.Controls.Add(this.rbtnMale);
-            this.gbxGenre.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxGenre.Location = new System.Drawing.Point(90, 34);
+            this.gbxGenre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbxGenre.Location = new System.Drawing.Point(120, 42);
+            this.gbxGenre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbxGenre.Name = "gbxGenre";
-            this.gbxGenre.Size = new System.Drawing.Size(276, 64);
+            this.gbxGenre.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbxGenre.Size = new System.Drawing.Size(368, 79);
             this.gbxGenre.TabIndex = 0;
             this.gbxGenre.TabStop = false;
             this.gbxGenre.Text = "Sexo";
+            // 
+            // rbtnOther
+            // 
+            this.rbtnOther.AutoSize = true;
+            this.rbtnOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnOther.Location = new System.Drawing.Point(269, 33);
+            this.rbtnOther.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbtnOther.Name = "rbtnOther";
+            this.rbtnOther.Size = new System.Drawing.Size(61, 21);
+            this.rbtnOther.TabIndex = 3;
+            this.rbtnOther.Text = "Otro";
+            this.rbtnOther.UseVisualStyleBackColor = true;
             // 
             // rbtnFemale
             // 
             this.rbtnFemale.AutoSize = true;
             this.rbtnFemale.Checked = true;
-            this.rbtnFemale.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnFemale.Location = new System.Drawing.Point(21, 27);
+            this.rbtnFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnFemale.Location = new System.Drawing.Point(28, 33);
+            this.rbtnFemale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rbtnFemale.Name = "rbtnFemale";
-            this.rbtnFemale.Size = new System.Drawing.Size(84, 19);
+            this.rbtnFemale.Size = new System.Drawing.Size(99, 21);
             this.rbtnFemale.TabIndex = 1;
             this.rbtnFemale.TabStop = true;
             this.rbtnFemale.Text = "Femenino";
@@ -64,33 +79,25 @@
             // rbtnMale
             // 
             this.rbtnMale.AutoSize = true;
-            this.rbtnMale.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnMale.Location = new System.Drawing.Point(111, 27);
+            this.rbtnMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnMale.Location = new System.Drawing.Point(148, 33);
+            this.rbtnMale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rbtnMale.Name = "rbtnMale";
-            this.rbtnMale.Size = new System.Drawing.Size(85, 19);
+            this.rbtnMale.Size = new System.Drawing.Size(101, 21);
             this.rbtnMale.TabIndex = 2;
             this.rbtnMale.Text = "Masculino";
             this.rbtnMale.UseVisualStyleBackColor = true;
             // 
-            // rbtnOther
-            // 
-            this.rbtnOther.AutoSize = true;
-            this.rbtnOther.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnOther.Location = new System.Drawing.Point(202, 27);
-            this.rbtnOther.Name = "rbtnOther";
-            this.rbtnOther.Size = new System.Drawing.Size(51, 19);
-            this.rbtnOther.TabIndex = 3;
-            this.rbtnOther.Text = "Otro";
-            this.rbtnOther.UseVisualStyleBackColor = true;
-            // 
             // ExerciseFormThree
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(488, 440);
+            this.ClientSize = new System.Drawing.Size(651, 542);
             this.Controls.Add(this.gbxGenre);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "ExerciseFormThree";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ExerciseFormThree";
             this.gbxGenre.ResumeLayout(false);
             this.gbxGenre.PerformLayout();
