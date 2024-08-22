@@ -33,6 +33,8 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.lbNombres = new System.Windows.Forms.ListBox();
             this.btnMover = new System.Windows.Forms.Button();
+            this.btnMoverTodo = new System.Windows.Forms.Button();
+            this.lbNombresSeleccionados = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lblIngreseNombre
@@ -54,10 +56,10 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(458, 33);
+            this.btnAgregar.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Location = new System.Drawing.Point(458, 44);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(123, 47);
+            this.btnAgregar.Size = new System.Drawing.Size(81, 26);
             this.btnAgregar.TabIndex = 2;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -66,25 +68,44 @@
             // lbNombres
             // 
             this.lbNombres.FormattingEnabled = true;
-            this.lbNombres.Location = new System.Drawing.Point(36, 91);
+            this.lbNombres.Location = new System.Drawing.Point(36, 88);
             this.lbNombres.Name = "lbNombres";
-            this.lbNombres.Size = new System.Drawing.Size(181, 225);
+            this.lbNombres.Size = new System.Drawing.Size(219, 225);
             this.lbNombres.TabIndex = 3;
             // 
             // btnMover
             // 
-            this.btnMover.Location = new System.Drawing.Point(263, 147);
+            this.btnMover.Location = new System.Drawing.Point(272, 162);
             this.btnMover.Name = "btnMover";
             this.btnMover.Size = new System.Drawing.Size(75, 23);
             this.btnMover.TabIndex = 4;
             this.btnMover.Text = ">";
             this.btnMover.UseVisualStyleBackColor = true;
             // 
+            // btnMoverTodo
+            // 
+            this.btnMoverTodo.Location = new System.Drawing.Point(272, 191);
+            this.btnMoverTodo.Name = "btnMoverTodo";
+            this.btnMoverTodo.Size = new System.Drawing.Size(75, 23);
+            this.btnMoverTodo.TabIndex = 5;
+            this.btnMoverTodo.Text = ">>";
+            this.btnMoverTodo.UseVisualStyleBackColor = true;
+            // 
+            // lbNombresSeleccionados
+            // 
+            this.lbNombresSeleccionados.FormattingEnabled = true;
+            this.lbNombresSeleccionados.Location = new System.Drawing.Point(362, 88);
+            this.lbNombresSeleccionados.Name = "lbNombresSeleccionados";
+            this.lbNombresSeleccionados.Size = new System.Drawing.Size(219, 225);
+            this.lbNombresSeleccionados.TabIndex = 6;
+            // 
             // ExerciseFormOne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(613, 366);
+            this.Controls.Add(this.lbNombresSeleccionados);
+            this.Controls.Add(this.btnMoverTodo);
             this.Controls.Add(this.btnMover);
             this.Controls.Add(this.lbNombres);
             this.Controls.Add(this.btnAgregar);
@@ -106,5 +127,7 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.ListBox lbNombres;
         private System.Windows.Forms.Button btnMover;
+        private System.Windows.Forms.Button btnMoverTodo;
+        private System.Windows.Forms.ListBox lbNombresSeleccionados;
     }
 }
