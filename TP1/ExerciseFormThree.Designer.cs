@@ -32,6 +32,7 @@
             this.rbtnOther = new System.Windows.Forms.RadioButton();
             this.rbtnFemale = new System.Windows.Forms.RadioButton();
             this.rbtnMale = new System.Windows.Forms.RadioButton();
+            this.btnReturnMenu3 = new System.Windows.Forms.Button();
             this.gbxGenre.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,11 +42,9 @@
             this.gbxGenre.Controls.Add(this.rbtnFemale);
             this.gbxGenre.Controls.Add(this.rbtnMale);
             this.gbxGenre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxGenre.Location = new System.Drawing.Point(120, 42);
-            this.gbxGenre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbxGenre.Location = new System.Drawing.Point(90, 34);
             this.gbxGenre.Name = "gbxGenre";
-            this.gbxGenre.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gbxGenre.Size = new System.Drawing.Size(368, 79);
+            this.gbxGenre.Size = new System.Drawing.Size(276, 64);
             this.gbxGenre.TabIndex = 0;
             this.gbxGenre.TabStop = false;
             this.gbxGenre.Text = "Sexo";
@@ -54,10 +53,9 @@
             // 
             this.rbtnOther.AutoSize = true;
             this.rbtnOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnOther.Location = new System.Drawing.Point(269, 33);
-            this.rbtnOther.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbtnOther.Location = new System.Drawing.Point(202, 27);
             this.rbtnOther.Name = "rbtnOther";
-            this.rbtnOther.Size = new System.Drawing.Size(61, 21);
+            this.rbtnOther.Size = new System.Drawing.Size(49, 17);
             this.rbtnOther.TabIndex = 3;
             this.rbtnOther.Text = "Otro";
             this.rbtnOther.UseVisualStyleBackColor = true;
@@ -67,10 +65,9 @@
             this.rbtnFemale.AutoSize = true;
             this.rbtnFemale.Checked = true;
             this.rbtnFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnFemale.Location = new System.Drawing.Point(28, 33);
-            this.rbtnFemale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbtnFemale.Location = new System.Drawing.Point(21, 27);
             this.rbtnFemale.Name = "rbtnFemale";
-            this.rbtnFemale.Size = new System.Drawing.Size(99, 21);
+            this.rbtnFemale.Size = new System.Drawing.Size(79, 17);
             this.rbtnFemale.TabIndex = 1;
             this.rbtnFemale.TabStop = true;
             this.rbtnFemale.Text = "Femenino";
@@ -80,21 +77,32 @@
             // 
             this.rbtnMale.AutoSize = true;
             this.rbtnMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnMale.Location = new System.Drawing.Point(148, 33);
-            this.rbtnMale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbtnMale.Location = new System.Drawing.Point(111, 27);
             this.rbtnMale.Name = "rbtnMale";
-            this.rbtnMale.Size = new System.Drawing.Size(101, 21);
+            this.rbtnMale.Size = new System.Drawing.Size(82, 17);
             this.rbtnMale.TabIndex = 2;
             this.rbtnMale.Text = "Masculino";
             this.rbtnMale.UseVisualStyleBackColor = true;
             // 
+            // btnReturnMenu3
+            // 
+            this.btnReturnMenu3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnReturnMenu3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReturnMenu3.Location = new System.Drawing.Point(154, 376);
+            this.btnReturnMenu3.Name = "btnReturnMenu3";
+            this.btnReturnMenu3.Size = new System.Drawing.Size(156, 30);
+            this.btnReturnMenu3.TabIndex = 1;
+            this.btnReturnMenu3.Text = "Volver al Menu Principal";
+            this.btnReturnMenu3.UseVisualStyleBackColor = true;
+            this.btnReturnMenu3.Click += new System.EventHandler(this.btnReturnMenu3_Click);
+            // 
             // ExerciseFormThree
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 542);
+            this.ClientSize = new System.Drawing.Size(488, 440);
+            this.Controls.Add(this.btnReturnMenu3);
             this.Controls.Add(this.gbxGenre);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "ExerciseFormThree";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -111,5 +119,6 @@
         private System.Windows.Forms.RadioButton rbtnFemale;
         private System.Windows.Forms.RadioButton rbtnMale;
         private System.Windows.Forms.RadioButton rbtnOther;
+        private System.Windows.Forms.Button btnReturnMenu3;
     }
 }

@@ -45,7 +45,7 @@ namespace TP1
             }
             else //sino muestro un cartel aclaratorio
             {
-                MessageBox.Show("No pueden haber espacios vacios, intentelo de nuevo");
+                MessageBox.Show("No pueden haber espacios vacios, intentelo de nuevo", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -57,6 +57,30 @@ namespace TP1
             }
 
             lbNombres.Items.Clear();
+        }
+
+        private void btnReturnMenu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainForm formMenuPrincipal = new MainForm();
+            formMenuPrincipal.Show();
+        }
+
+        private void btnMover_Click(object sender, EventArgs e)
+        {
+            if (lbNombres.SelectedItem != null)
+            {
+                String item = lbNombres.SelectedItem.ToString();
+                lbNombresSeleccionados.Items.Add(item);
+
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un nombre de la lista", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);  
+            }
+
+            lbNombres.Items.Remove(lbNombres.SelectedItem);
+
         }
 
         /*

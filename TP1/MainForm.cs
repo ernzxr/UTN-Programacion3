@@ -34,5 +34,10 @@ namespace TP1
             ExerciseFormThree form = new ExerciseFormThree();
             form.ShowDialog();
         }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

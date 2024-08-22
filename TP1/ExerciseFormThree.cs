@@ -16,5 +16,12 @@ namespace TP1
         {
             InitializeComponent();
         }
+
+        private void btnReturnMenu3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainForm formMenuPrincipal = new MainForm();
+            formMenuPrincipal.Show();
+        }
     }
 }
