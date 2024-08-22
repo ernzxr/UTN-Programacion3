@@ -21,10 +21,27 @@ namespace TP1
         {
             if (txtNombre.Text.Trim() != "") //si el texto es distinto de vacio, o sea tiene datos, agrego un nombre
             {
-                //agrego lo que haya en el textbox en el listBox
-                lbNombres.Items.Add(txtNombre.Text);
-                //limpiar el textbox(reiniciar)
-                txtNombre.Text = "";
+                if (lbNombres.Items.Count <= 0) //si la lista esta vacia
+                {
+                    //agrego lo que haya en el textbox en el listBox
+                    lbNombres.Items.Add(txtNombre.Text);
+                    //limpiar el textbox(reiniciar)
+                    txtNombre.Text = "";
+                }
+                else
+                {
+                    int index = lbNombres.FindString(txtNombre.Text);//busco dentro del listbox si el nombre existe
+                    if (index < 0)
+                    {
+                        lbNombres.Items.Add(txtNombre.Text); //si no existe lo agrego
+                        txtNombre.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("El nombre " + txtNombre.Text + " ya existe en la lista. Ingrese otro nombre.");
+                        //Si esta repetido, muestro un cartel aclaratorio
+                    }
+                }
             }
             else //sino muestro un cartel aclaratorio
             {
