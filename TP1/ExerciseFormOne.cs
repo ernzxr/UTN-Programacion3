@@ -48,5 +48,37 @@ namespace TP1
                 MessageBox.Show("No pueden haber espacios vacios, intentelo de nuevo");
             }
         }
+
+        /*
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            bool yaExiste = false;
+
+            if (txtNombre.Text.Trim() != "")
+            {
+                foreach (string nombre in lbLista1.Items)
+                {
+                    if (nombre.ToUpper() == txtNombre.Text.ToUpper())
+                    {
+                        yaExiste = true;
+                    }
+                }
+
+                if (yaExiste)
+                {
+                    MessageBox.Show("El nombre que desea ingresar ya existe en la lista.");
+                }
+                else
+                {
+                    lbLista1.Items.Add(txtNombre.Text.Trim());
+                    txtNombre.Clear();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay ningún caracter ingresado");
+            }
+        }
+        */
     }
 }

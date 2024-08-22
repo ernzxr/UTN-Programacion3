@@ -32,6 +32,7 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.lbNombres = new System.Windows.Forms.ListBox();
+            this.btnMover = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblIngreseNombre
@@ -70,16 +71,26 @@
             this.lbNombres.Size = new System.Drawing.Size(181, 225);
             this.lbNombres.TabIndex = 3;
             // 
+            // btnMover
+            // 
+            this.btnMover.Location = new System.Drawing.Point(263, 147);
+            this.btnMover.Name = "btnMover";
+            this.btnMover.Size = new System.Drawing.Size(75, 23);
+            this.btnMover.TabIndex = 4;
+            this.btnMover.Text = ">";
+            this.btnMover.UseVisualStyleBackColor = true;
+            // 
             // ExerciseFormOne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(613, 366);
+            this.Controls.Add(this.btnMover);
             this.Controls.Add(this.lbNombres);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblIngreseNombre);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ExerciseFormOne";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ExerciseFormOne";
@@ -94,5 +105,6 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.ListBox lbNombres;
+        private System.Windows.Forms.Button btnMover;
     }
 }
