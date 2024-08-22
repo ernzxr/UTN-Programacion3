@@ -49,6 +49,16 @@ namespace TP1
             }
         }
 
+        private void btnMoverTodo_Click(object sender, EventArgs e)
+        {
+            foreach (var item in lbNombres.Items)
+            {
+                lbNombresSeleccionados.Items.Add(item.ToString());
+            }
+
+            lbNombres.Items.Clear();
+        }
+
         /*
         private void btnAceptar_Click(object sender, EventArgs e)
         {
