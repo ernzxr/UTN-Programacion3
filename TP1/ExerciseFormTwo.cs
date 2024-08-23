@@ -26,7 +26,22 @@ namespace TP1
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            //Si lo que hay en textNombre y txtApellido esta vacio
+            if (txtNombre.Text != "" && txtApellido.Text != "")
+            {
+                // Agrego el nombre completo al ListBox
+                lbLista.Items.Add(txtNombre.Text + " " + txtApellido.Text);
 
+                // luego limpio los TextBox
+                txtNombre.Clear();
+                txtApellido.Clear();
+            }
+            else
+            {
+                // muestro mensaje aclaratorio en caso de no complir con la condicion 
+                MessageBox.Show("Debe completar ambos campos.");
+            }
         }
     }
-}
+  }
+

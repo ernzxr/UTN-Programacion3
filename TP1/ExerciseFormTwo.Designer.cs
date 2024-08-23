@@ -32,11 +32,12 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblApellido = new System.Windows.Forms.Label();
             this.gpBox_Datos = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.gpBox_Elementos = new System.Windows.Forms.GroupBox();
-            this.lbLista = new System.Windows.Forms.ListBox();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.gpBox_Elementos = new System.Windows.Forms.GroupBox();
+            this.btnBorrar = new System.Windows.Forms.Button();
+            this.lbLista = new System.Windows.Forms.ListBox();
             this.gpBox_Datos.SuspendLayout();
             this.gpBox_Elementos.SuspendLayout();
             this.SuspendLayout();
@@ -76,37 +77,48 @@
             // gpBox_Datos
             // 
             this.gpBox_Datos.Controls.Add(this.btnAgregar);
-            this.gpBox_Datos.Controls.Add(this.textBox2);
-            this.gpBox_Datos.Controls.Add(this.textBox1);
+            this.gpBox_Datos.Controls.Add(this.txtApellido);
+            this.gpBox_Datos.Controls.Add(this.txtNombre);
             this.gpBox_Datos.Controls.Add(this.lblNombre);
             this.gpBox_Datos.Controls.Add(this.lblApellido);
             this.gpBox_Datos.Location = new System.Drawing.Point(9, 10);
-            this.gpBox_Datos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gpBox_Datos.Margin = new System.Windows.Forms.Padding(2);
             this.gpBox_Datos.Name = "gpBox_Datos";
-            this.gpBox_Datos.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gpBox_Datos.Padding = new System.Windows.Forms.Padding(2);
             this.gpBox_Datos.Size = new System.Drawing.Size(285, 295);
             this.gpBox_Datos.TabIndex = 4;
             this.gpBox_Datos.TabStop = false;
             this.gpBox_Datos.Text = "Ingreso de Datos";
             // 
-            // textBox2
+            // btnAgregar
             // 
-            this.textBox2.Location = new System.Drawing.Point(96, 147);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(168, 20);
-            this.textBox2.TabIndex = 5;
+            this.btnAgregar.Location = new System.Drawing.Point(96, 241);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(92, 39);
+            this.btnAgregar.TabIndex = 6;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // textBox1
+            // txtApellido
             // 
-            this.textBox1.Location = new System.Drawing.Point(96, 108);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(168, 20);
-            this.textBox1.TabIndex = 4;
+            this.txtApellido.Location = new System.Drawing.Point(96, 147);
+            this.txtApellido.Margin = new System.Windows.Forms.Padding(2);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(168, 20);
+            this.txtApellido.TabIndex = 5;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(96, 108);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(168, 20);
+            this.txtNombre.TabIndex = 4;
             // 
             // gpBox_Elementos
             // 
+            this.gpBox_Elementos.Controls.Add(this.btnBorrar);
             this.gpBox_Elementos.Controls.Add(this.lbLista);
             this.gpBox_Elementos.Location = new System.Drawing.Point(312, 10);
             this.gpBox_Elementos.Name = "gpBox_Elementos";
@@ -114,6 +126,15 @@
             this.gpBox_Elementos.TabIndex = 5;
             this.gpBox_Elementos.TabStop = false;
             this.gpBox_Elementos.Text = "Elementos";
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Location = new System.Drawing.Point(104, 241);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(92, 39);
+            this.btnBorrar.TabIndex = 1;
+            this.btnBorrar.Text = "Borrar";
+            this.btnBorrar.UseVisualStyleBackColor = true;
             // 
             // lbLista
             // 
@@ -123,16 +144,6 @@
             this.lbLista.Size = new System.Drawing.Size(207, 199);
             this.lbLista.TabIndex = 0;
             // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Location = new System.Drawing.Point(83, 241);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(92, 39);
-            this.btnAgregar.TabIndex = 6;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
             // ExerciseFormTwo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -141,7 +152,7 @@
             this.Controls.Add(this.gpBox_Elementos);
             this.Controls.Add(this.gpBox_Datos);
             this.Controls.Add(this.btnReturm2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ExerciseFormTwo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ExerciseFormTwo";
@@ -158,10 +169,11 @@
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.GroupBox gpBox_Datos;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtApellido;
+        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.GroupBox gpBox_Elementos;
         private System.Windows.Forms.ListBox lbLista;
+        private System.Windows.Forms.Button btnBorrar;
     }
 }
