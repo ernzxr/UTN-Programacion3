@@ -84,13 +84,13 @@ namespace TP1
         }
 
         /*
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
             bool yaExiste = false;
 
             if (txtNombre.Text.Trim() != "")
             {
-                foreach (string nombre in lbLista1.Items)
+                foreach (string nombre in lbNombres.Items)
                 {
                     if (nombre.ToUpper() == txtNombre.Text.ToUpper())
                     {
@@ -104,7 +104,7 @@ namespace TP1
                 }
                 else
                 {
-                    lbLista1.Items.Add(txtNombre.Text.Trim());
+                    lbNombres.Items.Add(txtNombre.Text.Trim());
                     txtNombre.Clear();
                 }
             }
