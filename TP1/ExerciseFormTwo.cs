@@ -29,7 +29,7 @@ namespace TP1
             //Si lo que hay en textNombre y txtApellido esta vacio
             if (txtNombre.Text.Trim() != "" && txtApellido.Text.Trim() != "")
             {
-               String nCompleto = txtNombre.Text + " " + txtApellido.Text;//concateno el nombre y el apellido antes de agregarlo a la lista
+               String nCompleto = txtNombre.Text.Trim() + " " + txtApellido.Text.Trim();//concateno el nombre y el apellido antes de agregarlo a la lista
 
                 if (lbLista.Items.Count <= 0) //verifico si el listbox esta vacio
                 {
@@ -43,14 +43,14 @@ namespace TP1
                     int index = lbLista.FindString(nCompleto);//si la lista contiene elementos busco dentro del listbox si el nombre completo existe
                     if (index < 0)
                     {
-                        lbLista.Items.Add(nCompleto); //si no existe lo agrego
+                        lbLista.Items.Add(nCompleto.Trim()); //si no existe lo agrego
                         txtNombre.Clear();
                         txtApellido.Clear();
                     }
                     else
                     {
                         //Si esta repetido, muestro un cartel aclaratorio
-                        MessageBox.Show("El nombre y apellido " + nCompleto + " ya existe en la lista. Ingrese otro nombre y apellido.");
+                        MessageBox.Show(nCompleto + " ya existe en la lista. Ingrese otro nombre y apellido.", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
                         txtNombre.Clear();
                         txtApellido.Clear();
                     }
