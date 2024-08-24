@@ -33,7 +33,12 @@
             this.rbtnFemale = new System.Windows.Forms.RadioButton();
             this.rbtnMale = new System.Windows.Forms.RadioButton();
             this.btnReturnMenu3 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbCasado = new System.Windows.Forms.RadioButton();
+            this.rbSoltero = new System.Windows.Forms.RadioButton();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.gbxGenre.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbxGenre
@@ -42,9 +47,9 @@
             this.gbxGenre.Controls.Add(this.rbtnFemale);
             this.gbxGenre.Controls.Add(this.rbtnMale);
             this.gbxGenre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxGenre.Location = new System.Drawing.Point(90, 34);
+            this.gbxGenre.Location = new System.Drawing.Point(22, 40);
             this.gbxGenre.Name = "gbxGenre";
-            this.gbxGenre.Size = new System.Drawing.Size(276, 64);
+            this.gbxGenre.Size = new System.Drawing.Size(153, 111);
             this.gbxGenre.TabIndex = 0;
             this.gbxGenre.TabStop = false;
             this.gbxGenre.Text = "Sexo";
@@ -53,7 +58,7 @@
             // 
             this.rbtnOther.AutoSize = true;
             this.rbtnOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnOther.Location = new System.Drawing.Point(202, 27);
+            this.rbtnOther.Location = new System.Drawing.Point(21, 73);
             this.rbtnOther.Name = "rbtnOther";
             this.rbtnOther.Size = new System.Drawing.Size(49, 17);
             this.rbtnOther.TabIndex = 3;
@@ -77,7 +82,7 @@
             // 
             this.rbtnMale.AutoSize = true;
             this.rbtnMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnMale.Location = new System.Drawing.Point(111, 27);
+            this.rbtnMale.Location = new System.Drawing.Point(21, 50);
             this.rbtnMale.Name = "rbtnMale";
             this.rbtnMale.Size = new System.Drawing.Size(82, 17);
             this.rbtnMale.TabIndex = 2;
@@ -96,11 +101,58 @@
             this.btnReturnMenu3.UseVisualStyleBackColor = true;
             this.btnReturnMenu3.Click += new System.EventHandler(this.btnReturnMenu3_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbSoltero);
+            this.groupBox1.Controls.Add(this.rbCasado);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(276, 46);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(157, 105);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Estado Civil";
+            // 
+            // rbCasado
+            // 
+            this.rbCasado.AutoSize = true;
+            this.rbCasado.Checked = true;
+            this.rbCasado.Location = new System.Drawing.Point(21, 38);
+            this.rbCasado.Name = "rbCasado";
+            this.rbCasado.Size = new System.Drawing.Size(67, 17);
+            this.rbCasado.TabIndex = 0;
+            this.rbCasado.TabStop = true;
+            this.rbCasado.Text = "Casado";
+            this.rbCasado.UseVisualStyleBackColor = true;
+            // 
+            // rbSoltero
+            // 
+            this.rbSoltero.AutoSize = true;
+            this.rbSoltero.Location = new System.Drawing.Point(21, 67);
+            this.rbSoltero.Name = "rbSoltero";
+            this.rbSoltero.Size = new System.Drawing.Size(65, 17);
+            this.rbSoltero.TabIndex = 1;
+            this.rbSoltero.Text = "Soltero";
+            this.rbSoltero.UseVisualStyleBackColor = true;
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "Data Entry",
+            "Operador PC"});
+            this.checkedListBox1.Location = new System.Drawing.Point(96, 175);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(225, 94);
+            this.checkedListBox1.TabIndex = 3;
+            // 
             // ExerciseFormThree
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(488, 440);
+            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnReturnMenu3);
             this.Controls.Add(this.gbxGenre);
             this.MaximizeBox = false;
@@ -109,6 +161,8 @@
             this.Text = "ExerciseFormThree";
             this.gbxGenre.ResumeLayout(false);
             this.gbxGenre.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -120,5 +174,9 @@
         private System.Windows.Forms.RadioButton rbtnMale;
         private System.Windows.Forms.RadioButton rbtnOther;
         private System.Windows.Forms.Button btnReturnMenu3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbCasado;
+        private System.Windows.Forms.RadioButton rbSoltero;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }
