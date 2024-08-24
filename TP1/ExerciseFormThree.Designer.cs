@@ -36,7 +36,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbSoltero = new System.Windows.Forms.RadioButton();
             this.rbCasado = new System.Windows.Forms.RadioButton();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.chkOficio = new System.Windows.Forms.CheckedListBox();
             this.btnSeleccionado = new System.Windows.Forms.Button();
             this.lblMensaje = new System.Windows.Forms.Label();
             this.lblMostrarSexo = new System.Windows.Forms.Label();
@@ -139,19 +139,19 @@
             this.rbCasado.Text = "Casado";
             this.rbCasado.UseVisualStyleBackColor = true;
             // 
-            // checkedListBox1
+            // chkOficio
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.chkOficio.FormattingEnabled = true;
+            this.chkOficio.Items.AddRange(new object[] {
             "Data Entry",
             "Operador PC",
             "Programador",
             "Reparador de Pc",
             "Tester"});
-            this.checkedListBox1.Location = new System.Drawing.Point(164, 136);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(181, 94);
-            this.checkedListBox1.TabIndex = 3;
+            this.chkOficio.Location = new System.Drawing.Point(164, 136);
+            this.chkOficio.Name = "chkOficio";
+            this.chkOficio.Size = new System.Drawing.Size(181, 94);
+            this.chkOficio.TabIndex = 3;
             // 
             // btnSeleccionado
             // 
@@ -201,7 +201,7 @@
             this.Controls.Add(this.lblMostrarSexo);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.btnSeleccionado);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.chkOficio);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnReturnMenu3);
             this.Controls.Add(this.gbxGenre);
@@ -228,7 +228,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbCasado;
         private System.Windows.Forms.RadioButton rbSoltero;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox chkOficio;
         private System.Windows.Forms.Button btnSeleccionado;
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Label lblMostrarSexo;

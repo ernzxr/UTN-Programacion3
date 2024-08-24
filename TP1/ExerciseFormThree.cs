@@ -34,23 +34,18 @@ namespace TP1
             }
             else
             {
-                if (rbtnMale.Checked == true)
-                {
-                    lblMostrarSexo.Text = "Sexo: " + rbtnMale.Text;
-                }
-                else
-                {
-                    lblMostrarSexo.Text = "Sexo: " + rbtnOther.Text;
-                }
+                lblMostrarSexo.Text = "Sexo: " + (string)(rbtnMale.Checked ? "Masculino" : "Otro");
             }
 
-            if (rbCasado.Checked == true)
+            lblEstadoCivil.Text = "Estado Civil: " + (string)(rbSoltero.Checked ? "Soltero" : "Casado");
+
+            if (chkOficio.CheckedItems.Count > 0)
             {
-                lblEstadoCivil.Text = "Estado Civil: " + rbCasado.Text;
+
             }
             else
             {
-                lblEstadoCivil.Text = "Estado Civil: " + rbSoltero.Text;
+                MessageBox.Show("Debe seleccionar un oficio.");
             }
         }
     }
