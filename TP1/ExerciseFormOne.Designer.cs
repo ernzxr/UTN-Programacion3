@@ -54,9 +54,11 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(261, 20);
             this.txtNombre.TabIndex = 1;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Enabled = false;
             this.btnAgregar.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.Location = new System.Drawing.Point(458, 44);
             this.btnAgregar.Name = "btnAgregar";
@@ -77,6 +79,7 @@
             // 
             // btnMover
             // 
+            this.btnMover.Enabled = false;
             this.btnMover.Location = new System.Drawing.Point(272, 162);
             this.btnMover.Name = "btnMover";
             this.btnMover.Size = new System.Drawing.Size(75, 23);
@@ -87,6 +90,7 @@
             // 
             // btnMoverTodo
             // 
+            this.btnMoverTodo.Enabled = false;
             this.btnMoverTodo.Location = new System.Drawing.Point(272, 191);
             this.btnMoverTodo.Name = "btnMoverTodo";
             this.btnMoverTodo.Size = new System.Drawing.Size(75, 23);

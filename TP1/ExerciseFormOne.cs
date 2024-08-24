@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace TP1
 {
@@ -27,6 +28,7 @@ namespace TP1
                     lbNombres.Items.Add(txtNombre.Text.Trim());
                     //limpiar el textbox(reiniciar)
                     txtNombre.Text = "";
+                    UpdateButtonsStates();
                 }
                 else
                 {
@@ -35,6 +37,7 @@ namespace TP1
                     {
                         lbNombres.Items.Add(txtNombre.Text.Trim()); //si no existe lo agrego
                         txtNombre.Text = "";
+                        UpdateButtonsStates();
                     }
                     else
                     {
@@ -49,6 +52,12 @@ namespace TP1
             }
         }
 
+        private void UpdateButtonsStates()
+        {
+            btnMover.Enabled = lbNombres.Items.Count > 0;
+            btnMoverTodo.Enabled = lbNombres.Items.Count > 0;
+        }
+
         private void btnMoverTodo_Click(object sender, EventArgs e)
         {
             
@@ -57,13 +66,12 @@ namespace TP1
                 lbNombresSeleccionados.Items.Add(item.ToString());
             }
             lbNombres.Items.Clear();
+            UpdateButtonsStates();
         }
 
         private void btnReturnMenu_Click(object sender, EventArgs e)
         {
             this.Close();
-            MainForm formMenuPrincipal = new MainForm();
-            formMenuPrincipal.Show();
         }
 
         private void btnMover_Click(object sender, EventArgs e)
@@ -72,15 +80,27 @@ namespace TP1
             {
                 String item = lbNombres.SelectedItem.ToString();
                 lbNombresSeleccionados.Items.Add(item);
+                lbNombres.Items.Remove(lbNombres.SelectedItem);
 
             }
             else
             {
                 MessageBox.Show("Debe seleccionar un nombre de la lista", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);  
+            }      
+            UpdateButtonsStates();
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            string name = txtNombre.Text.Trim();
+            if (name.Length > 0)
+            {
+                btnAgregar.Enabled = true;
             }
-
-            lbNombres.Items.Remove(lbNombres.SelectedItem);
-
+            else
+            {
+                btnAgregar.Enabled = false;
+            }
         }
 
         /*
