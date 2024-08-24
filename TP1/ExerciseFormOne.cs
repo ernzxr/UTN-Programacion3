@@ -38,7 +38,7 @@ namespace TP1
                     }
                     else
                     {
-                        MessageBox.Show("El nombre " + txtNombre.Text + " ya existe en la lista. Ingrese otro nombre.");
+                        MessageBox.Show("El nombre " + txtNombre.Text.Trim() + " ya existe en la lista. Ingrese otro nombre.","Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                         //Si esta repetido, muestro un cartel aclaratorio
                     }
                 }
@@ -52,30 +52,11 @@ namespace TP1
         private void btnMoverTodo_Click(object sender, EventArgs e)
         {
             
+            foreach(var item in lbNombres.Items)
             {
-                List<string> listaAux = new List<string>(); // Creo una lista temporal para que me guarde los seleccionados
-
-                if (lbNombres.SelectedItems.Count > 0) // verifico que haya elementos seleccionados
-                {
-                    foreach (string item in lbNombres.SelectedItems)
-                    {
-                        listaAux.Add(item); // Guardo los elementos seleccionados en la lista auxiliar
-                    }
-
-                    foreach (string item in listaAux)
-
-                    {
-                        lbNombresSeleccionados.Items.Add(item); // agrago los elementos de la lista auxiliar a la lista de Nombres seleccionados
-                        lbNombres.Items.Remove(item); // Uso remove para limpiar de a un elemento
-
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("No hay elementos para mover", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+                lbNombresSeleccionados.Items.Add(item.ToString());
             }
+            lbNombres.Items.Clear();
         }
 
         private void btnReturnMenu_Click(object sender, EventArgs e)
