@@ -29,7 +29,7 @@ namespace TP1
             //Si lo que hay en textNombre y txtApellido esta vacio
             if (txtNombre.Text.Trim() != "" && txtApellido.Text.Trim() != "")
             {
-               String nCompleto = txtApellido.Text.Trim() + " " + txtNombre.Text.Trim();concateno el nombre y el apellido antes de agregarlo a la lista
+                String nCompleto = txtApellido.Text.Trim() + " " + txtNombre.Text.Trim(); // concateno el nombre y el apellido antes de agregarlo a la lista
 
                 if (lbLista.Items.Count <= 0) //verifico si el listbox esta vacio
                 {
