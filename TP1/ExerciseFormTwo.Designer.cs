@@ -38,6 +38,7 @@
             this.gpBox_Elementos = new System.Windows.Forms.GroupBox();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.lbLista = new System.Windows.Forms.ListBox();
+            this.btnDeseleccionar = new System.Windows.Forms.Button();
             this.gpBox_Datos.SuspendLayout();
             this.gpBox_Elementos.SuspendLayout();
             this.SuspendLayout();
@@ -118,6 +119,7 @@
             // 
             // gpBox_Elementos
             // 
+            this.gpBox_Elementos.Controls.Add(this.btnDeseleccionar);
             this.gpBox_Elementos.Controls.Add(this.btnBorrar);
             this.gpBox_Elementos.Controls.Add(this.lbLista);
             this.gpBox_Elementos.Location = new System.Drawing.Point(312, 10);
@@ -129,12 +131,14 @@
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(104, 241);
+            this.btnBorrar.Enabled = false;
+            this.btnBorrar.Location = new System.Drawing.Point(33, 241);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(92, 39);
             this.btnBorrar.TabIndex = 1;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // lbLista
             // 
@@ -143,6 +147,19 @@
             this.lbLista.Name = "lbLista";
             this.lbLista.Size = new System.Drawing.Size(207, 199);
             this.lbLista.TabIndex = 0;
+            this.lbLista.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lbLista_MouseClick);
+            this.lbLista.SelectedValueChanged += new System.EventHandler(this.lbLista_SelectedValueChanged);
+            // 
+            // btnDeseleccionar
+            // 
+            this.btnDeseleccionar.Enabled = false;
+            this.btnDeseleccionar.Location = new System.Drawing.Point(148, 241);
+            this.btnDeseleccionar.Name = "btnDeseleccionar";
+            this.btnDeseleccionar.Size = new System.Drawing.Size(92, 39);
+            this.btnDeseleccionar.TabIndex = 2;
+            this.btnDeseleccionar.Text = "Deseleccionar";
+            this.btnDeseleccionar.UseVisualStyleBackColor = true;
+            this.btnDeseleccionar.Click += new System.EventHandler(this.btnDeseleccionar_Click);
             // 
             // ExerciseFormTwo
             // 
@@ -175,5 +192,6 @@
         private System.Windows.Forms.GroupBox gpBox_Elementos;
         private System.Windows.Forms.ListBox lbLista;
         private System.Windows.Forms.Button btnBorrar;
+        private System.Windows.Forms.Button btnDeseleccionar;
     }
 }

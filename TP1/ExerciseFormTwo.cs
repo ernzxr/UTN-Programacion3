@@ -20,8 +20,8 @@ namespace TP1
         private void btnReturm2_Click(object sender, EventArgs e)
         {
             this.Close();
-            MainForm formMenuPrincipal = new MainForm();
-            formMenuPrincipal.Show();
+            // MainForm formMenuPrincipal = new MainForm();
+            // formMenuPrincipal.Show();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -61,6 +61,46 @@ namespace TP1
             {
                 // muestro mensaje aclaratorio en caso de no cumplir con la condicion 
                 MessageBox.Show("Debe completar ambos campos.");
+            }
+        }
+
+        private void UpdateButtonsState()
+        {
+            bool hasSelectedItem = lbLista.SelectedItem != null;
+            btnBorrar.Enabled = hasSelectedItem;
+            btnDeseleccionar.Enabled = hasSelectedItem;
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if(lbLista.SelectedItem != null)
+            {
+                lbLista.Items.Remove(lbLista.SelectedItem);
+                UpdateButtonsState();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un elemento de la lista.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDeseleccionar_Click(object sender, EventArgs e)
+        {
+            lbLista.SelectedItem = null;
+            UpdateButtonsState();
+        }
+
+        private void lbLista_SelectedValueChanged(object sender, EventArgs e)
+        {
+            UpdateButtonsState();
+        }
+
+        private void lbLista_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (lbLista.IndexFromPoint(e.Location) == -1)
+            {
+                lbLista.SelectedItem = null;
+                UpdateButtonsState();
             }
         }
     }
