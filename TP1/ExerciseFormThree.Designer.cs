@@ -38,6 +38,9 @@
             this.rbCasado = new System.Windows.Forms.RadioButton();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.btnSeleccionado = new System.Windows.Forms.Button();
+            this.lblMensaje = new System.Windows.Forms.Label();
+            this.lblMostrarSexo = new System.Windows.Forms.Label();
+            this.lblEstadoCivil = new System.Windows.Forms.Label();
             this.gbxGenre.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -160,12 +163,43 @@
             this.btnSeleccionado.TabIndex = 4;
             this.btnSeleccionado.Text = "Ver lo que se seleccionó";
             this.btnSeleccionado.UseVisualStyleBackColor = true;
+            this.btnSeleccionado.Click += new System.EventHandler(this.btnSeleccionado_Click);
+            // 
+            // lblMensaje
+            // 
+            this.lblMensaje.AutoSize = true;
+            this.lblMensaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensaje.Location = new System.Drawing.Point(59, 289);
+            this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.Size = new System.Drawing.Size(0, 18);
+            this.lblMensaje.TabIndex = 5;
+            // 
+            // lblMostrarSexo
+            // 
+            this.lblMostrarSexo.AutoSize = true;
+            this.lblMostrarSexo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMostrarSexo.Location = new System.Drawing.Point(62, 324);
+            this.lblMostrarSexo.Name = "lblMostrarSexo";
+            this.lblMostrarSexo.Size = new System.Drawing.Size(0, 18);
+            this.lblMostrarSexo.TabIndex = 6;
+            // 
+            // lblEstadoCivil
+            // 
+            this.lblEstadoCivil.AutoSize = true;
+            this.lblEstadoCivil.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstadoCivil.Location = new System.Drawing.Point(62, 353);
+            this.lblEstadoCivil.Name = "lblEstadoCivil";
+            this.lblEstadoCivil.Size = new System.Drawing.Size(0, 18);
+            this.lblEstadoCivil.TabIndex = 7;
             // 
             // ExerciseFormThree
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(488, 440);
+            this.Controls.Add(this.lblEstadoCivil);
+            this.Controls.Add(this.lblMostrarSexo);
+            this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.btnSeleccionado);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.groupBox1);
@@ -180,6 +214,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -195,5 +230,8 @@
         private System.Windows.Forms.RadioButton rbSoltero;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Button btnSeleccionado;
+        private System.Windows.Forms.Label lblMensaje;
+        private System.Windows.Forms.Label lblMostrarSexo;
+        private System.Windows.Forms.Label lblEstadoCivil;
     }
 }

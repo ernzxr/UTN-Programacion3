@@ -24,6 +24,34 @@ namespace TP1
             formMenuPrincipal.Show();
         }
 
-        
+        private void btnSeleccionado_Click(object sender, EventArgs e)
+        {
+            lblMensaje.Text = "Usted seleccionó los siguientes elementos: ";
+
+            if (rbtnFemale.Checked == true)
+            {
+                lblMostrarSexo.Text = "Sexo: " + rbtnFemale.Text;
+            }
+            else
+            {
+                if (rbtnMale.Checked == true)
+                {
+                    lblMostrarSexo.Text = "Sexo: " + rbtnMale.Text;
+                }
+                else
+                {
+                    lblMostrarSexo.Text = "Sexo: " + rbtnOther.Text;
+                }
+            }
+
+            if (rbCasado.Checked == true)
+            {
+                lblEstadoCivil.Text = "Estado Civil: " + rbCasado.Text;
+            }
+            else
+            {
+                lblEstadoCivil.Text = "Estado Civil: " + rbSoltero.Text;
+            }
+        }
     }
 }
