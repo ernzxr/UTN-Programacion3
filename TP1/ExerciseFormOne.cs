@@ -24,16 +24,16 @@ namespace TP1
                 if (lbNombres.Items.Count <= 0) //si la lista esta vacia
                 {
                     //agrego lo que haya en el textbox en el listBox
-                    lbNombres.Items.Add(txtNombre.Text);
+                    lbNombres.Items.Add(txtNombre.Text.Trim());
                     //limpiar el textbox(reiniciar)
                     txtNombre.Text = "";
                 }
                 else
                 {
-                    int index = lbNombres.FindString(txtNombre.Text);//busco dentro del listbox si el nombre existe
+                    int index = lbNombres.FindString(txtNombre.Text.Trim());//busco dentro del listbox si el nombre existe
                     if (index < 0)
                     {
-                        lbNombres.Items.Add(txtNombre.Text); //si no existe lo agrego
+                        lbNombres.Items.Add(txtNombre.Text.Trim()); //si no existe lo agrego
                         txtNombre.Text = "";
                     }
                     else
@@ -51,12 +51,31 @@ namespace TP1
 
         private void btnMoverTodo_Click(object sender, EventArgs e)
         {
-            foreach (var item in lbNombres.Items)
+            
             {
-                lbNombresSeleccionados.Items.Add(item.ToString());
-            }
+                List<string> listaAux = new List<string>(); // Creo una lista temporal para que me guarde los seleccionados
 
-            lbNombres.Items.Clear();
+                if (lbNombres.SelectedItems.Count > 0) // verifico que haya elementos seleccionados
+                {
+                    foreach (string item in lbNombres.SelectedItems)
+                    {
+                        listaAux.Add(item); // Guardo los elementos seleccionados en la lista auxiliar
+                    }
+
+                    foreach (string item in listaAux)
+
+                    {
+                        lbNombresSeleccionados.Items.Add(item); // agrago los elementos de la lista auxiliar a la lista de Nombres seleccionados
+                        lbNombres.Items.Remove(item); // Uso remove para limpiar de a un elemento
+
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("No hay elementos para mover", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
         }
 
         private void btnReturnMenu_Click(object sender, EventArgs e)

@@ -71,6 +71,7 @@
             this.lbNombres.FormattingEnabled = true;
             this.lbNombres.Location = new System.Drawing.Point(36, 88);
             this.lbNombres.Name = "lbNombres";
+            this.lbNombres.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbNombres.Size = new System.Drawing.Size(219, 225);
             this.lbNombres.TabIndex = 3;
             // 
@@ -127,7 +128,7 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblIngreseNombre);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ExerciseFormOne";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ExerciseFormOne";
