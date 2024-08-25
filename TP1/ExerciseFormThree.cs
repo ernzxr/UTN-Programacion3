@@ -26,6 +26,12 @@ namespace TP1
 
         private void btnSeleccionado_Click(object sender, EventArgs e)
         {
+            if(chkOficio.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar un oficio.");
+                return;
+            }
+
             lblMensaje.Text = "Usted seleccionó los siguientes elementos: ";
 
             if (rbtnFemale.Checked == true)
@@ -39,13 +45,24 @@ namespace TP1
 
             lblEstadoCivil.Text = "Estado Civil: " + (string)(rbSoltero.Checked ? "Soltero" : "Casado");
 
-            if (chkOficio.CheckedItems.Count > 0)
-            {
+            lbl_Oficio.Text = "Oficio:";
 
-            }
-            else
+            lbl0.Text = "- ";
+            lbl1.Text = "- ";
+            lbl2.Text = "- ";
+            lbl3.Text = "- ";
+            lbl4.Text = "- ";
+
+
+            Label[] labels = {lbl0, lbl1, lbl2, lbl3, lbl4};
+
+            int labelIndex = 0;
+
+            foreach (int index in chkOficio.CheckedIndices)
             {
-                MessageBox.Show("Debe seleccionar un oficio.");
+                labels[labelIndex].Visible = true;
+                labels[labelIndex].Text += chkOficio.Items[index].ToString();
+                labelIndex++;
             }
         }
     }
