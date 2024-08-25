@@ -27,14 +27,14 @@ namespace TP1
 
         private void btnSeleccionado_Click(object sender, EventArgs e)
         {
-            if(chkOficio.CheckedItems.Count == 0)
+            lblMensaje.Text = "";
+
+            if (chkOficio.CheckedItems.Count == 0)
             {
                 MessageBox.Show("Debe seleccionar un oficio.");
-                lblMensaje.Text = "";
                 return;
             }
 
-            lblMensaje.Text = "";
             lblMensaje.Text += "Usted seleccionó los siguientes elementos:\n";
 
             lblMensaje.Text += rbtnMale.Checked
