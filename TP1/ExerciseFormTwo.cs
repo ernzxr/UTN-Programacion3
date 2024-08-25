@@ -60,7 +60,7 @@ namespace TP1
             else
             {
                 // muestro mensaje aclaratorio en caso de no cumplir con la condicion 
-                MessageBox.Show("Debe completar ambos campos.");
+                MessageBox.Show("Debe completar ambos campos.","Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             }
         }
 

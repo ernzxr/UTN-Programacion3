@@ -52,6 +52,13 @@ namespace TP1
             {
                 lblMensaje.Text += "\n  - " + job;
             }
+            for( int i=0; i<chkOficio.Items.Count;i++)
+            {
+                chkOficio.SetItemChecked(i,false);
+            }
+
+
+
         }
     }
 }
