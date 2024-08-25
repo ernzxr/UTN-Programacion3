@@ -20,8 +20,9 @@ namespace TP1
         private void btnReturnMenu3_Click(object sender, EventArgs e)
         {
             this.Close();
-            MainForm formMenuPrincipal = new MainForm();
-            formMenuPrincipal.Show();
+            // No se debe abrir un nuevo formulario principal
+            // MainForm formMenuPrincipal = new MainForm();
+            // formMenuPrincipal.Show();
         }
 
         private void btnSeleccionado_Click(object sender, EventArgs e)
@@ -29,40 +30,27 @@ namespace TP1
             if(chkOficio.CheckedItems.Count == 0)
             {
                 MessageBox.Show("Debe seleccionar un oficio.");
+                lblMensaje.Text = "";
                 return;
             }
 
-            lblMensaje.Text = "Usted seleccionó los siguientes elementos: ";
+            lblMensaje.Text = "";
+            lblMensaje.Text += "Usted seleccionó los siguientes elementos:\n";
 
-            if (rbtnFemale.Checked == true)
+            lblMensaje.Text += rbtnMale.Checked
+                ? "\nSexo: Masculino"
+                : rbtnFemale.Checked
+                ? "\nSexo: Femenino"
+                : "\nSexo: Otro";
+
+            lblMensaje.Text += rbSoltero.Checked
+                ? "\nEstado Civil: Soltero"
+                : "\nEstado Civil: Casado";
+
+            lblMensaje.Text += "\nOficio:";
+            foreach (string job in chkOficio.CheckedItems)
             {
-                lblMostrarSexo.Text = "Sexo: " + rbtnFemale.Text;
-            }
-            else
-            {
-                lblMostrarSexo.Text = "Sexo: " + (string)(rbtnMale.Checked ? "Masculino" : "Otro");
-            }
-
-            lblEstadoCivil.Text = "Estado Civil: " + (string)(rbSoltero.Checked ? "Soltero" : "Casado");
-
-            lbl_Oficio.Text = "Oficio:";
-
-            lbl0.Text = "- ";
-            lbl1.Text = "- ";
-            lbl2.Text = "- ";
-            lbl3.Text = "- ";
-            lbl4.Text = "- ";
-
-
-            Label[] labels = {lbl0, lbl1, lbl2, lbl3, lbl4};
-
-            int labelIndex = 0;
-
-            foreach (int index in chkOficio.CheckedIndices)
-            {
-                labels[labelIndex].Visible = true;
-                labels[labelIndex].Text += chkOficio.Items[index].ToString();
-                labelIndex++;
+                lblMensaje.Text += "\n  - " + job;
             }
         }
     }

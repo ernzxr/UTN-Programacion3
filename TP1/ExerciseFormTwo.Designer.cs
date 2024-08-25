@@ -173,7 +173,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ExerciseFormTwo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ExerciseFormTwo";
+            this.Text = "Nombre y apellido";
             this.gpBox_Datos.ResumeLayout(false);
             this.gpBox_Datos.PerformLayout();
             this.gpBox_Elementos.ResumeLayout(false);
