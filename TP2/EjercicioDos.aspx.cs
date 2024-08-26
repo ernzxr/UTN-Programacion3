@@ -13,7 +13,6 @@ namespace TP2
         {
 
         }
-
         protected void btnVer_Click(object sender, EventArgs e)
         {
             // Server.Transfer("EjercicioDosB.aspx");
