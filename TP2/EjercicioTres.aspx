@@ -20,8 +20,13 @@
         <p style="margin-left: 80px">
             &nbsp;</p>
         <p style="margin-left: 80px">
-            <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+            <asp:LinkButton ID="lblReset" runat="server" OnClick="lblReset_Click">Reset</asp:LinkButton>
         </p>
+        <p style="margin-left: 80px">
+            <asp:Label ID="lblMensaje" runat="server">Texto coloreado</asp:Label>
+        </p>
+        <p style="margin-left: 80px">
+            &nbsp;</p>
     </form>
 </body>
 </html>

@@ -17,5 +17,11 @@ namespace TP2
         {
             lblMensaje.ForeColor = System.Drawing.Color.Red;
         }
+
+        protected void lblReset_Click(object sender, EventArgs e)
+        {
+            lblMensaje.ForeColor = System.Drawing.Color.Black;
+
+        }
     }
 }
