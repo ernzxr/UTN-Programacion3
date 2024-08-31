@@ -17,8 +17,8 @@ namespace TP2
 
         protected void btnTabla_Click(object sender, EventArgs e)
         {
-            string Producto1 = txtProducto1.Text;
-            string Producto2 = txtProducto2.Text;
+            string Producto1 = txtProducto1.Text.ToLower();
+            string Producto2 = txtProducto2.Text.ToLower();
             int Cantidad1 = 0;
             int Cantidad2 = 0;
 
@@ -46,35 +46,53 @@ namespace TP2
                 lblError.Visible = false;
             }
 
+            
 
-            int Total = Cantidad1 + Cantidad2;
+            //verificar si los productos ingresados son iguales, de ser asi generar la tabla con el producto combinado
+            if (Producto1 == Producto2)
+            {
+                string Tabla;
+                Tabla = "<table border='1'>";
+                Tabla += "<tr> <td>Producto</td> <td>Cantidad</td> </tr>";
+                Tabla += $"<tr> <td>{Producto1}</td> <td>{Cantidad1 + Cantidad2}</td> </tr>"; 
+                Tabla += $"<tr> <td>TOTAL</td> <td>{Cantidad1 + Cantidad2}</td> </tr>"; 
+                Tabla += "</table>";
+                lblTabla.Text = Tabla;
 
-            String tabla = "<table border = '1'> ";
-            tabla += "<tr><th>Producto</th><th>Cantidad</th></tr>";
+            }
+            else //si los productos ingresados no son iguales, generar la tabla con los productos por separado
+            {
+                int Total = Cantidad1 + Cantidad2;
 
-            tabla += "<tr>";
-            tabla += "<td>" + Producto1 + "</td><td>" + Cantidad1.ToString() + "</td>";
-            tabla += "</tr>";
+                String Tabla = "<table border = '1'> ";
+                Tabla += "<tr><th>Producto</th><th>Cantidad</th></tr>";
 
-            tabla += "<tr>";
-            tabla += "<td>" + Producto2 + "</td><td>" + Cantidad2.ToString() + "</td>";
-            tabla += "</tr>";
+                Tabla += "<tr>";
+                Tabla += "<td>" + Producto1 + "</td><td>" + Cantidad1.ToString() + "</td>";
+                Tabla += "</tr>";
 
-            tabla += "<tr>";
-            tabla += "<td>TOTAL</td><td>" + Total.ToString() + "</td>";
-            tabla += "</tr>";
+                Tabla += "<tr>";
+                Tabla += "<td>" + Producto2 + "</td><td>" + Cantidad2.ToString() + "</td>";
+                Tabla += "</tr>";
 
-            tabla += "</table>";
+                Tabla += "<tr>";
+                Tabla += "<td>TOTAL</td><td>" + Total.ToString() + "</td>";
+                Tabla += "</tr>";
+
+                Tabla += "</table>";
 
 
-            lblTabla.Text = tabla;
-            txtProducto1.Text = string.Empty;
-            txtProducto2.Text = string.Empty;
-            txtCantidad1.Text = string.Empty;
-            txtCantidad2.Text = string.Empty;
+                lblTabla.Text = Tabla;
+                txtProducto1.Text = string.Empty;
+                txtProducto2.Text = string.Empty;
+                txtCantidad1.Text = string.Empty;
+                txtCantidad2.Text = string.Empty;
 
+            }
 
         }
+
+           
     }
 
 }
