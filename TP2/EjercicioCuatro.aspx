@@ -5,6 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>EJERCICIO 4</title>
+    <style type="text/css">
+        .auto-style1 {
+            width: 104px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -12,18 +17,18 @@
             <tr>
                 <td>lblUsuario
                 </td>
-                <td>txtUsuario
+                <td class="auto-style1">txtUsuario
                 </td>
             </tr>
             <tr>
                 <td>lblPassword
                 </td>
-                <td>txtPassword
+                <td class="auto-style1">txtPassword
                 </td>
             </tr>
             <tr>
                 <td></td>
-                <td>
+                <td class="auto-style1">
                     <asp:Button ID="btnValidar" runat="server" Text="Validar" OnClick="btnValidar_Click" />
                 </td>
             </tr>
