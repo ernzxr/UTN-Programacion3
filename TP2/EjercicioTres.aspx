@@ -13,7 +13,7 @@
             <asp:LinkButton ID="lbRojo" runat="server" OnClick="lbRojo_Click">Rojo</asp:LinkButton>
         </p>
         <p style="margin-left: 80px">
-            <asp:LinkButton ID="lbAzul" runat="server">Azul</asp:LinkButton>
+            <asp:LinkButton ID="lbAzul" runat="server" OnClick="lbAzul_Click">Azul</asp:LinkButton>
         </p>
         <p style="margin-left: 80px">
             &nbsp;</p>
