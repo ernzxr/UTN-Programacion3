@@ -9,25 +9,31 @@
     <style type="text/css">
         .auto-style1 {
             height: 293px;
+            margin-left: 120px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1">
-            <asp:Label ID="lblConfi" runat="server" Text="Elija su configuracion"></asp:Label>
+            <asp:Label ID="lblConfi" runat="server" Text="Elija su configuración"></asp:Label>
             <br />
             <br />
             <asp:Label ID="lblMemoria" runat="server" Text="Seleccione la cantidad de memoria"></asp:Label>
             <br />
             <br />
-            <asp:DropDownList ID="ddlMemoria" runat="server" Height="24px" Width="177px">
+            <asp:DropDownList ID="ddlMemoria" runat="server" Height="24px" Width="72px" AutoPostBack="True" style="margin-left: 41px">
+                <asp:ListItem Value="200">2 GB</asp:ListItem>
+                <asp:ListItem Value="375">4 GB</asp:ListItem>
+                <asp:ListItem Value="500">5 GB</asp:ListItem>
             </asp:DropDownList>
             <br />
             <br />
             <asp:Label ID="lblAccesorios" runat="server" Text="Seleccione accesorios"></asp:Label>
             <br />
             <br />
+            <asp:CheckBoxList ID="cblAccesorios" runat="server" Height="16px" style="margin-left: 32px" Width="91px">
+            </asp:CheckBoxList>
             <br />
             <br />
             <br />
