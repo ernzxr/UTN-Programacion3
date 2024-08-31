@@ -1,0 +1,27 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EjercicioTres.aspx.cs" Inherits="TP2.EjercicioTres" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <p style="margin-left: 80px">
+            <asp:LinkButton ID="lbRojo" runat="server" OnClick="lbRojo_Click">Rojo</asp:LinkButton>
+        </p>
+        <p style="margin-left: 80px">
+            <asp:LinkButton ID="lbAzul" runat="server">Azul</asp:LinkButton>
+        </p>
+        <p style="margin-left: 80px">
+            &nbsp;</p>
+        <p style="margin-left: 80px">
+            &nbsp;</p>
+        <p style="margin-left: 80px">
+            <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+        </p>
+    </form>
+</body>
+</html>
