@@ -15,7 +15,15 @@ namespace TP2
         }
         protected void btnVer_Click(object sender, EventArgs e)
         {
-            // Server.Transfer("EjercicioDosB.aspx");
+            if(ddlCiudad.SelectedIndex == 0)
+            {
+                lblMensaje.Text = "Debe seleccionar una opcion valida, intente de nuevo.";
+            }
+            else
+            {
+                Server.Transfer("EjercicioDos-WebForm2.aspx");
+            }
+            
         }
     }
 }
