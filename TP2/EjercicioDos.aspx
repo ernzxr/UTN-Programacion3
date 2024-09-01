@@ -18,7 +18,7 @@
             <br />
             <br />
             <asp:Label ID="lblCiudad" runat="server" Text="Ciudad: "></asp:Label>
-            <asp:DropDownList ID="ddlCiudad" runat="server" AutoPostBack="True" Height="222px" style="margin-left: 49px" Width="180px">
+            <asp:DropDownList ID="ddlCiudad" runat="server" AutoPostBack="True" style="margin-left: 49px">
                 <asp:ListItem>Seleccione una opcion</asp:ListItem>
                 <asp:ListItem Value="Zona Norte">Gral. Pacheco</asp:ListItem>
                 <asp:ListItem Value="Zona Oeste">San Miguel</asp:ListItem>
