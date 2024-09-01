@@ -18,34 +18,32 @@ namespace TP2
             //seteo la letra a negrita
             lblResumen.Font.Bold = true;
 
-            string Nombre = string.Empty;
-            string Apellido= string.Empty;  
-            string CiudadSeleccionada= string.Empty;
-            string TemasElegidos= Session["TemasElegidos"] as string;
+            string zona = "";
+            string nombre = string.Empty;
+            string apellido= string.Empty;  
+            string ciudadSeleccionada= string.Empty;
+            string temasElegidos= Session["temasElegidos"] as string;
 
             if (Request["txtNombre"] != null)
             {
-                Nombre = Request["txtNombre"].ToString();
+                nombre = Request["txtNombre"].ToString();
 
             } 
             
             if (Request["txtApellido"] != null)
             {
-                Apellido = Request["txtApellido"].ToString();
+                apellido = Request["txtApellido"].ToString();
 
             }
             
             if (Request["ddlCiudad"] != null)
             {
-                CiudadSeleccionada = Request["ddlCiudad"].ToString();
-
+                ciudadSeleccionada = Request["ddlCiudad"].ToString();
+                zona = ciudadSeleccionada.Split(' ')[1];
+                zona = char.ToString(zona[0]) + zona.Substring(1);
             }
 
-            lblResumen.Text = $"RESUMEN:<br/> Nombre: {Nombre}<br/>Apelllido: {Apellido} <br/> Ciudad: {CiudadSeleccionada} <br/> <br/> Los temas elegidos son: {TemasElegidos}";
-
-
-
-
+            lblResumen.Text = $"RESUMEN:<br/> Nombre: {nombre}<br/>Apelllido: {apellido} <br/> Zona: {zona} <br/> <br/> Los temas elegidos son: {temasElegidos}";
 
         }
     }

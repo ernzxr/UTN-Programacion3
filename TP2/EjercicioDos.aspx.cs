@@ -11,22 +11,20 @@ namespace TP2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 lblMensaje.Visible = false;
 
-               /* ddlCiudad.ClearSelection();
-                ddlCiudad.Items.Add("Pacheco");
-                ddlCiudad.Items.Add("San Miguel");
-                ddlCiudad.Items.Add("Boedo");
+                /* ddlCiudad.ClearSelection();
+                 ddlCiudad.Items.Add("Pacheco");
+                 ddlCiudad.Items.Add("San Miguel");
+                 ddlCiudad.Items.Add("Boedo");
 
-                chbTemas.ClearSelection();
-                chbTemas.Items.Add("Ciencias");
-                chbTemas.Items.Add("Literatura");
-                chbTemas.Items.Add("Historia");*/
-
-
-               }
+                 chbTemas.ClearSelection();
+                 chbTemas.Items.Add("Ciencias");
+                 chbTemas.Items.Add("Literatura");
+                 chbTemas.Items.Add("Historia");*/
+            }
         }
         protected void btnVer_Click(object sender, EventArgs e)
         {
@@ -39,34 +37,37 @@ namespace TP2
                 Server.Transfer("EjercicioDos-WebForm2.aspx");
             }*/
 
-            var TemasSeleccionados = new List<string>();
+            var temasSeleccionados = new List<string>();
 
             foreach (ListItem item in chbTemas.Items)
             {
-
                 if (item.Selected)
                 {
-
-                    TemasSeleccionados.Add(item.Text);
-
+                    if (temasSeleccionados.Count == 0)
+                    {
+                        temasSeleccionados.Add("<br/>" + item.Text);
+                    }
+                    else
+                    {
+                        temasSeleccionados.Add(item.Text);
+                    }
                 }
-
-                Session["TemasElegidos"] = string.Join(" , ", TemasSeleccionados);
-
-
             }
 
+            Session["temasElegidos"] = string.Join("<br/>", temasSeleccionados);
 
-            if (txtNombre.Text.Trim() != "" && txtApellido.Text.Trim() != "" && !String.IsNullOrEmpty(ddlCiudad.SelectedValue) && !String.IsNullOrEmpty(chbTemas.SelectedValue))
+            if (txtNombre.Text.Trim() != ""
+                && txtApellido.Text.Trim() != ""
+                && ddlCiudad.SelectedValue != "Seleccione una opcion"
+                && !String.IsNullOrEmpty(chbTemas.SelectedValue))
             {
                 Server.Transfer("EjercicioDos-WebForm2.aspx");
             }
-            else 
+            else
             {
                 lblMensaje.Text = "Por favor, completar todos los campos antes de continuar";
                 lblMensaje.Visible = true;
             }
-
         }
     }
 }
