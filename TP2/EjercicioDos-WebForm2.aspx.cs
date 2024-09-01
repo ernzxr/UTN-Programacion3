@@ -17,6 +17,36 @@ namespace TP2
             lblResumen.Font.Size = FontUnit.Point(20);
             //seteo la letra a negrita
             lblResumen.Font.Bold = true;
+
+            string Nombre = string.Empty;
+            string Apellido= string.Empty;  
+            string CiudadSeleccionada= string.Empty;
+            string TemasElegidos= Session["TemasElegidos"] as string;
+
+            if (Request["txtNombre"] != null)
+            {
+                Nombre = Request["txtNombre"].ToString();
+
+            } 
+            
+            if (Request["txtApellido"] != null)
+            {
+                Apellido = Request["txtApellido"].ToString();
+
+            }
+            
+            if (Request["ddlCiudad"] != null)
+            {
+                CiudadSeleccionada = Request["ddlCiudad"].ToString();
+
+            }
+
+            lblResumen.Text = $"RESUMEN:<br/> Nombre: {Nombre}<br/>Apelllido: {Apellido} <br/> Ciudad: {CiudadSeleccionada} <br/> <br/> Los temas elegidos son: {TemasElegidos}";
+
+
+
+
+
         }
     }
 }

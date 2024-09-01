@@ -11,10 +11,22 @@ namespace TP2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(isPostBack == false)
+            if(!IsPostBack)
             {
                 lblMensaje.Visible = false;
-            }
+
+               /* ddlCiudad.ClearSelection();
+                ddlCiudad.Items.Add("Pacheco");
+                ddlCiudad.Items.Add("San Miguel");
+                ddlCiudad.Items.Add("Boedo");
+
+                chbTemas.ClearSelection();
+                chbTemas.Items.Add("Ciencias");
+                chbTemas.Items.Add("Literatura");
+                chbTemas.Items.Add("Historia");*/
+
+
+               }
         }
         protected void btnVer_Click(object sender, EventArgs e)
         {
@@ -26,6 +38,24 @@ namespace TP2
             {
                 Server.Transfer("EjercicioDos-WebForm2.aspx");
             }*/
+
+            var TemasSeleccionados = new List<string>();
+
+            foreach (ListItem item in chbTemas.Items)
+            {
+
+                if (item.Selected)
+                {
+
+                    TemasSeleccionados.Add(item.Text);
+
+                }
+
+                Session["TemasElegidos"] = string.Join(" , ", TemasSeleccionados);
+
+
+            }
+
 
             if (txtNombre.Text.Trim() != "" && txtApellido.Text.Trim() != "" && !String.IsNullOrEmpty(ddlCiudad.SelectedValue) && !String.IsNullOrEmpty(chbTemas.SelectedValue))
             {

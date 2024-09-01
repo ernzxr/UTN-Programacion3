@@ -28,5 +28,10 @@ namespace TP2
         {
             lblMensaje.ForeColor = System.Drawing.Color.Blue;
         }
+
+        protected void lblVerde_Click(object sender, EventArgs e)
+        {
+            lblMensaje.ForeColor = System.Drawing.Color.Green;
+        }
     }
 }
