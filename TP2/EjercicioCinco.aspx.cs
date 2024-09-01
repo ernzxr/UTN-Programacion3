@@ -24,5 +24,10 @@ namespace TP2
             lblPrecioFinal.Font.Size = FontUnit.Point(15);
             lblPrecioFinal.Font.Bold = true;
         }
+
+        protected void btnCalcularPrecio_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

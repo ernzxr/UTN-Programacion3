@@ -38,6 +38,8 @@
                 <asp:ListItem Value="1200">Grabador DVD</asp:ListItem>
             </asp:CheckBoxList>
             <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnCalcularPrecio" runat="server" OnClick="btnCalcularPrecio_Click" Text="Calcular precio" />
             <br />
             <br />
             <asp:Label ID="lblPrecioFinal" runat="server"></asp:Label>
