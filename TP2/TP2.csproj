@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EjercicioCuatroErrorValidacion.aspx" />
+    <Content Include="EjercicioCuatroValida.aspx" />
     <Content Include="EjercicioCinco.aspx" />
     <Content Include="EjercicioCuatro.aspx" />
     <Content Include="EjercicioDos-WebForm2.aspx" />
@@ -76,6 +78,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EjercicioCuatroErrorValidacion.aspx.cs">
+      <DependentUpon>EjercicioCuatroErrorValidacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EjercicioCuatroErrorValidacion.aspx.designer.cs">
+      <DependentUpon>EjercicioCuatroErrorValidacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EjercicioCuatroValida.aspx.cs">
+      <DependentUpon>EjercicioCuatroValida.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EjercicioCuatroValida.aspx.designer.cs">
+      <DependentUpon>EjercicioCuatroValida.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EjercicioCinco.aspx.cs">
       <DependentUpon>EjercicioCinco.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
