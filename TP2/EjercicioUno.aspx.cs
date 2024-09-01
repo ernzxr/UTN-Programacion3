@@ -24,29 +24,23 @@ namespace TP2
 
             if (string.IsNullOrWhiteSpace(Producto1) || string.IsNullOrWhiteSpace(Producto2))
             {
-                lblErrorDescripcion.Text = "Atención debe agregar descripción del producto";
-                lblErrorDescripcion.Visible = true; ;
+                lblTabla.Text = "Atención debe agregar descripción del producto";
                 return;
             }
             else
             {
-                lblErrorDescripcion.Text = string.Empty;
-                lblErrorDescripcion.Visible = false;
+                lblTabla.Text = string.Empty;
             }
 
             if ((!int.TryParse(txtCantidad1.Text, out Cantidad1) || Cantidad1 < 0) || (!int.TryParse(txtCantidad2.Text, out Cantidad2) || Cantidad2 < 0))
             {
-                lblError.Text = "Atención: Debe ingresar cantidad entera positivo o cero";
-                lblError.Visible = true;
+                lblTabla.Text = "Atención: Debe ingresar cantidad entera positivo o cero";
                 return;
             }
             else
             {
-                lblError.Text = string.Empty;
-                lblError.Visible = false;
+                lblTabla.Text = string.Empty;
             }
-
-            
 
             //verificar si los productos ingresados son iguales, de ser asi generar la tabla con el producto combinado
             if (Producto1 == Producto2)
@@ -60,7 +54,9 @@ namespace TP2
                 lblTabla.Text = Tabla;
 
             }
-            else //si los productos ingresados no son iguales, generar la tabla con los productos por separado
+
+            //si los productos ingresados no son iguales, generar la tabla con los productos por separado
+            else
             {
                 int Total = Cantidad1 + Cantidad2;
 
