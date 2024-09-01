@@ -33,8 +33,8 @@
             <br />
             <br />
             <asp:CheckBoxList ID="cblAccesorios" runat="server" Height="16px" style="margin-left: 32px" Width="124px">
-                <asp:ListItem Value="2000,50">Monitor LCD</asp:ListItem>
-                <asp:ListItem Value="500,50">HD 500 GB</asp:ListItem>
+                <asp:ListItem Value="2000.50">Monitor LCD</asp:ListItem>
+                <asp:ListItem Value="500.50">HD 500 GB</asp:ListItem>
                 <asp:ListItem Value="1200">Grabador DVD</asp:ListItem>
             </asp:CheckBoxList>
             <br />

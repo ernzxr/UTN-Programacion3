@@ -27,6 +27,21 @@ namespace TP2
 
         protected void btnCalcularPrecio_Click(object sender, EventArgs e)
         {
+            float precioFinal = 0;
+            float precioAccesorios = 0;
+
+            foreach (ListItem item in cblAccesorios.Items)
+            {
+                if(item.Selected)
+                {
+                    precioAccesorios += float.Parse(item.Value);
+                }
+            }
+
+            precioFinal += precioAccesorios + float.Parse(ddlMemoria.SelectedValue);
+
+            lblPrecioFinal.Text = "El precio final es de " + precioFinal + " $";
+
 
         }
     }
