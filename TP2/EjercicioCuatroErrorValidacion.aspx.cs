@@ -11,7 +11,12 @@ namespace TP2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblError.Text = "USUARIO INVALIDO, INGRESO NO PERMITIDO";
+        }
 
+        protected void btnIngresoUsuario_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("EjercicioCuatro.aspx");
         }
     }
 }

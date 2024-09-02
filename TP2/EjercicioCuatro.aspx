@@ -19,7 +19,7 @@
         <br />
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnValidar" runat="server" Text="Validar" />
+        <asp:Button ID="btnValidar" runat="server" Text="Validar" OnClick="btnValidar_Click" />
     </form>
 </body>
 </html>

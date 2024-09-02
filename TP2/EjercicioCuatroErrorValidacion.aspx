@@ -11,6 +11,13 @@
     <form id="form1" runat="server">
         <div>
             <asp:Label ID="lblError" runat="server"></asp:Label>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <asp:Button ID="btnIngresoUsuario" runat="server" OnClick="btnIngresoUsuario_Click" Text="Reintentar" />
+            <br />
         </div>
     </form>
 </body>

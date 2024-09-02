@@ -15,27 +15,38 @@ namespace TP2
         }
         protected void btnValidar_Click(object sender, EventArgs e)
         {
+
             if (txtUsuario.Text.Trim() != "" && txtClave.Text.Trim() != "")
             {
-                String usuario = txtUsuario.Text.Trim();
+                String usuario = txtUsuario.Text.Trim().ToLower();
                 String vUsuario = "claudio";
-                String clave = txtClave.Text.Trim();
+                String clave = txtClave.Text.Trim().ToLower();
                 String vClave = "casas";
 
                 if (usuario == vUsuario && clave == vClave)
                 {
-                    Response.Redirect("EjercicioCuatroValida.aspx");
+                    //Response.Redirect("EjercicioCuatroValida.aspx");
+                    Server.Transfer("EjercicioCuatroValida.aspx");
                 }
                 else
                 {
-                    Response.Redirect("EjercicioCuatroErrorValidacion.aspx");
-                }
+                    //Response.Redirect("EjercicioCuatroErrorValidacion.aspx");
+                    Server.Transfer("EjercicioCuatroErrorValidacion.aspx");
 
+                }
             }
             else
             {
-                Response.Redirect("EjercicioCuatroErrorValidacion.aspx");
+                // Response.Redirect("EjercicioCuatroErrorValidacion.aspx");
+                Server.Transfer("EjercicioCuatroErrorValidacion.aspx");
             }
-        }
+                  
+         }
+          
+
+
+       
+
+       
     }
 }
