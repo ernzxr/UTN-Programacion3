@@ -16,7 +16,7 @@ namespace TP2
 
         protected void btnIngresoUsuario_Click(object sender, EventArgs e)
         {
-            Server.Transfer("EjercicioCuatro.aspx");
+            Response.Redirect("EjercicioCuatro.aspx");
         }
     }
 }

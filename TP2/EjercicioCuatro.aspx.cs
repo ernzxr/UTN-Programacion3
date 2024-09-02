@@ -25,8 +25,7 @@ namespace TP2
 
                 if (usuario == vUsuario && clave == vClave)
                 {
-                    //Response.Redirect("EjercicioCuatroValida.aspx");
-                    Server.Transfer("EjercicioCuatroValida.aspx");
+                    Response.Redirect($"EjercicioCuatroValida.aspx?msj={usuario}");
                 }
                 else
                 {

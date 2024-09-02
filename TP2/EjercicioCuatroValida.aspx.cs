@@ -11,17 +11,9 @@ namespace TP2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string NombreUsuario = string.Empty;
-            string ClaveUsuario = string.Empty;
-
-            if (Request["txtUsuario"] != null && Request["txtClave"] != null)
-            {
-                NombreUsuario = Request["txtUsuario"].ToString().ToUpper();
-
-
-            }
-
-            lblValida.Text = " Bienvenido a mi página Sr./a: " + NombreUsuario + "!!!";
+            string userName = Request.QueryString["msj"];
+            userName = char.ToUpper(userName[0]) + userName.Substring(1);
+            lblValida.Text = $"Bienvenido a mi página Sr./a {userName}";
         }
     }
 }

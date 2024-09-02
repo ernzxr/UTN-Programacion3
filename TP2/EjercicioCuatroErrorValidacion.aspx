@@ -10,7 +10,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Label ID="lblError" runat="server"></asp:Label>
+            <asp:Label ID="lblError" runat="server" Text="USUARIO INVALIDO INGRESO NO PERMITIDO"></asp:Label>
             <br />
             <br />
             <br />
