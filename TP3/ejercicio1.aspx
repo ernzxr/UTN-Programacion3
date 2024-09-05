@@ -21,13 +21,39 @@
         .auto-style4 {
             width: 160px;
             height: 26px;
+            text-align: justify;
         }
         .auto-style5 {
             width: 178px;
             height: 26px;
+            text-align: center;
         }
         .auto-style6 {
             height: 26px;
+        }
+        .auto-style7 {
+            width: 160px;
+            height: 23px;
+        }
+        .auto-style8 {
+            width: 178px;
+            height: 23px;
+            text-align: center;
+        }
+        .auto-style9 {
+            height: 23px;
+        }
+        .auto-style10 {
+            width: 178px;
+            text-align: center;
+        }
+        .auto-style11 {
+            width: 160px;
+            text-align: center;
+        }
+        .auto-style12 {
+            width: 160px;
+            text-align: justify;
         }
     </style>
 </head>
@@ -36,27 +62,27 @@
         <div>
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style3">
+                    <td class="auto-style7"></td>
+                    <td class="auto-style8">
                         <asp:Label ID="lblHeaderLocalidad" runat="server" Text="Localidades"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style9"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">
+                    <td class="auto-style12">
                         <asp:Label ID="lblLocalidad" runat="server" Text="Nombre de la localidad:"></asp:Label>
                     </td>
-                    <td class="auto-style3">
+                    <td class="auto-style10">
                         <asp:TextBox ID="txtLocalidad" runat="server"></asp:TextBox>
                     </td>
                     <td>
                         <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="txtLocalidad" ErrorMessage="Debe ingresar una localidad." ValidationGroup="gpLocalidad">*</asp:RequiredFieldValidator>
-                        <asp:CustomValidator ID="cusvLocalidad" runat="server" ErrorMessage="La localidad ingresada ya existe." OnServerValidate="cusvLocalidad_ServerValidate" ValidationGroup="gpLocalidad">*</asp:CustomValidator>
+                        <asp:CustomValidator ID="cusvLocalidad" runat="server" ErrorMessage="La localidad ingresada ya existe." OnServerValidate="cusvLocalidad_ServerValidate" ValidationGroup="gpLocalidad" ControlToValidate="txtLocalidad" ForeColor="Red">*</asp:CustomValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style3">
+                    <td class="auto-style10">
                         <asp:Button ID="btnGuardarLocalidad" runat="server" Text="Guardar Localidad" ValidationGroup="gpLocalidad" />
                     </td>
                     <td>
@@ -65,7 +91,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style3">
+                    <td class="auto-style10">
                         <asp:Label ID="lblHeaderUsuario" runat="server" Text="Usuarios"></asp:Label></td>
                     <td>&nbsp;</td>
                 </tr>
@@ -81,10 +107,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">
+                    <td class="auto-style12">
                         <asp:Label ID="lblPassword" runat="server" Text="Contraseña:"></asp:Label>
                     </td>
-                    <td class="auto-style3">
+                    <td class="auto-style10">
                         <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
                     </td>
                     <td>
@@ -92,10 +118,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">
+                    <td class="auto-style12">
                         <asp:Label ID="lblCheckPassword" runat="server" Text="Repetir contraseña:"></asp:Label>
                     </td>
-                    <td class="auto-style3">
+                    <td class="auto-style10">
                         <asp:TextBox ID="txtCheckPassword" runat="server"></asp:TextBox>
                     </td>
                     <td>
@@ -104,10 +130,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">
+                    <td class="auto-style12">
                         <asp:Label ID="lblEmail" runat="server" Text="Correo electrónico:"></asp:Label>
                     </td>
-                    <td class="auto-style3">
+                    <td class="auto-style10">
                         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                     </td>
                     <td>
@@ -116,10 +142,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">
+                    <td class="auto-style12">
                         <asp:Label ID="lblCP" runat="server" Text="CP:"></asp:Label>
                     </td>
-                    <td class="auto-style3">
+                    <td class="auto-style10">
                         <asp:TextBox ID="txtCP" runat="server"></asp:TextBox>
                     </td>
                     <td>
@@ -127,21 +153,21 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">
+                    <td class="auto-style4">
                         <asp:Label ID="lblLocalidades" runat="server" Text="Localidades"></asp:Label>
                     </td>
-                    <td class="auto-style3">
+                    <td class="auto-style5">
                         <asp:DropDownList ID="ddlLocalidades" runat="server" AutoPostBack="True">
                             <asp:ListItem>-- Seleccione Localidad --</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td>
+                    <td class="auto-style6">
                         <asp:RequiredFieldValidator ID="rfvLocalidades" runat="server" ControlToValidate="ddlLocalidades" ErrorMessage="Debe seleccionar una localidad." InitialValue="-- Seleccione Localidad --" ValidationGroup="gpUsuario">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style3">
+                    <td class="auto-style10">
                         <asp:Button ID="btnGuardarUsuario" runat="server" Text="Guardar Usuario" ValidationGroup="gpUsuario" />
                     </td>
                     <td>
@@ -149,7 +175,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">
+                    <td class="auto-style11">
                         <asp:Button ID="btnInicio" runat="server" Text="Ir a inicio .aspx" OnClick="btnInicio_Click" />
                     </td>
                     <td class="auto-style3">&nbsp;</td>

@@ -16,7 +16,7 @@ namespace TP3
 
         protected void cusvLocalidad_ServerValidate(object source, ServerValidateEventArgs args)
         {
-
+            
         }
 
         protected void btnInicio_Click(object sender, EventArgs e)
