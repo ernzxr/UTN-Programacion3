@@ -11,7 +11,17 @@ namespace TP3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+        }
 
+        protected void cusvLocalidad_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+
+        }
+
+        protected void btnInicio_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Inicio.aspx");
         }
     }
 }
