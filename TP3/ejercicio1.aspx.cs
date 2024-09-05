@@ -42,5 +42,23 @@ namespace TP3
         {
             Response.Redirect("Inicio.aspx");
         }
+
+        protected void btnGuardarUsuario_Click( object sender, EventArgs e)
+        {
+            lblUsuarioGuardado.Text = string.Empty;
+
+            if (Page.IsValid)
+            {
+                lblUsuarioGuardado.Text = " Bienvenido," + txtUsuario.Text;
+                lblUsuarioGuardado.ForeColor = System.Drawing.Color.Green;
+
+            }
+            else
+            {
+                lblUsuarioGuardado.Text = "Por favor, complete todos los campos correctamente.";
+                lblUsuarioGuardado.ForeColor = System.Drawing.Color.Red;
+            }
+
+        }
     }
 }

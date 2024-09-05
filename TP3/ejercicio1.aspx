@@ -55,6 +55,20 @@
             width: 160px;
             text-align: justify;
         }
+        .auto-style13 {
+            width: 160px;
+            height: 98px;
+        }
+        .auto-style14 {
+            width: 178px;
+            height: 98px;
+        }
+        .auto-style15 {
+            height: 98px;
+        }
+        .auto-style16 {
+            margin-left: 0px;
+        }
     </style>
 </head>
 <body>
@@ -103,7 +117,7 @@
                         <asp:TextBox ID="txtUsuario" runat="server"></asp:TextBox>
                     </td>
                     <td class="auto-style6">
-                        <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" ErrorMessage="Debe ingresar un usuario." ValidationGroup="gpUsuario">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" ErrorMessage="Debe ingresar un usuario." ValidationGroup="gpUsuario" ForeColor="Red">*Debe proporcionar un nombre de usuario</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -111,10 +125,10 @@
                         <asp:Label ID="lblPassword" runat="server" Text="Contraseña:"></asp:Label>
                     </td>
                     <td class="auto-style10">
-                        <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
                     </td>
                     <td>
-                        <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Debe ingresar una contraseña." ValidationGroup="gpUsuario">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Debe ingresar una contraseña." ValidationGroup="gpUsuario" ForeColor="Black">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -122,11 +136,11 @@
                         <asp:Label ID="lblCheckPassword" runat="server" Text="Repetir contraseña:"></asp:Label>
                     </td>
                     <td class="auto-style10">
-                        <asp:TextBox ID="txtCheckPassword" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtCheckPassword" runat="server" TextMode="Password"></asp:TextBox>
                     </td>
                     <td>
                         <asp:RequiredFieldValidator ID="rfvCheckPassword" runat="server" ControlToValidate="txtCheckPassword" ErrorMessage="Debe repetir la contraseña." ValidationGroup="gpUsuario">*</asp:RequiredFieldValidator>
-                        <asp:CompareValidator ID="cvPassword" runat="server" ControlToCompare="txtPassword" ControlToValidate="txtCheckPassword" ErrorMessage="Las contraseñas no coinciden." ValidationGroup="gpUsuario">*</asp:CompareValidator>
+                        <asp:CompareValidator ID="cvPassword" runat="server" ControlToCompare="txtPassword" ControlToValidate="txtCheckPassword" ErrorMessage="Las contraseñas no coinciden." ValidationGroup="gpUsuario" ForeColor="Red">*Las contraseñas no coinciden</asp:CompareValidator>
                     </td>
                 </tr>
                 <tr>
@@ -138,7 +152,7 @@
                     </td>
                     <td>
                         <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Debe ingresar un email." ValidationGroup="gpUsuario">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email invalido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="gpUsuario">*</asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email invalido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="gpUsuario" ForeColor="Red">*Error, ingrese una dirección de correo electrónico válida.</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -168,7 +182,7 @@
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style10">
-                        <asp:Button ID="btnGuardarUsuario" runat="server" Text="Guardar Usuario" ValidationGroup="gpUsuario" />
+                        <asp:Button ID="btnGuardarUsuario" runat="server" Text="Guardar Usuario" ValidationGroup="gpUsuario" CssClass="auto-style16" Height="28px" OnClick="btnGuardarUsuario_Click" Width="150px" />
                     </td>
                     <td>
                         <asp:Label ID="lblUsuarioGuardado" runat="server"></asp:Label>
@@ -184,10 +198,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style3">&nbsp;</td>
-                    <td>
-                        <asp:ValidationSummary ID="vsUsuario" runat="server" HeaderText="Usuario:" ValidationGroup="gpUsuario" />
+                    <td class="auto-style13"></td>
+                    <td class="auto-style14"></td>
+                    <td class="auto-style15">
+                        <asp:ValidationSummary ID="vsUsuario" runat="server" HeaderText="Usuario:" ValidationGroup="gpUsuario" Height="94px" />
                     </td>
                 </tr>
             </table>
