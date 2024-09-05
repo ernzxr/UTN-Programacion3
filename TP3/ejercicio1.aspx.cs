@@ -16,7 +16,26 @@ namespace TP3
 
         protected void cusvLocalidad_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            
+            bool noExiste = true;
+            foreach (ListItem i in ddlLocalidades.Items)
+            {
+                if (args.Value.ToUpper().Trim() == i.Value.ToUpper().Trim())
+                {
+                    noExiste = false;
+                    break;
+                }
+
+            }
+
+            if (noExiste)
+            {
+                ddlLocalidades.Items.Add(args.Value);
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
         }
 
         protected void btnInicio_Click(object sender, EventArgs e)
