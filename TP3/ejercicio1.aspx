@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>Ejercicio 1</title>
     <style type="text/css">
         .auto-style1 {
             width: 100%;
@@ -69,6 +69,18 @@
         .auto-style16 {
             margin-left: 0px;
         }
+        .auto-style17 {
+            width: 160px;
+            height: 30px;
+        }
+        .auto-style18 {
+            width: 178px;
+            text-align: center;
+            height: 30px;
+        }
+        .auto-style19 {
+            height: 30px;
+        }
     </style>
 </head>
 <body>
@@ -95,11 +107,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style10">
+                    <td class="auto-style17"></td>
+                    <td class="auto-style18">
                         <asp:Button ID="btnGuardarLocalidad" runat="server" Text="Guardar Localidad" ValidationGroup="gpLocalidad" />
                     </td>
-                    <td>
+                    <td class="auto-style19">
                         <asp:Label ID="lblLocalidadGuardada" runat="server"></asp:Label>
                     </td>
                 </tr>
@@ -164,6 +176,7 @@
                     </td>
                     <td>
                         <asp:RequiredFieldValidator ID="rfvCP" runat="server" ControlToValidate="txtCP" ErrorMessage="Debe ingresar un código postal." ValidationGroup="gpUsuario">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revCP" runat="server" ControlToValidate="txtCP" ForeColor="Red" ValidationExpression="^\d{4}$" ValidationGroup="gpUsuario">*Debe ingresar un número de cuatro dígitos</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>

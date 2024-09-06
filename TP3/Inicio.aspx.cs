@@ -11,7 +11,7 @@ namespace TP3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblBienvenido.Attributes.Add("style", "font-family: Arial; font-size: 30px; font-weight: bold;");
         }
     }
 }

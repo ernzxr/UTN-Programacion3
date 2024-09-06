@@ -36,6 +36,10 @@ namespace TP3
             {
                 args.IsValid = false;
             }
+
+            lblLocalidadGuardada.Text = " El nombre de la Localidad se ha guardado correctamente";
+            txtLocalidad.Text = " ";
+
         }
 
         protected void btnInicio_Click(object sender, EventArgs e)
@@ -49,7 +53,7 @@ namespace TP3
 
             if (Page.IsValid)
             {
-                lblUsuarioGuardado.Text = " Bienvenido," + txtUsuario.Text;
+                lblUsuarioGuardado.Text = " Bienvenido/a:  " + txtUsuario.Text + " !!!";
                 lblUsuarioGuardado.ForeColor = System.Drawing.Color.Green;
 
             }
