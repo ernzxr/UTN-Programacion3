@@ -16,28 +16,30 @@ namespace TP3
 
         protected void cusvLocalidad_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            bool noExiste = true;
-            foreach (ListItem i in ddlLocalidades.Items)
-            {
-                if (args.Value.ToUpper().Trim() == i.Value.ToUpper().Trim())
+           
+                bool noExiste = true;
+                foreach (ListItem i in ddlLocalidades.Items)
                 {
-                    noExiste = false;
-                    break;
+                    if (args.Value.ToUpper().Trim() == i.Value.ToUpper().Trim())
+                    {
+                        noExiste = false;
+                        break;
+                    }
+
                 }
 
-            }
+                if (noExiste)
+                {
+                    ddlLocalidades.Items.Add(args.Value);
+                    args.IsValid = true;
+                }
+                else
+                {
+                    args.IsValid = false;
+                }
 
-            if (noExiste)
-            {
-                ddlLocalidades.Items.Add(args.Value);
-                args.IsValid = true;
-            }
-            else
-            {
-                args.IsValid = false;
-            }
-
-            lblLocalidadGuardada.Text = " El nombre de la Localidad se ha guardado correctamente";
+            
+          
             txtLocalidad.Text = " ";
 
         }
@@ -55,6 +57,12 @@ namespace TP3
             {
                 lblUsuarioGuardado.Text = " Bienvenido/a:  " + txtUsuario.Text + " !!!";
                 lblUsuarioGuardado.ForeColor = System.Drawing.Color.Green;
+                txtUsuario.Text = "";
+                txtCP.Text = "";
+                txtEmail.Text = "";
+                txtPassword.Text = "";
+                ddlLocalidades.SelectedIndex = -1;
+
 
             }
             else
