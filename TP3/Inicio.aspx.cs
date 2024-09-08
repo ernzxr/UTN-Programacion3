@@ -13,5 +13,10 @@ namespace TP3
         {
             lblBienvenido.Attributes.Add("style", "font-family: Arial; font-size: 30px; font-weight: bold;");
         }
+
+        protected void btn_Ir_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ejercicio1.aspx");
+        }
     }
 }
