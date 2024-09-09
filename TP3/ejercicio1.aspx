@@ -189,7 +189,7 @@
                     </td>
                     <td class="auto-style22">
                         <asp:RequiredFieldValidator ID="rfvCP" runat="server" ControlToValidate="txtCP" ErrorMessage="Debe ingresar un código postal." ValidationGroup="gpUsuario" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revCP" runat="server" ControlToValidate="txtCP" ForeColor="Red" ValidationExpression="^\d{4}$" ValidationGroup="gpUsuario">*</asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revCP" runat="server" ControlToValidate="txtCP" ForeColor="Red" ValidationExpression="^\d{4}$" ValidationGroup="gpUsuario" ErrorMessage="El CP deben ser 4 números.">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -221,13 +221,13 @@
                     <td class="auto-style3">&nbsp;</td>
                     <td>
                         <asp:ValidationSummary ID="vsLocalidad" runat="server" HeaderText="Localidad:" ValidationGroup="gpLocalidad" />
+                        <asp:ValidationSummary ID="vsUsuario" runat="server" HeaderText="Usuario:" ValidationGroup="gpUsuario" Height="94px" />
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style13"></td>
                     <td class="auto-style14"></td>
                     <td class="auto-style15">
-                        <asp:ValidationSummary ID="vsUsuario" runat="server" HeaderText="Usuario:" ValidationGroup="gpUsuario" Height="94px" />
                     </td>
                 </tr>
             </table>
