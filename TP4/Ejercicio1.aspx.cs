@@ -25,15 +25,16 @@ namespace TP4
                 SqlConnection cn = new SqlConnection(rutaDB);
                 cn.Open();
 
-                CargarDataSet(ref ds, cn);
+                CargarDataSet(ds, cn);
 
                 CargarDropDownLists(ds);
 
+                // Se cierra la conexion
                 cn.Close();
             }
         }
 
-        void CargarDataSet(ref DataSet ds, SqlConnection cn)
+        void CargarDataSet(DataSet ds, SqlConnection cn)
         {
             SqlDataAdapter adapt = new SqlDataAdapter();
 
