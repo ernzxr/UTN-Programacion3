@@ -24,34 +24,34 @@
         <div>
             <table class="auto-style1">
                 <tr>
-                    <td>Id Producto:<asp:DropDownList class="auto-style3" ID="DropDownList1" runat="server">
+                    <td>Id Producto:<asp:DropDownList class="auto-style3" ID="ddl_Producto" runat="server">
                         <asp:ListItem Value="0">Igual a</asp:ListItem>
                         <asp:ListItem Value="1">Mayor a</asp:ListItem>
                         <asp:ListItem Value="2">Menor a</asp:ListItem>
                         </asp:DropDownList>
-                        <asp:TextBox class="auto-style3" ID="TextBox1" runat="server" Width="280px"></asp:TextBox>
+                        <asp:TextBox class="auto-style3" ID="txtBox_Producto" runat="server" Width="280px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td>Id Categoria:<asp:DropDownList style="margin-left: 16px;" ID="DropDownList2" runat="server">
+                    <td>Id Categoria:<asp:DropDownList style="margin-left: 16px;" ID="ddl_Categoria" runat="server">
                         <asp:ListItem Value="0">Igual a</asp:ListItem>
                         <asp:ListItem Value="1">Mayor a</asp:ListItem>
                         <asp:ListItem Value="2">Menor a</asp:ListItem>
                         </asp:DropDownList>
-                        <asp:TextBox class="auto-style3" ID="TextBox2" runat="server" Width="280px"></asp:TextBox>
+                        <asp:TextBox class="auto-style3" ID="txtBox_Categoria" runat="server" Width="280px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
                         <div style="margin-left: 325px;">
-                        <asp:Button style="margin-right: 25px;" ID="Button1" runat="server" Text="Button" />
-                        <asp:Button ID="Button2" runat="server" Text="Button" />
+                        <asp:Button style="margin-right: 25px;" ID="btn_Filtrar" runat="server" Text="Filtrar" />
+                        <asp:Button ID="btn_QuitarF" runat="server" Text="Quitar filtro" />
                         </div>
                     </td>
                 </tr>
             </table>
         </div>
-        <asp:GridView style="margin-top: 20px;" ID="GridView1" runat="server">
+        <asp:GridView style="margin-top: 20px;" ID="gv_Productos" runat="server">
         </asp:GridView>
     </form>
 </body>
