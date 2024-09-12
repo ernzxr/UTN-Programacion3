@@ -23,14 +23,18 @@
 
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style2">
+                        <asp:Label ID="lblInicio" runat="server" Text="DESTINO INICIO"></asp:Label>
+                    </td>
                     <td class="auto-style3">&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style2">
+                        <asp:Label ID="lblProvInicio" runat="server" Text="PROVINCIA:"></asp:Label>
+                    </td>
                     <td class="auto-style3">
-                        <asp:DropDownList ID="ddlProvinciaInicio" runat="server">
+                        <asp:DropDownList ID="ddlProvinciaInicio" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaInicio_SelectedIndexChanged">
                             <asp:ListItem>-- Seleccionar --</asp:ListItem>
                         </asp:DropDownList>
                     </td>
@@ -39,7 +43,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style2">
+                        <asp:Label ID="lblLocalidadInicio" runat="server" Text="LOCALIDAD:"></asp:Label>
+                    </td>
                     <td class="auto-style3">
                         <asp:DropDownList ID="ddlLocalidadInicio" runat="server">
                             <asp:ListItem>-- Seleccionar --</asp:ListItem>
@@ -50,12 +56,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style2">
+                        <asp:Label ID="lblFinal" runat="server" Text="DESTINO FINAL"></asp:Label>
+                    </td>
                     <td class="auto-style3">&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style2">
+                        <asp:Label ID="lblProvFinal" runat="server" Text="PROVINCIA:"></asp:Label>
+                    </td>
                     <td class="auto-style3">
                         <asp:DropDownList ID="ddlProvinciaDestino" runat="server">
                             <asp:ListItem>-- Seleccionar --</asp:ListItem>
@@ -66,7 +76,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style2">
+                        <asp:Label ID="lblLocalidadFinal" runat="server" Text="LOCALIDAD:"></asp:Label>
+                    </td>
                     <td class="auto-style3">
                         <asp:DropDownList ID="ddlLocalidadDestino" runat="server">
                             <asp:ListItem>-- Seleccionar --</asp:ListItem>
