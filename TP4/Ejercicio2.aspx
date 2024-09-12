@@ -44,7 +44,7 @@
                 <tr>
                     <td class="auto-style2">
                         <div style="margin-left: 325px;">
-                        <asp:Button style="margin-right: 25px;" ID="btn_Filtrar" runat="server" Text="Filtrar" />
+                        <asp:Button style="margin-right: 25px;" ID="btn_Filtrar" runat="server" Text="Filtrar" OnClick="btn_Filtrar_Click" />
                         <asp:Button ID="btn_QuitarF" runat="server" Text="Quitar filtro" />
                         </div>
                     </td>
