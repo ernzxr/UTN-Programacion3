@@ -120,12 +120,37 @@ namespace TP4
 
                 // agrego un item para seleccionar
                 ddlLocalidadInicio.Items.Insert(0, new ListItem("Seleccione una localidad", "0"));
+
+
+                //Realiza la consulta para encontrar los IDProvincia que sean distintos que
+                //el que se agrego en el ddlProvinciaInicio y transfiere al DataSet su contenido
+                SqlCommand cmd2 = new SqlCommand("SELECT * FROM Provincias WHERE IdProvincia <> @IdProvincia", cn);
+                cmd2.Parameters.AddWithValue("@IdProvincia", idProvincia);
+
+
+                SqlDataAdapter adap2 = new SqlDataAdapter(cmd2);
+                DataSet ds2 = new DataSet();
+                adap2.Fill(ds2, "Provincias");
+
+                //Carga el ddlProvinciaDestino con los datos almacenados de ds2.
+                ddlProvinciaDestino.DataSource = ds2.Tables["Provincias"];
+                ddlProvinciaDestino.DataTextField = "NombreProvincia";
+                ddlProvinciaDestino.DataValueField = "IdProvincia";
+                ddlProvinciaDestino.DataBind();
+
+                //Agrega el item 0 a ddlProvinciaDestino
+                ddlProvinciaDestino.Items.Insert(0, new ListItem("Seleccione una provincia", "0"));
             }
             else
             {
                 // Si no hay una provincia seleccionada limpiar las localidades
                 ddlLocalidadInicio.Items.Clear();
                 ddlLocalidadInicio.Items.Insert(0, new ListItem("Seleccione una provincia primero", "0"));
+
+                //Si no hay una provincia inicio seleccionada, limpia el campo de provincia destino
+                //y agrega el item 0 de ddlProvinciaDestino
+                ddlProvinciaDestino.Items.Clear();
+                ddlProvinciaDestino.Items.Insert(0, new ListItem("Seleccione una provincia", "0"));
             }
 
             cn.Close();
