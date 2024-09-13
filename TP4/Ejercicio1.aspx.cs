@@ -96,65 +96,84 @@ namespace TP4
         {
             string rutaDB = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True";
             SqlConnection cn = new SqlConnection(rutaDB);
-            cn.Open();
 
-            // obtener el id de la provincia seleccionada
-            int idProvincia = int.Parse(ddlProvinciaInicio.SelectedValue);
-
-            if (idProvincia != 0) // solo va a cargar las  localidades si una provincia  fue seleccionada
+            try
             {
-                // consulta SQL para obtener las localidades filtradas por provincia
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Localidades WHERE IdProvincia = @IdProvincia", cn);
-                cmd.Parameters.AddWithValue("@IdProvincia", idProvincia);
+                cn.Open(); // intentar abrir la conexion
 
-                // llenar un DataSet con los resultados
-                SqlDataAdapter adapt = new SqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                adapt.Fill(ds, "Localidades");
+                // obtener el id de la provincia seleccionada
+                int idProvincia = int.Parse(ddlProvinciaInicio.SelectedValue);
 
-                // cargar el dropdownlist con las localidades de inicio
-                ddlLocalidadInicio.DataSource = ds.Tables["Localidades"];
-                ddlLocalidadInicio.DataTextField = "NombreLocalidad";
-                ddlLocalidadInicio.DataValueField = "IdLocalidad";
-                ddlLocalidadInicio.DataBind();
+                if (idProvincia != 0) // solo cargar las localidades si se seleccionó una provincia
+                {
+                    // consulta SQL para obtener las localidades filtradas por provincia
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Localidades WHERE IdProvincia = @IdProvincia", cn);
+                    cmd.Parameters.AddWithValue("@IdProvincia", idProvincia);
 
-                // agrego un item para seleccionar
-                ddlLocalidadInicio.Items.Insert(0, new ListItem("Seleccione una localidad", "0"));
+                    // llenar un DataSet con los resultados
+                    SqlDataAdapter adapt = new SqlDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    adapt.Fill(ds, "Localidades");
 
+                    // cargar el DropDownList con las localidades de inicio
+                    ddlLocalidadInicio.DataSource = ds.Tables["Localidades"];
+                    ddlLocalidadInicio.DataTextField = "NombreLocalidad";
+                    ddlLocalidadInicio.DataValueField = "IdLocalidad";
+                    ddlLocalidadInicio.DataBind();
 
-                //Realiza la consulta para encontrar los IDProvincia que sean distintos que
-                //el que se agrego en el ddlProvinciaInicio y transfiere al DataSet su contenido
-                SqlCommand cmd2 = new SqlCommand("SELECT * FROM Provincias WHERE IdProvincia <> @IdProvincia", cn);
-                cmd2.Parameters.AddWithValue("@IdProvincia", idProvincia);
+                    // agregar un item para seleccionar
+                    ddlLocalidadInicio.Items.Insert(0, new ListItem("Seleccione una localidad", "0"));
 
+                    // Realiza la consulta para otras provincias
+                    SqlCommand cmd2 = new SqlCommand("SELECT * FROM Provincias WHERE IdProvincia <> @IdProvincia", cn);
+                    cmd2.Parameters.AddWithValue("@IdProvincia", idProvincia);
 
-                SqlDataAdapter adap2 = new SqlDataAdapter(cmd2);
-                DataSet ds2 = new DataSet();
-                adap2.Fill(ds2, "Provincias");
+                    SqlDataAdapter adap2 = new SqlDataAdapter(cmd2);
+                    DataSet ds2 = new DataSet();
+                    adap2.Fill(ds2, "Provincias");
 
-                //Carga el ddlProvinciaDestino con los datos almacenados de ds2.
-                ddlProvinciaDestino.DataSource = ds2.Tables["Provincias"];
-                ddlProvinciaDestino.DataTextField = "NombreProvincia";
-                ddlProvinciaDestino.DataValueField = "IdProvincia";
-                ddlProvinciaDestino.DataBind();
+                    // Cargar el ddlProvinciaDestino con las otras provincias
+                    ddlProvinciaDestino.DataSource = ds2.Tables["Provincias"];
+                    ddlProvinciaDestino.DataTextField = "NombreProvincia";
+                    ddlProvinciaDestino.DataValueField = "IdProvincia";
+                    ddlProvinciaDestino.DataBind();
 
-                //Agrega el item 0 a ddlProvinciaDestino
-                ddlProvinciaDestino.Items.Insert(0, new ListItem("Seleccione una provincia", "0"));
+                    ddlProvinciaDestino.Items.Insert(0, new ListItem("Seleccione una provincia", "0"));
+                }
+                else
+                {
+                    // Si no hay una provincia seleccionada, limpiar las localidades
+                    ddlLocalidadInicio.Items.Clear();
+                    ddlLocalidadInicio.Items.Insert(0, new ListItem("Seleccione una provincia primero", "0"));
+
+                    // Limpiar ddlProvinciaDestino
+                    ddlProvinciaDestino.Items.Clear();
+                    ddlProvinciaDestino.Items.Insert(0, new ListItem("Seleccione una provincia", "0"));
+                }
             }
-            else
+            catch (SqlException sqlEx)
             {
-                // Si no hay una provincia seleccionada limpiar las localidades
-                ddlLocalidadInicio.Items.Clear();
-                ddlLocalidadInicio.Items.Insert(0, new ListItem("Seleccione una provincia primero", "0"));
-
-                //Si no hay una provincia inicio seleccionada, limpia el campo de provincia destino
-                //y agrega el item 0 de ddlProvinciaDestino
-                ddlProvinciaDestino.Items.Clear();
-                ddlProvinciaDestino.Items.Insert(0, new ListItem("Seleccione una provincia", "0"));
+                // manejo de errores especificos de SQL (como problemas de conexion o consultas)
+                lblError.Text = "Ocurrió un problema con la base de datos: " + sqlEx.Message;
             }
-
-            cn.Close();
+            catch (FormatException formatEx)
+            {
+                // manejo de errores de formato (por ejemplo, si falla el Parse del ID)
+                lblError.Text = "Error en el formato de los datos: " + formatEx.Message;
+            }
+            catch (Exception ex)
+            {
+                // manejo de cualquier otro tipo de error
+                lblError.Text = "Ocurrió un error: " + ex.Message;
+            }
+            finally
+            {
+                // asegurarse de cerrar la conexion a la base de datos siempre, aunque ocurra un error
+                if (cn.State == System.Data.ConnectionState.Open)
+                {
+                    cn.Close();
+                }
+            }
         }
     }
-
-   }
+}

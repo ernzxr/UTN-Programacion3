@@ -88,6 +88,15 @@
                         <asp:RequiredFieldValidator ID="rfvLocalidadDestino" runat="server" InitialValue="-- Seleccionar --" ControlToValidate="ddlProvinciaDestino">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Label ID="lblError" runat="server"></asp:Label>
+                    </td>
+                    <td class="auto-style3">
+                        &nbsp;</td>
+                    <td>
+                        &nbsp;</td>
+                </tr>
             </table>
 
         </div>
