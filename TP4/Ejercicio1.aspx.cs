@@ -147,7 +147,7 @@ namespace TP4
                     ddlProvinciaDestino.Items.Clear();
                     ddlLocalidadDestino.Items.Clear();
 
-                    ddlLocalidadInicio.Items.Insert(0, new ListItem("Debe seleccionar un inicio", "0"));   
+                    ddlLocalidadInicio.Items.Insert(0, new ListItem("Debe seleccionar un inicio", "0"));
                     ddlProvinciaDestino.Items.Insert(0, new ListItem("Primero seleccione un inicio", "0"));
                     ddlLocalidadDestino.Items.Insert(0, new ListItem("Seleccione un destino", "0"));
                 }
@@ -186,9 +186,9 @@ namespace TP4
                 cn.Open(); // intentar abrir la conexion
 
                 // obtener el id de la provincia seleccionada de destino
-                int idProvincia =int.Parse(ddlProvinciaDestino.SelectedValue);
+                int idProvincia = int.Parse(ddlProvinciaDestino.SelectedValue);
 
-                if (idProvincia != 0) 
+                if (idProvincia != 0)
                 {
                     // consulta SQL para obtener las localidades filtradas por provincia
                     SqlCommand cmd = new SqlCommand("SELECT * FROM Localidades WHERE IdProvincia = @IdProvincia", cn);
@@ -206,18 +206,7 @@ namespace TP4
                     ddlLocalidadDestino.DataBind();
 
                     // agregar un item para seleccionar
-                    ddlLocalidadDestino.Items.Insert(0, new ListItem("Seleccione Localidad", "0"));
-
-                   
-                   ddlLocalidadDestino.Items.Insert(0, new ListItem("Debe seleccionar un destino", "0"));
-
-                    
-                    
-                    
-                                   
-
-
-
+                    ddlLocalidadDestino.Items.Insert(0, new ListItem("Seleccione una localidad", "0"));
 
                     ddlLocalidadDestino.Enabled = true;
                 }
@@ -227,7 +216,9 @@ namespace TP4
 
                     // Si no hay una provincia seleccionada
                     // limpiar las localidades de destino
+                    ddlLocalidadDestino.Items.Clear();
 
+                    ddlLocalidadDestino.Items.Insert(0, new ListItem("Debe seleccionar un destino", "0"));
                 }
             }
             catch (SqlException sqlEx)
