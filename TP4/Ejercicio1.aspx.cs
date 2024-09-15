@@ -186,17 +186,38 @@ namespace TP4
                 cn.Open(); // intentar abrir la conexion
 
                 // obtener el id de la provincia seleccionada de destino
-                int idProvincia = 0;
+                int idProvincia =int.Parse(ddlProvinciaDestino.SelectedValue);
 
-                if (idProvincia != 0) // solo cargar las localidades si se seleccionó una provincia
+                if (idProvincia != 0) 
                 {
                     // consulta SQL para obtener las localidades filtradas por provincia
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Localidades WHERE IdProvincia = @IdProvincia", cn);
+                    cmd.Parameters.AddWithValue("@IdProvincia", idProvincia);
 
                     // llenar un DataSet con los resultados
+                    SqlDataAdapter adapt = new SqlDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    adapt.Fill(ds, "Localidades");
 
                     // cargar el DropDownList con las localidades de destino
+                    ddlLocalidadDestino.DataSource = ds.Tables["Localidades"];
+                    ddlLocalidadDestino.DataTextField = "NombreLocalidad";
+                    ddlLocalidadDestino.DataValueField = "IdLocalidad";
+                    ddlLocalidadDestino.DataBind();
 
                     // agregar un item para seleccionar
+                    ddlLocalidadDestino.Items.Insert(0, new ListItem("Seleccione Localidad", "0"));
+
+                   
+                   ddlLocalidadDestino.Items.Insert(0, new ListItem("Debe seleccionar un destino", "0"));
+
+                    
+                    
+                    
+                                   
+
+
+
 
                     ddlLocalidadDestino.Enabled = true;
                 }

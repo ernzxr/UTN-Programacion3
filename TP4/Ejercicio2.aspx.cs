@@ -6,13 +6,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 
 namespace TP4
 {
     public partial class Ejercicio2 : System.Web.UI.Page
     {
-        private string rutaDB = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=Neptuno;Integrated Security=True;";
-
+                
+        string rutaDB = "Data Source = localhost\\SQLEXPRESS;Initial Catalog = Neptuno; Integrated Security = True";
         private void CargarGridView(DataSet ds)
         {
             gv_Productos.DataSource = ds.Tables["Productos"];
