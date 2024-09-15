@@ -35,25 +35,21 @@
                     </td>
                     <td class="auto-style3">
                         <asp:DropDownList ID="ddlProvinciaInicio" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaInicio_SelectedIndexChanged">
-                            <asp:ListItem>-- Seleccionar --</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                     <td>
-                        <asp:RequiredFieldValidator ID="rfvProvinciaInicio" runat="server" InitialValue="-- Seleccionar --" ControlToValidate="ddlProvinciaInicio">*</asp:RequiredFieldValidator>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
                         <asp:Label ID="lblLocalidadInicio" runat="server" Text="LOCALIDAD:"></asp:Label>
                     </td>
                     <td class="auto-style3">
-                        <asp:DropDownList ID="ddlLocalidadInicio" runat="server">
-                            <asp:ListItem>-- Seleccionar --</asp:ListItem>
+                        <asp:DropDownList ID="ddlLocalidadInicio" runat="server" AutoPostBack="True">
                         </asp:DropDownList>
                     </td>
                     <td>
-                        <asp:RequiredFieldValidator ID="rfvLocalidadInicio" runat="server" InitialValue="-- Seleccionar --" ControlToValidate="ddlLocalidadInicio">*</asp:RequiredFieldValidator>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
@@ -67,26 +63,22 @@
                         <asp:Label ID="lblProvFinal" runat="server" Text="PROVINCIA:"></asp:Label>
                     </td>
                     <td class="auto-style3">
-                        <asp:DropDownList ID="ddlProvinciaDestino" runat="server">
-                            <asp:ListItem>-- Seleccionar --</asp:ListItem>
+                        <asp:DropDownList ID="ddlProvinciaDestino" runat="server" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="ddlProvinciaDestino_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                     <td>
-                        <asp:RequiredFieldValidator ID="rfvProvinciaDestino" runat="server" InitialValue="-- Seleccionar --" ControlToValidate="ddlProvinciaInicio">*</asp:RequiredFieldValidator>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
                         <asp:Label ID="lblLocalidadFinal" runat="server" Text="LOCALIDAD:"></asp:Label>
                     </td>
                     <td class="auto-style3">
-                        <asp:DropDownList ID="ddlLocalidadDestino" runat="server">
-                            <asp:ListItem>-- Seleccionar --</asp:ListItem>
+                        <asp:DropDownList ID="ddlLocalidadDestino" runat="server" AutoPostBack="True" Enabled="False">
                         </asp:DropDownList>
                     </td>
                     <td>
-                        <asp:RequiredFieldValidator ID="rfvLocalidadDestino" runat="server" InitialValue="-- Seleccionar --" ControlToValidate="ddlProvinciaDestino">*</asp:RequiredFieldValidator>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">

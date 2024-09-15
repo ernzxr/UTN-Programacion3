@@ -41,12 +41,6 @@ namespace TP4
             lblLocalidadFinal.Font.Size = FontUnit.Point(10);
             lblLocalidadFinal.Font.Bold = true;
 
-            rfvProvinciaInicio.ForeColor = System.Drawing.Color.Red;
-            rfvLocalidadInicio.ForeColor = System.Drawing.Color.Red;
-            rfvProvinciaDestino.ForeColor = System.Drawing.Color.Red;
-            rfvLocalidadDestino.ForeColor = System.Drawing.Color.Red;
-
-
             if (!IsPostBack)
             {
                 DataSet ds = new DataSet();
@@ -58,6 +52,8 @@ namespace TP4
                 CargarDataSet(ds, cn);
 
                 CargarDropDownLists(ds);
+
+                ViewState["DataSet"] = ds;
 
                 // Se cierra la conexion
                 cn.Close();
@@ -72,12 +68,8 @@ namespace TP4
             adapt.SelectCommand = new SqlCommand("SELECT * FROM Provincias", cn);
             adapt.Fill(ds, "Provincias");
 
-            adapt.SelectCommand = new SqlCommand("SELECT *FROM Localidades", cn);
+            adapt.SelectCommand.CommandText = "SELECT *FROM Localidades";
             adapt.Fill(ds, "Localidades");
-
-            // Consultar y cargar la tabla Localidades
-            // Se puede utilizar SelectCommand.CommandText para cambiar la consulta
-            // ...
         }
 
         void CargarDropDownLists(DataSet ds)
@@ -88,16 +80,13 @@ namespace TP4
             ddlProvinciaInicio.DataValueField = "IdProvincia";
             ddlProvinciaInicio.DataBind();
 
-            // Agrego  un item para que el usuario seleccione una provincia
-            ddlProvinciaInicio.Items.Insert(0, new ListItem("-Seleccione una opcion-", "0"));
-
-            // Limpiar el DropDownList de localidades hasta que se seleccione una provincia
-            ddlLocalidadInicio.Items.Clear();
-            ddlLocalidadInicio.Items.Insert(0, new ListItem("-Debe seleccionar una provincia primero-", "0"));
-
-            // Cargar el resto de DDLs
-            // ...
+            // Leyendas para los ddl
+            ddlProvinciaInicio.Items.Insert(0, new ListItem("Seleccione un inicio", "0"));
+            ddlLocalidadInicio.Items.Insert(0, new ListItem("Debe seleccionar un inicio", "0"));
+            ddlProvinciaDestino.Items.Insert(0, new ListItem("Primero seleccione un inicio", "0"));
+            ddlLocalidadDestino.Items.Insert(0, new ListItem("Seleccione un destino", "0"));
         }
+
         protected void ddlProvinciaInicio_SelectedIndexChanged(object sender, EventArgs e)
         {
             string rutaDB = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True";
@@ -107,7 +96,7 @@ namespace TP4
             {
                 cn.Open(); // intentar abrir la conexion
 
-                // obtener el id de la provincia seleccionada
+                // obtener el id de la provincia seleccionada de inicio
                 int idProvincia = int.Parse(ddlProvinciaInicio.SelectedValue);
 
                 if (idProvincia != 0) // solo cargar las localidades si se seleccionó una provincia
@@ -130,31 +119,94 @@ namespace TP4
                     // agregar un item para seleccionar
                     ddlLocalidadInicio.Items.Insert(0, new ListItem("Seleccione una localidad", "0"));
 
-                    // Realiza la consulta para otras provincias
-                    SqlCommand cmd2 = new SqlCommand("SELECT * FROM Provincias WHERE IdProvincia <> @IdProvincia", cn);
-                    cmd2.Parameters.AddWithValue("@IdProvincia", idProvincia);
-
-                    SqlDataAdapter adap2 = new SqlDataAdapter(cmd2);
-                    DataSet ds2 = new DataSet();
-                    adap2.Fill(ds2, "Provincias");
+                    // Realiza la consulta para provincias destino
+                    adapt.SelectCommand.CommandText = "SELECT * FROM Provincias WHERE IdProvincia <> @IdProvincia";
+                    adapt.Fill(ds, "Provincias");
 
                     // Cargar el ddlProvinciaDestino con las otras provincias
-                    ddlProvinciaDestino.DataSource = ds2.Tables["Provincias"];
+                    ddlProvinciaDestino.DataSource = ds.Tables["Provincias"];
                     ddlProvinciaDestino.DataTextField = "NombreProvincia";
                     ddlProvinciaDestino.DataValueField = "IdProvincia";
                     ddlProvinciaDestino.DataBind();
 
-                    ddlProvinciaDestino.Items.Insert(0, new ListItem("Seleccione una provincia", "0"));
+                    // Se cargan leyendas para los ddl de destino
+                    ddlLocalidadDestino.Items.Clear();
+                    ddlProvinciaDestino.Items.Insert(0, new ListItem("Seleccione un destino", "0"));
+                    ddlLocalidadDestino.Items.Insert(0, new ListItem("Debe seleccionar un destino", "0"));
+
+                    ddlProvinciaDestino.Enabled = true;
                 }
                 else
                 {
-                    // Si no hay una provincia seleccionada, limpiar las localidades
-                    ddlLocalidadInicio.Items.Clear();
-                    ddlLocalidadInicio.Items.Insert(0, new ListItem("Seleccione una provincia primero", "0"));
+                    ddlProvinciaDestino.Enabled = false;
+                    ddlLocalidadDestino.Enabled = false;
 
-                    // Limpiar ddlProvinciaDestino
+                    // Si no hay una provincia seleccionada
+                    // limpiar las localidades y provincias de destino y las localidades de inicio
+                    ddlLocalidadInicio.Items.Clear();
                     ddlProvinciaDestino.Items.Clear();
-                    ddlProvinciaDestino.Items.Insert(0, new ListItem("Seleccione una provincia", "0"));
+                    ddlLocalidadDestino.Items.Clear();
+
+                    ddlLocalidadInicio.Items.Insert(0, new ListItem("Debe seleccionar un inicio", "0"));   
+                    ddlProvinciaDestino.Items.Insert(0, new ListItem("Primero seleccione un inicio", "0"));
+                    ddlLocalidadDestino.Items.Insert(0, new ListItem("Seleccione un destino", "0"));
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                // manejo de errores especificos de SQL (como problemas de conexion o consultas)
+                lblError.Text = "Ocurrió un problema con la base de datos: " + sqlEx.Message;
+            }
+            catch (FormatException formatEx)
+            {
+                // manejo de errores de formato (por ejemplo, si falla el Parse del ID)
+                lblError.Text = "Error en el formato de los datos: " + formatEx.Message;
+            }
+            catch (Exception ex)
+            {
+                // manejo de cualquier otro tipo de error
+                lblError.Text = "Ocurrió un error: " + ex.Message;
+            }
+            finally
+            {
+                // asegurarse de cerrar la conexion a la base de datos siempre, aunque ocurra un error
+                if (cn.State == System.Data.ConnectionState.Open)
+                {
+                    cn.Close();
+                }
+            }
+        }
+
+        protected void ddlProvinciaDestino_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string rutaDB = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True";
+            SqlConnection cn = new SqlConnection(rutaDB);
+            try
+            {
+                cn.Open(); // intentar abrir la conexion
+
+                // obtener el id de la provincia seleccionada de destino
+                int idProvincia = 0;
+
+                if (idProvincia != 0) // solo cargar las localidades si se seleccionó una provincia
+                {
+                    // consulta SQL para obtener las localidades filtradas por provincia
+
+                    // llenar un DataSet con los resultados
+
+                    // cargar el DropDownList con las localidades de destino
+
+                    // agregar un item para seleccionar
+
+                    ddlLocalidadDestino.Enabled = true;
+                }
+                else
+                {
+                    ddlLocalidadDestino.Enabled = false;
+
+                    // Si no hay una provincia seleccionada
+                    // limpiar las localidades de destino
+
                 }
             }
             catch (SqlException sqlEx)
