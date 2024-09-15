@@ -17,7 +17,7 @@
             <br />
             <br />
             <br />
-&nbsp;<asp:LinkButton ID="lbVerLibros" runat="server">Ver libros</asp:LinkButton>
+&nbsp;<asp:LinkButton ID="lbVerLibros" runat="server" OnClick="lbVerLibros_Click">Ver libros</asp:LinkButton>
             <br />
         </div>
     </form>

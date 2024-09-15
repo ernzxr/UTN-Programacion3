@@ -13,5 +13,10 @@ namespace TP4
         {
 
         }
+
+        protected void lbVerLibros_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("Ejercicio3_b.aspx");
+        }
     }
 }

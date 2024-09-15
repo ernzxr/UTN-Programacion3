@@ -10,6 +10,11 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <b>Listado de libros:<br />
+            </b><br />
+            <asp:GridView ID="gv_Libros" runat="server">
+            </asp:GridView>
+            <br />
         </div>
     </form>
 </body>
