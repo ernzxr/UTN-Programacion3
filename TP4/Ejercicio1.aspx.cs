@@ -41,6 +41,12 @@ namespace TP4
             lblLocalidadFinal.Font.Size = FontUnit.Point(10);
             lblLocalidadFinal.Font.Bold = true;
 
+            rfvProvinciaInicio.ForeColor = System.Drawing.Color.Red;
+            rfvLocalidadInicio.ForeColor = System.Drawing.Color.Red;
+            rfvProvinciaDestino.ForeColor = System.Drawing.Color.Red;
+            rfvLocalidadDestino.ForeColor = System.Drawing.Color.Red;
+
+
             if (!IsPostBack)
             {
                 DataSet ds = new DataSet();

@@ -92,8 +92,17 @@ namespace TP4
 
             cn.Close();
 
+            LimpiarFiltros();
+            //txtBox_Producto.Text = "";
+            //txtBox_Categoria.Text = "";
+        }
+
+        private void LimpiarFiltros()
+        {
             txtBox_Producto.Text = "";
             txtBox_Categoria.Text = "";
+            ddl_Producto.SelectedIndex = 0;
+            ddl_Categoria.SelectedIndex = 0;
         }
     }
 }

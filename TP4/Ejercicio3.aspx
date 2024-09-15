@@ -15,6 +15,10 @@
             </asp:DropDownList>
             <br />
             <br />
+            <br />
+            <br />
+&nbsp;<asp:LinkButton ID="lbVerLibros" runat="server">Ver libros</asp:LinkButton>
+            <br />
         </div>
     </form>
 </body>
