@@ -119,28 +119,21 @@ namespace TP4
             //Si cargó txtBox_Producto pero no txtBox_Categoria...
             if (tieneIdProducto && !tieneIdCategoria)
             {
-                string cs1 = ObtenerConsulta(cmd, idProducto, valorDDLProducto);
-
-                consulta += " WHERE " + cs1;
+                consulta += " WHERE " + ObtenerConsulta(cmd, idProducto, valorDDLProducto);
                 cmd.CommandText = consulta;
             }
 
             //Si cargó txtBox_Categoria pero no txtBox_Producto...
             if (tieneIdCategoria && !tieneIdProducto)
             {
-                string cs2 = ObtenerConsulta(cmd, idCategoria, valorDDLCategoria);
-
-                consulta += " WHERE " + cs2;
+                consulta += " WHERE " + ObtenerConsulta(cmd, idCategoria, valorDDLCategoria);
                 cmd.CommandText = consulta;
             }
 
             //Si cargó ambos campos...
             if (tieneIdProducto && tieneIdCategoria)
             {
-                string cs3 = ObtenerConsulta(cmd, idProducto, valorDDLProducto);
-                string cs4 = ObtenerConsulta(cmd, idCategoria, valorDDLCategoria);
-
-                consulta += " WHERE " + cs3 + " AND " + cs4;
+                consulta += " WHERE " + ObtenerConsulta(cmd, idProducto, valorDDLProducto) + " AND " + ObtenerConsulta(cmd, idCategoria, valorDDLCategoria);
                 cmd.CommandText = consulta;
             }
 
@@ -149,7 +142,6 @@ namespace TP4
             {
                 cmd.CommandText = consulta;
             }
-
 
             SqlDataReader dr = cmd.ExecuteReader();
             CargarGridView(dr);
