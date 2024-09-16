@@ -38,9 +38,8 @@ namespace TP4
 
         protected void lbVerLibros_Click(object sender, EventArgs e)
         {
-           string temaSeleccionado = ddlTemas.SelectedValue;
-           Response.Redirect("Ejercicio3_b.aspx?Temas= " + temaSeleccionado);
-            
+            string temaSeleccionado = ddlTemas.SelectedValue;
+            Response.Redirect("Ejercicio3_b.aspx?Temas= " + temaSeleccionado);
         }
     }
 }
