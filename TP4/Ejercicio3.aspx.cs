@@ -13,6 +13,7 @@ namespace TP4
 {
     public partial class Ejercicio3 : System.Web.UI.Page
     {
+        private static string rutaLibreria = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Libreria;Integrated Security=True";
         private SqlDataReader cargarDataReader(SqlConnection cn, string cmd)
         {
             SqlCommand consulta = new SqlCommand(cmd, cn);
@@ -28,7 +29,7 @@ namespace TP4
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-           string rutaLibreria = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Libreria;Integrated Security=True";
+           
             
            if (!IsPostBack)
             {

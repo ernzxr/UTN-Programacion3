@@ -12,7 +12,9 @@ namespace TP4
 {
     public partial class Ejercicio2 : System.Web.UI.Page
     {
-        private string rutaDB = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Neptuno;Integrated Security=True;";
+        private static string rutaDB = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Neptuno;Integrated Security=True;";
+        private DataSet ds = new DataSet();
+        private SqlConnection cn = new SqlConnection(rutaDB);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,10 +22,8 @@ namespace TP4
 
             if (!IsPostBack)
             {
-                DataSet ds = new DataSet();
-
                 // Se establece conexion con base de datos
-                SqlConnection cn = new SqlConnection(rutaDB);
+                
                 cn.Open();
 
                 CargarDataSet(ds, cn,
@@ -109,14 +109,12 @@ namespace TP4
 
         private void CargarTodo()
         {
-            SqlConnection cn = new SqlConnection(rutaDB);
             cn.Open();
 
             string consulta = "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad FROM Productos";
 
             SqlDataAdapter adapt = new SqlDataAdapter(consulta, cn);
 
-            DataSet ds = new DataSet();
             adapt.Fill(ds, "Productos");
 
             gv_Productos.DataSource = ds.Tables["Productos"];
@@ -173,8 +171,6 @@ namespace TP4
 
         protected void btn_Filtrar_Click(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
-            SqlConnection cn = new SqlConnection(rutaDB);
             bool filtroPro = String.IsNullOrWhiteSpace(txtBox_Producto.Text);
             bool filtroCat = String.IsNullOrWhiteSpace(txtBox_Categoria.Text);
 

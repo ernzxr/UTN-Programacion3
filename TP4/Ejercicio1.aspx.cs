@@ -12,11 +12,12 @@ namespace TP4
 {
     public partial class Ejercicio1 : System.Web.UI.Page
     {
+        private static string rutaDB = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True";
+        private SqlConnection cn = new SqlConnection(rutaDB);
+        private DataSet ds = new DataSet();
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-
-            string rutaDB = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True";
 
             lblInicio.Font.Name = "Arial";
             lblInicio.Font.Size = FontUnit.Point(15);
@@ -44,20 +45,19 @@ namespace TP4
 
             if (!IsPostBack)
             {
-                ddlProvinciaInicio.Items.Insert(0, new ListItem("Seleccione un inicio", "0"));
-                ddlLocalidadInicio.Items.Insert(0, new ListItem("Debe seleccionar un inicio", "0"));
-                ddlProvinciaDestino.Items.Insert(0, new ListItem("Primero seleccione un inicio", "0"));
-                ddlLocalidadDestino.Items.Insert(0, new ListItem("Seleccione un destino", "0"));
-
-                DataSet ds = new DataSet();
 
                 // Se establece conexion con base de datos
-                SqlConnection cn = new SqlConnection(rutaDB);
+                
                 cn.Open();
 
                 CargarDataSet(ds, cn, "SELECT * FROM Provincias", "Provincias");
 
                 CargarDropDownLists(ds, ddlProvinciaInicio, "Provincias", "NombreProvincia", "IdProvincia");
+
+                ddlProvinciaInicio.Items.Insert(0, new ListItem("Seleccione un inicio", "0"));
+                ddlLocalidadInicio.Items.Insert(0, new ListItem("Debe seleccionar un inicio", "0"));
+                ddlProvinciaDestino.Items.Insert(0, new ListItem("Primero seleccione un inicio", "0"));
+                ddlLocalidadDestino.Items.Insert(0, new ListItem("Seleccione un destino", "0"));
 
                 ViewState["DataSet"] = ds;
 
@@ -94,9 +94,6 @@ namespace TP4
 
         protected void ddlProvinciaInicio_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string rutaDB = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True";
-            SqlConnection cn = new SqlConnection(rutaDB);
-
             try
             {
                 cn.Open(); // intentar abrir la conexion
@@ -106,10 +103,8 @@ namespace TP4
 
                 if (idProvincia != 0) // solo cargar las localidades si se seleccionó una provincia
                 {
-                    // consulta SQL para obtener las localidades filtradas por provincia
-                    DataSet ds = new DataSet();
+                    // consulta SQL para obtener las localidades filtradas por provinci
                     FiltrarCampos(ds, cn, "SELECT * FROM Localidades WHERE IdProvincia = @IdProvincia", idProvincia, "Localidades");
-
 
                     // cargar el DropDownList con las localidades de inicio
                     CargarDropDownLists(ds, ddlLocalidadInicio, "Localidades", "NombreLocalidad", "IdLocalidad");
@@ -174,8 +169,6 @@ namespace TP4
 
         protected void ddlProvinciaDestino_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string rutaDB = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True";
-            SqlConnection cn = new SqlConnection(rutaDB);
             try
             {
                 cn.Open(); // intentar abrir la conexion
@@ -185,7 +178,6 @@ namespace TP4
 
                 if (idProvincia != 0)
                 {
-                    DataSet ds = new DataSet();
                     // consulta SQL para obtener las localidades filtradas por provincia
                 
                     FiltrarCampos(ds, cn, "SELECT * FROM Localidades WHERE IdProvincia = @IdProvincia", idProvincia, "Localidades");

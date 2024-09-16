@@ -13,11 +13,11 @@ namespace TP4
 {
     public partial class Ejercicio3_b : System.Web.UI.Page
     {
+        private static string rutaLibreria = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Libreria;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string rutaLibreria = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Libreria;Integrated Security=True";
                 string temaSeleccionado = Request["Temas"];
 
                 if (string.IsNullOrEmpty(temaSeleccionado))
