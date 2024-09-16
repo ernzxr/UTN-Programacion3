@@ -35,25 +35,12 @@ namespace TP4
                 SqlConnection cn = new SqlConnection(rutaLibreria);
                 cn.Open();
 
-
-                //SqlCommand cmd = new SqlCommand ("SELECT * FROM Temas", cn);
-
-                //SqlDataReader dr = cmd.ExecuteReader();
-
-                /*
-                ddlTemas.DataSource = dr;
-                ddlTemas.DataTextField = "Tema";
-                ddlTemas.DataValueField = "IdTema";
-                ddlTemas.DataBind();
-                */
-
                 SqlDataReader dr = cargarDataReader(cn, "SELECT * FROM Temas");
 
                 cargarDdl(dr, "Tema", "IdTema");
 
                 cn.Close();
-                           
-
+                          
             }
         }
 

@@ -30,7 +30,6 @@ namespace TP4
                     cn.Open();
 
                     SqlCommand cmd = new SqlCommand();
-                    Response.Write("Valor: " + temaSeleccionado);
 
                     cmd.Parameters.AddWithValue("@IdTema", temaSeleccionado);
                     cmd.CommandText = "SELECT * FROM Libros WHERE @IdTema = IdTema";
