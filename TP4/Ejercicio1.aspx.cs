@@ -72,15 +72,6 @@ namespace TP4
 
             adapt.SelectCommand = new SqlCommand(cmd, cn);
             adapt.Fill(ds, tabla);
-
-            // Consultar y cargar la tabla Provincias
-            /*
-            adapt.SelectCommand = new SqlCommand("SELECT * FROM Provincias", cn);
-            adapt.Fill(ds, "Provincias");
-
-            adapt.SelectCommand.CommandText = "SELECT *FROM Localidades";
-            adapt.Fill(ds, "Localidades");
-            */
         }
 
         void FiltrarCampos(DataSet ds, SqlConnection cn, string comando, int parametro, string tabla)
@@ -91,7 +82,6 @@ namespace TP4
             // llenar un DataSet con los resultados
             SqlDataAdapter adapt = new SqlDataAdapter(cmd);
             adapt.Fill(ds, tabla);
-
         }
 
         void CargarDropDownLists(DataSet ds, DropDownList ddl, string tabla, string item, string value)
