@@ -8,7 +8,7 @@
     <title>Ejercicio 2</title>
     <style type="text/css">
         .auto-style1 {
-            width: 60%;
+            width: 77%;
             margin-left: 1%;
         }
         .auto-style3 {
@@ -16,9 +16,7 @@
         }
         .auto-style5 {
             height: 83px;
-            }
-        .auto-style9 {
-            width: 274px;
+            text-align: center;
         }
         .auto-style10 {
             height: 83px;
@@ -30,6 +28,7 @@
         }
         .auto-style13 {
             height: 26px;
+            text-align: center;
         }
         .auto-style14 {
             width: 106px;
@@ -39,15 +38,9 @@
             height: 83px;
             width: 106px;
         }
-        .auto-style17 {
-            width: 106px;
-        }
         .auto-style18 {
             width: 53px;
             height: 26px;
-        }
-        .auto-style19 {
-            width: 53px;
         }
         .auto-style20 {
             height: 83px;
@@ -78,20 +71,20 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style17">
+                    <td class="auto-style14">
                         <asp:Label ID="lblCategoria" runat="server" Text="Id Categoria:"></asp:Label>
                     </td>
-                    <td class="auto-style19">
+                    <td class="auto-style18">
                         <asp:DropDownList ID="ddl_Categoria" runat="server">
                         <asp:ListItem Value="0">Igual a</asp:ListItem>
                         <asp:ListItem Value="1">Mayor a</asp:ListItem>
                         <asp:ListItem Value="2">Menor a</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td>
+                    <td class="auto-style13">
                         <asp:TextBox class="auto-style3" ID="txtBox_Categoria" runat="server" Width="280px"></asp:TextBox>
                     </td>
-                    <td class="auto-style9">
+                    <td class="auto-style11">
                         <asp:RegularExpressionValidator ID="revIdCategoria" runat="server" ControlToValidate="txtBox_Categoria" ValidationExpression="^\d+$" ValidationGroup="gpFiltrar" ForeColor="Red">* Ingrese solo números</asp:RegularExpressionValidator>
                     </td>
                 </tr>
@@ -99,9 +92,10 @@
                     <td class="auto-style16">
                     </td>
                     <td class="auto-style20">
-                        <asp:Button ID="btn_Filtrar" runat="server" Text="Filtrar" OnClick="btn_Filtrar_Click" ValidationGroup="gpFiltrar" />
-                    </td>
+                        &nbsp;</td>
                     <td class="auto-style5">
+                        <asp:Button ID="btn_Filtrar" runat="server" Text="Filtrar" OnClick="btn_Filtrar_Click" ValidationGroup="gpFiltrar" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Button ID="btn_QuitarF" runat="server" Text="Quitar filtro" OnClick="btn_QuitarF_Click" />
                     </td>
                     <td class="auto-style10">
