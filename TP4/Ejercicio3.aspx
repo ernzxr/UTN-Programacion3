@@ -11,7 +11,7 @@
     <form id="form1" runat="server">
         <div>
             &nbsp;Seleccionar Tema:&nbsp;
-            <asp:DropDownList ID="ddlTemas" runat="server" AutoPostBack="True">
+            <asp:DropDownList ID="ddlTemas" runat="server">
             </asp:DropDownList>
             <br />
             <br />
