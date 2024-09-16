@@ -74,7 +74,7 @@
                         <asp:TextBox class="auto-style3" ID="txtBox_Producto" runat="server" Width="280px"></asp:TextBox>
                     </td>
                     <td class="auto-style11">
-                        <asp:RegularExpressionValidator ID="revIdProducto" runat="server" ControlToValidate="txtBox_Producto" ErrorMessage="Ingrese solo números" ValidationExpression="^\d+$" ValidationGroup="gpFiltrar" ForeColor="Red">*</asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revIdProducto" runat="server" ControlToValidate="txtBox_Producto" ValidationExpression="^\d+$" ValidationGroup="gpFiltrar" ForeColor="Red">* Ingrese solo números</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -92,7 +92,7 @@
                         <asp:TextBox class="auto-style3" ID="txtBox_Categoria" runat="server" Width="280px"></asp:TextBox>
                     </td>
                     <td class="auto-style9">
-                        <asp:RegularExpressionValidator ID="revIdCategoria" runat="server" ControlToValidate="txtBox_Categoria" ErrorMessage="Ingrese solo números" ValidationExpression="^\d+$" ValidationGroup="gpFiltrar" ForeColor="Red">*</asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revIdCategoria" runat="server" ControlToValidate="txtBox_Categoria" ValidationExpression="^\d+$" ValidationGroup="gpFiltrar" ForeColor="Red">* Ingrese solo números</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
