@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Drawing.Printing;
+using System.Drawing;
 
 namespace TP4
 {
@@ -17,26 +19,31 @@ namespace TP4
             {
                 string rutaLibreria = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Libreria;Integrated Security=True";
                 string temaSeleccionado = Request["Temas"];
+                
+                if(string.IsNullOrEmpty(temaSeleccionado))
+                {
+                    return;
+                }
+                else
+                {
+                    SqlConnection cn = new SqlConnection(rutaLibreria);
+                    cn.Open();
 
+                    SqlCommand cmd = new SqlCommand();
 
-                SqlConnection cn = new SqlConnection(rutaLibreria);
-                cn.Open();
+                    cmd.Parameters.AddWithValue("@IdTema", temaSeleccionado);
+                    cmd.CommandText = "SELECT * FROM Libros WHERE @IdTema = IdTema";
+                    cmd.Connection = cn;
 
-                SqlCommand cmd = new SqlCommand();
+                    SqlDataReader dr = cmd.ExecuteReader();
 
-                cmd.Parameters.AddWithValue("@IdTema", temaSeleccionado);
-                cmd.CommandText = "SELECT * FROM Libros WHERE @IdTema = IdTema";
-                cmd.Connection = cn;
+                    gv_Libros.DataSource = dr;
+                    gv_Libros.DataBind();
 
-                SqlDataReader dr = cmd.ExecuteReader();
+                    dr.Close();
 
-                gv_Libros.DataSource = dr;
-                gv_Libros.DataBind();
-
-                dr.Close(); 
-
-                cn.Close();
-
+                    cn.Close();
+                }
             }
         }
 

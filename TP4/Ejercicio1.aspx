@@ -6,93 +6,67 @@
 <head runat="server">
     <title>Ejercicio 1</title>
     <style type="text/css">
-        .auto-style1 {
-            width: 100%;
+        .auto-style4 {
+            width: 50%;
+            margin-left: 150px;
         }
-        .auto-style2 {
-            width: 269px;
+
+        .auto-style8 {
+            height: 34px;
         }
-        .auto-style3 {
-            width: 222px;
+
+        .auto-style10 {
+            height: 50px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-
-            <table class="auto-style1">
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="lblInicio" runat="server" Text="DESTINO INICIO"></asp:Label>
-                    </td>
-                    <td class="auto-style3">&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="lblProvInicio" runat="server" Text="PROVINCIA:"></asp:Label>
-                    </td>
-                    <td class="auto-style3">
-                        <asp:DropDownList ID="ddlProvinciaInicio" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaInicio_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="lblLocalidadInicio" runat="server" Text="LOCALIDAD:"></asp:Label>
-                    </td>
-                    <td class="auto-style3">
-                        <asp:DropDownList ID="ddlLocalidadInicio" runat="server" AutoPostBack="True">
-                        </asp:DropDownList>
-                    </td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <br />
-                        <asp:Label ID="lblFinal" runat="server" Text="DESTINO FINAL"></asp:Label>
-                    </td>
-                    <td class="auto-style3">&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="lblProvFinal" runat="server" Text="PROVINCIA:"></asp:Label>
-                    </td>
-                    <td class="auto-style3">
-                        <asp:DropDownList ID="ddlProvinciaDestino" runat="server" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="ddlProvinciaDestino_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="lblLocalidadFinal" runat="server" Text="LOCALIDAD:"></asp:Label>
-                    </td>
-                    <td class="auto-style3">
-                        <asp:DropDownList ID="ddlLocalidadDestino" runat="server" AutoPostBack="True" Enabled="False">
-                        </asp:DropDownList>
-                    </td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="lblError" runat="server"></asp:Label>
-                    </td>
-                    <td class="auto-style3">
-                        &nbsp;</td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-            </table>
-
-        </div>
+        <table class="auto-style4">
+            <tr>
+                <td class="auto-style10">
+                    <asp:Label ID="lblInicio" runat="server" Text="DESTINO INICIO"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style8">
+                    <asp:Label ID="lblProvInicio" runat="server" Text="PROVINCIA:" Font-Size="Medium"></asp:Label>
+                    <asp:DropDownList ID="ddlProvinciaInicio" style="margin-left:70px;" runat ="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaInicio_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style8">
+                    <asp:Label ID="lblLocalidadInicio" runat="server" Text="LOCALIDAD:"></asp:Label>
+                    <asp:DropDownList ID="ddlLocalidadInicio" style="margin-left:65px;" runat="server" AutoPostBack="True">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style10">
+                    <asp:Label ID="lblFinal" runat="server" Text="DESTINO FINAL"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style8">
+                    <asp:Label ID="lblProvFinal" runat="server" Text="PROVINCIA:"></asp:Label>
+                    <asp:DropDownList ID="ddlProvinciaDestino" style="margin-left:70px;" runat="server" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="ddlProvinciaDestino_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style8">
+                    <asp:Label ID="lblLocalidadFinal" runat="server" Text="LOCALIDAD:"></asp:Label>
+                    <asp:DropDownList ID="ddlLocalidadDestino" style="margin-left:65px;" runat="server" AutoPostBack="True" Enabled="False">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="lblError" runat="server"></asp:Label>
+                </td>
+            </tr>
+        </table>
     </form>
 </body>
 </html>
