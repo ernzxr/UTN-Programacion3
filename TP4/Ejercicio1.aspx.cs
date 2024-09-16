@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -43,15 +44,20 @@ namespace TP4
 
             if (!IsPostBack)
             {
+                ddlProvinciaInicio.Items.Insert(0, new ListItem("Seleccione un inicio", "0"));
+                ddlLocalidadInicio.Items.Insert(0, new ListItem("Debe seleccionar un inicio", "0"));
+                ddlProvinciaDestino.Items.Insert(0, new ListItem("Primero seleccione un inicio", "0"));
+                ddlLocalidadDestino.Items.Insert(0, new ListItem("Seleccione un destino", "0"));
+
                 DataSet ds = new DataSet();
 
                 // Se establece conexion con base de datos
                 SqlConnection cn = new SqlConnection(rutaDB);
                 cn.Open();
 
-                CargarDataSet(ds, cn);
+                CargarDataSet(ds, cn, "SELECT * FROM Provincias", "Provincias");
 
-                CargarDropDownLists(ds);
+                CargarDropDownLists(ds, ddlProvinciaInicio, "Provincias", "NombreProvincia", "IdProvincia");
 
                 ViewState["DataSet"] = ds;
 
@@ -60,31 +66,40 @@ namespace TP4
             }
         }
 
-        void CargarDataSet(DataSet ds, SqlConnection cn)
+        void CargarDataSet(DataSet ds, SqlConnection cn, string cmd, string tabla)
         {
             SqlDataAdapter adapt = new SqlDataAdapter();
 
+            adapt.SelectCommand = new SqlCommand(cmd, cn);
+            adapt.Fill(ds, tabla);
+
             // Consultar y cargar la tabla Provincias
+            /*
             adapt.SelectCommand = new SqlCommand("SELECT * FROM Provincias", cn);
             adapt.Fill(ds, "Provincias");
 
             adapt.SelectCommand.CommandText = "SELECT *FROM Localidades";
             adapt.Fill(ds, "Localidades");
+            */
         }
 
-        void CargarDropDownLists(DataSet ds)
-        {
-            // Se carga el DropDownList de ProvinciasInicio
-            ddlProvinciaInicio.DataSource = ds.Tables["Provincias"];
-            ddlProvinciaInicio.DataTextField = "NombreProvincia";
-            ddlProvinciaInicio.DataValueField = "IdProvincia";
-            ddlProvinciaInicio.DataBind();
+        void FiltrarCampos(DataSet ds, SqlConnection cn, string comando, int parametro, string tabla)
+        {  
+            SqlCommand cmd = new SqlCommand(comando, cn);
+            cmd.Parameters.AddWithValue("@IdProvincia", parametro);
 
-            // Leyendas para los ddl
-            ddlProvinciaInicio.Items.Insert(0, new ListItem("Seleccione un inicio", "0"));
-            ddlLocalidadInicio.Items.Insert(0, new ListItem("Debe seleccionar un inicio", "0"));
-            ddlProvinciaDestino.Items.Insert(0, new ListItem("Primero seleccione un inicio", "0"));
-            ddlLocalidadDestino.Items.Insert(0, new ListItem("Seleccione un destino", "0"));
+            // llenar un DataSet con los resultados
+            SqlDataAdapter adapt = new SqlDataAdapter(cmd);
+            adapt.Fill(ds, tabla);
+
+        }
+
+        void CargarDropDownLists(DataSet ds, DropDownList ddl, string tabla, string item, string value)
+        {
+            ddl.DataSource = ds.Tables[tabla];
+            ddl.DataTextField = item;
+            ddl.DataValueField = value;
+            ddl.DataBind();
         }
 
         protected void ddlProvinciaInicio_SelectedIndexChanged(object sender, EventArgs e)
@@ -102,32 +117,22 @@ namespace TP4
                 if (idProvincia != 0) // solo cargar las localidades si se seleccionó una provincia
                 {
                     // consulta SQL para obtener las localidades filtradas por provincia
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Localidades WHERE IdProvincia = @IdProvincia", cn);
-                    cmd.Parameters.AddWithValue("@IdProvincia", idProvincia);
-
-                    // llenar un DataSet con los resultados
-                    SqlDataAdapter adapt = new SqlDataAdapter(cmd);
                     DataSet ds = new DataSet();
-                    adapt.Fill(ds, "Localidades");
+                    FiltrarCampos(ds, cn, "SELECT * FROM Localidades WHERE IdProvincia = @IdProvincia", idProvincia, "Localidades");
+
 
                     // cargar el DropDownList con las localidades de inicio
-                    ddlLocalidadInicio.DataSource = ds.Tables["Localidades"];
-                    ddlLocalidadInicio.DataTextField = "NombreLocalidad";
-                    ddlLocalidadInicio.DataValueField = "IdLocalidad";
-                    ddlLocalidadInicio.DataBind();
+                    CargarDropDownLists(ds, ddlLocalidadInicio, "Localidades", "NombreLocalidad", "IdLocalidad");
 
                     // agregar un item para seleccionar
                     ddlLocalidadInicio.Items.Insert(0, new ListItem("Seleccione una localidad", "0"));
 
                     // Realiza la consulta para provincias destino
-                    adapt.SelectCommand.CommandText = "SELECT * FROM Provincias WHERE IdProvincia <> @IdProvincia";
-                    adapt.Fill(ds, "Provincias");
+
+                    FiltrarCampos(ds, cn, "SELECT * FROM Provincias WHERE IdProvincia <> @IdProvincia", idProvincia, "Provincias");
 
                     // Cargar el ddlProvinciaDestino con las otras provincias
-                    ddlProvinciaDestino.DataSource = ds.Tables["Provincias"];
-                    ddlProvinciaDestino.DataTextField = "NombreProvincia";
-                    ddlProvinciaDestino.DataValueField = "IdProvincia";
-                    ddlProvinciaDestino.DataBind();
+                    CargarDropDownLists(ds, ddlProvinciaDestino, "Provincias", "NombreProvincia", "IdProvincia");
 
                     // Se cargan leyendas para los ddl de destino
                     ddlLocalidadDestino.Items.Clear();
@@ -190,20 +195,14 @@ namespace TP4
 
                 if (idProvincia != 0)
                 {
-                    // consulta SQL para obtener las localidades filtradas por provincia
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Localidades WHERE IdProvincia = @IdProvincia", cn);
-                    cmd.Parameters.AddWithValue("@IdProvincia", idProvincia);
-
-                    // llenar un DataSet con los resultados
-                    SqlDataAdapter adapt = new SqlDataAdapter(cmd);
                     DataSet ds = new DataSet();
-                    adapt.Fill(ds, "Localidades");
+                    // consulta SQL para obtener las localidades filtradas por provincia
+                
+                    FiltrarCampos(ds, cn, "SELECT * FROM Localidades WHERE IdProvincia = @IdProvincia", idProvincia, "Localidades");
 
                     // cargar el DropDownList con las localidades de destino
-                    ddlLocalidadDestino.DataSource = ds.Tables["Localidades"];
-                    ddlLocalidadDestino.DataTextField = "NombreLocalidad";
-                    ddlLocalidadDestino.DataValueField = "IdLocalidad";
-                    ddlLocalidadDestino.DataBind();
+
+                    CargarDropDownLists(ds, ddlLocalidadDestino, "Localidades", "NombreLocalidad", "IdLocalidad");
 
                     // agregar un item para seleccionar
                     ddlLocalidadDestino.Items.Insert(0, new ListItem("Seleccione una localidad", "0"));
