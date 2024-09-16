@@ -42,6 +42,15 @@ namespace TP4
         protected global::System.Web.UI.WebControls.TextBox txtBox_Producto;
 
         /// <summary>
+        /// Control revProductos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revProductos;
+
+        /// <summary>
         /// Control ddl_Categoria.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace TP4
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBox_Categoria;
+
+        /// <summary>
+        /// Control revCategorias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revCategorias;
 
         /// <summary>
         /// Control btn_Filtrar.

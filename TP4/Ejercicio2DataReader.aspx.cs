@@ -10,13 +10,25 @@ namespace TP4
 {
     public partial class Ejercicio2DataReader : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-        }
         string rutaNeptunoSQL = @"Data Source=localhost\sqlexpress;Initial Catalog=Neptuno;Integrated Security=True";
 
+        private void CargarTodo() //Carga todos los datos de la tabla Productos
+        {
+            SqlConnection cn = new SqlConnection(rutaNeptunoSQL);
+            cn.Open();
 
+            SqlCommand cmdProductos = new SqlCommand("SELECT IdProducto, NombreProducto, IdCategoría, " +
+                                                     "CantidadPorUnidad, PrecioUnidad FROM PRODUCTOS", cn);
+
+            SqlDataReader dr = cmdProductos.ExecuteReader();
+
+            CargarGridView(dr);
+
+
+            cn.Close();
+
+            return;
+        }
 
         private void CargarGridView(SqlDataReader dr)
         {
@@ -35,24 +47,38 @@ namespace TP4
                     consulta = "IdProducto = @IdProducto";
                     break;
                 case 2: //idProducto > valor del txtBox_Producto
-                    
+                    cmd.Parameters.AddWithValue("@IdProducto", id);
+                    consulta = "IdProducto > @IdProducto";
                     break;
                 case 3: //idProducto < valor del txtBox_Producto
-                    
+                    cmd.Parameters.AddWithValue("@IdProducto", id);
+                    consulta = "IdProducto < @IdProducto";
                     break;
                 case 4: //idCategoria = valor del txtBox_Categoria
-                    
+                    cmd.Parameters.AddWithValue("@IdCategoria", id);
+                    consulta = "IdCategoría = @IdCategoria";
                     break;
                 case 5: //idCategoria > valor del txtBox_Categoria
-                    
+                    cmd.Parameters.AddWithValue("@IdCategoria", id);
+                    consulta = "IdCategoría > @IdCategoria";
                     break;
                 case 6: //idCategoria < valor del txtBox_Categoria
-                    
+                    cmd.Parameters.AddWithValue("@IdCategoria", id);
+                    consulta = "IdCategoría < @IdCategoria";
                     break;
             }
+
             return consulta;
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+            if(IsPostBack == false)
+            {
+                CargarTodo();
+            }
+        }
 
         protected void btn_Filtrar_Click(object sender, EventArgs e)
         {
@@ -99,7 +125,31 @@ namespace TP4
                 cmd.CommandText = consulta;
             }
 
-            //Continuar preguntando...
+            //Si cargó txtBox_Categoria pero no txtBox_Producto...
+            if (tieneIdCategoria && !tieneIdProducto)
+            {
+                string cs2 = ObtenerConsulta(cmd, idCategoria, valorDDLCategoria);
+
+                consulta += " WHERE " + cs2;
+                cmd.CommandText = consulta;
+            }
+
+            //Si cargó ambos campos...
+            if (tieneIdProducto && tieneIdCategoria)
+            {
+                string cs3 = ObtenerConsulta(cmd, idProducto, valorDDLProducto);
+                string cs4 = ObtenerConsulta(cmd, idCategoria, valorDDLCategoria);
+
+                consulta += " WHERE " + cs3 + " AND " + cs4;
+                cmd.CommandText = consulta;
+            }
+
+            //Si no cargó nada...
+            if (!tieneIdProducto && !tieneIdCategoria)
+            {
+                cmd.CommandText = consulta;
+            }
+
 
             SqlDataReader dr = cmd.ExecuteReader();
             CargarGridView(dr);
@@ -107,6 +157,13 @@ namespace TP4
 
             cn.Close();
 
+            txtBox_Categoria.Text = "";
+            txtBox_Producto.Text = "";
+        }
+
+        protected void btn_QuitarFiltro_Click(object sender, EventArgs e)
+        {
+            CargarTodo();
             txtBox_Categoria.Text = "";
             txtBox_Producto.Text = "";
         }

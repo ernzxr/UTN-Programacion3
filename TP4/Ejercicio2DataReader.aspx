@@ -65,9 +65,11 @@
                         </asp:DropDownList>
                     </td>
                     <td class="auto-style10">
-                        <asp:TextBox ID="txtBox_Producto" runat="server" Width="175px"></asp:TextBox>
+                        <asp:TextBox ID="txtBox_Producto" runat="server" Width="175px" ValidationGroup="grupo1"></asp:TextBox>
                     </td>
-                    <td class="auto-style11"></td>
+                    <td class="auto-style11">
+                        <asp:RegularExpressionValidator ID="revProductos" runat="server" ControlToValidate="txtBox_Producto" ForeColor="Red" ValidationExpression="^\d+$" ValidationGroup="grupo1">*Ingrese solo números.</asp:RegularExpressionValidator>
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style5">Id Categoria:</td>
@@ -79,9 +81,11 @@
                         </asp:DropDownList>
                     </td>
                     <td class="auto-style7">
-                        <asp:TextBox ID="txtBox_Categoria" runat="server" Width="175px"></asp:TextBox>
+                        <asp:TextBox ID="txtBox_Categoria" runat="server" Width="175px" ValidationGroup="grupo1"></asp:TextBox>
                     </td>
-                    <td>&nbsp;</td>
+                    <td>
+                        <asp:RegularExpressionValidator ID="revCategorias" runat="server" ControlToValidate="txtBox_Categoria" ForeColor="Red" ValidationExpression="^\d+$" ValidationGroup="grupo1">*Ingrese solo números.</asp:RegularExpressionValidator>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
@@ -90,9 +94,9 @@
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style3">&nbsp;</td>
                     <td class="auto-style7">
-                        <asp:Button ID="btn_Filtrar" runat="server" OnClick="btn_Filtrar_Click" Text="Filtrar" />
+                        <asp:Button ID="btn_Filtrar" runat="server" OnClick="btn_Filtrar_Click" Text="Filtrar" ValidationGroup="grupo1" />
 &nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Button ID="btn_QuitarFiltro" runat="server" Text="Quitar Filtro" />
+                        <asp:Button ID="btn_QuitarFiltro" runat="server" Text="Quitar Filtro" OnClick="btn_QuitarFiltro_Click" />
                     </td>
                     <td>&nbsp;</td>
                 </tr>
