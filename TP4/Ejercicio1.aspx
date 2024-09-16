@@ -38,7 +38,7 @@
             <tr>
                 <td class="auto-style8">
                     <asp:Label ID="lblLocalidadInicio" runat="server" Text="LOCALIDAD:"></asp:Label>
-                    <asp:DropDownList ID="ddlLocalidadInicio" style="margin-left:65px;" runat="server" AutoPostBack="True">
+                    <asp:DropDownList ID="ddlLocalidadInicio" style="margin-left:65px;" runat="server">
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -57,7 +57,7 @@
             <tr>
                 <td class="auto-style8">
                     <asp:Label ID="lblLocalidadFinal" runat="server" Text="LOCALIDAD:"></asp:Label>
-                    <asp:DropDownList ID="ddlLocalidadDestino" style="margin-left:65px;" runat="server" AutoPostBack="True" Enabled="False">
+                    <asp:DropDownList ID="ddlLocalidadDestino" style="margin-left:65px;" runat="server" Enabled="False">
                     </asp:DropDownList>
                 </td>
             </tr>

@@ -107,10 +107,9 @@ namespace TP4
             adapt.Fill(ds, "Productos");
         }
 
-       
         private void CargarTodo()
         {
-           SqlConnection cn = new SqlConnection(rutaDB);
+            SqlConnection cn = new SqlConnection(rutaDB);
             cn.Open();
 
             string consulta = "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad FROM Productos";
@@ -122,25 +121,66 @@ namespace TP4
 
             gv_Productos.DataSource = ds.Tables["Productos"];
             gv_Productos.DataBind();
-
-
-
-
         }
 
         private void FiltrarXProductosYCategorias(DataSet ds, SqlConnection cn, int idProducto, int idCategoria, int tipoFiltroProducto, int tipoFiltroCategoria)
         {
+            string filtroPro = "", filtroCat = "";
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.Parameters.AddWithValue("@IdProducto", idProducto);
+            cmd.Parameters.AddWithValue("@IdCategoria", idCategoria);
 
+            switch (tipoFiltroProducto)
+            {
+                case 0:
+                    // Igual 
+                    filtroPro = "=";
+                    break;
+                case 1:
+                    // Mayor
+                    filtroPro = ">";
+                    break;
+                case 2:
+                    // Menor
+                    filtroPro = "<";
+                    break;
+            }
+
+            switch (tipoFiltroCategoria)
+            {
+                case 0:
+                    // Igual 
+                    filtroCat = "=";
+                    break;
+                case 1:
+                    // Mayor
+                    filtroCat = ">";
+                    break;
+                case 2:
+                    // Menor
+                    filtroCat = "<";
+                    break;
+            }
+
+            cmd.CommandText = "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad " +
+                $"FROM Productos WHERE IdProducto {filtroPro} @IdProducto AND IdCategoría {filtroCat} @IdCategoria " +
+                $"ORDER BY IdCategoría";
+
+            SqlDataAdapter adapt = new SqlDataAdapter(cmd);
+            adapt.Fill(ds, "Productos");
         }
 
         protected void btn_Filtrar_Click(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
             SqlConnection cn = new SqlConnection(rutaDB);
+            bool filtroPro = String.IsNullOrWhiteSpace(txtBox_Producto.Text);
+            bool filtroCat = String.IsNullOrWhiteSpace(txtBox_Categoria.Text);
 
             cn.Open();
 
-            if (!String.IsNullOrWhiteSpace(txtBox_Producto.Text) && String.IsNullOrWhiteSpace(txtBox_Categoria.Text))
+            if (!filtroPro && filtroCat)
             {
                 // Solo se filtra por producto
                 int tipoFiltro = int.Parse(ddl_Producto.SelectedValue);
@@ -148,7 +188,7 @@ namespace TP4
 
                 FiltrarProductos(ds, cn, idProducto, tipoFiltro);
             }
-            else if (String.IsNullOrWhiteSpace(txtBox_Producto.Text) && !String.IsNullOrWhiteSpace(txtBox_Categoria.Text))
+            else if (filtroPro && !filtroCat)
             {
                 // Solo se filtra por categoria
                 int tipoFiltro = int.Parse(ddl_Categoria.SelectedValue);
@@ -156,7 +196,7 @@ namespace TP4
 
                 FiltrarCategorias(ds, cn, idCategoria, tipoFiltro);
             }
-            else if (!String.IsNullOrWhiteSpace(txtBox_Producto.Text) && !String.IsNullOrWhiteSpace(txtBox_Categoria.Text))
+            else if (!filtroPro && !filtroCat)
             {
                 // Se seleccionan ambos filtros
                 int tipoFiltroProducto = int.Parse(ddl_Producto.SelectedValue);
@@ -164,15 +204,17 @@ namespace TP4
 
                 int tipoFiltroCategoria = int.Parse(ddl_Categoria.SelectedValue);
                 int idCategoria = int.Parse(txtBox_Categoria.Text);
-                
-                // Completar funcion
+
+                // Aplicar varios filtros
                 FiltrarXProductosYCategorias(ds, cn, idProducto, idCategoria, tipoFiltroProducto, tipoFiltroCategoria);
             }
             else
             {
                 // Carga el gridview completo sin filtros
-                CargarTodo();
-                LimpiarFiltros();
+                CargarDataSet(ds, cn,
+                    "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad " +
+                    "FROM Productos",
+                    "Productos");
             }
 
             cn.Close();

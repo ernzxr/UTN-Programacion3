@@ -19,8 +19,8 @@ namespace TP4
             {
                 string rutaLibreria = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Libreria;Integrated Security=True";
                 string temaSeleccionado = Request["Temas"];
-                
-                if(string.IsNullOrEmpty(temaSeleccionado))
+
+                if (string.IsNullOrEmpty(temaSeleccionado))
                 {
                     return;
                 }
