@@ -31,6 +31,24 @@
             width: 270px;
             text-align: center;
         }
+        .auto-style8 {
+            width: 125px;
+            text-align: center;
+            height: 26px;
+        }
+        .auto-style9 {
+            width: 179px;
+            text-align: center;
+            height: 26px;
+        }
+        .auto-style10 {
+            width: 270px;
+            text-align: center;
+            height: 26px;
+        }
+        .auto-style11 {
+            height: 26px;
+        }
     </style>
 </head>
 <body>
@@ -38,18 +56,18 @@
         <div>
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style5">Id Producto:</td>
-                    <td class="auto-style4">
+                    <td class="auto-style8">Id Producto:</td>
+                    <td class="auto-style9">
                         <asp:DropDownList ID="ddl_Producto" runat="server" AutoPostBack="True" Width="80px">
                             <asp:ListItem Value="1">Igual a:</asp:ListItem>
                             <asp:ListItem Value="2">Mayor a:</asp:ListItem>
                             <asp:ListItem Value="3">Menor a:</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td class="auto-style7">
+                    <td class="auto-style10">
                         <asp:TextBox ID="txtBox_Producto" runat="server" Width="175px"></asp:TextBox>
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style11"></td>
                 </tr>
                 <tr>
                     <td class="auto-style5">Id Categoria:</td>
