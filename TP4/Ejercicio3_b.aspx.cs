@@ -40,7 +40,7 @@ namespace TP4
             }
         }
 
-        protected void btnVolver_Click(object sender, EventArgs e)
+        protected void lbtnVolverAlMenu_Click(object sender, EventArgs e)
         {
             Response.Redirect("Ejercicio3.aspx");
         }

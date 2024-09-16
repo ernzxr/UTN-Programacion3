@@ -10,6 +10,10 @@ namespace TP4
 {
     public partial class Ejercicio2DataReader : System.Web.UI.Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+        }
         string rutaNeptunoSQL = @"Data Source=localhost\sqlexpress;Initial Catalog=Neptuno;Integrated Security=True";
 
 
@@ -49,10 +53,6 @@ namespace TP4
             return consulta;
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
 
         protected void btn_Filtrar_Click(object sender, EventArgs e)
         {

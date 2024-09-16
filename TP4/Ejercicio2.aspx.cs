@@ -107,6 +107,27 @@ namespace TP4
             adapt.Fill(ds, "Productos");
         }
 
+       
+        private void CargarTodo()
+        {
+           SqlConnection cn = new SqlConnection(rutaDB);
+            cn.Open();
+
+            string consulta = "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad FROM Productos";
+
+            SqlDataAdapter adapt = new SqlDataAdapter(consulta, cn);
+
+            DataSet ds = new DataSet();
+            adapt.Fill(ds, "Productos");
+
+            gv_Productos.DataSource = ds.Tables["Productos"];
+            gv_Productos.DataBind();
+
+
+
+
+        }
+
         private void FiltrarXProductosYCategorias(DataSet ds, SqlConnection cn, int idProducto, int idCategoria, int tipoFiltroProducto, int tipoFiltroCategoria)
         {
 
@@ -149,7 +170,9 @@ namespace TP4
             }
             else
             {
-                // Cargar el gridview completo sin filtros
+                // Carga el gridview completo sin filtros
+                CargarTodo();
+                LimpiarFiltros();
             }
 
             cn.Close();
@@ -168,7 +191,9 @@ namespace TP4
 
         protected void btn_QuitarF_Click(object sender, EventArgs e)
         {
-            // Cargar el gridview completo sin filtros
+            // Carga el gridview completo sin filtros
+            CargarTodo();
+            LimpiarFiltros();
         }
     }
 }
