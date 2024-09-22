@@ -59,13 +59,12 @@
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style11">
-                        <asp:HyperLink ID="HyperLink1" runat="server">HyperLink</asp:HyperLink>
+                        <asp:HyperLink ID="hlAgregarSucursal" runat="server" NavigateUrl="~/Agregar.aspx">Agregar Sucursal</asp:HyperLink>
                     </td>
                     <td class="auto-style12">
-                        <asp:HyperLink ID="HyperLink2" runat="server">HyperLink</asp:HyperLink>
+                        <asp:HyperLink ID="hlListarSucursal" runat="server" NavigateUrl="~/ListarSucursal.aspx">Listado de Sucursales</asp:HyperLink>
                     </td>
-                    <td class="auto-style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:HyperLink ID="HyperLink3" runat="server">HyperLink</asp:HyperLink>
+                    <td class="auto-style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:HyperLink ID="hlEliminarSucursal" runat="server" NavigateUrl="~/EliminarSucursal.aspx">Eliminar Sucursal</asp:HyperLink>
                     </td>
                 </tr>
                 <tr>
