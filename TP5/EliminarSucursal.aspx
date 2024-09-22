@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Label ID="lbl_Validacion" runat="server"></asp:Label>
+                    <asp:Label ID="lbl_Validacion" runat="server" ForeColor="Red"></asp:Label>
                 </td>
             </tr>
         </table>

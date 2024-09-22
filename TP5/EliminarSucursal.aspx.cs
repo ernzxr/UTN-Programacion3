@@ -10,6 +10,7 @@ namespace TP5
 {
     public partial class EliminarSucursal : System.Web.UI.Page
     {
+        //Negocio obj = new Negocio();
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
