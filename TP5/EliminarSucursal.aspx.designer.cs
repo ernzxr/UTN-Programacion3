@@ -33,6 +33,15 @@ namespace TP5
         protected global::System.Web.UI.WebControls.TextBox txtBox_Id;
 
         /// <summary>
+        /// Control rfvIDsucursal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvIDsucursal;
+
+        /// <summary>
         /// Control btn_Eliminar.
         /// </summary>
         /// <remarks>

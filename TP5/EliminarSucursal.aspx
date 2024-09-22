@@ -27,7 +27,9 @@
             </tr>
             <tr>
                 <td class="auto-style2">Ingresar ID sucursal:<asp:TextBox ID="txtBox_Id" style="margin-left: 40px;" runat="server" Width="214px"></asp:TextBox>
-                    <asp:Button ID="btn_Eliminar" style="margin-left: 30px;" runat="server" Text="Eliminar" OnClick="btn_Eliminar_Click" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:RequiredFieldValidator ID="rfvIDsucursal" runat="server" ControlToValidate="txtBox_Id">(*) Ingrese ID sucursal</asp:RequiredFieldValidator>
+&nbsp;<asp:Button ID="btn_Eliminar" style="margin-left: 30px;" runat="server" Text="Eliminar" OnClick="btn_Eliminar_Click" />
                 </td>
             </tr>
             <tr>
