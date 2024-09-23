@@ -22,7 +22,7 @@
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style2">
-                        <asp:HyperLink ID="hlAgregarSucursal" runat="server" NavigateUrl="~/Agregar.aspx">Agregar Sucursal</asp:HyperLink>
+                        <asp:HyperLink ID="hlAgregarSucursal" runat="server" NavigateUrl="~/AgregarSucursal.aspx">Agregar Sucursal</asp:HyperLink>
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>

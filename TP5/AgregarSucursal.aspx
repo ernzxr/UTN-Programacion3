@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Agregar.aspx.cs" Inherits="TP5.Agregar" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgregarSucursal.aspx.cs" Inherits="TP5.Agregar" %>
 
 <!DOCTYPE html>
 
@@ -70,7 +70,7 @@
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style11">
-                        <asp:HyperLink ID="hlAgregarSucursal" runat="server" NavigateUrl="~/Agregar.aspx">Agregar Sucursal</asp:HyperLink>
+                        <asp:HyperLink ID="hlAgregarSucursal" runat="server" NavigateUrl="~/AgregarSucursal.aspx">Agregar Sucursal</asp:HyperLink>
                     </td>
                     <td class="auto-style12">
                         <asp:HyperLink ID="hlListarSucursal" runat="server" NavigateUrl="~/ListarSucursal.aspx">Listado de Sucursales</asp:HyperLink>

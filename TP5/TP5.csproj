@@ -64,18 +64,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Agregar.aspx" />
+    <Content Include="AgregarSucursal.aspx" />
     <Content Include="EliminarSucursal.aspx" />
     <Content Include="ListarSucursal.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agregar.aspx.cs">
-      <DependentUpon>Agregar.aspx</DependentUpon>
+    <Compile Include="AgregarSucursal.aspx.cs">
+      <DependentUpon>AgregarSucursal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Agregar.aspx.designer.cs">
-      <DependentUpon>Agregar.aspx</DependentUpon>
+    <Compile Include="AgregarSucursal.aspx.designer.cs">
+      <DependentUpon>AgregarSucursal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Conexion.cs" />
     <Compile Include="DML.cs" />
