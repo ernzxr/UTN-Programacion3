@@ -26,6 +26,7 @@ namespace TP5
             if (resultado != 0)
             {
                 lblResultado.Text = "Sucursal eliminada correctamente";
+                txtIdSucursal.Text = ""; 
             }
             else
             {
