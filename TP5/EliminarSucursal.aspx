@@ -40,18 +40,18 @@
                 </tr>
                 <tr>
                     <td class="auto-style3">
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblEliminarSucursal" runat="server" Text="Eliminar Sucursal"></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style4">
-                        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblIngresarSucursal" runat="server" Text="Ingresar ID sucursal: "></asp:Label>
                     </td>
                     <td class="auto-style5"><asp:TextBox ID="txtIdSucursal" Style="margin-left: 40px;" runat="server" Width="214px"></asp:TextBox>
                     </td>
                     <td class="auto-style3">
-                    <asp:RequiredFieldValidator ID="rfvIdSucursal" runat="server" ControlToValidate="txtIdSucursal">(*) Ingrese ID sucursal</asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvIdSucursal" runat="server" ControlToValidate="txtIdSucursal" ForeColor="Red">(*) Ingrese ID sucursal</asp:RequiredFieldValidator>
                     </td>
                     <td><asp:Button ID="btnEliminar" Style="margin-left: 30px;" runat="server" Text="Eliminar" OnClick="btn_Eliminar_Click" />
                     </td>

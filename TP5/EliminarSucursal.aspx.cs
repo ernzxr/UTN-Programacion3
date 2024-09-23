@@ -13,6 +13,9 @@ namespace TP5
         DML dml = new DML();
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblEliminarSucursal.Font.Bold = true;
+            lblEliminarSucursal.Font.Size = FontUnit.Point(20);
+
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             rfvIdSucursal.ForeColor = System.Drawing.Color.Red;
         }
