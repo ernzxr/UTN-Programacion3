@@ -10,16 +10,24 @@ namespace TP5
 {
     public partial class EliminarSucursal : System.Web.UI.Page
     {
-        //Negocio obj = new Negocio();
+        DML dml = new DML();
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            rfvIDsucursal.ForeColor = System.Drawing.Color.Red;
+            rfvIdSucursal.ForeColor = System.Drawing.Color.Red;
         }
 
         protected void btn_Eliminar_Click(object sender, EventArgs e)
         {
-
+            int resultado = dml.EliminarSucursal(txtIdSucursal.Text);
+            if (resultado != 0)
+            {
+                lblResultado.Text = "Sucursal eliminada correctamente";
+            }
+            else
+            {
+                lblResultado.Text = "No se pudo eliminar la sucursal";
+            }
         }
     }
 }
