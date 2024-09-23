@@ -42,15 +42,15 @@ namespace TP5
         public int EliminarSucursal(string idSucursal)
         {
             string consultaSQL = "DELETE FROM Sucursal " +
-                $"WHERE Id_Sucursal={idSucursal}";
+                $"WHERE Id_Sucursal='{idSucursal}'";
             return cn.EjecutarConsulta(consultaSQL);
         }
 
         public DataTable BuscarSucursal(string idSucursal)
         {
             string consultaSQL = "SELECT Id_Sucursal AS ID, NombreSucursal AS NOMBRE, DescripcionProvincia AS PROVINCIA, DireccionSucursal AS DIRECCIÓN " +
-                "FROM Sucursal INNER JOIN Provincia ON Id_Provincia=Id_ProvinciaSucursal" +
-                $"WHERE Id+Sucursal={idSucursal}";
+                "FROM Sucursal INNER JOIN Provincia ON Id_Provincia=Id_ProvinciaSucursal " +
+                $"WHERE Id_Sucursal='{idSucursal}'";
             string nombreTabla = "Sucursales";
             return cn.ObtenerTablas(consultaSQL, nombreTabla);
         }
