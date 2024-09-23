@@ -4,48 +4,59 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <style type="text/css">
         .auto-style1 {
             width: 100%;
         }
+
         .auto-style2 {
             height: 30px;
         }
+
         .auto-style3 {
             height: 40px;
         }
+
         .auto-style4 {
             height: 30px;
             width: 251px;
         }
+
         .auto-style5 {
             height: 40px;
             width: 251px;
         }
+
         .auto-style6 {
             font-size: xx-large;
         }
+
         .auto-style7 {
             font-size: x-large;
         }
+
         .auto-style8 {
             font-size: large;
         }
+
         .auto-style9 {
             height: 30px;
             width: 231px;
         }
+
         .auto-style10 {
             height: 40px;
             width: 231px;
         }
+
         .auto-style11 {
             height: 30px;
             width: 251px;
             text-align: right;
         }
+
         .auto-style12 {
             height: 30px;
             width: 231px;
@@ -75,61 +86,61 @@
                 <tr>
                     <td class="auto-style4">
                         <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style7"><strong>Agregar Sucursal</strong></span></td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style7"><strong>Agregar Sucursal</strong></span></td>
                     <td class="auto-style9"></td>
                     <td class="auto-style2"></td>
                 </tr>
                 <tr>
                     <td class="auto-style4">
                         <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style8">Nombre Sucursal:</span></td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style8">Nombre Sucursal:</span></td>
                     <td class="auto-style9">
                         <br />
-                        <asp:TextBox ID="TextBox1" runat="server" Width="200px"></asp:TextBox>
+                        <asp:TextBox ID="txtNombreSucursal" runat="server" Width="200px"></asp:TextBox>
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvNombreSucursal" runat="server" ControlToValidate="txtNombreSucursal">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style4">
                         <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style8">&nbsp;Descripción:</span></td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style8">&nbsp;Descripción:</span></td>
                     <td class="auto-style9">
                         <br />
-                        <asp:TextBox ID="TextBox2" runat="server" TextMode="MultiLine" Width="200px"></asp:TextBox>
+                        <asp:TextBox ID="txtDescripcionSucursal" runat="server" TextMode="MultiLine" Width="200px"></asp:TextBox>
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvDescripcionSucursal" runat="server" ControlToValidate="txtDescripcionSucursal">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style4">
                         <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style8">Provincia:</span></td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style8">Provincia:</span></td>
                     <td class="auto-style9">
                         <br />
-                        <asp:DropDownList ID="DropDownList1" runat="server" Height="18px" Width="205px">
+                        <asp:DropDownList ID="ddlProvincias" runat="server" Height="18px" Width="205px">
                         </asp:DropDownList>
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvProvincias" runat="server" ControlToValidate="ddlProvincias" InitialValue="-- Seleccionar Provincia --">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style4">
                         <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style8">Dirección:</span></td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style8">Dirección:</span></td>
                     <td class="auto-style9">
                         <br />
-                        <asp:TextBox ID="TextBox3" runat="server" Width="200px"></asp:TextBox>
+                        <asp:TextBox ID="txtDireccionSucursal" runat="server" Width="200px"></asp:TextBox>
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvDireccionSucursal" runat="server" ControlToValidate="txtDireccionSucursal">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -138,7 +149,7 @@
                     </td>
                     <td class="auto-style9">
                         <br />
-                        <asp:Button ID="Button1" runat="server" Text="Button" />
+                        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
                     </td>
                     <td class="auto-style2">
                         <br />
