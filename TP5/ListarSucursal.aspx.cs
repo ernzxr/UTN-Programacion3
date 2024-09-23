@@ -33,6 +33,19 @@ namespace TP5
             DataTable dt = dml.BuscarSucursal(txtBuscarSucursal.Text);
             gvSucursales.DataSource = dt;
             gvSucursales.DataBind();
+
+            if (dt.Rows.Count > 0)
+            {
+                lblMensaje.Visible = false;
+                txtBuscarSucursal.Text = "";
+            }
+            else
+            {
+                lblMensaje.Text = "No se encontraron sucursales que coincidan con la búsqueda.";
+                lblMensaje.Visible = true;
+                txtBuscarSucursal.Text = "";
+
+            }
         }
 
         protected void btnFiltrar_Click(object sender, EventArgs e)

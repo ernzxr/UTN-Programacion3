@@ -84,6 +84,19 @@
                     </td>
                     <td>&nbsp;</td>
                 </tr>
+                <tr>
+                    <td class="auto-style13">
+                        <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
+                    </td>
+                    <td class="auto-style15">
+                        <asp:RegularExpressionValidator ID="revBuscarSucursal" runat="server" ControlToValidate="txtBuscarSucursal" ForeColor="Red" ValidationExpression="^\d+$">(*)El ID de la sucursal debe ser un número</asp:RegularExpressionValidator>
+                    </td>
+                    <td class="auto-style3">
+                        &nbsp;</td>
+                    <td>
+                        &nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
             </table>
             <div>
                 <asp:GridView ID="gvSucursales" runat="server">
