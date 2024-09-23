@@ -12,7 +12,7 @@ namespace TP5
 
         public DataTable ObtenerSucursales()
         {
-            string consultaSQL = "SELECT Id_Sucursal AS ID, NombreSucursal AS NOMBRE, DescripcionProvincia AS PROVINCIA, DireccionSucursal AS DIRECCIÓN " +
+            string consultaSQL = "SELECT Id_Sucursal AS ID, NombreSucursal AS Nombre, DescripcionSucursal AS Descripción, DescripcionProvincia AS Provincia, DireccionSucursal AS Dirección " +
                 "FROM Sucursal INNER JOIN Provincia ON Id_Provincia=Id_ProvinciaSucursal";
             string nombreTabla = "Sucursales";
             return cn.ObtenerTablas(consultaSQL, nombreTabla);
@@ -48,7 +48,7 @@ namespace TP5
 
         public DataTable BuscarSucursal(string idSucursal)
         {
-            string consultaSQL = "SELECT Id_Sucursal AS ID, NombreSucursal AS NOMBRE, DescripcionProvincia AS PROVINCIA, DireccionSucursal AS DIRECCIÓN " +
+            string consultaSQL = "SELECT Id_Sucursal AS ID, NombreSucursal AS Nombre, DescripcionSucursal AS Descripción, DescripcionProvincia AS Provincia, DireccionSucursal AS Dirección " +
                 "FROM Sucursal INNER JOIN Provincia ON Id_Provincia=Id_ProvinciaSucursal " +
                 $"WHERE Id_Sucursal='{idSucursal}'";
             string nombreTabla = "Sucursales";
