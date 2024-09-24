@@ -100,7 +100,7 @@
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="rfvNombreSucursal" runat="server" ControlToValidate="txtNombreSucursal">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvNombreSucursal" runat="server" ControlToValidate="txtNombreSucursal" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -113,7 +113,7 @@
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="rfvDescripcionSucursal" runat="server" ControlToValidate="txtDescripcionSucursal">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvDescripcionSucursal" runat="server" ControlToValidate="txtDescripcionSucursal" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -127,7 +127,7 @@
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="rfvProvincias" runat="server" ControlToValidate="ddlProvincias" InitialValue="0">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvProvincias" runat="server" ControlToValidate="ddlProvincias" InitialValue="0" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -140,7 +140,7 @@
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="rfvDireccionSucursal" runat="server" ControlToValidate="txtDireccionSucursal">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvDireccionSucursal" runat="server" ControlToValidate="txtDireccionSucursal" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -153,7 +153,7 @@
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblResultado" runat="server"></asp:Label>
                     </td>
                 </tr>
             </table>

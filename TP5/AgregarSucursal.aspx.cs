@@ -18,16 +18,21 @@ namespace TP5
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {
-                DataTable dt = dml.ObtenerProvincias();
-                ddlProvincias.DataSource = dt;
-                ddlProvincias.DataTextField = "DescripcionProvincia";
-                ddlProvincias.DataValueField = "Id_Provincia";
-                ddlProvincias.DataBind();
-
-                ddlProvincias.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                ddlProvincias.Items[0].Attributes["disabled"] = "disabled";
-                ddlProvincias.Items[0].Selected = true;
+                CargarSucursales();
             }
+        }
+
+        private void CargarSucursales()
+        {
+            DataTable dt = dml.ObtenerProvincias();
+            ddlProvincias.DataSource = dt;
+            ddlProvincias.DataTextField = "DescripcionProvincia";
+            ddlProvincias.DataValueField = "Id_Provincia";
+            ddlProvincias.DataBind();
+
+            ddlProvincias.Items.Insert(0, new ListItem("-- Seleccionar --", "0"));
+            ddlProvincias.Items[0].Attributes["disabled"] = "disabled";
+            ddlProvincias.Items[0].Selected = true;
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
@@ -35,11 +40,11 @@ namespace TP5
             int filasAfectadas = dml.AgregarSucursal(txtNombreSucursal.Text, txtDescripcionSucursal.Text, ddlProvincias.SelectedValue, txtDireccionSucursal.Text);
             if (filasAfectadas!=0)
             {
-
+                lblResultado.Text = "La sucursal se ha agregado con éxito.";
             }
             else
             {
-
+                lblResultado.Text = "No se ha podido agregar la sucursal.";
             }
         }
     }
