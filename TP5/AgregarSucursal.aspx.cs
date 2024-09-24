@@ -23,6 +23,10 @@ namespace TP5
                 ddlProvincias.DataTextField = "DescripcionProvincia";
                 ddlProvincias.DataValueField = "Id_Provincia";
                 ddlProvincias.DataBind();
+
+                ddlProvincias.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                ddlProvincias.Items[0].Attributes["disabled"] = "disabled";
+                ddlProvincias.Items[0].Selected = true;
             }
         }
 

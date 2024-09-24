@@ -127,7 +127,7 @@
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="rfvProvincias" runat="server" ControlToValidate="ddlProvincias" InitialValue="-- Seleccionar Provincia --">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvProvincias" runat="server" ControlToValidate="ddlProvincias" InitialValue="0">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
