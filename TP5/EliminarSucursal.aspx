@@ -14,9 +14,11 @@
         .auto-style5 {
             width: 290px;
         }
+
         .auto-style6 {
             width: 201px;
         }
+
         .auto-style7 {
             width: 161px;
         }
@@ -48,21 +50,23 @@
                     <td class="auto-style7">
                         <asp:Label ID="lblIngresarSucursal" runat="server" Text="Ingresar ID sucursal: "></asp:Label>
                     </td>
-                    <td class="auto-style5"><asp:TextBox ID="txtIdSucursal" Style="margin-left: 40px;" runat="server" Width="214px"></asp:TextBox>
+                    <td class="auto-style5">
+                        <asp:TextBox ID="txtIdSucursal" Style="margin-left: 40px;" runat="server" Width="214px" ValidationGroup="gpId"></asp:TextBox>
                     </td>
                     <td class="auto-style6">
-                    <asp:RequiredFieldValidator ID="rfvIdSucursal" runat="server" ControlToValidate="txtIdSucursal" ForeColor="Red">(*) Ingrese ID sucursal</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvIdSucursal" runat="server" ControlToValidate="txtIdSucursal" ForeColor="Red" ValidationGroup="gpId">(*) Ingrese ID sucursal</asp:RequiredFieldValidator>
                     </td>
-                    <td><asp:Button ID="btnEliminar" Style="margin-left: 30px;" runat="server" Text="Eliminar" OnClick="btn_Eliminar_Click" />
+                    <td>
+                        <asp:Button ID="btnEliminar" Style="margin-left: 30px;" runat="server" Text="Eliminar" OnClick="btn_Eliminar_Click" ValidationGroup="gpId" />
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style7">
-                    <asp:Label ID="lblResultado" runat="server" ForeColor="Red"></asp:Label>
+                        <asp:Label ID="lblResultado" runat="server" ForeColor="Red"></asp:Label>
                     </td>
                     <td class="auto-style5">&nbsp;</td>
                     <td class="auto-style6">
-                        <asp:RegularExpressionValidator ID="revIdSucursal" runat="server" ControlToValidate="txtIdSucursal" ForeColor="Red" ValidationExpression="&quot;^\d+$&quot; ">(*)El ID de la sucursal debe ser un número.</asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revIdSucursal" runat="server" ControlToValidate="txtIdSucursal" ForeColor="Red" ValidationExpression="^\d+$" ValidationGroup="gpId">(*)El ID de la sucursal debe ser un número.</asp:RegularExpressionValidator>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
