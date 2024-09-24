@@ -73,11 +73,11 @@
                         <asp:Label ID="lblBusqueda" runat="server" Text="Busqueda ingrese Id Sucursal: "></asp:Label>
                     </td>
                     <td class="auto-style15">
-                        <asp:TextBox ID="txtBuscarSucursal" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvSucursal" runat="server" ControlToValidate="txtBuscarSucursal" ForeColor="Red">(*) Ingrese ID sucursal</asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtBuscarSucursal" runat="server" ValidationGroup="grupo1"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvSucursal" runat="server" ControlToValidate="txtBuscarSucursal" ForeColor="Red" ValidationGroup="grupo1">(*) Ingrese ID sucursal</asp:RequiredFieldValidator>
                     </td>
                     <td class="auto-style3">
-                        <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" OnClick="btnFiltrar_Click" CssClass="auto-style8" />
+                        <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" OnClick="btnFiltrar_Click" CssClass="auto-style8" ValidationGroup="grupo1" />
                     </td>
                     <td>
                         <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" OnClick="btnMostrarTodo_Click" />
@@ -89,7 +89,7 @@
                         <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
                     </td>
                     <td class="auto-style15">
-                        <asp:RegularExpressionValidator ID="revBuscarSucursal" runat="server" ControlToValidate="txtBuscarSucursal" ForeColor="Red" ValidationExpression="^\d+$">(*)El ID de la sucursal debe ser un número</asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revBuscarSucursal" runat="server" ControlToValidate="txtBuscarSucursal" ForeColor="Red" ValidationExpression="^\d+$" ValidationGroup="grupo1">(*)El ID de la sucursal debe ser un número</asp:RegularExpressionValidator>
                     </td>
                     <td class="auto-style3">
                         &nbsp;</td>
