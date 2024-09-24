@@ -26,6 +26,8 @@ namespace TP5
             DataTable dt = dml.ObtenerSucursales();
             gvSucursales.DataSource = dt;
             gvSucursales.DataBind();
+            lblMensaje.Text = "";
+            txtBuscarSucursal.Text = "";
         }
 
         private void FiltrarSucursal()
@@ -36,13 +38,12 @@ namespace TP5
 
             if (dt.Rows.Count > 0)
             {
-                lblMensaje.Visible = false;
+                lblMensaje.Text = "";
                 txtBuscarSucursal.Text = "";
             }
             else
             {
                 lblMensaje.Text = "No se encontraron sucursales que coincidan con la búsqueda.";
-                lblMensaje.Visible = true;
                 txtBuscarSucursal.Text = "";
 
             }
