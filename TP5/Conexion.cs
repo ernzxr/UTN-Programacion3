@@ -26,20 +26,7 @@ namespace TP5
         {
             cn.Open();
             SqlCommand cmd = new SqlCommand(consultaSQL, cn);
-            int filas = (int)cmd.ExecuteNonQuery(); // PARA INSERT-UPDATE-DELETE
-            cn.Close();
-            return filas;
-        }
-
-        public int EjecutarSP(SqlCommand Comando, String NombreSP)
-        {
-            cn.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd = Comando;
-            cmd.Connection = cn;
-            cmd.CommandType = CommandType.StoredProcedure; // EJECUTA UN PROCEDIMIENTO ALMACENADO
-            cmd.CommandText = NombreSP;
-            int filas = cmd.ExecuteNonQuery(); // PARA INSERT-UPDATE-DELETE
+            int filas = (int)cmd.ExecuteNonQuery();
             cn.Close();
             return filas;
         }

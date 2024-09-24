@@ -25,13 +25,6 @@ namespace TP5
             return cn.ObtenerTablas(consultaSQL, nombreTabla);
         }
 
-        public DataTable ObtenerHorarios()
-        {
-            string consultaSQL = "SELECT * FROM Horario";
-            string nombreTabla = "Horarios";
-            return cn.ObtenerTablas(consultaSQL, nombreTabla);
-        }
-
         public int AgregarSucursal(string nombre, string descripcion, string idProvincia, string direccion)
         {
             string consultaSQL = "INSERT INTO Sucursal (NombreSucursal, DescripcionSucursal, Id_ProvinciaSucursal, DireccionSucursal) " +
