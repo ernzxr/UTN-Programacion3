@@ -21,7 +21,7 @@ namespace TP5
                 CargarSucursales();
             }
         }
-        private void validarCarga(int filas)
+        private void ValidarCarga(int filas)
         {
             if (filas != 0)
             {
@@ -58,7 +58,7 @@ namespace TP5
         {
             int filasAfectadas = dml.AgregarSucursal(txtNombreSucursal.Text, txtDescripcionSucursal.Text, ddlProvincias.SelectedValue, txtDireccionSucursal.Text);
 
-            validarCarga(filasAfectadas);
+            ValidarCarga(filasAfectadas);
 
             LimpiarCampos();
         }

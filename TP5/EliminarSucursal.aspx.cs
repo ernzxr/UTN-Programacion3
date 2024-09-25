@@ -20,18 +20,26 @@ namespace TP5
             rfvIdSucursal.ForeColor = System.Drawing.Color.Red;
         }
 
-        protected void btn_Eliminar_Click(object sender, EventArgs e)
+        private void ValidarEliminado(int filas)
         {
-            int resultado = dml.EliminarSucursal(txtIdSucursal.Text);
-            if (resultado != 0)
+            if (filas != 0)
             {
                 lblResultado.Text = "Sucursal eliminada correctamente";
-                txtIdSucursal.Text = ""; 
             }
             else
             {
                 lblResultado.Text = "No se pudo eliminar la sucursal";
             }
+        }
+
+
+        protected void btn_Eliminar_Click(object sender, EventArgs e)
+        {
+            int filas = dml.EliminarSucursal(txtIdSucursal.Text);
+
+            ValidarEliminado(filas);
+
+            txtIdSucursal.Text = "";
         }
     }
 }
