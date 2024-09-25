@@ -96,11 +96,11 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style8">Nombre Sucursal:</span></td>
                     <td class="auto-style9">
                         <br />
-                        <asp:TextBox ID="txtNombreSucursal" runat="server" Width="200px"></asp:TextBox>
+                        <asp:TextBox ID="txtNombreSucursal" runat="server" Width="200px" ValidationGroup="grupo1"></asp:TextBox>
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="rfvNombreSucursal" runat="server" ControlToValidate="txtNombreSucursal" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvNombreSucursal" runat="server" ControlToValidate="txtNombreSucursal" ForeColor="Red" ValidationGroup="grupo1">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -109,11 +109,11 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style8">&nbsp;Descripción:</span></td>
                     <td class="auto-style9">
                         <br />
-                        <asp:TextBox ID="txtDescripcionSucursal" runat="server" TextMode="MultiLine" Width="200px"></asp:TextBox>
+                        <asp:TextBox ID="txtDescripcionSucursal" runat="server" TextMode="MultiLine" Width="200px" ValidationGroup="grupo1"></asp:TextBox>
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="rfvDescripcionSucursal" runat="server" ControlToValidate="txtDescripcionSucursal" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvDescripcionSucursal" runat="server" ControlToValidate="txtDescripcionSucursal" ForeColor="Red" ValidationGroup="grupo1">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -122,12 +122,12 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style8">Provincia:</span></td>
                     <td class="auto-style9">
                         <br />
-                        <asp:DropDownList ID="ddlProvincias" runat="server" Height="18px" Width="205px">
+                        <asp:DropDownList ID="ddlProvincias" runat="server" Height="18px" Width="205px" ValidationGroup="grupo1">
                         </asp:DropDownList>
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="rfvProvincias" runat="server" ControlToValidate="ddlProvincias" InitialValue="0" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvProvincias" runat="server" ControlToValidate="ddlProvincias" InitialValue="0" ForeColor="Red" ValidationGroup="grupo1">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -136,11 +136,11 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style8">Dirección:</span></td>
                     <td class="auto-style9">
                         <br />
-                        <asp:TextBox ID="txtDireccionSucursal" runat="server" Width="200px"></asp:TextBox>
+                        <asp:TextBox ID="txtDireccionSucursal" runat="server" Width="200px" ValidationGroup="grupo1"></asp:TextBox>
                     </td>
                     <td class="auto-style2">
                         <br />
-                        <asp:RequiredFieldValidator ID="rfvDireccionSucursal" runat="server" ControlToValidate="txtDireccionSucursal" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvDireccionSucursal" runat="server" ControlToValidate="txtDireccionSucursal" ForeColor="Red" ValidationGroup="grupo1">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -149,7 +149,7 @@
                     </td>
                     <td class="auto-style9">
                         <br />
-                        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
+                        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" ValidationGroup="grupo1" />
                     </td>
                     <td class="auto-style2">
                         <br />
