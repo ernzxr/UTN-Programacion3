@@ -21,6 +21,25 @@ namespace TP5
                 CargarSucursales();
             }
         }
+        private void validarCarga(int filas)
+        {
+            if (filas != 0)
+            {
+                lblResultado.Text = "La sucursal se ha agregado con éxito.";
+            }
+            else
+            {
+                lblResultado.Text = "No se ha podido agregar la sucursal.";
+            }
+        }
+
+        private void LimpiarCampos()
+        {
+            txtNombreSucursal.Text = "";
+            txtDescripcionSucursal.Text = "";
+            txtDireccionSucursal.Text = "";
+            ddlProvincias.SelectedValue = "0";
+        }
 
         private void CargarSucursales()
         {
@@ -38,14 +57,10 @@ namespace TP5
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             int filasAfectadas = dml.AgregarSucursal(txtNombreSucursal.Text, txtDescripcionSucursal.Text, ddlProvincias.SelectedValue, txtDireccionSucursal.Text);
-            if (filasAfectadas!=0)
-            {
-                lblResultado.Text = "La sucursal se ha agregado con éxito.";
-            }
-            else
-            {
-                lblResultado.Text = "No se ha podido agregar la sucursal.";
-            }
+
+            validarCarga(filasAfectadas);
+
+            LimpiarCampos();
         }
     }
 }
