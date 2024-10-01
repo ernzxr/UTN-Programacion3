@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace TP6_GRUPO_09
+namespace TP6_GRUPO_09.Utils
 {
     public class Conexion
     {

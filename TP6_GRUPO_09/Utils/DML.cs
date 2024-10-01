@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace TP6_GRUPO_09
+namespace TP6_GRUPO_09.Utils
 {
     public class DML
     {
@@ -15,12 +15,6 @@ namespace TP6_GRUPO_09
             string consultaSQL = "";
             string nombreTabla = "Productos";
             return cn.ObtenerTablas(consultaSQL, nombreTabla);
-        }
-
-        public int EliminarProducto(string idProducto)
-        {
-            string consultaSQL = "";
-            return cn.EjecutarConsulta(consultaSQL);
         }
     }
 }
