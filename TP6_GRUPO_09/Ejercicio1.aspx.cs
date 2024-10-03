@@ -13,5 +13,11 @@ namespace TP6_GRUPO_09
         {
 
         }
+
+        protected void grdProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grdProductos.PageIndex = e.NewPageIndex;
+            //cargarGridView();
+        }
     }
 }
