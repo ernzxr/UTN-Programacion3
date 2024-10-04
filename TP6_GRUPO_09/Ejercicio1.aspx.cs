@@ -39,6 +39,7 @@ namespace TP6_GRUPO_09
             producto.IdProducto = Convert.ToInt32(idProducto);
             GestionProducto gProductos = new GestionProducto();
             bool eliminado = gProductos.EliminarProducto(producto);
+
             CargarGridView();
 
         }
@@ -75,6 +76,10 @@ namespace TP6_GRUPO_09
             CargarGridView();
         }
 
-        
+        protected void grdProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
