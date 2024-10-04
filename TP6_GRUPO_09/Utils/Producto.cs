@@ -11,6 +11,7 @@ namespace TP6_GRUPO_09.Utils
         private string s_NombreProducto;
         private string s_CantidadPorUnidad;
         private decimal d_PrecioUnidad;
+        private int i_IdProveedor;
 
         //Constructor por defecto
         public Producto()
@@ -50,6 +51,12 @@ namespace TP6_GRUPO_09.Utils
         {
             get { return d_PrecioUnidad; }
             set { d_PrecioUnidad = value; }
+        }
+
+        public int IdProveedor
+        {
+            get { return i_IdProveedor; }
+            set { i_IdProveedor = value; }
         }
     }
 }

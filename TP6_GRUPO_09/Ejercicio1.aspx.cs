@@ -12,7 +12,7 @@ namespace TP6_GRUPO_09
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 CargarGridView();
             }
@@ -27,7 +27,7 @@ namespace TP6_GRUPO_09
             grdProductos.DataBind();
         }
 
-            protected void grdProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void grdProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             grdProductos.PageIndex = e.NewPageIndex;
             CargarGridView();
@@ -36,7 +36,7 @@ namespace TP6_GRUPO_09
         protected void grdProductos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string idProducto = ((Label)grdProductos.Rows[e.RowIndex].FindControl("lblItIdProd")).Text;
-            
+
             Producto prod = new Producto();
             prod.IdProducto = Convert.ToInt32(idProducto);
 
