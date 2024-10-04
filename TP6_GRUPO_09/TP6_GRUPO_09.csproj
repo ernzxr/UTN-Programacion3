@@ -112,7 +112,6 @@
     <Compile Include="SeleccionarProductos.aspx.designer.cs">
       <DependentUpon>SeleccionarProductos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Utils\DML.cs" />
     <Compile Include="Utils\Producto.cs" />
   </ItemGroup>
   <ItemGroup>
