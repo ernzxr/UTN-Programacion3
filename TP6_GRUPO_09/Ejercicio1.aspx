@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Ejercicio 1</title>
     <style type="text/css">
         .auto-style1 {
             width: 100%;
@@ -27,7 +27,7 @@
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style3">&nbsp;</td>
+                    <td class="auto-style3">PRODUCTOS</td>
                     <td class="auto-style2">&nbsp;</td>
                 </tr>
                 <tr>
@@ -83,6 +83,7 @@
                 </tr>
             </table>
         </div>
+        <asp:HyperLink ID="hlVolverInicio" runat="server" NavigateUrl="~/Inicio.aspx">Volver al inicio</asp:HyperLink>
     </form>
 </body>
 </html>

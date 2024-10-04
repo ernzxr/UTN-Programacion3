@@ -67,6 +67,9 @@
             </table>
             <asp:Label ID="lblProductosAgregados" runat="server" Text=""></asp:Label>
         </div>
+        <br />
+        <br />
+        <asp:HyperLink ID="hlVolverInicioEj2" runat="server" NavigateUrl="~/Ejercicio2.aspx">Volver al Menu</asp:HyperLink>
     </form>
 </body>
 </html>

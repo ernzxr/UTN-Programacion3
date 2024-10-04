@@ -9,10 +9,52 @@ namespace TP6_GRUPO_09.Utils
 {
     public class Conexion
     {
-        private static string rutaConexion = "Data Source=localhost\\sqlexpress; Initial Catalog=Neptuno; Integrated Security=True";
-        private SqlConnection cn = new SqlConnection(rutaConexion);
+        private static string rutaConexion = "Data Source=localhost;Initial Catalog=Neptuno;Integrated Security=True";
 
-        public DataTable ObtenerTablas(string consultaSQL, string nombreTabla)
+        public Conexion() { }
+
+
+        public SqlConnection ObtenerConexion()
+        {
+            SqlConnection cn = new SqlConnection(rutaConexion);
+            try
+            {
+                cn.Open();
+                return cn;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+        public SqlDataAdapter ObtenerAdaptador(String consultaSql)
+        {
+
+            SqlConnection cn = ObtenerConexion();
+
+            if (cn == null)
+            {
+
+                throw new Exception("No se pudo abrir la conexión a la base de datos.");
+            }
+            try
+            {
+                SqlDataAdapter adaptador = new SqlDataAdapter(consultaSql, cn);
+                return adaptador;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear el adaptador: " + ex.Message);
+            }
+
+        }
+
+
+
+    }
+    /*
+    public DataTable ObtenerTablas(string consultaSQL, string nombreTabla)
         {
             cn.Open();
             SqlDataAdapter adap = new SqlDataAdapter(consultaSQL, cn);
@@ -30,5 +72,5 @@ namespace TP6_GRUPO_09.Utils
             cn.Close();
             return filas;
         }
-    }
+    }*/
 }
