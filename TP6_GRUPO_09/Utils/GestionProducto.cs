@@ -9,8 +9,6 @@ namespace TP6_GRUPO_09.Utils
 {
     public class GestionProducto
     {
-        public GestionProducto() { }
-
         private DataTable ObtenerTabla(String Nombre, String Sql)
         {
             DataSet ds = new DataSet();
@@ -23,10 +21,6 @@ namespace TP6_GRUPO_09.Utils
         public DataTable ObtenerTodosLosProductos()
         {
             return ObtenerTabla("Productos", "SELECT *FROM Productos");
-
         }
-
-
-
     }
 }

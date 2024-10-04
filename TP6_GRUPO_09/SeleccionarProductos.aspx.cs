@@ -13,19 +13,17 @@ namespace TP6_GRUPO_09
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 CargarGridView();
+                CargarLabelProductosSeleccionados();
             }
         }
 
         private void CargarGridView()
         {
-            Conexion con = new Conexion();
-            // Utilizar metodo de la clase gestion para obtener los productos
-            string querie = "SELECT * FROM Productos";
-            grdProductos.DataSource = con.ObtenerTablas(querie, "Productos");
+            GestionProducto gProductos = new GestionProducto();
+            grdProductos.DataSource = gProductos.ObtenerTodosLosProductos();
             grdProductos.DataBind();
         }
 
@@ -82,6 +80,29 @@ namespace TP6_GRUPO_09
             else if (AgregarFila((DataTable)Session["ProductosSeleccionados"], Convert.ToInt32(idProducto), nombre, Convert.ToInt32(idProveedor), Convert.ToDecimal(precio)))
             {
                 lblProductosAgregados.Text += ", " + nombre;
+            }
+        }
+
+        private void CargarLabelProductosSeleccionados()
+        {
+            if (Session["ProductosSeleccionados"] != null)
+            {
+                DataTable dt = (DataTable)Session["ProductosSeleccionados"];
+
+                lblProductosAgregados.Text = "Productos Agregados: ";
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    if (dt.Rows.IndexOf(dr) == 0)
+                    {
+                        lblProductosAgregados.Text += dr["NombreProducto"].ToString();
+                    }
+                    else
+                    {
+                        lblProductosAgregados.Text += ", " + dr["NombreProducto"].ToString();
+                    }
+
+                }
             }
         }
 
