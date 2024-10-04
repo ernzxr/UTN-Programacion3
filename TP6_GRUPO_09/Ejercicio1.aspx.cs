@@ -33,15 +33,16 @@ namespace TP6_GRUPO_09
 
         protected void grdProductos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            
             string idProducto = ((Label)grdProductos.Rows[e.RowIndex].FindControl("lblItIdProd")).Text;
-
-            Producto prod = new Producto();
-            prod.IdProducto = Convert.ToInt32(idProducto);
-
-            // Eliminar el producto con los metodos de gestion
-
+            Producto producto = new Producto();
+            producto.IdProducto = Convert.ToInt32(idProducto);
+            GestionProducto gProductos = new GestionProducto();
+            bool eliminado = gProductos.EliminarProducto(producto);
             CargarGridView();
+
         }
+    
 
         protected void grdProductos_RowEditing(object sender, GridViewEditEventArgs e)
         {
@@ -73,5 +74,7 @@ namespace TP6_GRUPO_09
             grdProductos.EditIndex = -1;
             CargarGridView();
         }
+
+        
     }
 }

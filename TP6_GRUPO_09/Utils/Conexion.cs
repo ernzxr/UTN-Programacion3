@@ -46,5 +46,34 @@ namespace TP6_GRUPO_09.Utils
             }
 
         }
+        public int EjecutarProcedimientoAlmacenado(SqlCommand Comando, string NombreProcedimiento)
+        {
+            SqlConnection cn = ObtenerConexion();
+            if (cn == null)
+            {
+                throw new Exception("No se pudo establecer conexión con la base de datos.");
+            }
+
+            try
+            {
+                Comando.Connection = cn;
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.CommandText = NombreProcedimiento;
+
+                // Ejecutar el comando y devolver el número de filas afectadas
+                int filasAfectadas = Comando.ExecuteNonQuery();
+                return filasAfectadas;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ejecutar el procedimiento almacenado: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+
     }
 }
