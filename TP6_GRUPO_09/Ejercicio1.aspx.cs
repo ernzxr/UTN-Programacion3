@@ -20,11 +20,16 @@ namespace TP6_GRUPO_09
 
         private void CargarGridView()
         {
-            Conexion con = new Conexion();
+            /*Conexion con = new Conexion();
             // Utilizar metodo de la clase gestion para obtener los productos
             string querie = "SELECT * FROM Productos";
             grdProductos.DataSource = con.ObtenerTablas(querie, "Productos");
+            grdProductos.DataBind();*/
+
+            GestionProducto gProductos = new GestionProducto();
+            grdProductos.DataSource = gProductos.ObtenerTodosLosProductos();
             grdProductos.DataBind();
+
         }
 
             protected void grdProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
