@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -64,7 +65,23 @@ namespace TP6_GRUPO_09
             string precio = ((TextBox)grdProductos.Rows[e.RowIndex].FindControl("txtEitPrecioProd")).Text;
             string cantUni = ((TextBox)grdProductos.Rows[e.RowIndex].FindControl("txtEitCantUniProd")).Text;
 
-  
+            // variables para validar
+            decimal precioUni;
+            int cantidad;
+
+            // validacion de precio
+            if (!decimal.TryParse(precio, out precioUni) || precioUni <= 0)
+            {
+                lblMensaje.Text = "El precio debe ser un número positivo.";
+                return; // salir del metodo si la validación falla
+            }
+
+            // validacion de cantidad
+            if (!int.TryParse(cantUni, out cantidad) || cantidad <= 0)
+            {
+                lblMensaje.Text = "La cantidad debe ser un número entero positivo.";
+                return; // salir del metodo si la validacion falla
+            }
 
             // Editar el producto con los metodos de gestion
             Producto prod = new Producto();
