@@ -62,24 +62,60 @@ namespace TP6_GRUPO_09
             string nombre = ((Label)grdProductos.Rows[e.NewSelectedIndex].FindControl("lblItNombreProd")).Text;
             string idProveedor = ((Label)grdProductos.Rows[e.NewSelectedIndex].FindControl("lblItIdProv")).Text;
             string precio = ((Label)grdProductos.Rows[e.NewSelectedIndex].FindControl("lblItPrecioProd")).Text;
+            Producto prod = new Producto
+            {
+                IdProducto = Convert.ToInt32(idProducto),
+                NombreProducto = nombre,
+                IdProveedor = Convert.ToInt32(idProveedor),
+                PrecioUnidad = Convert.ToDecimal(precio)
+            };
 
-            Producto prod = new Producto();
-            prod.IdProducto = Convert.ToInt32(idProducto);
-            prod.NombreProducto = nombre;
-            prod.IdProveedor = Convert.ToInt32(idProveedor);
-            prod.PrecioUnidad = Convert.ToDecimal(precio);
-
+            DataTable dtProductosSeleccionados;
             if (Session["ProductosSeleccionados"] == null)
             {
-                Session["ProductosSeleccionados"] = CrearTabla();
-                AgregarFila((DataTable)Session["ProductosSeleccionados"], Convert.ToInt32(idProducto), nombre, Convert.ToInt32(idProveedor), Convert.ToDecimal(precio));
-
-                lblProductosAgregados.Text = "Productos Agregados: ";
-                lblProductosAgregados.Text += nombre;
+                dtProductosSeleccionados = CrearTabla();
+                Session["ProductosSeleccionados"] = dtProductosSeleccionados;
             }
-            else if (AgregarFila((DataTable)Session["ProductosSeleccionados"], Convert.ToInt32(idProducto), nombre, Convert.ToInt32(idProveedor), Convert.ToDecimal(precio)))
+            else
             {
-                lblProductosAgregados.Text += ", " + nombre;
+                dtProductosSeleccionados = (DataTable)Session["ProductosSeleccionados"];
+            }
+            bool productoAgregado = AgregarFila(dtProductosSeleccionados, prod.IdProducto, prod.NombreProducto, prod.IdProveedor, prod.PrecioUnidad);
+            if (productoAgregado)
+            {
+                // si el producto no esta en la lista lo agregamos
+                DataRow row = dtProductosSeleccionados.NewRow();
+                row["IdProducto"] = prod.IdProducto;
+                row["NombreProducto"] = prod.NombreProducto;
+                row["IdProveedor"] = prod.IdProveedor;
+                row["PrecioUnidad"] = prod.PrecioUnidad;
+                dtProductosSeleccionados.Rows.Add(row);
+
+                // actualizar la sesion con el datatable actualizado
+                Session["ProductosSeleccionados"] = dtProductosSeleccionados;
+
+                // reiniciar y actualizar el label con los productos agregados
+                ActualizarLabelProductosSeleccionados();
+            }
+        }
+
+        private void ActualizarLabelProductosSeleccionados()
+        {
+            lblProductosAgregados.Text = "Productos Agregados: ";
+            if (Session["ProductosSeleccionados"] != null)
+            {
+                DataTable dt = (DataTable)Session["ProductosSeleccionados"];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    if (dt.Rows.IndexOf(dr) == 0)
+                    {
+                        lblProductosAgregados.Text += dr["NombreProducto"].ToString();
+                    }
+                    else
+                    {
+                        lblProductosAgregados.Text += ", " + dr["NombreProducto"].ToString();
+                    }
+                }
             }
         }
 
@@ -110,6 +146,11 @@ namespace TP6_GRUPO_09
         {
             grdProductos.PageIndex = e.NewPageIndex;
             CargarGridView();
+        }
+
+        protected void grdProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
