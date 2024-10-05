@@ -64,18 +64,20 @@ namespace TP6_GRUPO_09
             string precio = ((TextBox)grdProductos.Rows[e.RowIndex].FindControl("txtEitPrecioProd")).Text;
             string cantUni = ((TextBox)grdProductos.Rows[e.RowIndex].FindControl("txtEitCantUniProd")).Text;
 
+  
+
+            // Editar el producto con los metodos de gestion
             Producto prod = new Producto();
             prod.IdProducto = Convert.ToInt32(idProducto);
             prod.NombreProducto = nombre;
             prod.CantidadPorUnidad = cantUni;
             prod.PrecioUnidad = Convert.ToDecimal(precio);
-
-            // Editar el producto con los metodos de gestion
+            GestionProducto glProductos = new GestionProducto();
+            glProductos.ActualizarProducto(prod);
 
             grdProductos.EditIndex = -1;
             CargarGridView();
         }
-
         protected void grdProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
 

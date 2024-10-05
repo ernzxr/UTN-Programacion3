@@ -43,6 +43,32 @@ namespace TP6_GRUPO_09.Utils
             int filasAfectadas = conexion.EjecutarProcedimientoAlmacenado(Comando, "spEliminarProducto");
             return filasAfectadas == 1;
         }
+
+
+        private void ArmarParametrosProductos(ref SqlCommand Comando, Producto producto)
+        {
+            SqlParameter SqlParametros = new SqlParameter();
+            SqlParametros = Comando.Parameters.Add("@IDPRODUCTO", SqlDbType.Int);
+            SqlParametros.Value = producto.IdProducto;
+            SqlParametros = Comando.Parameters.Add("@NOMBREPRODUCTO", SqlDbType.NVarChar, 40);
+            SqlParametros.Value = producto.NombreProducto;
+            SqlParametros = Comando.Parameters.Add("@CANTIDADPORUNIDAD", SqlDbType.NVarChar, 40);
+            SqlParametros.Value = producto.CantidadPorUnidad;
+            SqlParametros = Comando.Parameters.Add("@PRECIOUNIDAD", SqlDbType.Money);
+            SqlParametros.Value = producto.PrecioUnidad;
+
+        }
+        public bool ActualizarProducto(Producto producto)
+        {
+            SqlCommand Comando = new SqlCommand();
+            ArmarParametrosProductos(ref Comando, producto);
+            Conexion ad = new Conexion();
+            int FilasInsertadas = ad.EjecutarProcedimientoAlmacenado(Comando, "spActualizarProducto");
+            if (FilasInsertadas == 1)
+                return true;
+            else
+                return false;
+        }
     }
 
 }
