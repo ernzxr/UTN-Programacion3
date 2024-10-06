@@ -62,16 +62,32 @@ namespace TP6_GRUPO_09
             CargarGridView();
         }
 
-        protected void grdProductos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        private bool ValidarEliminacionProducto(GridViewDeleteEventArgs e, string idProducto)
         {
-            
-            string idProducto = ((Label)grdProductos.Rows[e.RowIndex].FindControl("lblItIdProd")).Text;
             Producto producto = new Producto();
             producto.IdProducto = Convert.ToInt32(idProducto);
             GestionProducto gProductos = new GestionProducto();
             bool eliminado = gProductos.EliminarProducto(producto);
 
-            CargarGridView();
+            return eliminado;
+        }
+
+        protected void grdProductos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+            string idProducto = ((Label)grdProductos.Rows[e.RowIndex].FindControl("lblItIDProd")).Text;
+            bool elimino = ValidarEliminacionProducto(e, idProducto);
+
+            if(elimino)
+            {
+                lblMensaje.Text = $"El producto {idProducto} fue eliminado con exito";
+                CargarGridView();
+            }
+            else
+            {
+                lblMensaje.Text = "El producto no pudo ser eliminado";
+                return;
+            }
 
         }
     
@@ -97,7 +113,6 @@ namespace TP6_GRUPO_09
 
             // variables para validar
             decimal precioUni;
-            int cantidad;
 
             // validacion de precio
             if (!decimal.TryParse(precio, out precioUni) || precioUni <= 0)
