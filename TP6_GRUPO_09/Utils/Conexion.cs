@@ -4,12 +4,13 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Drawing;
 
 namespace TP6_GRUPO_09.Utils
 {
     public class Conexion
     {
-        private static string rutaConexion = "Data Source=localhost\\sqlexpress; Initial Catalog=Neptuno; Integrated Security=True";
+        private static string rutaConexion = " Data Source=localhost\\SQLEXPRESS;Initial Catalog = Neptuno; Integrated Security = True";
 
         public SqlConnection ObtenerConexion()
         {
