@@ -19,15 +19,11 @@ namespace TP6_GRUPO_09
             }
         }
 
-        private void CargarGridView()
+        private void cargarSumaPrecios()
         {
-            GestionProducto gProductos = new GestionProducto();
-            grdProductos.DataSource = gProductos.ObtenerTodosLosProductos();
-            grdProductos.DataBind();
-
             decimal totalPrecio = 0;
 
-            foreach(GridViewRow fila in grdProductos.Rows)
+            foreach (GridViewRow fila in grdProductos.Rows)
             {
                 Label lblPrecio = (Label)fila.FindControl("lblItPrecioProd");
 
@@ -49,7 +45,15 @@ namespace TP6_GRUPO_09
                     }
                 }
             }
+        }
 
+        private void CargarGridView()
+        {
+            GestionProducto gProductos = new GestionProducto();
+            grdProductos.DataSource = gProductos.ObtenerTodosLosProductos();
+            grdProductos.DataBind();
+
+            cargarSumaPrecios();
         }
 
         protected void grdProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -100,13 +104,6 @@ namespace TP6_GRUPO_09
             {
                 lblMensaje.Text = "El precio debe ser un número positivo.";
                 return; // salir del metodo si la validación falla
-            }
-
-            // validacion de cantidad
-            if (!int.TryParse(cantUni, out cantidad) || cantidad <= 0)
-            {
-                lblMensaje.Text = "La cantidad debe ser un número entero positivo.";
-                return; // salir del metodo si la validacion falla
             }
 
             // Editar el producto con los metodos de gestion
