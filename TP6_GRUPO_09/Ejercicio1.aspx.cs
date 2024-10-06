@@ -24,6 +24,32 @@ namespace TP6_GRUPO_09
             GestionProducto gProductos = new GestionProducto();
             grdProductos.DataSource = gProductos.ObtenerTodosLosProductos();
             grdProductos.DataBind();
+
+            decimal totalPrecio = 0;
+
+            foreach(GridViewRow fila in grdProductos.Rows)
+            {
+                Label lblPrecio = (Label)fila.FindControl("lblItPrecioProd");
+
+                if (lblPrecio != null)
+                {
+                    decimal precio;
+                    if (decimal.TryParse(lblPrecio.Text, out precio))
+                    {
+                        totalPrecio += precio;
+                    }
+                }
+
+                if (grdProductos.FooterRow != null)
+                {
+                    Label lblTotal = (Label)grdProductos.FooterRow.FindControl("lblft_Total");
+                    if (lblTotal != null)
+                    {
+                        lblTotal.Text = "Total: " + totalPrecio.ToString("F2");
+                    }
+                }
+            }
+
         }
 
         protected void grdProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
