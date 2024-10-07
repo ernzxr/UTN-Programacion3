@@ -52,7 +52,7 @@ namespace TP6_GRUPO_09.Utils
             SqlParametros.Value = producto.IdProducto;
             SqlParametros = Comando.Parameters.Add("@NOMBREPRODUCTO", SqlDbType.NVarChar, 40);
             SqlParametros.Value = producto.NombreProducto;
-            SqlParametros = Comando.Parameters.Add("@CANTIDADPORUNIDAD", SqlDbType.NVarChar, 40);
+            SqlParametros = Comando.Parameters.Add("@CANTIDADPORUNIDAD", SqlDbType.NVarChar, 20);
             SqlParametros.Value = producto.CantidadPorUnidad;
             SqlParametros = Comando.Parameters.Add("@PRECIOUNIDAD", SqlDbType.Money);
             SqlParametros.Value = producto.PrecioUnidad;
