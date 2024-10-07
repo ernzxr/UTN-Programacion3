@@ -168,10 +168,5 @@ namespace TP6_GRUPO_09
             grdProductos.PageIndex = e.NewPageIndex;
             CargarGridView();
         }
-
-        protected void grdProductos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
