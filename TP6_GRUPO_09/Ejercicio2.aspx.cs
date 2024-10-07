@@ -18,10 +18,7 @@ namespace TP6_GRUPO_09
         {
                Session["ProductosSeleccionados"] = null;
 
-                lblMensaje.Text = "Se han eliminado los productos seleccionados";
-                
-
-
+               lblMensaje.Text = "Se han eliminado los productos seleccionados";
             
         }
     }

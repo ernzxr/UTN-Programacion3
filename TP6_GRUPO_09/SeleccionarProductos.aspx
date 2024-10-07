@@ -29,7 +29,7 @@
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style4">
-                        <asp:GridView ID="grdProductos" runat="server" AllowPaging="True" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnPageIndexChanging="grdProductos_PageIndexChanging" AutoGenerateColumns="False" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdProductos_SelectedIndexChanging" PageSize="14" OnSelectedIndexChanged="grdProductos_SelectedIndexChanged">
+                        <asp:GridView ID="grdProductos" runat="server" AllowPaging="True" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnPageIndexChanging="grdProductos_PageIndexChanging" AutoGenerateColumns="False" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdProductos_SelectedIndexChanging" PageSize="14" OnSelectedIndexChanged="grdProductos_SelectedIndexChanged" Width="600px">
                             <Columns>
                                 <asp:TemplateField HeaderText="Id Producto">
                                     <ItemTemplate>
