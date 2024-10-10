@@ -15,6 +15,7 @@ namespace TP7_GRUPO_09
             if (!IsPostBack)
             {
                 CargarListView();
+                CargarDataList();
             }
         }
 
@@ -23,6 +24,13 @@ namespace TP7_GRUPO_09
             GestionSucursal gestor = new GestionSucursal();
             lvSucursales.DataSource = gestor.ObtenerSucursales();
             lvSucursales.DataBind();
+        }
+
+        protected void CargarDataList()
+        {
+            GestionProvincia gestor = new GestionProvincia();
+            dl_Provincias.DataSource = gestor.ObtenerProvincias();
+            dl_Provincias.DataBind();
         }
 
         protected void btnSeleccionar_Command(object sender, CommandEventArgs e)
