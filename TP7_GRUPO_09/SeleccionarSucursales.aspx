@@ -55,6 +55,9 @@
                 <tr>
                     <td class="auto-style4">
                         <asp:DataList ID="DataList1" runat="server">
+                            <ItemTemplate>
+                                <asp:Button ID="btn_Provincias" runat="server" />
+                            </ItemTemplate>
                         </asp:DataList>
                     </td>
                     <td colspan="3" style="padding-top:15px;" >
