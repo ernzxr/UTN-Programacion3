@@ -20,7 +20,7 @@ namespace TP7_GRUPO_09.Utils
 
         public DataTable ObtenerProvincias()
         {
-            return ObtenerTabla("Provincias", "SELECT DescripcionProvincia FROM Provincias");
+            return ObtenerTabla("Provincias", "SELECT * FROM Provincias");
         }
     }
 }
