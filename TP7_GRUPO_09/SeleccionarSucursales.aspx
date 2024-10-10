@@ -18,40 +18,38 @@
         .auto-style5 {
             width: 275px;
         }
+        .auto-style6 {
+            height: 26px;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
+            <table class="auto-style1"  style="padding-left:223px;">
+                <tr>
+                    <td class="auto-style6">
+                        <asp:HyperLink ID="hl_Listado" runat="server">Listado de Sucursales</asp:HyperLink>
+                        <asp:HyperLink ID="hl_MostrarSeleccion" style="padding-left:200px" runat="server" NavigateUrl="~/ListadoSucursalesSeleccionadas.aspx">Mostrar sucursales seleccionadas</asp:HyperLink>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p style="font-size:30px;"><b>Listado de sucursales</b></p>
+                    </td>
+                </tr>
+            </table>
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style4">&nbsp;</td>
                     <td class="auto-style5">
-                        <asp:HyperLink ID="HyperLink1" runat="server">HyperLink</asp:HyperLink>
+                        <asp:Label ID="lbl_Busqueda" runat="server" Text="Busqueda por nombre de sucursal"></asp:Label>
                     </td>
                     <td class="auto-style3">
-                        <asp:HyperLink ID="HyperLink2" runat="server">HyperLink</asp:HyperLink>
-                    </td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style4">&nbsp;</td>
-                    <td class="auto-style5">
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                    </td>
-                    <td class="auto-style3">&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style4">&nbsp;</td>
-                    <td class="auto-style5">
-                        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                    </td>
-                    <td class="auto-style3">
-                        <asp:TextBox ID="TextBox1" runat="server" Width="286px"></asp:TextBox>
+                        <asp:TextBox ID="txtbox_Busqueda" style="margin-left:45px;" runat="server" Width="286px"></asp:TextBox>
                     </td>
                     <td>
-                        <asp:Button ID="Button1" runat="server" Text="Button" />
+                        <asp:Button ID="btn_Buscar" style="margin-left:20px;" runat="server" Text="Buscar" />
                     </td>
                 </tr>
                 <tr>
@@ -59,23 +57,17 @@
                         <asp:DataList ID="DataList1" runat="server">
                         </asp:DataList>
                     </td>
-                    <td colspan="3">
+                    <td colspan="3" style="padding-top:15px;" >
             <asp:ListView ID="lvSucursales" runat="server" DataKeyNames="Id_Sucursal" GroupItemCount="3" OnPagePropertiesChanging="lvSucursales_PagePropertiesChanging">
                 <AlternatingItemTemplate>
-                    <td runat="server" style="background-color: #FFFFFF;color: #284775;">Id_Sucursal:
-                        <asp:Label ID="Id_SucursalLabel" runat="server" Text='<%# Eval("Id_Sucursal") %>' />
-                        <br />NombreSucursal:
+                    <td runat="server" style="background-color: #FFFFFF;color: #284775;">
                         <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' />
-                        <br />DescripcionSucursal:
-                        <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
-                        <br />Id_HorarioSucursal:
-                        <asp:Label ID="Id_HorarioSucursalLabel" runat="server" Text='<%# Eval("Id_HorarioSucursal") %>' />
-                        <br />Id_ProvinciaSucursal:
-                        <asp:Label ID="Id_ProvinciaSucursalLabel" runat="server" Text='<%# Eval("Id_ProvinciaSucursal") %>' />
-                        <br />DireccionSucursal:
-                        <asp:Label ID="DireccionSucursalLabel" runat="server" Text='<%# Eval("DireccionSucursal") %>' />
-                        <br />URL_Imagen_Sucursal:
-                        <asp:Label ID="URL_Imagen_SucursalLabel" runat="server" Text='<%# Eval("URL_Imagen_Sucursal") %>' />
+                            <br />
+                            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>' />
+                            <br />
+                            <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
+                            <br />
+                            <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" CommandArgument='<%# Eval("Id_Sucursal")+"-"+Eval("NombreSucursal")+"-"+Eval("DescripcionSucursal") %>' CommandName="eventoSeleccionar" OnCommand="btnSeleccionar_Command" />
                         <br /></td>
                 </AlternatingItemTemplate>
                 <EditItemTemplate>
