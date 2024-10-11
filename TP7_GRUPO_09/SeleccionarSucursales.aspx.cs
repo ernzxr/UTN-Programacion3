@@ -29,11 +29,13 @@ namespace TP7_GRUPO_09
 
         protected void CargarDataList()
         {
+            /*
             GestionProvincia gestor = new GestionProvincia();
             dl_Provincias.DataSource = gestor.ObtenerProvincias();
             dl_Provincias.DataBind();
+            */
         }
-
+        
         protected void btnSeleccionar_Command(object sender, CommandEventArgs e)
         {
             if(e.CommandName == "eventoSeleccionar")
@@ -52,5 +54,11 @@ namespace TP7_GRUPO_09
 
             CargarListView();
         }
+        protected void dl_Provincias_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            //Desarrollar metodo
+        }
     }
-}
+
+
+    }

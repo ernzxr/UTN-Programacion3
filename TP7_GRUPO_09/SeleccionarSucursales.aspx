@@ -67,11 +67,14 @@
                 </tr>
                 <tr>
                     <td class="auto-style4">
-                        <asp:DataList ID="dl_Provincias" runat="server">
+                       <asp:DataList ID="dl_Provincias" runat="server" DataKeyField="Id_Provincia" DataSourceID="SqlDataSource1" OnItemCommand="dl_Provincias_ItemCommand" Width="92px">
                             <ItemTemplate>
-                                <asp:Button ID="btn_Provincias" runat="server" Text='<%# Eval("DescripcionProvincia") %>' />
+                                <asp:Button ID="btnProvincias" runat="server" Text='<%# Eval("DescripcionProvincia") %>' Width="250px" />
+                                <br />
+                                <br />
                             </ItemTemplate>
                         </asp:DataList>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT * FROM [Provincia]"></asp:SqlDataSource>
                     </td>
                     <td colspan="3" style="padding-top:15px;" >
             <asp:ListView ID="lvSucursales" runat="server" DataKeyNames="Id_Sucursal" GroupItemCount="3" OnPagePropertiesChanging="lvSucursales_PagePropertiesChanging">
