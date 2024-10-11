@@ -13,13 +13,23 @@
             width: 303px;
         }
         .auto-style4 {
-            width: 221px;
+            width: 166px;
         }
         .auto-style5 {
-            width: 275px;
+            width: 277px;
         }
         .auto-style6 {
             height: 26px;
+        }
+        .auto-style8 {
+            margin-left: 0px;
+        }
+        .auto-style9 {
+            width: 57px;
+        }
+        .auto-style10 {
+            width: 100%;
+            margin-right: 20px;
         }
     </style>
 </head>
@@ -39,17 +49,20 @@
                     </td>
                 </tr>
             </table>
-            <table class="auto-style1">
+            <table class="auto-style10">
                 <tr>
                     <td class="auto-style4">&nbsp;</td>
                     <td class="auto-style5">
                         <asp:Label ID="lbl_Busqueda" runat="server" Text="Busqueda por nombre de sucursal"></asp:Label>
                     </td>
                     <td class="auto-style3">
-                        <asp:TextBox ID="txtbox_Busqueda" style="margin-left:45px;" runat="server" Width="286px"></asp:TextBox>
+                        <asp:TextBox ID="txtbox_Busqueda" runat="server" Width="286px" CssClass="auto-style8"></asp:TextBox>
+                    </td>
+                    <td class="auto-style9">
+                        <asp:Button ID="btn_Buscar" runat="server" Text="Buscar" CssClass="auto-style8" />
                     </td>
                     <td>
-                        <asp:Button ID="btn_Buscar" style="margin-left:20px;" runat="server" Text="Buscar" />
+                        <asp:RegularExpressionValidator ID="revSucursales" runat="server" ControlToValidate="txtbox_Busqueda" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$">(*)Error, ingrese un nombre de sucursal válido. </asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -180,7 +193,9 @@
                         <br /></td>
                 </SelectedItemTemplate>
             </asp:ListView>
-                    </td>
+                        pa</td>
+                    <td style="padding-top:15px;" >
+                        &nbsp;</td>
                 </tr>
             </table>
         </div>

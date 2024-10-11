@@ -69,6 +69,15 @@ namespace TP7_GRUPO_09
         protected global::System.Web.UI.WebControls.Button btn_Buscar;
 
         /// <summary>
+        /// Control revSucursales.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revSucursales;
+
+        /// <summary>
         /// Control dl_Provincias.
         /// </summary>
         /// <remarks>
