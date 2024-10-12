@@ -69,7 +69,11 @@
                     <td class="auto-style4">
                        <asp:DataList ID="dl_Provincias" runat="server" DataKeyField="Id_Provincia" DataSourceID="SqlDataSource1" OnItemCommand="dl_Provincias_ItemCommand" Width="92px">
                             <ItemTemplate>
-                                <asp:Button ID="btnProvincias" runat="server" Text='<%# Eval("DescripcionProvincia") %>' Width="250px" />
+                                <asp:Button ID="btnProvincias" runat="server" 
+                                 Text='<%# Eval("DescripcionProvincia") %>' 
+                                Width="250px" 
+                                CommandName="Seleccionar" 
+                                CommandArgument='<%# Eval("Id_Provincia") %>' />
                                 <br />
                                 <br />
                             </ItemTemplate>
@@ -196,7 +200,7 @@
                         <br /></td>
                 </SelectedItemTemplate>
             </asp:ListView>
-                        pa</td>
+                        </td>
                     <td style="padding-top:15px;" >
                         &nbsp;</td>
                 </tr>

@@ -22,8 +22,27 @@ namespace TP7_GRUPO_09.Utils
         {
             return ObtenerTabla("Sucursales", "SELECT * FROM Sucursal");
         }
-    }
 
+        public DataTable ObtenerSucursalesPorProvincia(int provinciaID)
+        {
+            string query = "SELECT * FROM Sucursal WHERE Id_ProvinciaSucursal = @ProvinciaID";
+            DataSet ds = new DataSet();
+            Conexion datos = new Conexion();
+
+            try
+            {
+                SqlDataAdapter adp = datos.ObtenerAdaptador(query);
+                adp.SelectCommand.Parameters.AddWithValue("@ProvinciaID", provinciaID);
+                adp.Fill(ds, "Sucursal");
+            }
+            catch (Exception ex)
+            { 
+                throw new Exception("Error al obtener sucursales por provincia", ex);
+            }
+            return ds.Tables["Sucursal"];
+        }
+
+    }
 }
 
 
