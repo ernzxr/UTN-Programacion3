@@ -38,12 +38,59 @@ namespace TP7_GRUPO_09
 
          }
      */
+        public DataTable CrearTabla()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Id_Sucursal", System.Type.GetType("System.Int32"));
+            dt.Columns.Add("Nombre", System.Type.GetType("System.String"));
+            dt.Columns.Add("Descripcion", System.Type.GetType("System.String"));
+
+            return dt;
+        }
+
+        public void AgregarFila(DataTable tabla, int IdSucursal, string NombreSucursal,
+                                string DescripcionSucursal)
+        {
+            bool existe = false;
+            foreach (DataRow r in tabla.Rows)
+            {
+                if ((Convert.ToInt32(r["IdSucursal"])) == IdSucursal)
+                {
+                    existe = true;
+                    break;
+                }
+            }
+
+            if (!existe)
+            {
+                DataRow dr = tabla.NewRow();
+                dr["Id_Sucursal"] = IdSucursal;
+                dr["Nombre"] = NombreSucursal;
+                dr["Descripcion"] = DescripcionSucursal;
+
+                tabla.Rows.Add(dr);
+                Session["sucursalSeleccionada"] = tabla;
+            }
+        }
 
         protected void btnSeleccionar_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "eventoSeleccionar")
             {
-                // Trabajar con el Session
+                string[] sucursalSeleccionada = new string[3];
+                sucursalSeleccionada = e.CommandArgument.ToString().Split('-');
+
+                Sucursal sucursal = new Sucursal();
+                sucursal.IdSucursal = Convert.ToInt32(sucursalSeleccionada[0]);
+                sucursal.NombreSucursal = sucursalSeleccionada[1];
+                sucursal.DescripcionSucursal = sucursalSeleccionada[2];
+
+                if (Session["sucursalSeleccionada"] == null)
+                {
+                    Session["sucursalSeleccionada"] = CrearTabla();
+                }
+                AgregarFila((DataTable)Session["sucursalSeleccionada"], (int)sucursal.IdSucursal,
+                        (string)sucursal.NombreSucursal, (string)sucursal.DescripcionSucursal);
             }
         }
 
