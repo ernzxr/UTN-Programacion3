@@ -23,6 +23,11 @@ namespace TP7_GRUPO_09.Utils
             return ObtenerTabla("Sucursales", "SELECT * FROM Sucursal");
         }
 
+        public DataTable ObtenerSucursalesPorNombre(String nombreSucursal)
+        {
+            return ObtenerTabla("Sucursal", "SELECT * FROM Sucursal WHERE NombreSucursal LIKE '%" + nombreSucursal + "%'");
+        }
+
         public DataTable ObtenerSucursalesPorProvincia(int provinciaID)
         {
             string query = "SELECT * FROM Sucursal WHERE Id_ProvinciaSucursal = @ProvinciaID";

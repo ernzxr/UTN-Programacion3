@@ -128,14 +128,15 @@ namespace TP7_GRUPO_09
 
             if (!String.IsNullOrEmpty(nombreSucursal)) // Si el TextBox no está vacío
             {
-                // Consulta para buscar sucursales que coincidan parcial o completamente
-                SqlDataSource1.SelectCommand = "SELECT * FROM Sucursal WHERE NombreSucursal LIKE '%' + @NombreSucursal + '%'";
-                SqlDataSource1.SelectParameters.Clear(); // Limpiar cualquier parámetro anterior
-                SqlDataSource1.SelectParameters.Add("NombreSucursal", nombreSucursal); // Agregar parámetro con el valor del TextBox
+                GestionSucursal gSucursal = new GestionSucursal();
+                lvSucursales.DataSource = gSucursal.ObtenerSucursalesPorNombre(nombreSucursal);
+                lvSucursales.DataBind();
             }
-
-            // Actualizar el ListView con los nuevos datos
-            lvSucursales.DataBind();
+            else
+            {
+                CargarListView();
+            }
+           
         }
     }
     }
