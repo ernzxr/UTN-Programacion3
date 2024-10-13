@@ -121,6 +121,22 @@ namespace TP7_GRUPO_09
             lvSucursales.DataSource = sucursales;
             lvSucursales.DataBind();
         }
-      }
+
+        protected void btn_Buscar_Click(object sender, EventArgs e)
+        {
+            String nombreSucursal = txtbox_Busqueda.Text.Trim();
+
+            if (!String.IsNullOrEmpty(nombreSucursal)) // Si el TextBox no está vacío
+            {
+                // Consulta para buscar sucursales que coincidan parcial o completamente
+                SqlDataSource1.SelectCommand = "SELECT * FROM Sucursal WHERE NombreSucursal LIKE '%' + @NombreSucursal + '%'";
+                SqlDataSource1.SelectParameters.Clear(); // Limpiar cualquier parámetro anterior
+                SqlDataSource1.SelectParameters.Add("NombreSucursal", nombreSucursal); // Agregar parámetro con el valor del TextBox
+            }
+
+            // Actualizar el ListView con los nuevos datos
+            lvSucursales.DataBind();
+        }
+    }
     }
 

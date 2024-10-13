@@ -59,7 +59,7 @@
                         <asp:TextBox ID="txtbox_Busqueda" runat="server" Width="286px" CssClass="auto-style8"></asp:TextBox>
                     </td>
                     <td class="auto-style9">
-                        <asp:Button ID="btn_Buscar" runat="server" Text="Buscar" CssClass="auto-style8" />
+                        <asp:Button ID="btn_Buscar" runat="server" Text="Buscar" CssClass="auto-style8" OnClick="btn_Buscar_Click" />
                     </td>
                     <td>
                         <asp:RegularExpressionValidator ID="revSucursales" runat="server" ControlToValidate="txtbox_Busqueda" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$">(*)Error, ingrese un nombre de sucursal válido. </asp:RegularExpressionValidator>
