@@ -10,7 +10,7 @@ namespace TP7_GRUPO_09.Utils
 {
     public class Conexion
     {
-        private static string rutaConexion = "Data Source=localhost\\sqlexpress;Initial Catalog=BDSucursales;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+        private static string rutaConexion = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=BDSucursales;Integrated Security=True";
 
         public SqlConnection ObtenerConexion()
         {

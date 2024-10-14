@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Web;
+using TP6_GRUPO_09.Utils;
 
 namespace TP7_GRUPO_09.Utils
 {
@@ -47,6 +48,8 @@ namespace TP7_GRUPO_09.Utils
             return ds.Tables["Sucursal"];
         }
 
+
+     
     }
 }
 

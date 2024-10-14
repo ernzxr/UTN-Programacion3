@@ -54,7 +54,7 @@ namespace TP7_GRUPO_09
             bool existe = false;
             foreach (DataRow r in tabla.Rows)
             {
-                if ((Convert.ToInt32(r["IdSucursal"])) == IdSucursal)
+                if ((Convert.ToInt32(r["Id_Sucursal"])) == IdSucursal)
                 {
                     existe = true;
                     break;

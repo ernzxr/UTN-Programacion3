@@ -8,13 +8,13 @@ namespace TP7_GRUPO_09.Utils
     public class Provincia
     {
         private int i_IdProvincia;
-        private string s_DescripicionProvincia;
+        private string s_DescripcionProvincia;
         public Provincia() {
 
         }
         public Provincia(int idProvincia, string DescripcionProvincia) {
             this.i_IdProvincia = idProvincia;
-            this.s_DescripicionProvincia = DescripcionProvincia;
+            this.s_DescripcionProvincia = DescripcionProvincia;
         }
 
         public int IdProvincia
@@ -25,8 +25,8 @@ namespace TP7_GRUPO_09.Utils
 
         public string DescripicionProvincia
         {
-            get { return s_DescripicionProvincia; }
-            set { s_DescripicionProvincia = value; }
+            get { return s_DescripcionProvincia; }
+            set { s_DescripcionProvincia = value; }
         }
     }
 }
