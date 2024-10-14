@@ -102,8 +102,10 @@ namespace TP7_GRUPO_09
             // Establece las nuevas propiedades de la página
             pager.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
 
+            // Recargar el ListView
             CargarListView();
         }
+
         protected void dl_Provincias_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (e.CommandName == "Seleccionar")
@@ -136,8 +138,8 @@ namespace TP7_GRUPO_09
             {
                 CargarListView();
             }
-           
+
         }
     }
-    }
+}
 
