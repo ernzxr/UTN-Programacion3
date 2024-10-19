@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dao\Dao.csproj">
+      <Project>{6d157800-f81a-4045-ba2d-d70987796823}</Project>
+      <Name>Dao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
       <Project>{7b709c36-deb7-4082-8c8e-d3840ba940a4}</Project>
       <Name>Entidades</Name>
