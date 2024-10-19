@@ -4,25 +4,34 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
 
 namespace Vistas
 {
     public partial class AgregarSucursal : System.Web.UI.Page
     {
+        NegocioProvincia negProv = new NegocioProvincia();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
-                DDLOpcionDefault();
+                CargarProvincias();
             }
         }
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
 
-        private void DDLOpcionDefault()
+        private void CargarProvincias()
         {
-            ddlProvincias.Items.Insert(0, new ListItem("Seleccione una opción", "-1"));
-            ddlProvincias.SelectedIndex = 0;
+            DataTable dt = negProv.getTabla();
+            ddlProvincias.DataSource = dt;
+            ddlProvincias.DataTextField = "DescripcionProvincia";
+            ddlProvincias.DataValueField = "Id_Provincia";
+            ddlProvincias.DataBind();
+
+            ddlProvincias.Items.Insert(0, new ListItem("-- Seleccionar --", "0"));
+            ddlProvincias.Items[0].Attributes["disabled"] = "disabled";
+            ddlProvincias.Items[0].Selected = true;
         }
     }
 }
