@@ -11,7 +11,18 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
 
+            if(!IsPostBack)
+            {
+                DDLOpcionDefault();
+            }
+        }
+
+        private void DDLOpcionDefault()
+        {
+            ddlProvincias.Items.Insert(0, new ListItem("Seleccione una opción", "-1"));
+            ddlProvincias.SelectedIndex = 0;
         }
     }
 }
