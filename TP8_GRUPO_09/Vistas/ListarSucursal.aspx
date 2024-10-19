@@ -7,13 +7,36 @@
     <title></title>
     <style type="text/css">
         .auto-style1 {
-            width: 100%;
+            width: 852px;
+            height: 265px;
         }
         .auto-style2 {
             margin-left: 107px;
         }
         .auto-style3 {
             text-align: center;
+            height: 162px;
+        }
+        .auto-style4 {
+            text-align: center;
+            width: 283px;
+            height: 24px;
+        }
+        .auto-style14 {
+            width: 283px;
+            height: 24px;
+        }
+        .auto-style15 {
+            width: 284px;
+            height: 24px;
+        }
+        .auto-style16 {
+            width: 283px;
+            height: 25px;
+        }
+        .auto-style17 {
+            width: 284px;
+            height: 25px;
         }
     </style>
 </head>
@@ -22,39 +45,39 @@
         <div>
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style3">
+                    <td class="auto-style4">
                         <asp:HyperLink ID="hlAgregar" runat="server" NavigateUrl="~/AgregarSucursal.aspx">Agregar Sucursal</asp:HyperLink>
                     </td>
-                    <td>
+                    <td class="auto-style14">
                         <asp:HyperLink ID="hlListado" runat="server">Listado Sucursal</asp:HyperLink>
                     </td>
-                    <td>
+                    <td class="auto-style15">
                         <asp:HyperLink ID="hlEliminar" runat="server">Eliminar Sucursal</asp:HyperLink>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="auto-style16">
                         <asp:Label ID="lblListadoSucursales" runat="server" Style="font-weight: bold" Text="Listado Sucursales"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style17">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="auto-style16">
                         <asp:Label ID="lblBusqueda" runat="server" Text="Búsqueda ingrese ID sucursal: "></asp:Label>
                     </td>
-                    <td>
+                    <td class="auto-style16">
                         <asp:TextBox ID="txtIdSucursal" runat="server" Width="230px"></asp:TextBox>
                     </td>
-                    <td>
+                    <td class="auto-style17">
                         <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" />
                         <asp:Button ID="btnMostrarTodos" runat="server" CssClass="auto-style2" Text="Mostrar todos" />
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style17">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style3" colspan="3">
