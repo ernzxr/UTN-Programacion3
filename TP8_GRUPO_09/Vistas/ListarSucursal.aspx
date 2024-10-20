@@ -11,7 +11,7 @@
             height: 265px;
         }
         .auto-style2 {
-            margin-left: 107px;
+            margin-left: 68px;
         }
         .auto-style3 {
             text-align: center;
@@ -73,6 +73,13 @@
                         <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" />
                         <asp:Button ID="btnMostrarTodos" runat="server" CssClass="auto-style2" Text="Mostrar todos" OnClick="btnMostrarTodos_Click" />
                     </td>
+                </tr>
+                <tr>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">
+                        <asp:RegularExpressionValidator ID="revID" runat="server" ControlToValidate="txtIdSucursal" ForeColor="#FF3300" ValidationExpression="^\d+$">(*)&quot;El ID de la sucursal debe ser un número.&quot; </asp:RegularExpressionValidator>
+                    </td>
+                    <td class="auto-style17">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style16">&nbsp;</td>
