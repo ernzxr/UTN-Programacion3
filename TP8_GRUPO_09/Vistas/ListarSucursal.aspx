@@ -49,10 +49,10 @@
                         <asp:HyperLink ID="hlAgregar" runat="server" NavigateUrl="~/AgregarSucursal.aspx">Agregar Sucursal</asp:HyperLink>
                     </td>
                     <td class="auto-style14">
-                        <asp:HyperLink ID="hlListado" runat="server">Listado Sucursal</asp:HyperLink>
+                        <asp:HyperLink ID="hlListado" runat="server" NavigateUrl="~/ListarSucursal.aspx">Listado Sucursal</asp:HyperLink>
                     </td>
                     <td class="auto-style15">
-                        <asp:HyperLink ID="hlEliminar" runat="server">Eliminar Sucursal</asp:HyperLink>
+                        <asp:HyperLink ID="hlEliminar" runat="server" NavigateUrl="~/EliminarSucursal.aspx">Eliminar Sucursal</asp:HyperLink>
                     </td>
                 </tr>
                 <tr>
@@ -71,7 +71,7 @@
                     </td>
                     <td class="auto-style17">
                         <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" />
-                        <asp:Button ID="btnMostrarTodos" runat="server" CssClass="auto-style2" Text="Mostrar todos" />
+                        <asp:Button ID="btnMostrarTodos" runat="server" CssClass="auto-style2" Text="Mostrar todos" OnClick="btnMostrarTodos_Click" />
                     </td>
                 </tr>
                 <tr>

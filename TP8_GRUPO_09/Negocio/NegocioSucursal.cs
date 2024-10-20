@@ -32,5 +32,20 @@ namespace Negocio
 
             return filasAfectadas > 0; // Si la inserción fue exitosa
         }
+
+        public DataTable ObtenerSucursales()
+        {
+            try
+            {
+                // llama al método de la capa de acceso a datos para obtener las sucursales
+                return daoSucursal.getTablaSucursales();
+            }
+            catch (Exception ex)
+            {
+                // manejo de excepciones, puedes lanzar una excepción personalizada o manejar el error
+                throw new Exception("Error al obtener las sucursales: " + ex.Message);
+            }
+        }
     }
+
 }
