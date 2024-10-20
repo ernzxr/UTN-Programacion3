@@ -46,6 +46,20 @@ namespace Negocio
                 throw new Exception("Error al obtener las sucursales: " + ex.Message);
             }
         }
+
+        public DataTable ObtenerSucursalesFiltradas(int id)
+        {
+            try
+            {
+                // llama al método de la capa de acceso a datos para obtener las sucursales filtradas
+                return daoSucursal.getTablaSucursalesFiltrada(id);
+            }
+            catch (Exception ex)
+            {
+                // manejo de excepciones, puedes lanzar una excepción personalizada o manejar el error
+                throw new Exception("Error al obtener las sucursales: " + ex.Message);
+            }
+        }
     }
 
 }

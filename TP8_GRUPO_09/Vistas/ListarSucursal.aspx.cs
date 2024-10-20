@@ -11,6 +11,7 @@ namespace Vistas
 {
     public partial class ListarSucursal : System.Web.UI.Page
     {
+        NegocioSucursal negocioSucursal = new NegocioSucursal();
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -21,7 +22,6 @@ namespace Vistas
         }
         private void CargarSucursales()
         {
-            NegocioSucursal negocioSucursal = new NegocioSucursal();
             DataTable dt = negocioSucursal.ObtenerSucursales();
             gvSucursales.DataSource = dt;
             gvSucursales.DataBind();
@@ -30,6 +30,15 @@ namespace Vistas
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
             CargarSucursales();
+            txtIdSucursal.Text = "";
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            DataTable dt = negocioSucursal.ObtenerSucursalesFiltradas(Convert.ToInt32(txtIdSucursal.Text));
+            gvSucursales.DataSource = dt;
+            gvSucursales.DataBind();
+            txtIdSucursal.Text = "";
         }
     }
 }

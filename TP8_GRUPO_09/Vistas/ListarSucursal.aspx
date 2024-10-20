@@ -70,7 +70,7 @@
                         <asp:TextBox ID="txtIdSucursal" runat="server" Width="230px"></asp:TextBox>
                     </td>
                     <td class="auto-style17">
-                        <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" />
+                        <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" OnClick="btnFiltrar_Click" />
                         <asp:Button ID="btnMostrarTodos" runat="server" CssClass="auto-style2" Text="Mostrar todos" OnClick="btnMostrarTodos_Click" />
                     </td>
                 </tr>
@@ -87,7 +87,7 @@
                     <td class="auto-style17">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" colspan="3">
+                    <td class="auto-style3" colspan="3" style="vertical-align: top">
                         <asp:GridView ID="gvSucursales" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
                             <AlternatingRowStyle BackColor="White" />
                             <EditRowStyle BackColor="#7C6F57" />

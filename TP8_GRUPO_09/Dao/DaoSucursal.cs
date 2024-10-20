@@ -70,5 +70,19 @@ namespace Dao
             SqlParametros = Comando.Parameters.Add("@DIRECCIONSUCURSAL", SqlDbType.VarChar);
             SqlParametros.Value = suc.getDireccionSucursal();
         }
+
+        public DataTable getTablaSucursalesFiltrada(int id)
+        {
+            SqlCommand comando = new SqlCommand();
+            ArmarParametrosTablaSucursalesFiltrada(ref comando, id);
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spFiltrarSucursales");
+        }
+
+        private void ArmarParametrosTablaSucursalesFiltrada(ref SqlCommand Comando, int id)
+        {
+            SqlParameter SqlParametros = new SqlParameter();
+            SqlParametros = Comando.Parameters.Add("@Id_Sucursal", SqlDbType.Int);
+            SqlParametros.Value = id;
+        }
     }
 }

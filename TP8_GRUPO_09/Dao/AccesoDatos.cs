@@ -12,7 +12,6 @@ namespace Dao
     {
         String rutaBDSucursales = "Data Source=localhost\\sqlexpress; Initial Catalog=BDSucursales; Integrated Security=True";
 
-
         public AccesoDatos()
         {
             
@@ -57,18 +56,38 @@ namespace Dao
             return ds.Tables[NombreTabla];
         }
 
+        public DataTable ObtenerTabla(SqlCommand Comando)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter adp = new SqlDataAdapter(Comando);
+            adp.Fill(dt);
+            return dt;
+        }
+
         public int EjecutarProcedimientoAlmacenado(SqlCommand Comando, String NombreSP)
         {
             int FilasCambiadas;
             SqlConnection Conexion = ObtenerConexion();
-            SqlCommand cmd = new SqlCommand();
-            cmd = Comando;
-            cmd.Connection = Conexion;
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = NombreSP;
-            FilasCambiadas = cmd.ExecuteNonQuery();
+
+            Comando.Connection = Conexion;
+            Comando.CommandType = CommandType.StoredProcedure;
+            Comando.CommandText = NombreSP;
+            FilasCambiadas = Comando.ExecuteNonQuery();
+
             Conexion.Close();
             return FilasCambiadas;
+        }
+
+        public DataTable EjecutarProcedimientoAlmacenadoLectura(SqlCommand Comando, String NombreSP)
+        {
+            SqlConnection Conexion = ObtenerConexion();
+
+            Comando.Connection = Conexion;
+            Comando.CommandType = CommandType.StoredProcedure;
+            Comando.CommandText = NombreSP;
+
+            Conexion.Close();
+            return ObtenerTabla(Comando);
         }
 
         public Boolean existe(String consulta)
