@@ -9,7 +9,7 @@ using Entidades;
 
 namespace Dao
 {
-    internal class DaoSucursal
+    public class DaoSucursal
     {
         AccesoDatos ds = new AccesoDatos();
         public Sucursal getSucursal(Sucursal suc)

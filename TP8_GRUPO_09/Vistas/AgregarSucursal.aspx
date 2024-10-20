@@ -115,9 +115,16 @@
                 <tr>
                     <td class="auto-style17"></td>
                     <td class="auto-style20">
-                        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" ValidationGroup="gpSuc" />
+                        <asp:Button ID="btnAceptar" runat="server" Text="Agregar" ValidationGroup="gpSuc" OnClick="btnAgregarSucursal_Click" Width="88px" />
                     </td>
-                    <td class="auto-style19"></td>
+                    <td class="auto-style19">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style17">&nbsp;</td>
+                    <td class="auto-style20">
+                        <asp:Label ID="lblMensaje" runat="server" ForeColor="#009900"></asp:Label>
+                    </td>
+                    <td class="auto-style19">&nbsp;</td>
                 </tr>
             </table>
         </div>
