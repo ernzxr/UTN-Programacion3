@@ -18,6 +18,17 @@
         .auto-style5 {
             width: 354px;
         }
+        .auto-style6 {
+            width: 329px;
+            height: 23px;
+        }
+        .auto-style7 {
+            width: 354px;
+            height: 23px;
+        }
+        .auto-style8 {
+            height: 23px;
+        }
     </style>
 </head>
 <body>
@@ -58,20 +69,24 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style4">
+                    <td class="auto-style6">
                         <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
                     </td>
-                    <td class="auto-style5">&nbsp;</td>
+                    <td class="auto-style7"></td>
+                    <td class="auto-style8"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style4">&nbsp;</td>
+                    <td class="auto-style5">
+                        <asp:RequiredFieldValidator ID="rfvIdSucursal" runat="server" ControlToValidate="txtIDSucursal" ForeColor="Red">(*)Error, no debe haber espacios en blanco.</asp:RequiredFieldValidator>
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style4">&nbsp;</td>
-                    <td class="auto-style5">&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style4">&nbsp;</td>
-                    <td class="auto-style5">&nbsp;</td>
+                    <td class="auto-style5">
+                        <asp:RegularExpressionValidator ID="revIdSucursal" runat="server" ControlToValidate="txtIDSucursal" ForeColor="Red" ValidationExpression="^\d+$">(*)Error, debe ingresar un valor númerico.</asp:RegularExpressionValidator>
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
             </table>

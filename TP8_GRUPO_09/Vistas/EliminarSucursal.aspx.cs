@@ -13,7 +13,7 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
