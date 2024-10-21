@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Eliminar Sucursal</title>
     <style type="text/css">
         .auto-style1 {
             width: 100%;
@@ -53,13 +53,13 @@
                     </td>
                     <td class="auto-style5">
                         <asp:TextBox ID="txtIDSucursal" runat="server"></asp:TextBox>
-                        <asp:Button ID="btnEliminar" runat="server" CssClass="auto-style3" Text="Eliminar" />
+                        <asp:Button ID="btnEliminar" runat="server" CssClass="auto-style3" Text="Eliminar" OnClick="btnEliminar_Click" />
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style4">
-                        <asp:Label ID="lblMensaje" runat="server" ForeColor="#009900"></asp:Label>
+                        <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
                     </td>
                     <td class="auto-style5">&nbsp;</td>
                     <td>&nbsp;</td>

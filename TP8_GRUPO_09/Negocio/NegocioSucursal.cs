@@ -60,6 +60,22 @@ namespace Negocio
                 throw new Exception("Error al obtener las sucursales: " + ex.Message);
             }
         }
+
+        public bool eliminarSucursal(int id)
+        {
+            DaoSucursal dao = new DaoSucursal();
+            Sucursal suc = new Sucursal();
+            suc.setIdSucursal(id);
+            int op = dao.eliminarSucursal(suc);
+            if (op == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
 }

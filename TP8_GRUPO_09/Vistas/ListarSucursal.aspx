@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Listado de Sucursales</title>
     <style type="text/css">
         .auto-style1 {
             width: 852px;

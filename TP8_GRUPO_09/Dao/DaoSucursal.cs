@@ -40,15 +40,22 @@ namespace Dao
 
         public int eliminarSucursal(Sucursal suc)
         {
-            SqlCommand comando = new SqlCommand();
-            ArmarParametrosSucursalEliminar(ref comando, suc);
-            return ds.EjecutarProcedimientoAlmacenado(comando, "spEliminarSucursal");
+            try
+            {
+                SqlCommand comando = new SqlCommand();
+                ArmarParametrosSucursalEliminar(ref comando, suc);
+                return ds.EjecutarProcedimientoAlmacenado(comando, "spEliminarSucursal");
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         private void ArmarParametrosSucursalEliminar(ref SqlCommand Comando, Sucursal suc)
         {
             SqlParameter SqlParametros = new SqlParameter();
-            SqlParametros = Comando.Parameters.Add("@IDSUCURSAL", SqlDbType.Int);
+            SqlParametros = Comando.Parameters.Add("@Id_Sucursal", SqlDbType.Int);
             SqlParametros.Value = suc.getIdSucursal();
         }
         public int agregarSucursal(Sucursal suc)
