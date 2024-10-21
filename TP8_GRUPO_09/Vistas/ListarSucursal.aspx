@@ -71,7 +71,7 @@
                     </td>
                     <td class="auto-style17">
                         <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" OnClick="btnFiltrar_Click" />
-                        <asp:Button ID="btnMostrarTodos" runat="server" CssClass="auto-style2" Text="Mostrar todos" OnClick="btnMostrarTodos_Click" />
+                        <asp:Button ID="btnMostrarTodos" runat="server" CssClass="auto-style2" Text="Mostrar todos" OnClick="btnMostrarTodos_Click" CausesValidation="False" />
                     </td>
                 </tr>
                 <tr>
