@@ -43,25 +43,27 @@ namespace Vistas
             // capturar los datos del formulario y asignarlos a la instancia de Sucursal
             nuevaSucursal.setNombreSucursal(txtNombreSucursal.Text);
             nuevaSucursal.setDescripcionSucursal(txtDescripcion.Text);
-            nuevaSucursal.setIdProvinciaSucursal(int.Parse(ddlProvincias.SelectedValue)); 
+            nuevaSucursal.setIdProvinciaSucursal(int.Parse(ddlProvincias.SelectedValue));
             nuevaSucursal.setDireccionSucursal(txtDireccion.Text);
 
             // instanciar la clase de negocio
             NegocioSucursal negocioSucursal = new NegocioSucursal();
 
             // llamar al método AgregarSucursal y verificar el resultado
-          
-                bool sucursalAgregada = negocioSucursal.AgregarSucursal(nuevaSucursal);
 
-                if (sucursalAgregada)
-                {
-                    lblMensaje.Text = "Sucursal agregada exitosamente.";
-                }
-                else
-                {
-                    lblMensaje.Text = "Error al agregar la sucursal.";
-                }
-            
+            bool sucursalAgregada = negocioSucursal.AgregarSucursal(nuevaSucursal);
+
+            if (sucursalAgregada)
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
+                lblMensaje.Text = "Sucursal agregada exitosamente.";
+            }
+            else
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Error al agregar la sucursal.";
+            }
+
         }
     }
 }

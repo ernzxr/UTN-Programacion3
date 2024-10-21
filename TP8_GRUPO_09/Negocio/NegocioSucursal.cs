@@ -15,16 +15,10 @@ namespace Negocio
 
         public bool AgregarSucursal(Sucursal sucursal)
         {
-            // validaciones de negocio
-            if (string.IsNullOrEmpty(sucursal.getNombreSucursal()))
-            {
-                throw new Exception("El nombre de la sucursal es obligatorio.");
-            }
-
             // validación si la sucursal ya existe
             if (daoSucursal.existeSucursal(sucursal))
             {
-                throw new Exception("La sucursal ya existe.");
+                return false;
             }
 
             // Llamar al método agregarSucursal de la capa de datos
