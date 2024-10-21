@@ -83,7 +83,9 @@
                 </tr>
                 <tr>
                     <td class="auto-style16">&nbsp;</td>
-                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style16">
+                        <asp:RequiredFieldValidator ID="rfvIdSucursal" runat="server" ControlToValidate="txtIdSucursal">(*) &quot;Ingrese Id Sucursal&quot;</asp:RequiredFieldValidator>
+                    </td>
                     <td class="auto-style17">&nbsp;</td>
                 </tr>
                 <tr>
