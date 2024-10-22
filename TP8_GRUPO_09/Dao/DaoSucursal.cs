@@ -29,7 +29,11 @@ namespace Dao
             String consulta = "SELECT * FROM Sucursal WHERE NombreSucursal='" + suc.getNombreSucursal() + "'";
             return ds.existe(consulta);
         }
-
+        public Boolean existeIdSucursal(int id)
+        {
+            string consulta = "SELECT * FROM Sucursal WHERE Id_Sucursal=" + id;
+            return ds.existe(consulta);
+        }
         public DataTable getTablaSucursales()
         {
             DataTable tabla = ds.ObtenerTabla("Sucursal", "SELECT Id_Sucursal AS ID, NombreSucursal AS Nombre, DescripcionSucursal AS Descripcion, " +

@@ -19,27 +19,31 @@ namespace Vistas
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             NegocioSucursal negocioSucursal = new NegocioSucursal();
+            int idSucursal = Convert.ToInt32(txtIDSucursal.Text);
 
-            if (int.TryParse(txtIDSucursal.Text, out int idSucursal))
+            if (negocioSucursal.existeId(idSucursal))
             {
                 bool eliminado = negocioSucursal.eliminarSucursal(idSucursal);
                 if (eliminado)
                 {
-                    lblEliminarSucursal.Text = "La sucursal se elimino con éxito";
+                    lblMensaje.ForeColor = System.Drawing.Color.Blue;
+                    lblMensaje.Text = "La sucursal con el ID " + idSucursal + " se eliminó correctamente.";
 
                 }
                 else
                 {
-                    lblEliminarSucursal.Text = " No se pudo eliminar la sucursal";
-
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
+                    lblMensaje.Text = "No se pudo eliminar la sucursal.";
                 }
 
             }
             else
             {
-                lblEliminarSucursal.Text = "Por favor, ingrese un ID de sucursal válido";
+                lblMensaje.ForeColor = System.Drawing.Color.Purple;
+                lblMensaje.Text = "No existe ninguna sucursal con ese ID.";
             }
-            txtIDSucursal.Text = string.Empty;
+
+            txtIDSucursal.Text = "";
 
         }
     }

@@ -13,6 +13,7 @@ namespace Negocio
     {
         DaoSucursal daoSucursal = new DaoSucursal();
 
+
         public bool AgregarSucursal(Sucursal sucursal)
         {
             // validación si la sucursal ya existe
@@ -69,6 +70,11 @@ namespace Negocio
             {
                 return false;
             }
+        }
+
+        public Boolean existeId(int id)
+        {
+            return daoSucursal.existeIdSucursal(id);
         }
     }
 
