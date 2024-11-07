@@ -15,15 +15,23 @@
                     <div class="carousel-item active">
                         <img src="Images/imagen1.jpg" height="600px" class="d-block w-100" alt="Imagen 1">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
+
+                             <h1 class="font-weight-bold text-white display-4">Bienvenidos a Clínica UTN</h1>
+                            <p class="font-weight-bold text-white">
+                             En Clínica UTN nos dedicamos a cuidar de tu salud y bienestar en un ambiente de profesionalismo y calidez. 
+                                  Nuestro equipo de médicos y especialistas altamente capacitados trabaja con el compromiso de ofrecerte una atención de calidad, personalizada y basada en las mejores prácticas de la medicina moderna.
+                             </p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="Images/imagen2.jpg" height="600px" class="d-block w-100" alt="Imagen 2">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
+                             <h1 class="font-weight-bold text-white display-4">Nuestro Compromiso</h1>
+                            <p class="font-weight-bold text-white">
+                                En Clínica UTN, cada paciente es único y merece una atención especializada. 
+                                Nos esforzamos en construir relaciones de confianza y ofrecer un entorno seguro y confiable, 
+                                donde la prioridad siempre es tu bienestar.
+                                </p>
                         </div>
                     </div>
                 </div>
