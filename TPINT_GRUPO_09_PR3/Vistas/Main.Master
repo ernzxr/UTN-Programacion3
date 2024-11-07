@@ -120,7 +120,7 @@
             </div>
         </nav>
 
-        <div class="container text-center">
+        <div class="container text-center" style="height:100%; width:100%">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>

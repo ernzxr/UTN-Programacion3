@@ -7,13 +7,9 @@
 
 .container {
     flex: 1;
-}
-
-nav {
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Esto asegura que el navbar quede por encima del contenido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 footer {
@@ -24,3 +20,14 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+.main-login {
+    width: 500px !important;
+    border: 1px solid black;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+}
+
