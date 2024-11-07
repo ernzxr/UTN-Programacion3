@@ -71,6 +71,7 @@
     <Content Include="Images\imagen1.jpg" />
     <Content Include="Images\imagen2.jpg" />
     <Content Include="Login.aspx" />
+    <Content Include="Styles\layout.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

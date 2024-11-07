@@ -1,0 +1,26 @@
+﻿html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+}
+
+nav {
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Esto asegura que el navbar quede por encima del contenido */
+}
+
+footer {
+    background-color: #343a40; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

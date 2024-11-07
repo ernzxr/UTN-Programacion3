@@ -13,14 +13,14 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="Images/imagen1.jpg" height="800px" class="d-block w-100" alt="Imagen 1">
+                        <img src="Images/imagen1.jpg" height="1200px" class="d-block w-100" alt="Imagen 1">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="Images/imagen2.jpg" height="800px" class="d-block w-100" alt="Imagen 2">
+                        <img src="Images/imagen2.jpg" height="1200px" class="d-block w-100" alt="Imagen 2">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Second slide label</h5>
                             <p>Some representative placeholder content for the second slide.</p>
