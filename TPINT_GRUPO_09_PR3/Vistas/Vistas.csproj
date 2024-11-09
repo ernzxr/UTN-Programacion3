@@ -72,6 +72,7 @@
     <Content Include="Images\imagen1.jpg" />
     <Content Include="Images\imagen2.jpg" />
     <Content Include="InicioAdmin.aspx" />
+    <Content Include="ListadoPacientes.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Styles\layout.css" />
     <Content Include="Web.config" />
@@ -97,6 +98,13 @@
     </Compile>
     <Compile Include="InicioAdmin.aspx.designer.cs">
       <DependentUpon>InicioAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoPacientes.aspx.cs">
+      <DependentUpon>ListadoPacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoPacientes.aspx.designer.cs">
+      <DependentUpon>ListadoPacientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
