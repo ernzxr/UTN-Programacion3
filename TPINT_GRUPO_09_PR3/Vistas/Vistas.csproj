@@ -71,6 +71,11 @@
     <Content Include="AltaPaciente.aspx" />
     <Content Include="BajaMedicos.aspx" />
     <Content Include="Home.aspx" />
+    <Content Include="Images\Card-1.jpg" />
+    <Content Include="Images\Card-2.jpg" />
+    <Content Include="Images\Card-3.jpg" />
+    <Content Include="Images\Card-4.jpg" />
+    <Content Include="Images\Card-5.jpg" />
     <Content Include="Images\imagen1.jpg" />
     <Content Include="Images\imagen2.jpg" />
     <Content Include="InicioAdmin.aspx" />
