@@ -5,16 +5,22 @@
     flex-direction: column;
 }
 
-.container {
+.contenedor {
+    height: 100%;
+    margin-top: 56px;
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+form {
+    height: 100%;
+}
+
 footer {
-    background-color: #343a40; /* Color de fondo */
-    color: #fff; /* Color del texto */
+    background-color: #343a40;
+    color: #fff;
     padding: 1rem;
     position: relative;
     bottom: 0;
@@ -29,5 +35,10 @@ footer {
     border-radius: 9px;
     display: flex;
     flex-direction: column;
+}
+
+.ausencias {
+    display: flex;
+    flex-direction: row;
 }
 

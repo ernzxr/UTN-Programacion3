@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class AusenciasMedico
+    public class AusenciaMedico
     {
         //Atributos
         private int LegajoMedico;
@@ -15,13 +15,13 @@ namespace Entidades
         private DateTime FechaFin;
 
         //Constructor por defecto
-        public AusenciasMedico()
+        public AusenciaMedico()
         {
 
         }
 
         //Constructor por parametro
-        public AusenciasMedico(int legajo, int tipoAusencia, DateTime fechaInicio,
+        public AusenciaMedico(int legajo, int tipoAusencia, DateTime fechaInicio,
                         DateTime fechaFin)
         {
             this.LegajoMedico = legajo;

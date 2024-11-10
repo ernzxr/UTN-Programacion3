@@ -11,10 +11,11 @@ namespace Negocio
 {
     public class NegocioTipoAusencia
     {
-        public DataTable getTablaTipoAusencia()
+        DaoTipoAusencia daoTipoAusencia = new DaoTipoAusencia();
+
+        public DataTable getTiposAusencias()
         {
-            DaoTipoAusencia dao = new DaoTipoAusencia();
-            return dao.getTablaTipoAusencia();
+            return daoTipoAusencia.getTablaTiposAusencias();
         }
     }
 }

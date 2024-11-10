@@ -44,6 +44,7 @@
     <Compile Include="NegocioNacionalidad.cs" />
     <Compile Include="NegocioProvincia.cs" />
     <Compile Include="NegocioSexo.cs" />
+    <Compile Include="NegocioAusenciaMedico.cs" />
     <Compile Include="NegocioTipoAusencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

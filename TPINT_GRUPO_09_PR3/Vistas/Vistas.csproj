@@ -70,7 +70,7 @@
     <Content Include="AltaMedicos.aspx" />
     <Content Include="AltaPaciente.aspx" />
     <Content Include="BajaMedicos.aspx" />
-    <Content Include="DiasLibresMedico.aspx" />
+    <Content Include="AusenciasMedicos.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Images\Card-1.jpg" />
     <Content Include="Images\Card-2.jpg" />
@@ -112,12 +112,12 @@
     <Compile Include="BajaMedicos.aspx.designer.cs">
       <DependentUpon>BajaMedicos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DiasLibresMedico.aspx.cs">
-      <DependentUpon>DiasLibresMedico.aspx</DependentUpon>
+    <Compile Include="AusenciasMedicos.aspx.cs">
+      <DependentUpon>AusenciasMedicos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DiasLibresMedico.aspx.designer.cs">
-      <DependentUpon>DiasLibresMedico.aspx</DependentUpon>
+    <Compile Include="AusenciasMedicos.aspx.designer.cs">
+      <DependentUpon>AusenciasMedicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

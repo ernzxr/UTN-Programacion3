@@ -4,8 +4,6 @@
     <title>Inicio</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row justify-content-md-center">
-        <div class="col">
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -44,6 +42,4 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-        </div>
-    </div>
 </asp:Content>

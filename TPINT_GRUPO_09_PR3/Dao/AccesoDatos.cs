@@ -89,7 +89,7 @@ namespace Dao
             return ObtenerTabla(Comando);
         }
 
-        public Boolean Existe(String consulta)
+        public Boolean existe(String consulta)
         {
             Boolean estado = false;
             SqlConnection Conexion = ObtenerConexion();

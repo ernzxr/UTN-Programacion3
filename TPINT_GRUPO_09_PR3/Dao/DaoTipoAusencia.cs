@@ -11,7 +11,7 @@ namespace Dao
     {
         AccesoDatos ds = new AccesoDatos();
 
-        public DataTable getTablaTipoAusencia()
+        public DataTable getTablaTiposAusencias()
         {
             DataTable tabla = ds.ObtenerTabla("Tipos_Ausencias_Medicos", "SELECT * FROM Tipos_Ausencias_Medicos");
             return tabla;
