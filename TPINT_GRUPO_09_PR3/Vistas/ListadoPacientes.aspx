@@ -25,9 +25,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <div style="width: 100%; display: flex; flex-direction: column; align-items: center; position:relative; bottom:300px;">
-
+    <div style="width: 100%; display: flex; flex-direction: column; align-items: center; position:relative; bottom:30%;">
         <div style="width: 28%; display: flex; flex-direction: column; align-items: center;">
             <asp:Label ID="lblTitulo" runat="server" Text="Listar Pacientes" CssClass="auto-style1 mb-4"></asp:Label>
 
