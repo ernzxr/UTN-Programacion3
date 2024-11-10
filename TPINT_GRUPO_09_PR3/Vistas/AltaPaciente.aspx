@@ -50,21 +50,16 @@
         <asp:RegularExpressionValidator ID="revApellido" CssClass="mb-3" runat="server" ControlToValidate="txtApellido" ForeColor="#CC0000" ValidationExpression="^[a-zA-Z\s]+$" ValidationGroup="grupo1">(*) Ingrese solo letras.</asp:RegularExpressionValidator>
 
         <asp:Label ID="lblSexo" runat="server" Text="Sexo" Style="align-self: flex-start"></asp:Label>
-        <div class="form-check form-check-inline">
-            <asp:RadioButton ID="rbMasculino" runat="server" GroupName="Sexo" Text="Masculino" CssClass="auto-style2" Checked="true" Width="150px" />
-        </div>
-        <div class="form-check form-check-inline mb-4">
-            <asp:RadioButton ID="rbFemenino" runat="server" GroupName="Sexo" Text="Femenino" CssClass="auto-style2" Width="150px" />
-        </div>
+        <asp:DropDownList ID="ddlSexo" class="form-select" runat="server"></asp:DropDownList>
+        <asp:RequiredFieldValidator ID="rfvSexo" CssClass="mb-5" runat="server" ControlToValidate="ddlSexo" ForeColor="#CC0000" ValidationGroup="grupo1" InitialValue="0">(*) Seleccione una opción.</asp:RequiredFieldValidator>
 
         <asp:Label ID="lblFechaNacimiento" runat="server" Text="Fecha de Nacimiento" Style="align-self: flex-start"></asp:Label>
         <asp:TextBox ID="txtFechaNacimiento" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvFechaNacimiento" CssClass="mb-5" runat="server" ControlToValidate="txtFechaNacimiento" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
 
         <asp:Label ID="lblNacionalidad" runat="server" Text="Nacionalidad" Style="align-self: flex-start"></asp:Label>
-        <asp:TextBox ID="txtNacionalidad" class="form-control" runat="server"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="txtNacionalidad" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
-        <asp:RegularExpressionValidator ID="revNacionalidad" CssClass="mb-3" runat="server" ControlToValidate="txtNacionalidad" ForeColor="#CC0000" ValidationExpression="^[a-zA-Z\s]+$" ValidationGroup="grupo1">(*) Ingrese solo letras.</asp:RegularExpressionValidator>
+        <asp:DropDownList ID="ddlNacionalidad" class="form-select" runat="server"></asp:DropDownList>
+        <asp:RequiredFieldValidator ID="rfvNacionalidad" CssClass="mb-5" runat="server" ControlToValidate="ddlNacionalidad" ForeColor="#CC0000" ValidationGroup="grupo1" InitialValue="0">(*) Seleccione una opción.</asp:RequiredFieldValidator>
 
         <asp:Label ID="lblProvincia" runat="server" Text="Provincia" Style="align-self: flex-start"></asp:Label>
         <asp:DropDownList ID="ddlProvincia" class="form-select" runat="server"></asp:DropDownList>
