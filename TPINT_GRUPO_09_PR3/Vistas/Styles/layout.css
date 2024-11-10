@@ -6,7 +6,7 @@
 }
 
 .contenedor {
-    min-height: calc(100vh - 60px);
+    min-height: 100vh;
     display: flex;
     flex-direction:column;
     flex: 1;
@@ -18,10 +18,10 @@ footer {
     background-color: #343a40;
     color: #fff;
     padding: 1rem;
-    /* position: relative;
+    position: relative;
     bottom: 0;
     width: 100%;
-    */
+    
 }
 
 .main-login {

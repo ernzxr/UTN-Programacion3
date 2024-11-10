@@ -5,7 +5,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <h1>HOLA</h1>
     </div>
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators">
