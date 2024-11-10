@@ -6,32 +6,28 @@
 }
 
 .contenedor {
-    height: 100%;
-    margin-top: 56px;
-    flex: 1;
+    min-height: calc(100vh - 60px);
     display: flex;
+    flex-direction:column;
+    flex: 1;
     align-items: center;
     justify-content: center;
-}
-
-form {
-    height: 100%;
 }
 
 footer {
     background-color: #343a40;
     color: #fff;
     padding: 1rem;
-    position: relative;
+    /* position: relative;
     bottom: 0;
     width: 100%;
+    */
 }
 
 .main-login {
     width: 500px !important;
     border: 1px solid black;
     padding: 15px;
-    margin-top: 20px;
     border-radius: 9px;
     display: flex;
     flex-direction: column;
