@@ -77,9 +77,12 @@
     <Content Include="Images\Card-3.jpg" />
     <Content Include="Images\Card-4.jpg" />
     <Content Include="Images\Card-5.jpg" />
+    <Content Include="Images\Card-6.jpg" />
+    <Content Include="Images\Card-7.jpg" />
     <Content Include="Images\imagen1.jpg" />
     <Content Include="Images\imagen2.jpg" />
     <Content Include="InicioAdmin.aspx" />
+    <Content Include="InicioMedico.aspx" />
     <Content Include="ListadoMedicos.aspx" />
     <Content Include="ListadoPacientes.aspx" />
     <Content Include="Login.aspx" />
@@ -129,6 +132,13 @@
     </Compile>
     <Compile Include="InicioAdmin.aspx.designer.cs">
       <DependentUpon>InicioAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InicioMedico.aspx.cs">
+      <DependentUpon>InicioMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InicioMedico.aspx.designer.cs">
+      <DependentUpon>InicioMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoMedicos.aspx.cs">
       <DependentUpon>ListadoMedicos.aspx</DependentUpon>

@@ -6,7 +6,7 @@
         .auto-style1 {
         color: #005580;
         font-weight: bold;
-        font-size: 3rem; /* Aumentar el tamaño del texto a un tamaño adecuado para un título */
+        font-size: 2rem; /* Aumentar el tamaño del texto a un tamaño adecuado para un título */
         font-family: 'Georgia', 'Times New Roman', Times, serif;
     }
      </style>
