@@ -43,6 +43,10 @@
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="DaoAusenciasMedico.cs" />
+    <Compile Include="DaoLocalidad.cs" />
+    <Compile Include="DaoNacionalidad.cs" />
+    <Compile Include="DaoProvincia.cs" />
+    <Compile Include="DaoSexo.cs" />
     <Compile Include="DaoTipoAusencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
