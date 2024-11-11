@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Especialidad.cs" />
+    <Compile Include="Medico.cs" />
     <Compile Include="Nacionalidad.cs" />
     <Compile Include="AusenciaMedico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

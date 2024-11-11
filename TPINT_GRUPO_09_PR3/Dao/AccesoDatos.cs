@@ -10,7 +10,7 @@ namespace Dao
 {
     internal class AccesoDatos
     {
-        String rutaBDSucursales = "Data Source=localhost\\sqlexpress; Initial Catalog=UTN2C2024PR3CLINICA; Integrated Security=True";
+        String rutaBDClinica = "Data Source=localhost\\sqlexpress; Initial Catalog=UTN2C2024PR3CLINICA; Integrated Security=True";
 
         public AccesoDatos()
         {
@@ -19,7 +19,7 @@ namespace Dao
 
         private SqlConnection ObtenerConexion()
         {
-            SqlConnection cn = new SqlConnection(rutaBDSucursales);
+            SqlConnection cn = new SqlConnection(rutaBDClinica);
             try
             {
                 cn.Open();
