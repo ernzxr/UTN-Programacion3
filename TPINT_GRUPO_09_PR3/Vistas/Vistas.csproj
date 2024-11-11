@@ -72,6 +72,7 @@
     <Content Include="AsignarTurno.aspx" />
     <Content Include="BajaMedicos.aspx" />
     <Content Include="AusenciasMedicos.aspx" />
+    <Content Include="CambiarContraseña.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Images\Card-1.jpg" />
     <Content Include="Images\Card-2.jpg" />
@@ -126,6 +127,13 @@
     </Compile>
     <Compile Include="AusenciasMedicos.aspx.designer.cs">
       <DependentUpon>AusenciasMedicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarContraseña.aspx.cs">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CambiarContraseña.aspx.designer.cs">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
