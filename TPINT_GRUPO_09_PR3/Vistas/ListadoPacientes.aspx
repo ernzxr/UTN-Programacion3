@@ -25,7 +25,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="width: 100%; display: flex; flex-direction: column; align-items: center; position:relative;">
+    <div style="width: 100%; display: flex; flex-direction: column; align-items: center; position: relative;">
         <div style="width: 28%; display: flex; flex-direction: column; align-items: center;">
             <asp:Label ID="lblTitulo" runat="server" Text="Listar Pacientes" CssClass="auto-style1 mb-4"></asp:Label>
 
@@ -33,7 +33,9 @@
             <asp:TextBox ID="txtDNI" class="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ForeColor="#CC0000" ValidationGroup="grupo1" CssClass="auto-style2" Style="font-size: small">(*) Complete el campo.</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ForeColor="#CC0000" ValidationExpression="^\d+$" ValidationGroup="grupo1" CssClass="auto-style2" Style="font-size: small">(*) Ingrese solo números.</asp:RegularExpressionValidator>
-
+            <asp:Label ID="lblNacionalidad" runat="server" Text="Seleccione la Nacionalidad" CssClass="mb-2"></asp:Label>
+            <asp:DropDownList ID="ddlNacionalidad" class="form-select" runat="server"></asp:DropDownList>
+            <asp:RequiredFieldValidator ID="rfvNacionalidad" CssClass="auto-style2" runat="server" ControlToValidate="ddlNacionalidad" ForeColor="#CC0000" ValidationGroup="grupo1" InitialValue="0">(*) Seleccione una opción.</asp:RequiredFieldValidator>
             <div>
                 <asp:Button ID="btnFiltrar" class="btn-azul" runat="server" Text="Filtrar" Width="150px" ValidationGroup="grupo1" />
                 <asp:Button ID="btnMostrarTodo" class="btn-azul" runat="server" Text="Mostrar Todo" Width="150px" />
@@ -44,5 +46,4 @@
             <asp:GridView runat="server" ID="gvPacientes" CssClass="table table-hover"></asp:GridView>
         </div>
     </div>
-
 </asp:Content>
