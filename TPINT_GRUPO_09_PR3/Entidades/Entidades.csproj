@@ -49,6 +49,7 @@
     <Compile Include="Provincia.cs" />
     <Compile Include="Sexo.cs" />
     <Compile Include="TipoAusencia.cs" />
+    <Compile Include="Turno.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
