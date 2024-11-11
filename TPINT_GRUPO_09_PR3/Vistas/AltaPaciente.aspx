@@ -83,7 +83,7 @@
         <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" ForeColor="#CC0000" ValidationExpression="^\d+$" ValidationGroup="grupo1">(*) Ingrese solo números.</asp:RegularExpressionValidator>
 
 
-        <asp:Button ID="btnAgregar" class="btn btn-success" runat="server" Text="Agregar" ValidationGroup="grupo1" />
+        <asp:Button ID="btnAgregar" class="btn btn-success" runat="server" Text="Agregar" ValidationGroup="grupo1" OnClick="btnAgregar_Click" />
         <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
     </div>
 

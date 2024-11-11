@@ -15,7 +15,7 @@ namespace Vistas
         NegocioNacionalidad negn = new NegocioNacionalidad();
         NegocioProvincia negp = new NegocioProvincia();
         NegocioLocalidad negl = new NegocioLocalidad();
-
+        NegocioPaciente negpaciente = new NegocioPaciente();
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -74,6 +74,37 @@ namespace Vistas
             ddlLocalidad.DataBind();
 
             ddlLocalidad.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            lblMensaje.Text = "";
+
+            int sexo = Convert.ToInt32(ddlSexo.SelectedValue);
+            int idNacionalidad = Convert.ToInt32(ddlNacionalidad.SelectedValue);
+            int idLocalidad = Convert.ToInt32(ddlLocalidad.SelectedValue);
+            DateTime fechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
+
+            if (!negpaciente.existePaciente(txtDNI.Text, idLocalidad))
+            {
+                bool agrego = negpaciente.agregarPaciente(txtDNI.Text, txtNombre.Text, txtApellido.Text, sexo, fechaNacimiento, idNacionalidad, idLocalidad, txtDireccion.Text, txtCorreoElectronico.Text, txtTelefono.Text, true);
+
+                if (agrego)
+                {
+                    lblMensaje.ForeColor = System.Drawing.Color.Blue;
+                    lblMensaje.Text = "El paciente se agregó correctamente.";
+                }
+                else
+                {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
+                    lblMensaje.Text = "No se pudo agregar el paciente.";
+                }
+            }
+            else
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Purple;
+                lblMensaje.Text = "Ya existe un paciente registrado con ese DNI y Nacionalidad.";
+            }
         }
     }
 }
