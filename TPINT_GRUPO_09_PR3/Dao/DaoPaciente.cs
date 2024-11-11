@@ -63,5 +63,11 @@ namespace Dao
             string consulta = "SELECT * FROM Pacientes WHERE Dni_Pa = '" + dni + "' AND Id_Localidad_Pa = " + idNacionalidad;
             return ds.existe(consulta);
         }
+
+        public Boolean existeEmail(string email)
+        {
+            string consulta = "SELECT * FROM Pacientes WHERE Email_Pa = '" + email + "'";
+            return ds.existe(consulta);
+        }
     }
 }

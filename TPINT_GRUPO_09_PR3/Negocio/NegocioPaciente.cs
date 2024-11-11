@@ -43,5 +43,10 @@ namespace Negocio
         {
             return dao.existePaciente(dni, idNacionalidad);
         }
+
+        public Boolean existeEmail(string email)
+        {
+            return dao.existeEmail(email);
+        }
     }
 }

@@ -76,6 +76,20 @@ namespace Vistas
             ddlLocalidad.Items.Insert(0, new ListItem("Seleccionar...", "0"));
         }
 
+        public void limpiarCampos()
+        {
+            txtDNI.Text = "";
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            ddlSexo.SelectedValue = "0";
+            txtFechaNacimiento.Text = "";
+            ddlNacionalidad.SelectedValue = "0";
+            ddlLocalidad.SelectedValue = "0";
+            txtDireccion.Text = "";
+            txtCorreoElectronico.Text = "";
+            txtTelefono.Text = "";
+        }
+
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             lblMensaje.Text = "";
@@ -87,17 +101,27 @@ namespace Vistas
 
             if (!negpaciente.existePaciente(txtDNI.Text, idLocalidad))
             {
-                bool agrego = negpaciente.agregarPaciente(txtDNI.Text, txtNombre.Text, txtApellido.Text, sexo, fechaNacimiento, idNacionalidad, idLocalidad, txtDireccion.Text, txtCorreoElectronico.Text, txtTelefono.Text, true);
-
-                if (agrego)
+                if (!negpaciente.existeEmail(txtCorreoElectronico.Text))
                 {
-                    lblMensaje.ForeColor = System.Drawing.Color.Blue;
-                    lblMensaje.Text = "El paciente se agregó correctamente.";
+
+                    bool agrego = negpaciente.agregarPaciente(txtDNI.Text, txtNombre.Text, txtApellido.Text, sexo, fechaNacimiento, idNacionalidad, idLocalidad, txtDireccion.Text, txtCorreoElectronico.Text, txtTelefono.Text, true);
+
+                    if (agrego)
+                    {
+                        lblMensaje.ForeColor = System.Drawing.Color.Blue;
+                        lblMensaje.Text = "El paciente se agregó correctamente.";
+                        limpiarCampos();
+                    }
+                    else
+                    {
+                        lblMensaje.ForeColor = System.Drawing.Color.Red;
+                        lblMensaje.Text = "No se pudo agregar el paciente.";
+                    }
                 }
                 else
                 {
-                    lblMensaje.ForeColor = System.Drawing.Color.Red;
-                    lblMensaje.Text = "No se pudo agregar el paciente.";
+                    lblMensaje.ForeColor = System.Drawing.Color.Orange;
+                    lblMensaje.Text = "El correo electronico ingresado ya existe. Pruebe con otro.";
                 }
             }
             else
