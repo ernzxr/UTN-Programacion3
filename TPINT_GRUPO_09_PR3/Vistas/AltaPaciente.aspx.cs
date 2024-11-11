@@ -14,7 +14,7 @@ namespace Vistas
         NegocioSexo negs = new NegocioSexo();
         NegocioNacionalidad negn = new NegocioNacionalidad();
         NegocioProvincia negp = new NegocioProvincia();
-        //NegocioLocalidad negl = new NegocioLocalidad();
+        NegocioLocalidad negl = new NegocioLocalidad();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -61,6 +61,19 @@ namespace Vistas
             ddlProvincia.DataBind();
 
             ddlProvincia.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+        }
+
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idProv = Convert.ToInt32(ddlProvincia.SelectedValue);
+
+            DataTable Localidad = negl.getTablaLocalidad(idProv);
+            ddlLocalidad.DataSource = Localidad;
+            ddlLocalidad.DataTextField = "Descripcion_Lo";
+            ddlLocalidad.DataValueField = "Id_Localidad_Lo";
+            ddlLocalidad.DataBind();
+
+            ddlLocalidad.Items.Insert(0, new ListItem("Seleccionar...", "0"));
         }
     }
 }
