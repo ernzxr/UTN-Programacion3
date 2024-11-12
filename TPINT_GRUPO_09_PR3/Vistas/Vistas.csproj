@@ -89,6 +89,7 @@
     <Content Include="ListadoPacientes.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="ModificarDatosMedico.aspx" />
+    <Content Include="ModificarPaciente.aspx" />
     <Content Include="Styles\layout.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -183,6 +184,13 @@
     </Compile>
     <Compile Include="ModificarDatosMedico.aspx.designer.cs">
       <DependentUpon>ModificarDatosMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarPaciente.aspx.cs">
+      <DependentUpon>ModificarPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarPaciente.aspx.designer.cs">
+      <DependentUpon>ModificarPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main.Master.cs">
