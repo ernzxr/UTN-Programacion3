@@ -91,6 +91,7 @@
     <Content Include="ModificarDatosMedico.aspx" />
     <Content Include="ModificarPaciente.aspx" />
     <Content Include="Styles\layout.css" />
+    <Content Include="TurnosAsignados.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +200,13 @@
     </Compile>
     <Compile Include="Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TurnosAsignados.aspx.cs">
+      <DependentUpon>TurnosAsignados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TurnosAsignados.aspx.designer.cs">
+      <DependentUpon>TurnosAsignados.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
