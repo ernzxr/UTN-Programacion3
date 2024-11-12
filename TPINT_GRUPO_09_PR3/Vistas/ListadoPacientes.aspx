@@ -38,7 +38,7 @@
             <asp:RequiredFieldValidator ID="rfvNacionalidad" CssClass="auto-style2" runat="server" ControlToValidate="ddlNacionalidad" ForeColor="#CC0000" ValidationGroup="grupo1" InitialValue="0">(*) Seleccione una opción.</asp:RequiredFieldValidator>
             <div>
                 <asp:Button ID="btnFiltrar" class="btn-azul" runat="server" Text="Filtrar" Width="150px" ValidationGroup="grupo1" OnClick="btnFiltrar_Click"/>
-                <asp:Button ID="btnMostrarTodo" class="btn-azul" runat="server" Text="Mostrar Todo" Width="150px" />
+                <asp:Button ID="btnMostrarTodo" class="btn-azul" runat="server" Text="Mostrar Todo" Width="150px" OnClick="btnMostrarTodo_Click" />
             </div>
         </div>
 
