@@ -66,6 +66,7 @@ namespace Entidades
         public string getEmail() { return this.Email_Me; }
 
         public string getNombre() { return this.Nombre_Me; }
+
         public string getApellido() { return this.Apellido_Me; }
 
         public DateTime getFechaNacimiento() { return this.Fecha_Nacimiento_Me; }
@@ -97,5 +98,11 @@ namespace Entidades
         public void setDireccion(string Direccion) { this.Direccion_Me = Direccion; }
 
         public void setTelefono(string Telefono) { this.Telefono_Me = Telefono; }
+
+        public void setLegajo(string Legajo) { this.Legajo_Me = Legajo; }
+
+        public void setEmail(string eMail) { this.Email_Me = eMail; }
+
+        public void setEstado(bool estado) { this.Estado_Me = estado; }
     }
 }
