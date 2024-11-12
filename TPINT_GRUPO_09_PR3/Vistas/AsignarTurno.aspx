@@ -50,19 +50,26 @@
             <asp:Label ID="lblDia" runat="server" Text="Día:" 
                 style="font-weight: bold;"></asp:Label>
             <asp:TextBox ID="txtDia" runat="server" TextMode="Date" 
-                style="width: 100%; padding: 5px;"></asp:TextBox>
+                style="width: 100%; padding: 5px;" AutoPostBack="True" OnTextChanged="txtDia_TextChanged"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvDia" runat="server" ControlToValidate="txtDia"
                 ErrorMessage="Seleccione un día" style="color: red; font-size: 12px;"></asp:RequiredFieldValidator>
+            <asp:Label ID="lblMensajeError" runat="server" Text="" 
+                style="color: red; font-size: 12px;"></asp:Label>
         </div>
 
         <!-- Sección Derecha -->
         <div style="flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;">
             <asp:Label ID="lblHorario" runat="server" Text="Horario:" 
                 style="font-weight: bold;"></asp:Label>
-            <%--<asp:DataList ID="dlHorario" runat="server" 
-                style="width: 100%; padding: 5px;"></asp:DataList>
-            <asp:RequiredFieldValidator ID="rfvHorario" runat="server" ControlToValidate="dlHorario"
-                ErrorMessage="Seleccione un horario" style="color: red; font-size: 12px;"></asp:RequiredFieldValidator>--%>
+            <asp:DataList ID="dlHorario" runat="server" 
+                style="width: 100%; padding: 5px;">
+                <ItemTemplate>
+                    <asp:Button ID="btnHorario" runat="server" Text='<%# Eval("Horario") %>' CommandArgument='<%# Eval("Horario") %>' CommandName="SeleccionarHorario" OnCommand="dlHorario_ItemCommand" 
+                        style="padding: 10px 20px; font-size: 16px; width: 150px; height: 60px;"/>
+                </ItemTemplate>
+            </asp:DataList>
+            <asp:Label ID="lblMensajeError2" runat="server" Text="" 
+           style ="color: red; font-size: 12px;"></asp:Label>
         </div>
     </div>
 
