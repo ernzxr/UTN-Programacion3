@@ -75,6 +75,18 @@ namespace Vistas
             ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
         }
 
+        protected void CargarLocalidades(int idProvincia)
+        {
+            DataTable localidades = negL.getTablaLocalidad(idProvincia);
+
+            ddlLocalidad_M.DataSource = localidades;
+            ddlLocalidad_M.DataTextField = "Descripcion_Lo"; 
+            ddlLocalidad_M.DataValueField = "Id_Localidad_Lo"; 
+            ddlLocalidad_M.DataBind();
+
+            ddlLocalidad_M.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+        }
+
         public int BuscarSexo(DataRow paciente)
         {
             int idSexo = 0;
@@ -196,15 +208,27 @@ namespace Vistas
                 txtTelefono_M.Text = paciente["Telefono"].ToString();
 
             }
-            
-
-
-
+ 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal();", true);
+        }
+
+        protected void ddlProvincia_M_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idProvincia = int.Parse(ddlProvincia_M.SelectedValue);
+            CargarLocalidades(idProvincia);
         }
 
         protected void btnEliminar_Click(Object sender, EventArgs e)
         {
+
+        }
+        protected void btnModificarM_Click(Object sender, EventArgs e)
+        {
+            bool modifico = NegP.ModificarPaciente(txtDNI_M.Text, txtNombre_M.Text, txtApellido_M.Text, int.Parse(ddlSexo_M.SelectedValue), Convert.ToDateTime(txtFechaNacimiento_M.Text),
+                int.Parse(ddlNacionalidad_M.SelectedValue), int.Parse(ddlLocalidad_M.SelectedValue), txtDireccion_M.Text, txtEmail_M.Text, txtTelefono_M.Text);
+
+            gvPacientes.DataSource = NegP.getPacientes();
+            gvPacientes.DataBind();
 
         }
     }

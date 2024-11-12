@@ -20,6 +20,13 @@ namespace Dao
             return ds.EjecutarProcedimientoAlmacenado(comando, "spAgregarPaciente");
         }
 
+        public int ActualizarPaciente(Paciente paciente)
+        {
+            SqlCommand comando = new SqlCommand();
+            ArmarParametrosActualizarPaciente(ref comando, paciente);
+            return ds.EjecutarProcedimientoAlmacenado(comando, "sp_ActualizarPaciente");
+        }
+
         private void ArmarParametrosAgregarPaciente(ref SqlCommand comando, Paciente paciente)
         {
             SqlParameter SqlParametros = new SqlParameter();
@@ -56,6 +63,41 @@ namespace Dao
 
             SqlParametros = comando.Parameters.Add("@ESTADO", SqlDbType.Bit);
             SqlParametros.Value = paciente.getEstado();
+        }
+
+        private void ArmarParametrosActualizarPaciente(ref SqlCommand comando, Paciente paciente)
+        {
+            SqlParameter SqlParametros = new SqlParameter();
+
+            SqlParametros = comando.Parameters.Add("@DNI", SqlDbType.Char);
+            SqlParametros.Value = paciente.getDni();
+
+            SqlParametros = comando.Parameters.Add("@NOMBRE", SqlDbType.VarChar);
+            SqlParametros.Value = paciente.getNombre();
+
+            SqlParametros = comando.Parameters.Add("@APELLIDO", SqlDbType.VarChar);
+            SqlParametros.Value = paciente.getApellido();
+
+            SqlParametros = comando.Parameters.Add("@SEXO", SqlDbType.Int);
+            SqlParametros.Value = paciente.getGenero();
+
+            SqlParametros = comando.Parameters.Add("@FECHANACIMIENTO", SqlDbType.Date);
+            SqlParametros.Value = paciente.getFechaNacimiento();
+
+            SqlParametros = comando.Parameters.Add("@NACIONALIDAD", SqlDbType.Int);
+            SqlParametros.Value = paciente.getNacionalidad();
+
+            SqlParametros = comando.Parameters.Add("@LOCALIDAD", SqlDbType.Int);
+            SqlParametros.Value = paciente.getLocalidad();
+
+            SqlParametros = comando.Parameters.Add("@DIRECCION", SqlDbType.VarChar);
+            SqlParametros.Value = paciente.getDireccion();
+
+            SqlParametros = comando.Parameters.Add("@CORREOELECTRONICO", SqlDbType.VarChar);
+            SqlParametros.Value = paciente.getEmail();
+
+            SqlParametros = comando.Parameters.Add("@TELEFONO", SqlDbType.VarChar);
+            SqlParametros.Value = paciente.getTelefono();
         }
         public Boolean existePaciente(string dni, int idNacionalidad)
         {

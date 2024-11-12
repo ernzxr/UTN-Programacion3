@@ -40,6 +40,33 @@ namespace Negocio
             }
         }
 
+        public bool ModificarPaciente(string dni, string nombre, string apellido, int sexo, DateTime fecha, int idnacionalidad, int idlocalidad, string direccion, string email, string telefono)
+        {
+            int cantFilas = 0;
+            Paciente paciente = new Paciente();
+
+            paciente.setDni(dni);
+            paciente.setNombre(nombre);
+            paciente.setApellido(apellido);
+            paciente.setGenero(sexo);
+            paciente.setFechaNacimiento(fecha);
+            paciente.setNacionalidad(idnacionalidad);
+            paciente.setLocalidad(idlocalidad);
+            paciente.setDireccion(direccion);
+            paciente.setEmail(email);
+            paciente.setTelefono(telefono);
+
+            cantFilas = dao.ActualizarPaciente(paciente);
+            if (cantFilas == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public DataTable getPaciente(string dni, int idNacionalidad)
         {
             return dao.filtrarPaciente(dni, idNacionalidad); 

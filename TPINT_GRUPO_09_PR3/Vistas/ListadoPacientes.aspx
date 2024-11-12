@@ -34,6 +34,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <div style="width: 100%; display: flex; flex-direction: column; align-items: center; position: relative;">
         <div style="width: 28%; display: flex; flex-direction: column; align-items: center;">
             <asp:Label ID="lblTitulo" runat="server" Text="Listar Pacientes" CssClass="auto-style1 mb-4"></asp:Label>
@@ -86,11 +87,11 @@
                         </div>
                         <div>
                             <asp:Label ID="lblNombre_M" Text="Nombre:" runat="server" />
-                            <asp:TextBox ID="txtNombre_M" runat="server" class="form-control"/>
+                            <asp:TextBox ID="txtNombre_M" runat="server" class="form-control" />
                         </div>
                         <div>
                             <asp:Label ID="lblApellido_M" Text="Apellido:" runat="server" />
-                            <asp:TextBox ID="txtApellido_M" runat="server" class="form-control"/>
+                            <asp:TextBox ID="txtApellido_M" runat="server" class="form-control" />
                         </div>
                         <div>
                             <asp:Label ID="lblSexo_M" Text="Sexo:" runat="server" />
@@ -100,31 +101,38 @@
                             <asp:Label ID="lblFechaNacimiento_M" Text="Fecha de Nacimiento:" runat="server" />
                             <asp:TextBox ID="txtFechaNacimiento_M" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
                         </div>
-                        <div>
-                            <asp:Label ID="lblProvincia_M" Text="Provincia:" runat="server"/>
-                            <asp:DropDownList ID="ddlProvincia_M" runat="server"></asp:DropDownList>
-                        </div>
-                        <div>
-                            <asp:Label ID="lblLocalidad_M" Text="Localidad:" runat="server"/>
-                            <asp:DropDownList ID="ddlLocalidad_M" runat="server"></asp:DropDownList>
-                        </div>
-                        <div>
-                            <asp:Label ID="lblDireccion_M" Text="Direccion:" runat="server"/>
-                            <asp:TextBox ID="txtDireccion_M" runat="server" class="form-control"/>
-                        </div>
-                        <div>
-                             <asp:Label ID="lblEmail_M" Text="Email:" runat="server"/>
-                             <asp:TextBox ID="txtEmail_M" runat="server" class="form-control"/>
-                        </div>
-                        <div>
-                            <asp:Label ID="lblTelefono_M" Text="Telefono:" runat="server"/>
-                            <asp:TextBox ID="txtTelefono_M" runat="server" class="form-control"/>
-                        </div>
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
 
+                                <div>
+                                    <asp:Label ID="lblProvincia_M" Text="Provincia:" runat="server" />
+                                    <asp:DropDownList ID="ddlProvincia_M" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_M_SelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                                <div>
+                                    <asp:Label ID="lblLocalidad_M" Text="Localidad:" runat="server" />
+                                    <asp:DropDownList ID="ddlLocalidad_M" runat="server"></asp:DropDownList>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        <div>
+                            <asp:Label ID="lblDireccion_M" Text="Direccion:" runat="server" />
+                            <asp:TextBox ID="txtDireccion_M" runat="server" class="form-control" />
+                        </div>
+                        <div>
+                            <asp:Label ID="lblEmail_M" Text="Email:" runat="server" />
+                            <asp:TextBox ID="txtEmail_M" runat="server" class="form-control" />
+                        </div>
+                        <div>
+                            <asp:Label ID="lblTelefono_M" Text="Telefono:" runat="server" />
+                            <asp:TextBox ID="txtTelefono_M" runat="server" class="form-control" />
+                        </div>
+                        <div>
+                            <asp:Label ID="lblMensaje" Text="" runat="server" />
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                        <asp:Button class="btn btn-primary" Text="Guardar cambios" runat="server" OnClick="btnModificarM_Click"/>
                     </div>
                 </div>
             </div>
