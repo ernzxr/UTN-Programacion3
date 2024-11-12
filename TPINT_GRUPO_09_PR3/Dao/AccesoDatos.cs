@@ -99,6 +99,9 @@ namespace Dao
             {
                 estado = true;
             }
+
+            Conexion.Close();
+
             return estado;
         }
     }

@@ -12,10 +12,16 @@ namespace Vistas
     public partial class ListadoPacientes : System.Web.UI.Page
     {
         NegocioNacionalidad negn = new NegocioNacionalidad();
+        NegocioPaciente NegP = new NegocioPaciente(); 
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            CargarNacionalidad();
+
+            if(!IsPostBack)
+            {
+                CargarNacionalidad();
+            }
+            
         }
 
         public void CargarNacionalidad()
@@ -27,6 +33,25 @@ namespace Vistas
             ddlNacionalidad.DataBind();
 
             ddlNacionalidad.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            string dni = txtDNI.Text;
+            int idNacionalidad = int.Parse(ddlNacionalidad.SelectedValue);
+
+            txtDNI.Text = NegP.existePaciente(dni, idNacionalidad).ToString();
+
+
+            if (NegP.existePaciente(dni, idNacionalidad))
+            {
+                gvPacientes.DataSource = NegP.getPaciente(dni, idNacionalidad);
+                gvPacientes.DataBind();
+
+
+            }
+
+            
         }
     }
 }
