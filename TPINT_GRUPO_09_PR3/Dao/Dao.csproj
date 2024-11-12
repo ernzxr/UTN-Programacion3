@@ -53,6 +53,7 @@
     <Compile Include="DaoAusenciaMedico.cs" />
     <Compile Include="DaoTipoAusencia.cs" />
     <Compile Include="DaoTurno.cs" />
+    <Compile Include="DaoUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

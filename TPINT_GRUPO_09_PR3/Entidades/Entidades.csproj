@@ -51,6 +51,7 @@
     <Compile Include="Sexo.cs" />
     <Compile Include="TipoAusencia.cs" />
     <Compile Include="Turno.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
