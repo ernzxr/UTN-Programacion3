@@ -437,3 +437,47 @@ INSERT INTO Pacientes(Dni_Pa, Nombre_Pa, Apellido_Pa, Id_Genero_Pa, Fecha_Nacimi
 VALUES (@DNI, @NOMBRE, @APELLIDO, @SEXO, @FECHANACIMIENTO, @NACIONALIDAD, @LOCALIDAD, @DIRECCION, @CORREOELECTRONICO, @TELEFONO, @ESTADO)
 RETURN 
 GO
+
+CREATE PROCEDURE sp_ObtenerLegajoPorNombreCompleto
+    @NombreCompleto VARCHAR(100)
+AS
+BEGIN
+    SELECT Legajo_Me
+    FROM Medicos
+    WHERE (Nombre_Me + ' ' + Apellido_Me) = @NombreCompleto
+END
+GO
+
+CREATE PROCEDURE spObtenerDiasLaborales
+    @LegajoMedico CHAR(5)
+AS
+BEGIN
+    SELECT Id_Dia_Semana_HM, Hora_Inicio_HM, Hora_Fin_HM 
+    FROM Horarios_Medicos 
+    WHERE Legajo_Medico_HM = @LegajoMedico
+END
+GO
+
+CREATE PROCEDURE sp_ObtenerFechasAusencias
+    @LegajoMedico CHAR(5)
+AS
+BEGIN
+    SELECT Fecha_Inicio_AM, Fecha_Fin_AM
+    FROM Ausencias_Medicos 
+    WHERE Legajo_Medico_AM = @LegajoMedico
+END
+GO
+
+CREATE PROCEDURE spObtenerFechasConTurnosCompletos
+    @LegajoMedico CHAR(5)
+AS
+BEGIN
+    SELECT Fecha_Tu
+    FROM Turnos
+    WHERE Legajo_Medico_Tu = @LegajoMedico
+    GROUP BY Fecha_Tu
+    HAVING COUNT(*) >= (SELECT MAX(DATEDIFF(HOUR, Hora_Inicio_HM, Hora_Fin_HM))
+                        FROM Horarios_Medicos
+                        WHERE Legajo_Medico_HM = @LegajoMedico)
+END
+GO
