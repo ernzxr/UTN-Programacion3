@@ -44,6 +44,7 @@
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="DaoDiaSemana.cs" />
     <Compile Include="DaoEspecialidad.cs" />
+    <Compile Include="DaoHorarioMedico.cs" />
     <Compile Include="DaoLocalidad.cs" />
     <Compile Include="DaoMedico.cs" />
     <Compile Include="DaoNacionalidad.cs" />
