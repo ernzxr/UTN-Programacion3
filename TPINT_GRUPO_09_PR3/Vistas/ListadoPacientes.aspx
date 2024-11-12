@@ -79,11 +79,11 @@
                         <p>Ingrese Datos a Modificar</p>
                         <div>
                             <asp:Label ID="lblDni_M" Text="DNI:" runat="server" />
-                            <asp:TextBox ID="txtDNI_M" runat="server" class="form-control" />
+                            <asp:TextBox ID="txtDNI_M" runat="server" ReadOnly="true" class="form-control" />
                         </div>
                         <div>
                             <asp:Label ID="lblNacionalidad_M" Text="Nacionalidad:" runat="server" />
-                            <asp:DropDownList ID="ddlNacionalidad_M" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlNacionalidad_M" runat="server" Enabled="false"></asp:DropDownList>
                         </div>
                         <div>
                             <asp:Label ID="lblNombre_M" Text="Nombre:" runat="server" />
