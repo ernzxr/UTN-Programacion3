@@ -15,6 +15,9 @@ namespace Vistas
     {
         NegocioNacionalidad negn = new NegocioNacionalidad();
         NegocioPaciente NegP = new NegocioPaciente();
+        NegocioSexo negS = new NegocioSexo();
+        NegocioProvincia NegProv = new NegocioProvincia();
+        NegocioLocalidad negL = new NegocioLocalidad();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,22 +25,104 @@ namespace Vistas
 
             if (!IsPostBack)
             {
-                CargarNacionalidad();
-
+                CargarNacionalidad(ddlNacionalidad);
+                CargarNacionalidad(ddlNacionalidad_M);
+                CargarSexo(ddlSexo_M);
+                CargarProvincia(ddlProvincia_M);
             }
 
         }
 
-        public void CargarNacionalidad()
+        public void CargarNacionalidad(DropDownList ddl)
         {
             DataTable Nacionalidad = negn.getTablaNacionalidad();
-            ddlNacionalidad.DataSource = Nacionalidad;
-            ddlNacionalidad.DataTextField = "Descripcion_Na";
-            ddlNacionalidad.DataValueField = "Id_Nacionalidad_Na";
-            ddlNacionalidad.DataBind();
+            ddl.DataSource = Nacionalidad;
+            ddl.DataTextField = "Descripcion_Na";
+            ddl.DataValueField = "Id_Nacionalidad_Na";
+            ddl.DataBind();
 
-            ddlNacionalidad.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+            ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
         }
+        public void CargarSexo(DropDownList ddl)
+        {
+            DataTable sexo = negS.getTablaSexo();
+            ddl.DataSource = sexo;
+            ddl.DataTextField = "Descripcion_Ge";
+            ddl.DataValueField = "Id_Genero_Ge";
+            ddl.DataBind();
+
+            ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+        }
+        public void CargarProvincia(DropDownList ddl)
+        {
+            DataTable Provincia = NegProv.getTablaProvincia();
+            ddl.DataSource = Provincia;
+            ddl.DataTextField = "Descripcion_Pr";
+            ddl.DataValueField = "Id_Provincia_Pr";
+            ddl.DataBind();
+
+            ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+        }
+
+        public void CargarLocalidad(DropDownList ddl, DataRow paciente)
+        {
+            DataTable Localidad = negL.getTablaLocalidad(BuscarProvincia(paciente));
+            ddl.DataSource = Localidad;
+            ddl.DataTextField = "Descripcion_Lo";
+            ddl.DataValueField = "Id_Localidad_Lo";
+            ddl.DataBind();
+
+            ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+        }
+
+        public int BuscarSexo(DataRow paciente)
+        {
+            int idSexo = 0;
+
+            foreach (ListItem item in ddlSexo_M.Items)
+            {
+                if (item.Text == paciente["Sexo"].ToString())
+                {
+                    idSexo = int.Parse(item.Value);
+                    break;
+                }
+            }
+
+            return idSexo;
+        }
+
+        public int BuscarProvincia(DataRow paciente)
+        {
+            int idProvincia = 0;
+
+            foreach (ListItem item in ddlProvincia_M.Items)
+            {
+                if (item.Text == paciente["Provincia"].ToString())
+                {
+                    idProvincia = int.Parse(item.Value);
+                    break;
+                }
+            }
+
+            return idProvincia;
+        }
+
+        public int BuscarLocalidad(DataRow paciente)
+        {
+            int idLocalidad = 0;
+
+            foreach (ListItem item in ddlLocalidad_M.Items)
+            {
+                if (item.Text == paciente["Localidad"].ToString())
+                {
+                    idLocalidad = int.Parse(item.Value);
+                    break;
+                }
+            }
+
+            return idLocalidad;
+        }
+
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
@@ -94,6 +179,22 @@ namespace Vistas
                 DataRow paciente = dtPaciente.Rows[0];
 
                 txtDNI_M.Text = paciente["DNI"].ToString();
+                ddlNacionalidad_M.SelectedValue = idNacionalidad.ToString();
+                txtNombre_M.Text = paciente["Nombre"].ToString();
+                txtApellido_M.Text = paciente["Apellido"].ToString();
+                ddlSexo_M.SelectedValue = BuscarSexo(paciente).ToString();
+
+                DateTime fechaNacimiento = Convert.ToDateTime(paciente["Fecha_De_Nacimiento"]);
+                txtFechaNacimiento_M.Text = fechaNacimiento.ToString("yyyy-MM-dd");
+                ddlProvincia_M.SelectedValue = BuscarProvincia(paciente).ToString();
+
+                CargarLocalidad(ddlLocalidad_M, paciente);
+                ddlLocalidad_M.SelectedValue = BuscarLocalidad(paciente).ToString();
+
+                txtDireccion_M.Text = paciente["Direccion"].ToString();
+                txtEmail_M.Text = paciente["Email"].ToString();
+                txtTelefono_M.Text = paciente["Telefono"].ToString();
+
             }
             
 

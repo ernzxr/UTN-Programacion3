@@ -82,7 +82,7 @@
                         </div>
                         <div>
                             <asp:Label ID="lblNacionalidad_M" Text="Nacionalidad:" runat="server" />
-                            <asp:DropDownList runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlNacionalidad_M" runat="server"></asp:DropDownList>
                         </div>
                         <div>
                             <asp:Label ID="lblNombre_M" Text="Nombre:" runat="server" />
@@ -99,6 +99,14 @@
                         <div>
                             <asp:Label ID="lblFechaNacimiento_M" Text="Fecha de Nacimiento:" runat="server" />
                             <asp:TextBox ID="txtFechaNacimiento_M" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblProvincia_M" Text="Provincia:" runat="server"/>
+                            <asp:DropDownList ID="ddlProvincia_M" runat="server"></asp:DropDownList>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblLocalidad_M" Text="Localidad:" runat="server"/>
+                            <asp:DropDownList ID="ddlLocalidad_M" runat="server"></asp:DropDownList>
                         </div>
                         <div>
                             <asp:Label ID="lblDireccion_M" Text="Direccion:" runat="server"/>
