@@ -71,6 +71,11 @@ namespace Vistas
         protected void txtDia_TextChanged(object sender, EventArgs e)
         {
             lblMensajeError.Text = "";
+            lblMensajeError2.Text = "";
+
+            // Limpiar el DataList antes de procesar la nueva fecha
+            dlHorario.DataSource = null;
+            dlHorario.DataBind();
 
             // Obtener el nombre completo del médico seleccionado
             string nombreCompleto = ddlProfesionales.SelectedItem.Text;
