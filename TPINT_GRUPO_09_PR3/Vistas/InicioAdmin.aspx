@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="InicioAdmin.aspx.cs" Inherits="Vistas.InicioAdmin" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+ <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title> Inico Admin </title>
     <style type="text/css">
         .auto-style1 {
@@ -60,7 +60,7 @@
                       </div>
                     </div>
                   </div>
+   </div>
     </div>
-    </div>
-</asp:Content>
+   </asp:Content>
 

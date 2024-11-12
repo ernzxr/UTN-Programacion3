@@ -13,5 +13,9 @@ namespace Vistas
         {
 
         }
+        protected void btnSalir_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+        }
     }
 }
