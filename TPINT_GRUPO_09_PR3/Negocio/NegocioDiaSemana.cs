@@ -1,4 +1,5 @@
 ﻿using Dao;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,12 +11,18 @@ namespace Negocio
 {
     public class NegocioDiaSemana
     {
+        DaoDiaSemana dao = new DaoDiaSemana();
+
         public NegocioDiaSemana() { }
 
         public DataTable getTablaDiaSemana()
         {
-            DaoDiaSemana dao = new DaoDiaSemana();
             return dao.getDiaSemana();
+        }
+
+        public DiaSemana ObtenerDiaSemanaPorId(int id)
+        {
+            return dao.ObtenerDiaSemanaPorId(id);
         }
     }
 }
