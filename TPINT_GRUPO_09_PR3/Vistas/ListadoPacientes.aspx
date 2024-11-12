@@ -1,6 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ListadoPacientes.aspx.cs" Inherits="Vistas.ListadoPacientes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+   <script>
+       // Usar JavaScript para controlar el modal
+       function showModal() {
+           var modal = document.getElementById('UpdateModal');
+           var myModal = new bootstrap.Modal(modal);
+           myModal.show();
+       }
+    </script>
+
     <title>Listado de Pacientes</title>
     <style type="text/css">
         .auto-style1 {
@@ -43,7 +52,74 @@
         </div>
 
         <div style="width: 100%; margin-top: 20px;">
-            <asp:GridView runat="server" ID="gvPacientes" CssClass="table table-hover"></asp:GridView>
+                    <asp:GridView runat="server" ID="gvPacientes" CssClass="table table-hover" AutoGenerateColumns="true">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Acciones">
+                                <ItemTemplate>
+                                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnClick="btnModificar_Click" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Acciones2">
+                                <ItemTemplate>
+                                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar"  OnClick="btnEliminar_Click" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+        </div>
+        <div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Modificar Paciente</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Ingrese Datos a Modificar</p>
+                        <div>
+                            <asp:Label ID="lblDni_M" Text="DNI:" runat="server" />
+                            <asp:TextBox ID="txtDNI_M" runat="server" class="form-control" />
+                        </div>
+                        <div>
+                            <asp:Label ID="lblNacionalidad_M" Text="Nacionalidad:" runat="server" />
+                            <asp:DropDownList runat="server"></asp:DropDownList>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblNombre_M" Text="Nombre:" runat="server" />
+                            <asp:TextBox ID="txtNombre_M" runat="server" class="form-control"/>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblApellido_M" Text="Apellido:" runat="server" />
+                            <asp:TextBox ID="txtApellido_M" runat="server" class="form-control"/>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblSexo_M" Text="Sexo:" runat="server" />
+                            <asp:DropDownList ID="ddlSexo_M" runat="server"></asp:DropDownList>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblFechaNacimiento_M" Text="Fecha de Nacimiento:" runat="server" />
+                            <asp:TextBox ID="txtFechaNacimiento_M" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblDireccion_M" Text="Direccion:" runat="server"/>
+                            <asp:TextBox ID="txtDireccion_M" runat="server" class="form-control"/>
+                        </div>
+                        <div>
+                             <asp:Label ID="lblEmail_M" Text="Email:" runat="server"/>
+                             <asp:TextBox ID="txtEmail_M" runat="server" class="form-control"/>
+                        </div>
+                        <div>
+                            <asp:Label ID="lblTelefono_M" Text="Telefono:" runat="server"/>
+                            <asp:TextBox ID="txtTelefono_M" runat="server" class="form-control"/>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </asp:Content>
