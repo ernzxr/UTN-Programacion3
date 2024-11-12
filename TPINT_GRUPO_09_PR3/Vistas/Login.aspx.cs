@@ -10,25 +10,11 @@ namespace Vistas
     public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
+        { 
+                ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;  
         }
-
-        string test = "";
-        protected void btnLogin_Click(object sender, EventArgs e)
+         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            test = txtPassword.Text;
-            Session["TipoUsuario"] = txtPassword.Text;
-            if (test == "")
-            {
-                Session.Clear();
-            }
-
-        }
-
-        protected void txtPassword_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
