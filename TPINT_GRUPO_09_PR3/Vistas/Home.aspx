@@ -4,7 +4,7 @@
     <title>Inicio</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="carouselExampleCaptions" class="carousel slide" style="margin:100px 0 100px 0;">
+    <div id="carouselExampleCaptions" class="carousel slide" style="margin: 100px 0 100px 0;">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -43,5 +43,34 @@
         </button>
     </div>
 
-    
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <!-- Sección de enlaces -->
+                <div class="col-md-4 mb-3">
+                    <h5>Enlaces útiles</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Inicio</a></li>
+                        <li><a href="#" class="text-light">Acerca de</a></li>
+                        <li><a href="#" class="text-light">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sección de contacto -->
+                <div class="col-md-4 mb-3">
+                    <h5>Contacto</h5>
+                    <p class="mb-1"><i class="bi bi-telephone"></i>+011 4740 0216</p>
+                    <p class="mb-1"><i class="bi bi-envelope"></i>correo@alumnos.frgp.utn.edu.a</p>
+                    <p><i class="bi bi-geo-alt"></i>Córdoba 1100, Buenos Aires, Argentina</p>
+                </div>
+
+                <!-- Sección de derechos de autor -->
+                <div class="col-md-4 mb-3">
+                    <h5>Sobre Nosotros</h5>
+                    <p>Clinica UTN.</p>
+                    <small>&copy; 2024 Grupo 09. Todos los derechos reservados.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
 </asp:Content>
