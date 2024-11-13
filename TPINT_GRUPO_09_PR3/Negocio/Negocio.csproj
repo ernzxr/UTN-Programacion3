@@ -52,6 +52,7 @@
     <Compile Include="NegocioSexo.cs" />
     <Compile Include="NegocioAusenciaMedico.cs" />
     <Compile Include="NegocioTipoAusencia.cs" />
+    <Compile Include="NegocioTurno.cs" />
     <Compile Include="NegocioUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

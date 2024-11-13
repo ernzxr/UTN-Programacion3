@@ -12,6 +12,7 @@ namespace Entidades
         private DateTime _fecha;
         private TimeSpan _hora;
         private string _DNI_Paciente;
+        private int _IdLocalidadPaciente;
         private int _IdNacionalidad;
         private bool _asistencia;
         private string _observacion;
@@ -21,13 +22,14 @@ namespace Entidades
 
         }
 
-        public Turno(string legajo_Medico, DateTime fecha, TimeSpan hora, string Dni_Paciente, int idNacionalidad, bool asistencia, string observacion)
+        public Turno(string legajo_Medico, DateTime fecha, TimeSpan hora, string Dni_Paciente, int idNacionalidad, int idLocalidadPaciente, bool asistencia, string observacion)
         {
             this._legajo_Medico = legajo_Medico;
             this._fecha = fecha;
             this._hora = hora;
             this._DNI_Paciente = Dni_Paciente;
             this._IdNacionalidad = idNacionalidad;
+            this._IdLocalidadPaciente = idLocalidadPaciente;
             this._asistencia = asistencia;
             this._observacion = observacion;
         }
@@ -46,6 +48,11 @@ namespace Entidades
         }
         public int getIdNacionalidad() {
             return _IdNacionalidad;
+        }
+
+        public int getIdLocalidadPaciente()
+        {
+            return _IdLocalidadPaciente;
         }
 
         public bool getAsistencia() { 
@@ -75,6 +82,12 @@ namespace Entidades
         {
             this._IdNacionalidad = idNacionalidad;
         }
+
+        public void setIdLocalidadPaciente(int idLocalidadPaciente)
+        {
+            this._IdLocalidadPaciente = idLocalidadPaciente;
+        }
+
         public void setAsistencia(bool asistencia)
         {
             this._asistencia = asistencia;
