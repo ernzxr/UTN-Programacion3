@@ -39,10 +39,11 @@
   
   <asp:Label ID="lblTitulo" runat="server" Text="Modificar Datos del Médico" CssClass="auto-style1"></asp:Label>
   <p></p>
- 
- <asp:Label ID="Subtitulo" runat="server" Text="Modificar datos personales" 
+   <div>
+      <asp:Label ID="Subtitulo" runat="server" Text="Modificar datos personales" 
            CssClass="bold-large" Style="align-self: flex-start;"> 
-</asp:Label>
+       </asp:Label>
+    </div>
 <p></p>
   
   <asp:Label ID="lblLegajo" runat="server" Text="Legajo" Style="align-self: flex-start"></asp:Label>
