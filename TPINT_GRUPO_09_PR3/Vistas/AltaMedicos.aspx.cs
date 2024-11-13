@@ -140,7 +140,7 @@ namespace Vistas
 
         protected void btnCargarHorarios_Click(object sender, EventArgs e)
         {
-          //  Response.Redirect("HorariosMedicos.asp");
+           Response.Redirect("CargaDiasYHorariosMedicos.aspx");
         }
 
     }
