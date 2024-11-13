@@ -574,3 +574,14 @@ VALUES
 >>>>>>> 4adcc02196e066c2dfb68b0aea5556900d845cff:TPINT_GRUPO_09_PR3/ScriptBD/bdScript.sql
 >>>>>>> Stashed changes
 GO
+
+CREATE PROCEDURE spObtenerHorariosAsignados
+    @LegajoMedico CHAR(5),
+    @Fecha DATE
+AS
+BEGIN
+    SELECT Hora_Tu
+    FROM Turnos
+    WHERE Legajo_Medico_Tu = @LegajoMedico AND Fecha_Tu = @Fecha
+END
+GO
