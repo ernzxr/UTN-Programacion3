@@ -83,7 +83,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Acciones2">
                         <ItemTemplate>
-                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" OnClick="btnEliminar_Click" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' />
+                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnCommand="btnEliminar_Command" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

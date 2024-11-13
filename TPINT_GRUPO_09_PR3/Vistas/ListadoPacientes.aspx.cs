@@ -221,41 +221,7 @@ namespace Vistas
             CargarLocalidades(idProvincia);
         }
 
-        protected void btnEliminar_Click(Object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
 
-            string commandArgument = btn.CommandArgument;
-
-            string[] values = commandArgument.Split(',');
-
-            string dni = values[0];
-            string nacionalidad = values[1];
-            int idNacionalidad = 0;
-
-
-            foreach (ListItem item in ddlNacionalidad.Items)
-            {
-                if (item.Text == nacionalidad)
-                {
-                    idNacionalidad = int.Parse(item.Value);
-                    break;
-                }
-            }
-
-            DataTable dtPaciente = NegP.getPaciente(dni, idNacionalidad);
-
-            if (dtPaciente != null && dtPaciente.Rows.Count > 0)
-            {
-                DataRow paciente = dtPaciente.Rows[0];
-
-                txtDNI_E.Text = paciente["DNI"].ToString();
-                ddlNacionalidad_E.SelectedValue = idNacionalidad.ToString();
-
-            }
-
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "showDeleteModal", "showDeleteModal();", true);
-        }
 
         protected void btnConfirmDelete_Click(Object sender, EventArgs e)
         {
@@ -275,5 +241,40 @@ namespace Vistas
 
         }
 
+        protected void btnEliminar_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "Eliminar")
+            {
+                string commandArgument = e.CommandArgument.ToString();
+                string[] values = commandArgument.Split(',');
+
+                string dni = values[0];
+                string nacionalidad = values[1];
+                int idNacionalidad = 0;
+
+
+                foreach (ListItem item in ddlNacionalidad.Items)
+                {
+                    if (item.Text == nacionalidad)
+                    {
+                        idNacionalidad = int.Parse(item.Value);
+                        break;
+                    }
+                }
+
+                DataTable dtPaciente = NegP.getPaciente(dni, idNacionalidad);
+
+                if (dtPaciente != null && dtPaciente.Rows.Count > 0)
+                {
+                    DataRow paciente = dtPaciente.Rows[0];
+
+                    txtDNI_E.Text = paciente["DNI"].ToString();
+                    ddlNacionalidad_E.SelectedValue = idNacionalidad.ToString();
+
+                }
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showDeleteModal", "showDeleteModal();", true);
+            }
+        }
     }
 }
