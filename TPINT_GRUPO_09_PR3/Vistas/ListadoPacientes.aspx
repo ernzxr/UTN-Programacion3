@@ -61,7 +61,21 @@
         <div style="width: 100%; margin-top: 20px;">
             <asp:GridView runat="server" ID="gvPacientes" CssClass="table table-hover" AutoGenerateColumns="False">
                 <Columns>
+                    <asp:BoundField DataField="DNI" HeaderText="DNI" />
+                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                    <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                    <asp:BoundField DataField="Sexo" HeaderText="Sexo" />
                     <asp:BoundField DataField="Fecha_De_Nacimiento"  DataFormatString="{0:dd-MM-yyyy}" HeaderText="Fecha" />
+                    <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
+                    <asp:BoundField DataField="Provincia" HeaderText="Provincia" />
+                    <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
+                    <asp:BoundField DataField="Email" HeaderText="Correo Electronico" />
+                    <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
+                    <asp:TemplateField HeaderText="Estado">
+                        <ItemTemplate>
+                            <asp:CheckBox ID="chkEstado" runat="server" Checked='<%# Convert.ToBoolean(Eval("Estado")) %>' Enabled="false" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
                             <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnCommand="btnModificar_Command1" />
