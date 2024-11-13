@@ -510,3 +510,13 @@ WHERE DNI_Pa = @DNI AND Id_Nacionalidad_Pa = @NACIONALIDAD
 END
 GO
 
+CREATE PROCEDURE spBajaLogicaPaciente
+    @DNI CHAR(8),
+    @NACIONALIDAD INT
+AS
+BEGIN
+    UPDATE Pacientes
+    SET Estado_Pa = 0
+    WHERE DNI_Pa = @DNI AND Id_Nacionalidad_Pa = @NACIONALIDAD;
+END;
+GO

@@ -40,7 +40,7 @@ namespace Negocio
             }
         }
 
-        public bool ModificarPaciente(string dni, string nombre, string apellido, int sexo, DateTime fecha, int idnacionalidad, int idlocalidad, string direccion, string email, string telefono)
+        public bool ModificarPaciente(string dni, string nombre, string apellido, int sexo, DateTime fecha, int idnacionalidad, int idlocalidad, string direccion, string email, string telefono, Boolean estado)
         {
             int cantFilas = 0;
             Paciente paciente = new Paciente();
@@ -55,6 +55,7 @@ namespace Negocio
             paciente.setDireccion(direccion);
             paciente.setEmail(email);
             paciente.setTelefono(telefono);
+            paciente.setEstado(estado);
 
             cantFilas = dao.ActualizarPaciente(paciente);
             if (cantFilas == 1)
@@ -71,6 +72,7 @@ namespace Negocio
         {
             int cantFilas = 0;
             Paciente paciente = new Paciente();
+
             paciente.setDni(dni);
             paciente.setNacionalidad(idnacionalidad);
 

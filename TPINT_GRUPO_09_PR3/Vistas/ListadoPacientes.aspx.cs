@@ -27,6 +27,7 @@ namespace Vistas
             {
                 CargarNacionalidad(ddlNacionalidad);
                 CargarNacionalidad(ddlNacionalidad_M);
+                CargarNacionalidad(ddlNacionalidad_E);
                 CargarSexo(ddlSexo_M);
                 CargarProvincia(ddlProvincia_M);
             }
@@ -207,6 +208,9 @@ namespace Vistas
                 txtEmail_M.Text = paciente["Email"].ToString();
                 txtTelefono_M.Text = paciente["Telefono"].ToString();
 
+                bool chequeado = Convert.ToBoolean(paciente["Estado"]);
+                chkEstado_M.Checked = chequeado ? true : false;
+
             }
  
             ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal();", true);
@@ -240,13 +244,23 @@ namespace Vistas
                 }
             }
 
+            DataTable dtPaciente = NegP.getPaciente(dni, idNacionalidad);
+
+            if (dtPaciente != null && dtPaciente.Rows.Count > 0)
+            {
+                DataRow paciente = dtPaciente.Rows[0];
+
+                txtDNI_E.Text = paciente["DNI"].ToString();
+                ddlNacionalidad_E.SelectedValue = idNacionalidad.ToString();
+
+            }
+
             ScriptManager.RegisterStartupScript(this, this.GetType(), "showDeleteModal", "showDeleteModal();", true);
         }
 
         protected void btnConfirmDelete_Click(Object sender, EventArgs e)
         {
-            int ddl = Convert.ToInt32(ddlNacionalidad.SelectedValue);
-            bool borro = NegP.bajaPaciente(txtDNI.Text, ddl);
+            bool borro = NegP.bajaPaciente(txtDNI_E.Text, int.Parse(ddlNacionalidad_E.SelectedValue));
 
             gvPacientes.DataSource = NegP.getPacientes();
             gvPacientes.DataBind();
@@ -255,7 +269,7 @@ namespace Vistas
         protected void btnModificarM_Click(Object sender, EventArgs e)
         {
             bool modifico = NegP.ModificarPaciente(txtDNI_M.Text, txtNombre_M.Text, txtApellido_M.Text, int.Parse(ddlSexo_M.SelectedValue), Convert.ToDateTime(txtFechaNacimiento_M.Text),
-                int.Parse(ddlNacionalidad_M.SelectedValue), int.Parse(ddlLocalidad_M.SelectedValue), txtDireccion_M.Text, txtEmail_M.Text, txtTelefono_M.Text);
+                int.Parse(ddlNacionalidad_M.SelectedValue), int.Parse(ddlLocalidad_M.SelectedValue), txtDireccion_M.Text, txtEmail_M.Text, txtTelefono_M.Text, chkEstado_M.Checked);
     
             gvPacientes.DataSource = NegP.getPacientes();
             gvPacientes.DataBind();

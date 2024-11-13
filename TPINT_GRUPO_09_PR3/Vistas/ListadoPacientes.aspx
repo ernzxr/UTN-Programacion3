@@ -133,7 +133,8 @@
                             <asp:TextBox ID="txtTelefono_M" runat="server" class="form-control" />
                         </div>
                         <div>
-                            <asp:Label ID="lblMensaje" Text="" runat="server" />
+                            <asp:TextBox ID="TextBox1" runat="server" class="form-control" />
+                            <asp:CheckBox ID="chkEstado_M" Text="Activo" runat="server" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -153,6 +154,14 @@
                     </div>
                     <div class="modal-body">
                         <p>¿Está seguro de que desea eliminar este registro?</p>
+                        <div>
+                            <asp:Label ID="lblDNI_E" Text="DNI:" runat="server" />
+                            <asp:TextBox ID="txtDNI_E" runat="server" ReadOnly="true" class="form-control" />
+                        </div>
+                        <div>
+                            <asp:Label ID="lblNacionalidad_E" Text="Nacionalidad:" runat="server" />
+                            <asp:DropDownList ID="ddlNacionalidad_E" runat="server" Enabled="false"></asp:DropDownList>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <asp:Button ID="btnConfirmDelete" runat="server" Text="Sí" CssClass="btn btn-danger" OnClick="btnConfirmDelete_Click" />

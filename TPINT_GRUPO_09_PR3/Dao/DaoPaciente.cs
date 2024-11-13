@@ -98,17 +98,20 @@ namespace Dao
 
             SqlParametros = comando.Parameters.Add("@TELEFONO", SqlDbType.VarChar);
             SqlParametros.Value = paciente.getTelefono();
+
+            SqlParametros = comando.Parameters.Add("@ESTADO", SqlDbType.Bit);
+            SqlParametros.Value = paciente.getEstado();
         }
 
         public int bajaPaciente(Paciente paciente)
         {
             SqlCommand comando = new SqlCommand();
-            ArmarParametrosAgregarPaciente(ref comando, paciente);
+            ArmarParametrosBajaLogica(ref comando, paciente);
             return ds.EjecutarProcedimientoAlmacenado(comando, "spBajaLogicaPaciente");
         }
 
 
-        private void ArmarParametrosBajaLogica(ref SqlCommand comando, Paciente paciente)
+        public void ArmarParametrosBajaLogica(ref SqlCommand comando, Paciente paciente)
         {
             SqlParameter SqlParametros = new SqlParameter();
 
