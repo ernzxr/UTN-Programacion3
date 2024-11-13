@@ -49,6 +49,12 @@ namespace Negocio
             return filasAfectadas > 0; // Si la inserción fue exitosa
 
         }
+
+        public bool CambiarContraseña(string usuario, string email, string nuevaClave)
+        {
+            // Llamar al método de DaoUsuario para verificar y actualizar la contraseña
+            return _daoUsuario.VerificarYActualizarClave(usuario, email, nuevaClave);
+        }
     }
 
 

@@ -98,6 +98,61 @@ namespace Dao
             SqlParametros.Value = user.GetIdTipoUsuario();
         }
 
+        public bool VerificarYActualizarClave(string usuario, string email, string nuevaClave)
+        {
+            // Consulta SQL para verificar si el usuario y el email existen en la base de datos
+            string consulta = "SELECT COUNT(*) FROM Usuarios WHERE Usuario_Us = @Usuario AND Email_Us = @Email";
+
+            // Crear el comando y agregar los parámetros
+            SqlCommand comando = new SqlCommand(consulta);
+            comando.Parameters.AddWithValue("@Usuario", usuario);
+            comando.Parameters.AddWithValue("@Email", email);
+
+            // Obtener la conexión
+            SqlConnection conexion = _accesoDatos.ObtenerConexion();
+            if (conexion == null)
+            {
+                // Si no se pudo establecer la conexión, retornamos false
+                return false;
+            }
+
+            // Asignar la conexión al comando
+            comando.Connection = conexion;
+
+            // Ejecutar la consulta para verificar si existe el usuario y el email
+            SqlDataReader reader = comando.ExecuteReader();
+
+            bool existe = false;
+            if (reader.Read() && reader.GetInt32(0) > 0)
+            {
+                existe = true; // Si el conteo es mayor a 0, el usuario y el email existen
+            }
+
+            // Cerrar la conexión y el lector
+            conexion.Close();
+
+            if (existe)
+            {
+                // Si el usuario y el email existen, se procede a cambiar la contraseña
+                SqlCommand cmdActualizar = new SqlCommand("ActualizarClave", conexion);
+                cmdActualizar.CommandType = CommandType.StoredProcedure;
+
+                // Agregar los parámetros del procedimiento almacenado
+                cmdActualizar.Parameters.AddWithValue("@Email", email);
+                cmdActualizar.Parameters.AddWithValue("@Usuario", usuario);
+                cmdActualizar.Parameters.AddWithValue("@NuevaClave", nuevaClave);
+
+                // Ejecutar el procedimiento almacenado para actualizar la contraseña
+                _accesoDatos.EjecutarProcedimientoAlmacenado(cmdActualizar, "ActualizarClave");
+
+                return true; // Contraseña actualizada correctamente
+            }
+
+            return false; // Usuario o email no encontrados
+        }
+
+
+
     }
 }
 

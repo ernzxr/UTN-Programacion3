@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Dao
 {
-    internal class DaoTurno
+    public class DaoTurno
     {
         AccesoDatos ds = new AccesoDatos();
 
