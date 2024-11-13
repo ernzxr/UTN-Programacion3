@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 namespace Vistas
 {
     public partial class AltaMedicos : System.Web.UI.Page
-    {   
+    {
         NegocioNacionalidad nNacionalidad = new NegocioNacionalidad();
         NegocioProvincia nProvincia = new NegocioProvincia();
         NegocioEspecialidad nEspecialidad = new NegocioEspecialidad();
@@ -97,9 +97,51 @@ namespace Vistas
 
         }
 
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+            lblMensaje.Text = "";
+
+            if (rblGenero.SelectedIndex == -1)
+            {
+                lblMensaje.Text = "Por favor, seleccione un género.";
+                return; 
+            }
+
+            string legajo = txtLegajo.Text;
+            int idLocalidad = Convert.ToInt32(ddlLocalidad.SelectedValue);
+            int idEspecialidad = Convert.ToInt32(ddlEspecialidad.SelectedValue);
+            int idNacionalidad = Convert.ToInt32(ddlNacionalidad.SelectedValue);
+            int idGenero = Convert.ToInt32(rblGenero.SelectedValue);
+            string usuario = txtUsuario.Text;
+            string dni = txtDNI.Text;
+            string email = txtCorreoElectronico.Text;
+            string nombre = txtNombre.Text;
+            string apellido = txtApellido.Text;
+            DateTime fechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
+            string direccion = txtDireccion.Text;
+            string telefono = txtTelefono.Text;
+            bool estado = true;   // suponemos que esta activo al momento de agregarlo
+
+            bool resultado = nMedico.agregarMedico(legajo, idLocalidad, idEspecialidad, idNacionalidad, idGenero, usuario, dni, email, nombre, apellido, fechaNacimiento, direccion, telefono, estado);
+
+            if (resultado)
+            {
+                
+                lblMensaje.Text = "Médico agregado exitosamente.";
+                LimpiarCampos();
+            }
+            else
+            {
+                
+                lblMensaje.Text = "Hubo un error al agregar el médico.";
+            }
+        }
+
+
 
     }
-
+    
 }
 
 

@@ -17,7 +17,7 @@ namespace Dao
 
         }
 
-        private SqlConnection ObtenerConexion()
+        internal SqlConnection ObtenerConexion()
         {
             SqlConnection cn = new SqlConnection(rutaBDClinica);
             try

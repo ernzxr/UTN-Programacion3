@@ -17,36 +17,61 @@ namespace Dao
 
         public Usuario ObtenerUsuarioPorCredenciales(string usuario, string contraseña)
         {
+
             // Consulta SQL para obtener el usuario, su clave y el tipo de usuario
             string query = @"
-            SELECT u.Usuario_Us, u.Clave_Us, u.Id_Tipo_Usuario_Us, t.TipoDeUsuario
-            FROM Usuarios u
-            INNER JOIN TipoDeUsuario t ON u.Id_Tipo_Usuario_Us = t.Id_Tipo_Usuario
-            WHERE u.Usuario_Us = @Usuario AND u.Clave_Us = @Contraseña";
+            SELECT u.Usuario_Us, u.Clave_Us, u.Id_Tipo_Usuario_Us, t.Id_Tipo_Usuario_TU
+             FROM Usuarios u
+            INNER JOIN Tipos_Usuarios t ON u.Id_Tipo_Usuario_Us = t.Id_Tipo_Usuario_TU
+             WHERE u.Usuario_Us = @Usuario AND u.Clave_Us = @Contraseña";
 
-            // Usamos AccesoDatos para obtener el DataTable con la consulta
+            // Crear el comando con los parámetros
             SqlCommand comando = new SqlCommand(query);
             comando.Parameters.AddWithValue("@Usuario", usuario);
             comando.Parameters.AddWithValue("@Contraseña", contraseña);
 
-            DataTable dt = _accesoDatos.ObtenerTabla(comando); // Ejecutamos la consulta
-
-            // Si se encuentra un usuario
-            if (dt.Rows.Count > 0)
+            // Usamos el método ObtenerConexion() para obtener la conexión
+            SqlConnection conexion = _accesoDatos.ObtenerConexion();
+            if (conexion == null)
             {
-                DataRow row = dt.Rows[0]; // Tomamos la primera fila de los resultados
-                return new Usuario
+                // Si no se pudo establecer la conexión, se maneja aquí
+                return null;
+            }
+
+            // Asignar la conexión al comando
+            comando.Connection = conexion;
+
+            // Ejecutar la consulta
+            try
+            {
+                DataTable dt = _accesoDatos.ObtenerTabla(comando); // Ejecutamos la consulta
+
+                // Si se encuentra un usuario
+                if (dt.Rows.Count > 0)
                 {
-                    Usuario_Us = row["Usuario_Us"].ToString(),
-                    Clave_Us = row["Clave_Us"].ToString(),
-                    IdTipoUsuario_Us = Convert.ToInt32(row["Id_Tipo_Usuario_Us"])
-                };
+                    DataRow row = dt.Rows[0]; // Tomamos la primera fila de los resultados
+                    return new Usuario
+                    {
+                        Usuario_Us = row["Usuario_Us"].ToString(),
+                        Clave_Us = row["Clave_Us"].ToString(),
+                        IdTipoUsuario_Us = Convert.ToInt32(row["Id_Tipo_Usuario_Us"])
+                    };
+                }
+            }
+            finally
+            {
+                // Asegurarnos de cerrar la conexión después de usarla
+                if (conexion != null && conexion.State == ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
             }
 
             // Si no se encontró el usuario
             return null;
         }
     }
+
 
 
 }

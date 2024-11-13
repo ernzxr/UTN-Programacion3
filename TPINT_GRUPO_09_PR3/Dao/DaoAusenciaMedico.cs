@@ -6,27 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entidades;
+using System.Reflection;
 
 namespace Dao
 {
     public class DaoAusenciaMedico
     {
         AccesoDatos ds = new AccesoDatos();
-        public AusenciaMedico getAusenciaMedico(AusenciaMedico ausMed)
-        {
-            DataTable tabla = ds.ObtenerTabla("Ausencias_Medicos",
-            "SELECT Legajo_Medico_AM, TAM.Descripcion_TAM, " +
-            "Fecha_Inicio_AM, Fecha_Fin_AM " +
-            "FROM Ausencias_Medicos " +
-            "INNER JOIN Tipo_Ausencias_Medicos AS TAM ON Id_Tipo_Ausencia_AM = TAM.Id_Tipo_Ausencia_TAM " +
-            "WHERE Legajo_Medico=" + ausMed.getLegajoMedico());
-
-            ausMed.setLegajoMedico((int)tabla.Rows[0][1]);
-            ausMed.setTipoAusencia((int)tabla.Rows[0][2]);
-            ausMed.setFechaInicio((DateTime)tabla.Rows[0][3]);
-            ausMed.setFechaFin((DateTime)tabla.Rows[0][4]);
-            return ausMed;
-        }
 
         public Boolean existeAusencia(AusenciaMedico aus)
         {
@@ -37,10 +23,11 @@ namespace Dao
         public DataTable getTablaAusencias()
         {
             DataTable tabla = ds.ObtenerTabla("Ausencias_Medicos",
-            "SELECT Legajo_Medico_AM, TAM.Descripcion_TAM, " +
+            "SELECT Legajo_Medico_AM, (Me.Nombre_Me + ' ' + Me.Apellido_Me) AS Nombre_Completo, TAM.Descripcion_TAM, " +
             "Fecha_Inicio_AM, Fecha_Fin_AM " +
             "FROM Ausencias_Medicos " +
-            "INNER JOIN Tipos_Ausencias_Medicos AS TAM ON Id_Tipo_Ausencia_AM = TAM.Id_Tipo_Ausencia_TAM ");
+            "INNER JOIN Tipos_Ausencias_Medicos AS TAM ON Id_Tipo_Ausencia_AM = TAM.Id_Tipo_Ausencia_TAM " +
+            "INNER JOIN Medicos AS Me ON Legajo_Medico_AM = Legajo_Me");
             return tabla;
         }
 
@@ -62,6 +49,19 @@ namespace Dao
             SqlParametros.Value = aus.getFechaInicio();
             SqlParametros = Comando.Parameters.Add("@FECHA_FIN", SqlDbType.Date);
             SqlParametros.Value = aus.getFechaFin();
+        }
+
+        public DataTable filtrarAusenciasLegajo(string legajo)
+        {
+            string consulta = "SELECT Legajo_Medico_AM, (Me.Nombre_Me + ' ' + Me.Apellido_Me) AS Nombre_Completo, TAM.Descripcion_TAM, " +
+            "Fecha_Inicio_AM, Fecha_Fin_AM " +
+            "FROM Ausencias_Medicos " +
+            "INNER JOIN Tipos_Ausencias_Medicos AS TAM ON Id_Tipo_Ausencia_AM = TAM.Id_Tipo_Ausencia_TAM " +
+            "INNER JOIN Medicos AS Me ON Legajo_Medico_AM = Legajo_Me " +
+            "WHERE Legajo_Medico_AM = '" + legajo + "'";
+            DataTable tabla = ds.ObtenerTabla("Ausencias_Medicos", consulta);
+
+            return tabla;
         }
     }
 }

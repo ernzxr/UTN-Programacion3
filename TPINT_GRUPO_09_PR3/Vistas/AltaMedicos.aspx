@@ -109,9 +109,12 @@
     <asp:Label ID="lblUsuario" runat="server" Text="Usuario" Style="align-self: flex-start"></asp:Label>
     <asp:TextBox ID="txtUsuario" class="form-control" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
+    
 
-     <asp:Button ID="btnAgregar" class="btn btn-success" runat="server" Text="Agregar" />
+     <asp:Button ID="btnAgregar" class="btn btn-success" runat="server" Text="Agregar" OnClick="btnAgregar_Click" CausesValidation="true"  />
      <p></p>
+     <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
+     
      <button type="btnCargarHorarios" class="btn btn-primary btn-lg">Cargar días y horarios</button>
 
 </div>

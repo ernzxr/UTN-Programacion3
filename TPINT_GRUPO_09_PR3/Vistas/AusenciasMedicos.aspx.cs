@@ -19,10 +19,10 @@ namespace Vistas
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+            CargarTiposAusencias();
 
             if (!IsPostBack)
             {
-                CargarTiposAusencias();
                 CargarAusencias();
             }
         }
@@ -42,7 +42,7 @@ namespace Vistas
             ddlTipoAusencia.DataValueField = "Id_Tipo_Ausencia_TAM";
             ddlTipoAusencia.DataBind();
 
-            ddlTipoAusencia.Items.Insert(0, new ListItem("-- Seleccionar --", "-1"));
+            ddlTipoAusencia.Items.Insert(0, new ListItem("Elegir una opción", "-1"));
             ddlTipoAusencia.Items[0].Attributes["disabled"] = "disabled";
             ddlTipoAusencia.Items[0].Selected = true;
         }
@@ -62,6 +62,8 @@ namespace Vistas
             if (agregado)
             {
                 txtLegajo.Text = "OK";
+                CargarTiposAusencias();
+                CargarAusencias();
             }
             else
             {
@@ -74,8 +76,21 @@ namespace Vistas
         protected void gvAusencias_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvAusencias.PageIndex = e.NewPageIndex;
+            CargarTiposAusencias();
             CargarAusencias();
         }
 
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            DataTable dt = negocioAusenciaMedico.FiltrarAusencias(txtFiltrarLegajo.Text);
+            gvAusencias.DataSource = dt;
+            gvAusencias.DataBind();
+        }
+
+        protected void btnMostrarTodo_Click(object sender, EventArgs e)
+        {
+            CargarTiposAusencias();
+            CargarAusencias();
+        }
     }
 }

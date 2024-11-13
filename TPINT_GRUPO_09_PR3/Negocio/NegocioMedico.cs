@@ -60,5 +60,11 @@ namespace Negocio
 
         }
 
+        public Boolean existeMedico(string dni, int idNacionalidad)
+        {
+            return dao.existeMedico(dni, idNacionalidad);
+        }
+
+
     }
 }

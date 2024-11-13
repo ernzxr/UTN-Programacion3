@@ -4,7 +4,7 @@ GO
 CREATE DATABASE UTN2C2024PR3CLINICA
 ON 
 ( NAME = UTN2C2024PR3CLINICA_dat,
-  FILENAME = 'C:\TrabajosPracticosProgIII\UTN-Programacion3\TPINT_GRUPO_09_PR3\ClinicaBD\UTN2C2024PR3CLINICA.mdf' )
+  FILENAME = 'D:\ernzxr\Google Drive\ernzxr\Estudio\UTN\UTN Pacheco\Tecnicatura\3er Cuatrimestre\Programación III\TP Integrador\BASE DE DATOS\UTN2C2024PR3CLINICA.mdf' )
 GO
 
 USE UTN2C2024PR3CLINICA
@@ -100,7 +100,7 @@ CREATE TABLE Medicos (
 	CONSTRAINT FK_Medicos_Especialidades FOREIGN KEY (Id_Especialidad_Me) REFERENCES Especialidades (Id_Especialidad_Es),
 	CONSTRAINT FK_Medicos_Generos FOREIGN KEY (Id_Genero_Me) REFERENCES Generos (Id_Genero_Ge),
 	CONSTRAINT FK_Medicos_Usuarios FOREIGN KEY (Usuario_Me) REFERENCES Usuarios (Usuario_Us),
-	CONSTRAINT UK_Dni_Medicos UNIQUE (DNI_Me),
+	CONSTRAINT UK_Dni_Medicos UNIQUE (Id_Nacionalidad_Me, DNI_Me),
 	CONSTRAINT UK_Email_Medicos UNIQUE (Email_Me),
 	CONSTRAINT UK_Usuario_Medicos UNIQUE (Usuario_Me)
 )
@@ -118,7 +118,7 @@ CREATE TABLE Pacientes (
 	Direccion_Pa VARCHAR(100) NOT NULL,
 	Telefono_Pa VARCHAR(15) NOT NULL,
 	Estado_Pa BIT DEFAULT 1 NOT NULL,
-	CONSTRAINT PK_Pacientes PRIMARY KEY (DNI_Pa, Id_Localidad_Pa),
+	CONSTRAINT PK_Pacientes PRIMARY KEY (DNI_Pa, Id_Nacionalidad_Pa),
 	CONSTRAINT FK_Pacientes_Nacionalidades FOREIGN KEY (Id_Nacionalidad_Pa) REFERENCES Nacionalidades (Id_Nacionalidad_Na),
 	CONSTRAINT FK_Pacientes_Localidades FOREIGN KEY (Id_Localidad_Pa) REFERENCES Localidades (Id_Localidad_Lo),
 	CONSTRAINT FK_Pacientes_Generos FOREIGN KEY (Id_Genero_Pa) REFERENCES Generos (Id_Genero_Ge),
@@ -171,12 +171,12 @@ CREATE TABLE Turnos (
 	Fecha_Tu DATE NOT NULL,
 	Hora_Tu TIME NOT NULL,
 	DNI_Paciente_Tu CHAR(8) NOT NULL,
-	Id_Localidad_Paciente_Tu INT NOT NULL,
+	Id_Nacionalidad_Paciente_Tu INT NOT NULL,
 	Asistencia_Tu BIT DEFAULT 0 NOT NULL,
 	Observaciones_Tu VARCHAR(255),
 	CONSTRAINT PK_Turnos PRIMARY KEY (Legajo_Medico_Tu, Fecha_Tu, Hora_Tu),
 	CONSTRAINT FK_Turnos_Medicos FOREIGN KEY (Legajo_Medico_Tu) REFERENCES Medicos (Legajo_Me),
-	CONSTRAINT FK_Turnos_Pacientes FOREIGN KEY (DNI_Paciente_Tu, Id_Localidad_Paciente_Tu) REFERENCES Pacientes (DNI_Pa, Id_Localidad_Pa)
+	CONSTRAINT FK_Turnos_Pacientes FOREIGN KEY (DNI_Paciente_Tu, Id_Nacionalidad_Paciente_Tu) REFERENCES Pacientes (DNI_Pa, Id_Nacionalidad_Pa)
 )
 GO
 
@@ -186,17 +186,17 @@ INSERT INTO Provincias (Cod_Provincia_Pr, Descripcion_Pr) VALUES
 ('CAT', 'Catamarca'),
 ('CHA', 'Chaco'),
 ('CHU', 'Chubut'),
-('CBA', 'Cï¿½rdoba'),
+('CBA', 'Córdoba'),
 ('COR', 'Corrientes'),
-('ERI', 'Entre Rï¿½os'),
+('ERI', 'Entre Ríos'),
 ('FOR', 'Formosa'),
 ('JUJ', 'Jujuy'),
 ('LPA', 'La Pampa'),
 ('LRI', 'La Rioja'),
 ('MEN', 'Mendoza'),
 ('MIS', 'Misiones'),
-('NEU', 'Neuquï¿½n'),
-('RNE', 'Rï¿½o Negro'),
+('NEU', 'Neuquén'),
+('RNE', 'Río Negro'),
 ('SAL', 'Salta'),
 ('SJU', 'San Juan'),
 ('SLS', 'San Luis'),
@@ -204,8 +204,8 @@ INSERT INTO Provincias (Cod_Provincia_Pr, Descripcion_Pr) VALUES
 ('SFE', 'Santa Fe'),
 ('SDE', 'Santiago del Estero'),
 ('TDF', 'Tierra del Fuego'),
-('TUC', 'Tucumï¿½n'),
-('CAB', 'Ciudad Autï¿½noma de Buenos Aires')
+('TUC', 'Tucumán'),
+('CAB', 'Ciudad Autónoma de Buenos Aires')
 GO
 
 -- CARGA DE DATOS PARA LOCALIDADES
@@ -215,21 +215,21 @@ INSERT INTO Localidades (Cod_Localidad_Lo, Descripcion_Lo, Id_Provincia_Lo) VALU
 ('BUE03', 'Bragado', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'BUE')),
 ('BUE04', 'General Pacheco', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'BUE')),
 ('CAT01', 'San Fernando del Valle', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CAT')),
-('CAT02', 'Belï¿½n', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CAT')),
+('CAT02', 'Belén', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CAT')),
 ('CHA01', 'Resistencia', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CHA')),
-('CHA02', 'Roque Sï¿½enz Peï¿½a', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CHA')),
+('CHA02', 'Roque Sáenz Peña', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CHA')),
 ('CHU01', 'Rawson', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CHU')),
 ('CHU02', 'Trelew', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CHU')),
-('CBA01', 'Cï¿½rdoba', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CBA')),
+('CBA01', 'Córdoba', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CBA')),
 ('CBA02', 'Villa Carlos Paz', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CBA')),
 ('COR01', 'Corrientes', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'COR')),
 ('COR02', 'Goya', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'COR')),
-('ERI01', 'Paranï¿½', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'ERI')),
+('ERI01', 'Paraná', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'ERI')),
 ('ERI02', 'Concordia', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'ERI')),
 ('FOR01', 'Formosa', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'FOR')),
 ('FOR02', 'Clorinda', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'FOR')),
 ('JUJ01', 'San Salvador de Jujuy', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'JUJ')),
-('JUJ02', 'Palpalï¿½', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'JUJ')),
+('JUJ02', 'Palpalá', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'JUJ')),
 ('LPA01', 'Santa Rosa', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'LPA')),
 ('LPA02', 'General Pico', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'LPA')),
 ('LRI01', 'La Rioja', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'LRI')),
@@ -237,27 +237,27 @@ INSERT INTO Localidades (Cod_Localidad_Lo, Descripcion_Lo, Id_Provincia_Lo) VALU
 ('MEN01', 'Mendoza', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'MEN')),
 ('MEN02', 'San Rafael', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'MEN')),
 ('MIS01', 'Posadas', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'MIS')),
-('MIS02', 'Oberï¿½', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'MIS')),
-('NEU01', 'Neuquï¿½n', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'NEU')),
-('NEU02', 'San Martï¿½n de los Andes', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'NEU')),
+('MIS02', 'Oberá', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'MIS')),
+('NEU01', 'Neuquén', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'NEU')),
+('NEU02', 'San Martín de los Andes', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'NEU')),
 ('RNE01', 'Viedma', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'RNE')),
 ('RNE02', 'Bariloche', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'RNE')),
 ('SAL01', 'Salta', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SAL')),
 ('SAL02', 'Tartagal', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SAL')),
 ('SJU01', 'San Juan', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SJU')),
-('SJU02', 'Jï¿½chal', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SJU')),
+('SJU02', 'Jáchal', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SJU')),
 ('SLS01', 'San Luis', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SLS')),
 ('SLS02', 'Villa Mercedes', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SLS')),
-('SCR01', 'Rï¿½o Gallegos', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SCR')),
+('SCR01', 'Río Gallegos', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SCR')),
 ('SCR02', 'Caleta Olivia', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SCR')),
 ('SFE01', 'Santa Fe', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SFE')),
 ('SFE02', 'Rosario', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SFE')),
 ('SDE01', 'Santiago del Estero', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SDE')),
 ('SDE02', 'La Banda', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SDE')),
 ('TDF01', 'Ushuaia', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TDF')),
-('TDF02', 'Rï¿½o Grande', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TDF')),
-('TUC01', 'San Miguel de Tucumï¿½n', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TUC')),
-('TUC02', 'Concepciï¿½n', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TUC')),
+('TDF02', 'Río Grande', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TDF')),
+('TUC01', 'San Miguel de Tucumán', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TUC')),
+('TUC02', 'Concepción', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TUC')),
 ('CAB01', 'Palermo', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CAB')),
 ('CAB02', 'Recoleta', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CAB'))
 GO
@@ -265,39 +265,39 @@ GO
 -- CARGA DE DATOS PARA ESPECIALIDADES
 INSERT INTO Especialidades (Cod_Especialidad_Es, Descripcion_Es) VALUES 
 ('MED', 'Medicina General'),
-('CAR', 'Cardiologï¿½a'),
-('DER', 'Dermatologï¿½a'),
-('NEU', 'Neurologï¿½a'),
-('PED', 'Pediatrï¿½a'),
-('PSY', 'Psiquiatrï¿½a'),
+('CAR', 'Cardiología'),
+('DER', 'Dermatología'),
+('NEU', 'Neurología'),
+('PED', 'Pediatría'),
+('PSY', 'Psiquiatría'),
 ('GIN', 'Gineco-Obstetricia'),
-('ONC', 'Oncologï¿½a'),
+('ONC', 'Oncología'),
 ('ORT', 'Ortopedia'),
-('OTO', 'Otorrinolaringologï¿½a'),
-('PSR', 'Psicologï¿½a'),
-('REH', 'Rehabilitaciï¿½n'),
-('TRA', 'Traumatologï¿½a'),
-('CIR', 'Cirugï¿½a General'),
-('FIS', 'Fisiatrï¿½a'),
-('NUT', 'Nutriciï¿½n'),
-('INM', 'Inmunologï¿½a'),
-('URO', 'Urologï¿½a'),
-('NEF', 'Nefrologï¿½a'),
-('INF', 'Infectologï¿½a'),
+('OTO', 'Otorrinolaringología'),
+('PSR', 'Psicología'),
+('REH', 'Rehabilitación'),
+('TRA', 'Traumatología'),
+('CIR', 'Cirugía General'),
+('FIS', 'Fisiatría'),
+('NUT', 'Nutrición'),
+('INM', 'Inmunología'),
+('URO', 'Urología'),
+('NEF', 'Nefrología'),
+('INF', 'Infectología'),
 ('ADO', 'Adicciones'),
-('RAD', 'Radiologï¿½a'),
-('END', 'Endocrinologï¿½a'),
-('ALO', 'Alergologï¿½a'),
-('GER', 'Geriatrï¿½a'),
-('PNE', 'Neumonologï¿½a'),
-('HEM', 'Hematologï¿½a'),
-('GEN', 'Genï¿½tica Mï¿½dica')
+('RAD', 'Radiología'),
+('END', 'Endocrinología'),
+('ALO', 'Alergología'),
+('GER', 'Geriatría'),
+('PNE', 'Neumonología'),
+('HEM', 'Hematología'),
+('GEN', 'Genética Médica')
 GO
 
 -- CARGA DE DATOS PARA TIPO DE USUARIOS
 INSERT INTO Tipos_Usuarios (Cod_Tipo_Usuario_TU, Descripcion_TU) VALUES
 ('ADM', 'Administrador'),
-('MED', 'Mï¿½dico')
+('MED', 'Médico')
 GO
 
 -- CARGA DE USUARIOS
@@ -329,16 +329,16 @@ INSERT INTO Nacionalidades (Cod_Nacionalidad_Na, Descripcion_Na) VALUES
 ('CO', 'Colombia'),
 ('CR', 'Costa Rica'),
 ('CU', 'Cuba'),
-('DO', 'Repï¿½blica Dominicana'),
+('DO', 'República Dominicana'),
 ('EC', 'Ecuador'),
 ('SV', 'El Salvador'),
 ('GT', 'Guatemala'),
 ('HN', 'Honduras'),
-('MX', 'Mï¿½xico'),
+('MX', 'México'),
 ('NI', 'Nicaragua'),
-('PA', 'Panamï¿½'),
+('PA', 'Panamá'),
 ('PY', 'Paraguay'),
-('PE', 'Perï¿½'),
+('PE', 'Perú'),
 ('PR', 'Puerto Rico'),
 ('UR', 'Uruguay'),
 ('VE', 'Venezuela')
@@ -354,21 +354,21 @@ GO
 -- CARGA DE DATOS PARA MEDICOS
 INSERT INTO Medicos (Usuario_Me, Legajo_Me, Id_Localidad_Me, Id_Especialidad_Me, Id_Nacionalidad_Me, DNI_Me, Email_Me, Nombre_Me, Apellido_Me, Id_Genero_Me, Fecha_Nacimiento_Me, Direccion_Me, Telefono_Me)
 VALUES
-('medico','11111', 1, 2, 1, '20202020', 'jperez@gmail.com', 'Juan', 'Pï¿½rez', 1, '1985-05-15', 'Av. Siempre Viva 123', '1123456789'),
-('riveiro','29878', 3, 3, 1, '38553293', 'riveiro@gmail.com', 'Ernesto Josï¿½', 'Riveiro', 1, '1995-03-08', 'Calle 2367', '2342458560'),
+('medico','11111', 1, 2, 1, '20202020', 'jperez@gmail.com', 'Juan', 'Pérez', 1, '1985-05-15', 'Av. Siempre Viva 123', '1123456789'),
+('riveiro','29878', 3, 3, 1, '38553293', 'riveiro@gmail.com', 'Ernesto José', 'Riveiro', 1, '1995-03-08', 'Calle 2367', '2342458560'),
 ('chenagil','33333', 2, 1, 1, '40404040', 'chenagil@gmail.com', 'Facundo Tomas', 'Chena Gil', 1, '1978-01-10', 'Calle 123', '1145678901'),
 ('lavia','44444', 4, 2, 1, '50505050', 'lavia@gmail.com', 'Gabriela Beatriz', 'Lavia', 2, '1982-09-20', 'Av. Libertador 234', '1156789012'),
 ('luques','55555', 5, 3, 1, '60606060', 'luques@gmail.com', 'Victoria Abril', 'Luques', 2, '1988-12-11', 'Calle Primavera 567', '1167890123'),
-('reyesgorbaran','66666', 6, 1, 1, '70707070', 'reyesgorbaran@gmail.com', 'Marï¿½a Victoria', 'Reyes Gorbarï¿½n', 2, '1995-03-14', 'Calle Luna 890', '1178901234'),
-('leon','77777', 7, 2, 1, '80808080', 'leon@gmail.com', 'Justina', 'Leon', 2, '1987-08-30', 'Av. Tucumï¿½n 234', '1189012345'),
-('sanchez','88888', 8, 3, 8, '90909090', 'dsanchez@gmail.com', 'Daniel', 'Sï¿½nchez', 1, '1980-04-25', 'Calle Sol 123', '1190123456'),
-('hernandez','99999', 9, 1, 9, '10101010', 'mhernandez@gmail.com', 'Martï¿½n', 'Hernï¿½ndez', 1, '1992-06-18', 'Calle del Mar 456', '1201234567'),
-('clopez','10000', 10, 2, 10, '11111111', 'clopez@gmail.com', 'Carmen', 'Lï¿½pez', 2, '1993-11-05', 'Av. Buenos Aires 123', '1212345678'),
-('rjimenez','20000', 11, 3, 1, '12121212', 'rjimenez@gmail.com', 'Roberto', 'Jimï¿½nez', 1, '1986-07-13', 'Calle Rivadavia 789', '1223456789'),
-('mperez','30000', 12, 1, 2, '13131313', 'mperez@gmail.com', 'Mercedes', 'Pï¿½rez', 2, '1984-09-22', 'Av. San Martï¿½n 456', '1234567890'),
-('erodriguez','40000', 13, 2, 3, '14141414', 'erodriguez@gmail.com', 'Esteban', 'Rodrï¿½guez', 3, '1994-01-02', 'Calle de los ï¿½rboles 567', '1245678901'),
-('egarcia','50000', 14, 3, 4, '15151515', 'egarcia@gmail.com', 'Elena', 'Garcï¿½a', 3, '1983-06-25', 'Calle Azul 890', '1256789012'),
-('lfernandez','60000', 15, 1, 5, '16161616', 'lfernandez@gmail.com', 'Luis', 'Fernï¿½ndez', 1, '1991-04-03', 'Calle del Sol 321', '1267890123')
+('reyesgorbaran','66666', 6, 1, 1, '70707070', 'reyesgorbaran@gmail.com', 'María Victoria', 'Reyes Gorbarán', 2, '1995-03-14', 'Calle Luna 890', '1178901234'),
+('leon','77777', 7, 2, 1, '80808080', 'leon@gmail.com', 'Justina', 'Leon', 2, '1987-08-30', 'Av. Tucumán 234', '1189012345'),
+('sanchez','88888', 8, 3, 8, '90909090', 'dsanchez@gmail.com', 'Daniel', 'Sánchez', 1, '1980-04-25', 'Calle Sol 123', '1190123456'),
+('hernandez','99999', 9, 1, 9, '10101010', 'mhernandez@gmail.com', 'Martín', 'Hernández', 1, '1992-06-18', 'Calle del Mar 456', '1201234567'),
+('clopez','10000', 10, 2, 10, '11111111', 'clopez@gmail.com', 'Carmen', 'López', 2, '1993-11-05', 'Av. Buenos Aires 123', '1212345678'),
+('rjimenez','20000', 11, 3, 1, '12121212', 'rjimenez@gmail.com', 'Roberto', 'Jiménez', 1, '1986-07-13', 'Calle Rivadavia 789', '1223456789'),
+('mperez','30000', 12, 1, 2, '13131313', 'mperez@gmail.com', 'Mercedes', 'Pérez', 2, '1984-09-22', 'Av. San Martín 456', '1234567890'),
+('erodriguez','40000', 13, 2, 3, '14141414', 'erodriguez@gmail.com', 'Esteban', 'Rodríguez', 3, '1994-01-02', 'Calle de los Árboles 567', '1245678901'),
+('egarcia','50000', 14, 3, 4, '15151515', 'egarcia@gmail.com', 'Elena', 'García', 3, '1983-06-25', 'Calle Azul 890', '1256789012'),
+('lfernandez','60000', 15, 1, 5, '16161616', 'lfernandez@gmail.com', 'Luis', 'Fernández', 1, '1991-04-03', 'Calle del Sol 321', '1267890123')
 GO
 
 -- CARGA DIAS DE LA SEMANA
@@ -386,10 +386,10 @@ GO
 INSERT INTO Tipos_Ausencias_Medicos (Cod_Tipo_Ausencia_TAM, Descripcion_TAM) VALUES
 ('VA', 'Vacaciones'),
 ('FR', 'Franco semanal'),
-('DE', 'Dï¿½a de estudio'),
-('JM', 'Justificativo mï¿½dico'),
+('DE', 'Día de estudio'),
+('JM', 'Justificativo médico'),
 ('TA', 'Trabajo administrativo'),
-('DA', 'Dï¿½a adicional por emergencias'),
+('DA', 'Día adicional por emergencias'),
 ('OT', 'Otros')
 GO
 
@@ -418,6 +418,9 @@ VALUES
 ('29878', 5, '09:00', '13:00')
 GO
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD:TPINT_GRUPO_09_PR3/ScriptBD/UTN2C2024PR3CLINICA.sql
 CREATE PROCEDURE spAgregarPaciente
 (
 @DNI CHAR(8),
@@ -521,4 +524,53 @@ BEGIN
     SET Estado_Pa = 0
     WHERE DNI_Pa = @DNI AND Id_Nacionalidad_Pa = @NACIONALIDAD;
 END;
+GO
+
+CREATE PROCEDURE spObtenerLocalidadPorDNI
+    @DniPaciente CHAR(8)
+AS
+BEGIN
+    SELECT Id_Localidad_Pa
+    FROM Pacientes
+    WHERE DNI_Pa = @DniPaciente
+END
+GO
+
+CREATE PROCEDURE spAgregarTurno
+(
+@LEGAJOMEDICO CHAR(5),
+@FECHA DATE,
+@HORA TIME(7),
+@DNIPACIENTE CHAR(8),
+@IDLOCALIDADP INT,
+@ASISTENCIA BIT
+)
+AS
+INSERT INTO Turnos(Legajo_Medico_Tu, Fecha_Tu, Hora_Tu, DNI_Paciente_Tu, Id_Localidad_Paciente_Tu, Asistencia_Tu)
+VALUES (@LEGAJOMEDICO, @FECHA, @HORA, @DNIPACIENTE, @IDLOCALIDADP, @ASISTENCIA)
+RETURN
+=======
+>>>>>>> Stashed changes
+-- CARGA DE PACIENTES
+INSERT INTO Pacientes (DNI_Pa, Id_Localidad_Pa, Id_Nacionalidad_Pa, Id_Genero_Pa, Email_Pa, Nombre_Pa, Apellido_Pa, Fecha_Nacimiento_Pa, Direccion_Pa, Telefono_Pa)
+VALUES
+('30303030', 2, 1, 2, 'amarcos@gmail.com', 'Ana', 'Marcos', '1995-02-17', 'Calle Rio 123', '1134567890'),
+('32323232', 4, 2, 1, 'bluma@gmail.com', 'Bruno', 'Luna', '1988-04-25', 'Calle Nube 234', '1145678901'),
+('34343434', 3, 1, 2, 'cromero@gmail.com', 'Carla', 'Romero', '1992-06-30', 'Av. Libertador 123', '1156789012'),
+('35353535', 5, 3, 1, 'dmendez@gmail.com', 'Damián', 'Méndez', '1985-10-10', 'Calle Primavera 567', '1167890123'),
+('36363636', 6, 1, 2, 'efranco@gmail.com', 'Elena', 'Franco', '1990-03-21', 'Calle Sol 890', '1178901234'),
+('37373737', 2, 1, 1, 'fgomez@gmail.com', 'Fernando', 'Gómez', '1994-12-05', 'Av. Siempre Viva 234', '1189012345'),
+('38383838', 7, 2, 2, 'gperalta@gmail.com', 'Gabriela', 'Peralta', '1991-07-19', 'Calle Tucumán 456', '1190123456'),
+('39393939', 8, 3, 1, 'hlopez@gmail.com', 'Hernán', 'López', '1987-01-27', 'Av. Rivadavia 789', '1201234567'),
+('40404040', 9, 1, 2, 'idelgado@gmail.com', 'Isabel', 'Delgado', '1986-11-10', 'Calle Luna 321', '1212345678'),
+('41414141', 10, 2, 1, 'jgonzalez@gmail.com', 'Jorge', 'González', '1992-08-14', 'Calle Azul 567', '1223456789'),
+('42424242', 11, 1, 2, 'kleiva@gmail.com', 'Karina', 'Leiva', '1993-03-18', 'Calle del Mar 234', '1234567890'),
+('43434343', 12, 3, 1, 'lramirez@gmail.com', 'Luis', 'Ramírez', '1985-09-09', 'Av. San Martín 456', '1245678901'),
+('44444444', 13, 1, 2, 'mgutierrez@gmail.com', 'María', 'Gutiérrez', '1989-05-29', 'Calle de los Árboles 678', '1256789012'),
+('45454545', 14, 2, 1, 'ncarrasco@gmail.com', 'Nicolás', 'Carrasco', '1990-07-22', 'Av. Buenos Aires 890', '1267890123'),
+('46464646', 15, 1, 2, 'orivero@gmail.com', 'Olivia', 'Rivero', '1995-10-17', 'Calle del Sol 234', '1278901234')
+<<<<<<< Updated upstream
+=======
+>>>>>>> 4adcc02196e066c2dfb68b0aea5556900d845cff:TPINT_GRUPO_09_PR3/ScriptBD/bdScript.sql
+>>>>>>> Stashed changes
 GO
