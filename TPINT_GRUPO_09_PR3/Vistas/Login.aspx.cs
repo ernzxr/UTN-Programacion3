@@ -30,16 +30,19 @@ namespace Vistas
             if (tipoUsuario == "Administrador")
             {
                 // Redirige a la página de administrador
+                Session["TipoUsuario"] = 1;
                 Response.Redirect("InicioAdmin.aspx");
             }
             else if (tipoUsuario == "Médico")
             {
                 // Redirige a la página de médico
+                Session["TipoUsuario"] = 2;
                 Response.Redirect("InicioMedico.aspx");
             }
             else
             {
                 // Muestra un mensaje de error si las credenciales son incorrectas
+                Session.Clear();
                 lblError.Text = "Credenciales incorrectas";
             }
         }
