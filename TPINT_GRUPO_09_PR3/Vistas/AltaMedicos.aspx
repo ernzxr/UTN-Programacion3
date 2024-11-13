@@ -25,6 +25,16 @@
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
+        .horizontal-radio label{
+         
+        margin-right: 30px; 
+        display: inline-block; 
+        vertical-align: middle; 
+        }
+        
+        
+    
+       
     
 </style>
 </asp:Content>
@@ -57,28 +67,19 @@
 
     <asp:Label ID="lblSexo" runat="server" Text="Sexo" Style="align-self: flex-start"></asp:Label>
    
-   <div class="ContenedoRadioButtonsSexo">
-    <div class="form-check form-check-inline mb-4">
-           <asp:RadioButton ID="rbMasculino" runat="server" GroupName="Sexo" Text="Masculino" CssClass="auto-style2" Checked="true" Width="150px" />
-    </div>
-
-    <div class="form-check form-check-inline mb-4">
-        <asp:RadioButton ID="rbFemenino" runat="server" GroupName="Sexo" Text="Femenino" CssClass="auto-style2" Width="150px" />
-    </div>
-        <div class="form-check form-check-inline mb-4">
-    <asp:RadioButton ID="rbOtro" runat="server" GroupName="Sexo" Text="Otro" CssClass="auto-style2" Width="150px" />
-    </div>
-    </div>
+    <asp:RadioButtonList ID="rblGenero" runat="server" RepeatDirection="Horizontal" CssClass="horizontal-radio label"  > 
+    <asp:ListItem Text="Masculino" Value="1" />
+    <asp:ListItem Text="Femenino" Value="2" />
+    <asp:ListItem Text="Otro" Value="3" />
+    </asp:RadioButtonList>
 
     <asp:Label ID="lblFechaNacimiento" runat="server" Text="Fecha de Nacimiento" Style="align-self: flex-start"></asp:Label>
     <asp:TextBox ID="txtFechaNacimiento" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
     <asp:RequiredFieldValidator ID="rfvFechaNacimiento" CssClass="mb-5" runat="server" ControlToValidate="txtFechaNacimiento" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
 
     <asp:Label ID="lblNacionalidad" runat="server" Text="Nacionalidad" Style="align-self: flex-start"></asp:Label>
-    <asp:TextBox ID="txtNacionalidad" class="form-control" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="txtNacionalidad" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
-    <asp:RegularExpressionValidator ID="revNacionalidad" CssClass="mb-3" runat="server" ControlToValidate="txtNacionalidad" ForeColor="#CC0000" ValidationExpression="^[a-zA-Z\s]+$" ValidationGroup="grupo1">(*) Ingrese solo letras.</asp:RegularExpressionValidator>
-
+    <asp:DropDownList ID="ddlNacionalidad" class="form-select" runat="server"></asp:DropDownList>
+    <asp:RequiredFieldValidator ID="rfvNacionalidad" CssClass="mb-5" runat="server" ControlToValidate="ddlNacionalidad" ForeColor="#CC0000" ValidationGroup="grupo1" InitialValue="0">(*) Seleccione una opción.</asp:RequiredFieldValidator>
 
     <asp:Label ID="lblDireccion" runat="server" Text="Dirección" Style="align-self: flex-start"></asp:Label>
     <asp:TextBox ID="txtDireccion" class="form-control" runat="server"></asp:TextBox>
@@ -89,7 +90,7 @@
     <asp:RequiredFieldValidator ID="rfvLocalidad" CssClass="mb-5" runat="server" ControlToValidate="ddlLocalidad" ForeColor="#CC0000" ValidationGroup="grupo1" InitialValue="0">(*) Seleccione una opción.</asp:RequiredFieldValidator>
 
     <asp:Label ID="lblProvincia" runat="server" Text="Provincia" Style="align-self: flex-start"></asp:Label>
-    <asp:DropDownList ID="ddlProvincia" class="form-select" runat="server"></asp:DropDownList>
+    <asp:DropDownList ID="ddlProvincia" class="form-select" runat="server" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged" AutoPostBack="true" ></asp:DropDownList>
     <asp:RequiredFieldValidator ID="rfvProvincia" CssClass="mb-5" runat="server" ControlToValidate="ddlProvincia" ForeColor="#CC0000" ValidationGroup="grupo1" InitialValue="0">(*) Seleccione una opción.</asp:RequiredFieldValidator>
 
     <asp:Label ID="lblCorreoElectronico" runat="server" Text="Correo Electrónico" Style="align-self: flex-start"></asp:Label>
@@ -104,6 +105,10 @@
     <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad" Style="align-self: flex-start"></asp:Label>
     <asp:DropDownList ID="ddlEspecialidad" class="form-select" runat="server"></asp:DropDownList>
     <asp:RequiredFieldValidator ID="rfvEspecialidad" CssClass="mb-5" runat="server" ControlToValidate="ddlEspecialidad" ForeColor="#CC0000" ValidationGroup="grupo1" InitialValue="0">(*) Seleccione una opción.</asp:RequiredFieldValidator>
+
+    <asp:Label ID="lblUsuario" runat="server" Text="Usuario" Style="align-self: flex-start"></asp:Label>
+    <asp:TextBox ID="txtUsuario" class="form-control" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
 
      <asp:Button ID="btnAgregar" class="btn btn-success" runat="server" Text="Agregar" />
      <p></p>
