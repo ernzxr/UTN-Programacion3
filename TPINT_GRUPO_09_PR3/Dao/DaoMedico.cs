@@ -22,7 +22,7 @@ namespace Dao
         {
             SqlCommand cmd = new SqlCommand();
             ArmarParametrosAgregarMedico(ref cmd, medico);
-            return ds.EjecutarProcedimientoAlmacenado(cmd, "spAgregarMedico");
+            return ds.EjecutarProcedimientoAlmacenado(cmd, "sp_AgregarMedico");
         }
 
         private void ArmarParametrosAgregarMedico(ref SqlCommand cmd, Medico medico)
@@ -85,5 +85,24 @@ namespace Dao
             string consulta = "SELECT * FROM Medicos WHERE Id_Especialidad_Me =" + id;
             return ds.ObtenerTabla("Medicos", consulta);
         }
+        public Boolean existeMedico(string dni, int idNacionalidad)
+        {
+            string consulta = "SELECT * FROM Medicos WHERE Estado_Pa = '" + 1 + "' AND Dni_Me = '" + dni + "' AND Id_Nacionalidad_Pa = " + idNacionalidad;
+            return ds.existe(consulta);
+        }
+
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
 }
