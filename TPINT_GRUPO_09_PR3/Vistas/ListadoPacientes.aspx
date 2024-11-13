@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
-        // Usar JavaScript para controlar el modal
         function showModal() {
             var modal = document.getElementById('UpdateModal');
             var myModal = new bootstrap.Modal(modal);
@@ -147,7 +146,6 @@
                             <asp:TextBox ID="txtTelefono_M" runat="server" class="form-control" />
                         </div>
                         <div>
-                            <asp:TextBox ID="TextBox1" runat="server" class="form-control" />
                             <asp:CheckBox ID="chkEstado_M" Text="Activo" runat="server" />
                         </div>
                     </div>
