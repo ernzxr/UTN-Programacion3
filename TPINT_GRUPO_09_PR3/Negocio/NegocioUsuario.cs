@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Dao;
@@ -31,7 +32,22 @@ namespace Negocio
             return "Credenciales incorrectas";
         }
 
+        public Boolean existeUsuario(string user)
+        {
+            return _daoUsuario.existeUsuario(user);
+        }
 
+        public Boolean agregarUsuario(Usuario usuario)
+        {
+            if(_daoUsuario.existeUsuario(usuario.GetUsuarioUs()))
+            {
+                return false; // Si el usuario ya existe
+            }
+
+            int filasAfectadas = _daoUsuario.agregarUsuario(usuario); ;
+
+            return filasAfectadas > 0; // Si la inserción fue exitosa
+        }
     }
 }
 

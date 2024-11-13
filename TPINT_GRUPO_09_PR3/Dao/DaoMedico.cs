@@ -22,7 +22,7 @@ namespace Dao
         {
             SqlCommand cmd = new SqlCommand();
             ArmarParametrosAgregarMedico(ref cmd, medico);
-            return ds.EjecutarProcedimientoAlmacenado(cmd, "sp_AgregarMedico");
+            return ds.EjecutarProcedimientoAlmacenado(cmd, "spAgregarMedico");
         }
 
         private void ArmarParametrosAgregarMedico(ref SqlCommand cmd, Medico medico)
@@ -67,10 +67,6 @@ namespace Dao
 
             SqlParametros = cmd.Parameters.Add("@TELEFONO", SqlDbType.VarChar);
             SqlParametros.Value = medico.getTelefono();
-
-            SqlParametros = cmd.Parameters.Add("@ESTADO", SqlDbType.Bit);
-            SqlParametros.Value = medico.getEstado();
-
         }
 
 

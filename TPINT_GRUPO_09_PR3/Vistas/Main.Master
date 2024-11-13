@@ -40,19 +40,19 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlAltaMedico" runat="server" NavigateUrl="~/AltaMedico.aspx">Alta</asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlAltaMedico" runat="server" NavigateUrl="~/AltaMedicos.aspx">Alta</asp:HyperLink>
                                 </li>
                                 <li>
-                                    <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlListadoMedico" runat="server" NavigateUrl="~/ListadoMedico.aspx">Listado</asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlListadoMedico" runat="server" NavigateUrl="~/ListadoMedicos.aspx">Listado</asp:HyperLink>
                                 </li>
                                 <li>
-                                    <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlModificarMedico" runat="server" NavigateUrl="~/ModificarMedico.aspx">Modificación</asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlModificarMedico" runat="server" NavigateUrl="~/ModificarDatosMedico.aspx">Modificación</asp:HyperLink>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
-                                    <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlHorariosMedico" runat="server" NavigateUrl="~/HorariosMedico.aspx">Horarios</asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlHorariosMedico" runat="server" NavigateUrl="~/HorariosMedicos.aspx">Horarios</asp:HyperLink>
                                 </li>
                                 <li>
                                     <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlAusenciasMedicos" runat="server" NavigateUrl="~/AusenciasMedicos.aspx">Ausencias</asp:HyperLink>

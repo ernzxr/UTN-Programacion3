@@ -70,9 +70,32 @@ namespace Dao
             // Si no se encontró el usuario
             return null;
         }
+
+        public Boolean existeUsuario(string user)
+        {
+            string consulta = "SELECT * FROM Usuarios WHERE Usuario_Us = '" + user + "'";
+            return _accesoDatos.existe(consulta);
+        }
+
+        public int agregarUsuario(Usuario user)
+        {
+            SqlCommand comando = new SqlCommand();
+            ArmarParametrosAgregarUsuario(ref comando, user);
+            return _accesoDatos.EjecutarProcedimientoAlmacenado(comando, "spAgregarUsuario");
+        }
+
+        private void ArmarParametrosAgregarUsuario(ref SqlCommand Comando, Usuario user)
+        {
+            SqlParameter SqlParametros = new SqlParameter();
+            SqlParametros = Comando.Parameters.Add("@USUARIO", SqlDbType.VarChar, 50);
+            SqlParametros.Value = user.GetUsuarioUs();
+            SqlParametros = Comando.Parameters.Add("@CLAVE", SqlDbType.VarChar, 80);
+            SqlParametros.Value = user.GetClaveUs();
+            SqlParametros = Comando.Parameters.Add("@EMAIL", SqlDbType.VarChar, 100);
+            SqlParametros.Value = user.GetEmailUs();
+            SqlParametros = Comando.Parameters.Add("@TIPO", SqlDbType.Int);
+            SqlParametros.Value = user.GetIdTipoUsuario();
+        }
     }
-
-
-
 }
 

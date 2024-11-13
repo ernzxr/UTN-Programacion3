@@ -1,4 +1,5 @@
-﻿using Negocio;
+﻿using Entidades;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,7 +17,7 @@ namespace Vistas
         NegocioEspecialidad nEspecialidad = new NegocioEspecialidad();
         NegocioLocalidad nLocalidad = new NegocioLocalidad();
         NegocioMedico nMedico = new NegocioMedico();
-
+        NegocioUsuario nUsuario = new NegocioUsuario();
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -94,57 +95,83 @@ namespace Vistas
             txtFechaNacimiento.Text = "";
             txtDireccion.Text = "";
             txtTelefono.Text = "";
-
+            txtUsuario.Text = "";
+            txtPassword.Text = "";
+            rblGenero.SelectedValue = "";
+            txtPasswordRepetida.Text = "";
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-
             lblMensaje.Text = "";
 
-            if (rblGenero.SelectedIndex == -1)
+            Usuario user = new Usuario();
+
+            user.SetUsuarioUs(txtUsuario.Text);
+            user.SetClaveUs(txtPassword.Text);
+            user.SetEmailUs(txtUsuario.Text + "@clinica.com.ar");
+            user.SetIdTipoUsuario(2);
+
+            if (nUsuario.agregarUsuario(user))
             {
-                lblMensaje.Text = "Por favor, seleccione un género.";
-                return; 
-            }
+                Medico medico = new Medico();
 
-            string legajo = txtLegajo.Text;
-            int idLocalidad = Convert.ToInt32(ddlLocalidad.SelectedValue);
-            int idEspecialidad = Convert.ToInt32(ddlEspecialidad.SelectedValue);
-            int idNacionalidad = Convert.ToInt32(ddlNacionalidad.SelectedValue);
-            int idGenero = Convert.ToInt32(rblGenero.SelectedValue);
-            string usuario = txtUsuario.Text;
-            string dni = txtDNI.Text;
-            string email = txtCorreoElectronico.Text;
-            string nombre = txtNombre.Text;
-            string apellido = txtApellido.Text;
-            DateTime fechaNacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
-            string direccion = txtDireccion.Text;
-            string telefono = txtTelefono.Text;
-            bool estado = true;   // suponemos que esta activo al momento de agregarlo
+                medico.setLegajo(txtLegajo.Text);
+                medico.setIdLocalidad(Convert.ToInt32(ddlLocalidad.SelectedValue));
+                medico.setIdEspecilidad(Convert.ToInt32(ddlEspecialidad.SelectedValue));
+                medico.setIdNacionalidad(Convert.ToInt32(ddlNacionalidad.SelectedValue));
+                medico.setIdGenero(Convert.ToInt32(rblGenero.SelectedValue));
+                medico.setUsuario(txtUsuario.Text);
+                medico.setDni(txtDNI.Text);
+                medico.setEmail(txtCorreoElectronico.Text);
+                medico.setNombre(txtNombre.Text);
+                medico.setApellido(txtApellido.Text);
+                medico.setFechaNacimiento(Convert.ToDateTime(txtFechaNacimiento.Text));
+                medico.setDireccion(txtDireccion.Text);
+                medico.setTelefono(txtTelefono.Text);
 
-            bool resultado = nMedico.agregarMedico(legajo, idLocalidad, idEspecialidad, idNacionalidad, idGenero, usuario, dni, email, nombre, apellido, fechaNacimiento, direccion, telefono, estado);
+                if (nMedico.agregarMedico(medico))
+                {
 
-            if (resultado)
-            {
-                
-                lblMensaje.Text = "Médico agregado exitosamente.";
-                LimpiarCampos();
+                    lblMensaje.Text = "Médico agregado exitosamente.";
+                    LimpiarCampos();
+                }
+                else
+                {
+
+                    lblMensaje.Text = "Hubo un error al agregar el médico.";
+                }
             }
             else
             {
-                
-                lblMensaje.Text = "Hubo un error al agregar el médico.";
+                lblMensaje.Text = "El usuario ya existe.";
             }
         }
 
-        protected void btnCargarHorarios_Click(object sender, EventArgs e)
+        protected void cvExisteUsuario_ServerValidate(object source, ServerValidateEventArgs args)
         {
-           Response.Redirect("CargaDiasYHorariosMedicos.aspx");
+            if (nUsuario.existeUsuario(txtUsuario.Text))
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
         }
 
+        protected void cvGenero_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (rblGenero.SelectedValue == "")
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
     }
-    
 }
 
 
