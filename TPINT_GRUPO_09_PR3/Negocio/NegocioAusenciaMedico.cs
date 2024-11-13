@@ -36,5 +36,10 @@ namespace Negocio
         {
             return daoAusenciaMedico.filtrarAusenciasLegajo(legajo);
         }
+
+        public DataTable ObtenerFechasAusencias(string legajoMedico)
+        {
+            return daoAusenciaMedico.ObtenerFechasAusencias(legajoMedico);
+        }
     }
 }

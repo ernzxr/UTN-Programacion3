@@ -63,5 +63,14 @@ namespace Dao
 
             return tabla;
         }
+
+        public DataTable ObtenerFechasAusencias(string legajoMedico)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@LegajoMedico", legajoMedico);
+
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "sp_ObtenerFechasAusencias");
+
+        }
     }
 }

@@ -13,15 +13,7 @@ namespace Dao
     {
         AccesoDatos ds = new AccesoDatos();
 
-        public string ObtenerLegajoPorNombreCompleto(string nombreCompleto)
-        {
-            SqlCommand comando = new SqlCommand();
-            comando.Parameters.AddWithValue("@NombreCompleto", nombreCompleto);
-
-            DataTable tabla = ds.EjecutarProcedimientoAlmacenadoLectura(comando, "sp_ObtenerLegajoPorNombreCompleto");
-
-            return tabla.Rows.Count > 0 ? tabla.Rows[0]["Legajo_Me"].ToString() : null;
-        }
+        
 
         public DataTable ObtenerDiasLaborales(string legajoMedico)
         {
@@ -31,14 +23,7 @@ namespace Dao
             return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerDiasLaborales");
         }
 
-        public DataTable ObtenerFechasAusencias(string legajoMedico)
-        {
-            SqlCommand comando = new SqlCommand();
-            comando.Parameters.AddWithValue("@LegajoMedico", legajoMedico);
-
-            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "sp_ObtenerFechasAusencias");
-
-        }
+        
 
         public DataTable ObtenerFechasConTurnosCompletos(string legajoMedico)
         {

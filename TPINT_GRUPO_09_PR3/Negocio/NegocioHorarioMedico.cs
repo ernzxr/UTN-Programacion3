@@ -13,20 +13,14 @@ namespace Negocio
     {
         DaoHorarioMedico daoHorario = new DaoHorarioMedico();
 
-        public string ObtenerLegajoPorNombreCompleto(string nombreCompleto)
-        {
-            return daoHorario.ObtenerLegajoPorNombreCompleto(nombreCompleto);
-        }
+        
 
         public DataTable ObtenerDiasLaborales(string legajoMedico)
         {
             return daoHorario.ObtenerDiasLaborales(legajoMedico);
         }
 
-        public DataTable ObtenerFechasAusencias(string legajoMedico)
-        {
-            return daoHorario.ObtenerFechasAusencias(legajoMedico);
-        }
+        
 
         public DataTable ObtenerFechasConTurnosCompletos(string legajoMedico)
         {

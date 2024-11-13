@@ -92,7 +92,15 @@ namespace Dao
         }
 
 
+        public string ObtenerLegajoPorNombreCompleto(string nombreCompleto)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@NombreCompleto", nombreCompleto);
 
+            DataTable tabla = ds.EjecutarProcedimientoAlmacenadoLectura(comando, "sp_ObtenerLegajoPorNombreCompleto");
+
+            return tabla.Rows.Count > 0 ? tabla.Rows[0]["Legajo_Me"].ToString() : null;
+        }
 
 
 
