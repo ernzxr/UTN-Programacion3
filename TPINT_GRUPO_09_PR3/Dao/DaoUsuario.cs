@@ -71,6 +71,7 @@ namespace Dao
             return null;
         }
 
+
         public Boolean existeUsuario(string user)
         {
             string consulta = "SELECT * FROM Usuarios WHERE Usuario_Us = '" + user + "'";
@@ -96,6 +97,7 @@ namespace Dao
             SqlParametros = Comando.Parameters.Add("@TIPO", SqlDbType.Int);
             SqlParametros.Value = user.GetIdTipoUsuario();
         }
+
     }
 }
 

@@ -87,49 +87,49 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmail;
 
         /// <summary>
-        /// Control lblNueva.
+        /// Control lblCalve.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNueva;
+        protected global::System.Web.UI.WebControls.Label lblCalve;
 
         /// <summary>
-        /// Control txtNueva.
+        /// Control txtClave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNueva;
+        protected global::System.Web.UI.WebControls.TextBox txtClave;
 
         /// <summary>
-        /// Control rfvNueva.
+        /// Control rfvClave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNueva;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvClave;
 
         /// <summary>
-        /// Control lblConfirmar.
+        /// Control lblConfirmarClave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblConfirmar;
+        protected global::System.Web.UI.WebControls.Label lblConfirmarClave;
 
         /// <summary>
-        /// Control txtConfirmar.
+        /// Control txtConfirmarClave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtConfirmar;
+        protected global::System.Web.UI.WebControls.TextBox txtConfirmarClave;
 
         /// <summary>
         /// Control rvfConfirmar.

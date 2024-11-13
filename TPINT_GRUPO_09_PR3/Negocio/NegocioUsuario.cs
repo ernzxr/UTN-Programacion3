@@ -47,9 +47,13 @@ namespace Negocio
             int filasAfectadas = _daoUsuario.agregarUsuario(usuario); ;
 
             return filasAfectadas > 0; // Si la inserción fue exitosa
+
         }
     }
+
+
 }
+
 
 
 

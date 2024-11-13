@@ -41,13 +41,13 @@
        <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
        <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" CssClass="mb-3" ForeColor="#CC0000" ValidationExpression="^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$" ValidationGroup="grupo1">(*)Debe ingresar un Email válido</asp:RegularExpressionValidator>      
 
-       <asp:Label ID="lblNueva" runat="server" Text="Nueva contraseña" Style="align-self: flex-start"></asp:Label>
-       <asp:TextBox ID="txtNueva" TextMode="Password" CssClass="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
-       <asp:RequiredFieldValidator ID="rfvNueva" runat="server" ControlToValidate="txtNueva" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
+       <asp:Label ID="lblCalve" runat="server" Text="Nueva contraseña" Style="align-self: flex-start"></asp:Label>
+       <asp:TextBox ID="txtClave" TextMode="Password" CssClass="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
+       <asp:RequiredFieldValidator ID="rfvClave" runat="server" ControlToValidate="txtClave" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
 
-       <asp:Label ID="lblConfirmar" runat="server" Text="Confirme la contraseña" Style="align-self: flex-start"></asp:Label>
-       <asp:TextBox ID="txtConfirmar" TextMode="Password" CssClass="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
-       <asp:RequiredFieldValidator ID="rvfConfirmar" runat="server" ControlToValidate="txtConfirmar" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
+       <asp:Label ID="lblConfirmarClave" runat="server" Text="Confirme la contraseña" Style="align-self: flex-start"></asp:Label>
+       <asp:TextBox ID="txtConfirmarClave" TextMode="Password" CssClass="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
+       <asp:RequiredFieldValidator ID="rvfConfirmar" runat="server" ControlToValidate="txtConfirmarClave" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
 
         <asp:Button ID="btnAceptar" class="btn btn-success" runat="server" Text="Aceptar" ValidationGroup="grupo1" OnClick="btnAgregar_Click" />
         <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
