@@ -106,5 +106,10 @@ namespace Negocio
         {
             return dao.existeEmail(email);
         }
+
+        public int ObtenerLocalidadPorDNI(string dniPaciente)
+        {
+            return dao.ObtenerLocalidadPorDNI(dniPaciente);
+        }
     }
 }

@@ -156,5 +156,20 @@ namespace Dao
             string consulta = "SELECT * FROM Pacientes WHERE Email_Pa = '" + email + "'";
             return ds.existe(consulta);
         }
+
+        public int ObtenerLocalidadPorDNI(string dniPaciente)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@DniPaciente", dniPaciente);
+
+            DataTable tabla = ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerLocalidadPorDNI");
+
+            if (tabla.Rows.Count > 0)
+            {
+                return Convert.ToInt32(tabla.Rows[0]["Id_Localidad_Pa"]);
+            }
+
+            return -1;
+        }
     }
 }
