@@ -99,6 +99,26 @@ namespace Dao
             SqlParametros = comando.Parameters.Add("@TELEFONO", SqlDbType.VarChar);
             SqlParametros.Value = paciente.getTelefono();
         }
+
+        public int bajaPaciente(Paciente paciente)
+        {
+            SqlCommand comando = new SqlCommand();
+            ArmarParametrosAgregarPaciente(ref comando, paciente);
+            return ds.EjecutarProcedimientoAlmacenado(comando, "spBajaLogicaPaciente");
+        }
+
+
+        private void ArmarParametrosBajaLogica(ref SqlCommand comando, Paciente paciente)
+        {
+            SqlParameter SqlParametros = new SqlParameter();
+
+            SqlParametros = comando.Parameters.Add("@DNI", SqlDbType.Char);
+            SqlParametros.Value = paciente.getDni();
+
+            SqlParametros = comando.Parameters.Add("@NACIONALIDAD", SqlDbType.Int);
+            SqlParametros.Value = paciente.getNacionalidad();
+        }
+
         public Boolean existePaciente(string dni, int idNacionalidad)
         {
             string consulta = "SELECT * FROM Pacientes WHERE Estado_Pa = '" + 1 + "' AND Dni_Pa = '" + dni + "' AND Id_Nacionalidad_Pa = " + idNacionalidad;

@@ -220,8 +220,38 @@ namespace Vistas
 
         protected void btnEliminar_Click(Object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
 
+            string commandArgument = btn.CommandArgument;
+
+            string[] values = commandArgument.Split(',');
+
+            string dni = values[0];
+            string nacionalidad = values[1];
+            int idNacionalidad = 0;
+
+
+            foreach (ListItem item in ddlNacionalidad.Items)
+            {
+                if (item.Text == nacionalidad)
+                {
+                    idNacionalidad = int.Parse(item.Value);
+                    break;
+                }
+            }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showDeleteModal", "showDeleteModal();", true);
         }
+
+        protected void btnConfirmDelete_Click(Object sender, EventArgs e)
+        {
+            int ddl = Convert.ToInt32(ddlNacionalidad.SelectedValue);
+            bool borro = NegP.bajaPaciente(txtDNI.Text, ddl);
+
+            gvPacientes.DataSource = NegP.getPacientes();
+            gvPacientes.DataBind();
+        }
+
         protected void btnModificarM_Click(Object sender, EventArgs e)
         {
             bool modifico = NegP.ModificarPaciente(txtDNI_M.Text, txtNombre_M.Text, txtApellido_M.Text, int.Parse(ddlSexo_M.SelectedValue), Convert.ToDateTime(txtFechaNacimiento_M.Text),

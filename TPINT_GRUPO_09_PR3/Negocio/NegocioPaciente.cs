@@ -67,6 +67,24 @@ namespace Negocio
             }
         }
 
+        public bool bajaPaciente(string dni, int idnacionalidad)
+        {
+            int cantFilas = 0;
+            Paciente paciente = new Paciente();
+            paciente.setDni(dni);
+            paciente.setNacionalidad(idnacionalidad);
+
+            cantFilas = dao.bajaPaciente(paciente);
+            if (cantFilas == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public DataTable getPaciente(string dni, int idNacionalidad)
         {
             return dao.filtrarPaciente(dni, idNacionalidad); 

@@ -1,13 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ListadoPacientes.aspx.cs" Inherits="Vistas.ListadoPacientes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-   <script>
-       // Usar JavaScript para controlar el modal
-       function showModal() {
-           var modal = document.getElementById('UpdateModal');
-           var myModal = new bootstrap.Modal(modal);
-           myModal.show();
-       }
+    <script>
+        // Usar JavaScript para controlar el modal
+        function showModal() {
+            var modal = document.getElementById('UpdateModal');
+            var myModal = new bootstrap.Modal(modal);
+            myModal.show();
+        }
+
+        function showDeleteModal() {
+            var modal = document.getElementById('DeleteConfirmModal');
+            var myModal = new bootstrap.Modal(modal);
+            myModal.show();
+        }
     </script>
 
     <title>Listado de Pacientes</title>
@@ -47,26 +53,26 @@
             <asp:DropDownList ID="ddlNacionalidad" class="form-select" runat="server"></asp:DropDownList>
             <asp:RequiredFieldValidator ID="rfvNacionalidad" CssClass="auto-style2" runat="server" ControlToValidate="ddlNacionalidad" ForeColor="#CC0000" ValidationGroup="grupo1" InitialValue="0">(*) Seleccione una opción.</asp:RequiredFieldValidator>
             <div>
-                <asp:Button ID="btnFiltrar" class="btn-azul" runat="server" Text="Filtrar" Width="150px" ValidationGroup="grupo1" OnClick="btnFiltrar_Click"/>
+                <asp:Button ID="btnFiltrar" class="btn-azul" runat="server" Text="Filtrar" Width="150px" ValidationGroup="grupo1" OnClick="btnFiltrar_Click" />
                 <asp:Button ID="btnMostrarTodo" class="btn-azul" runat="server" Text="Mostrar Todo" Width="150px" OnClick="btnMostrarTodo_Click" />
             </div>
         </div>
 
         <div style="width: 100%; margin-top: 20px;">
-                    <asp:GridView runat="server" ID="gvPacientes" CssClass="table table-hover" AutoGenerateColumns="true">
-                        <Columns>
-                            <asp:TemplateField HeaderText="Acciones">
-                                <ItemTemplate>
-                                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnClick="btnModificar_Click" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Acciones2">
-                                <ItemTemplate>
-                                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar"  OnClick="btnEliminar_Click" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
+            <asp:GridView runat="server" ID="gvPacientes" CssClass="table table-hover" AutoGenerateColumns="true">
+                <Columns>
+                    <asp:TemplateField HeaderText="Acciones">
+                        <ItemTemplate>
+                            <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnClick="btnModificar_Click" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Acciones2">
+                        <ItemTemplate>
+                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" OnClick="btnEliminar_Click" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
         </div>
         <div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
@@ -132,10 +138,29 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button class="btn btn-primary" Text="Guardar cambios" runat="server" OnClick="btnModificarM_Click"/>
+                        <asp:Button class="btn btn-primary" Text="Guardar cambios" runat="server" OnClick="btnModificarM_Click" />
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="DeleteConfirmModal" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="DeleteModalLabel">Confirmar Eliminación</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Está seguro de que desea eliminar este registro?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnConfirmDelete" runat="server" Text="Sí" CssClass="btn btn-danger" OnClick="btnConfirmDelete_Click" />
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </asp:Content>
