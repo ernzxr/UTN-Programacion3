@@ -17,7 +17,7 @@ namespace Vistas
         protected void btnSalir_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            Response.Redirect("Login.aspx");
+            Response.Redirect("Home.aspx");
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
