@@ -40,7 +40,7 @@
                 ValidationExpression="^\d{7,8}$" style="color: red; font-size: 12px;"></asp:RegularExpressionValidator>
 
             <asp:Button ID="btnAgregar" runat="server" Text="Agregar Turno" 
-                style="width: 150px; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;"></asp:Button>
+                style="width: 150px; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;" OnClick="btnAgregar_Click"></asp:Button>
             <asp:Label ID="lblMensaje" runat="server" 
                 style="margin-left: 10px; color: green; font-weight: bold;"></asp:Label>
         </div>
@@ -62,9 +62,9 @@
             <asp:Label ID="lblHorario" runat="server" Text="Horario:" 
                 style="font-weight: bold;"></asp:Label>
             <asp:DataList ID="dlHorario" runat="server" 
-                style="width: 100%; padding: 5px;">
+                style="width: 100%; padding: 5px;" OnItemCommand="dlHorario_ItemCommand">
                 <ItemTemplate>
-                    <asp:Button ID="btnHorario" runat="server" Text='<%# Eval("Horario") %>' CommandArgument='<%# Eval("Horario") %>' CommandName="SeleccionarHorario" OnCommand="dlHorario_ItemCommand" 
+                    <asp:Button ID="btnHorario" runat="server" Text='<%# Eval("Horario") %>' CommandArgument='<%# Eval("Horario") %>' CommandName="SeleccionarHorario" 
                         style="padding: 10px 20px; font-size: 16px; width: 150px; height: 60px;"/>
                 </ItemTemplate>
             </asp:DataList>

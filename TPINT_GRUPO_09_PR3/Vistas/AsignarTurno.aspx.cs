@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using Negocio;
+using Entidades;
 
 namespace Vistas
 {
@@ -15,6 +16,10 @@ namespace Vistas
         NegocioMedico negMedico = new NegocioMedico();
         NegocioHorarioMedico negocioHorario = new NegocioHorarioMedico();
         NegocioDiaSemana negocioDiaSemana = new NegocioDiaSemana();
+        NegocioAusenciaMedico negocioAusenciaMedico = new NegocioAusenciaMedico();
+        NegocioPaciente negocioPaciente = new NegocioPaciente();
+        NegocioTurno negocioTurno = new NegocioTurno();
+        Turno turno = new Turno();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -86,7 +91,7 @@ namespace Vistas
             }
 
             // Obtener el legajo del médico usando el nombre completo
-            string legajoMedico = negocioHorario.ObtenerLegajoPorNombreCompleto(nombreCompleto);
+            string legajoMedico = negMedico.ObtenerLegajoPorNombreCompleto(nombreCompleto);
             if (string.IsNullOrEmpty(legajoMedico))
             {
                 lblMensajeError.Text = "No se encontró el legajo del médico.";
@@ -125,7 +130,7 @@ namespace Vistas
             }
 
             // Verificar si es un día de ausencia
-            DataTable fechasAusencias = negocioHorario.ObtenerFechasAusencias(legajoMedico);
+            DataTable fechasAusencias = negocioAusenciaMedico.ObtenerFechasAusencias(legajoMedico);
             foreach (DataRow row in fechasAusencias.Rows)
             {
                 DateTime fechaInicio = Convert.ToDateTime(row["Fecha_Inicio_AM"]);
@@ -173,6 +178,8 @@ namespace Vistas
                 if (horarioFiltrado.Length == 0)
                 {
                     lblMensajeError.Text = "El médico no trabaja en el día seleccionado.";
+                    dlHorario.DataSource = null;
+                    dlHorario.DataBind();
                     return;
                 }
 
@@ -180,16 +187,38 @@ namespace Vistas
                 TimeSpan horaInicio = (TimeSpan)horarioFiltrado[0]["Hora_Inicio_HM"];
                 TimeSpan horaFin = (TimeSpan)horarioFiltrado[0]["Hora_Fin_HM"];
 
+                // Obtener los horarios ya asignados para este médico en la fecha seleccionada
+                DataTable horariosAsignados = negocioTurno.ObtenerHorariosAsignados(legajoMedico, fechaSeleccionada);
+
+                // Crear lista de horarios asignados para facilitar la búsqueda
+                HashSet<TimeSpan> horariosAsignadosSet = new HashSet<TimeSpan>();
+                foreach (DataRow row in horariosAsignados.Rows)
+                {
+                    horariosAsignadosSet.Add((TimeSpan)row["Hora_Tu"]);
+                }
+
                 // Crear DataTable para horarios disponibles
                 DataTable dtHorarios = new DataTable();
                 dtHorarios.Columns.Add("Horario", typeof(string));
 
-                // Generar botones por cada hora disponible
+                // Generar botones por cada hora disponible, excluyendo los horarios ya asignados
                 for (TimeSpan hora = horaInicio; hora < horaFin; hora = hora.Add(TimeSpan.FromHours(1)))
                 {
-                    DataRow fila = dtHorarios.NewRow();
-                    fila["Horario"] = hora.ToString(@"hh\:mm");
-                    dtHorarios.Rows.Add(fila);
+                    if (!horariosAsignadosSet.Contains(hora)) // Verificar si el horario ya está asignado
+                    {
+                        DataRow fila = dtHorarios.NewRow();
+                        fila["Horario"] = hora.ToString(@"hh\:mm");
+                        dtHorarios.Rows.Add(fila);
+                    }
+                }
+
+                // Verificar si hay horarios disponibles
+                if (dtHorarios.Rows.Count == 0)
+                {
+                    lblMensajeError.Text = "No hay horarios disponibles para el día seleccionado.";
+                    dlHorario.DataSource = null;
+                    dlHorario.DataBind();
+                    return;
                 }
 
                 // Cargar DataList con los horarios disponibles
@@ -199,21 +228,63 @@ namespace Vistas
             else
             {
                 lblMensajeError2.Text = "Error al obtener los horarios de trabajo del médico.";
+                dlHorario.DataSource = null;
+                dlHorario.DataBind();
             }
 
         }
 
-        protected void dlHorario_ItemCommand(object sender, CommandEventArgs e)
+        protected void dlHorario_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            // Verificar si el comando es "SeleccionarHorario"
+            //Verificar si el comando es "SeleccionarHorario"
             if (e.CommandName == "SeleccionarHorario")
             {
                 // Obtener el horario seleccionado del CommandArgument
                 string horarioSeleccionado = e.CommandArgument.ToString();
 
+                Session["horarioSeleccionado"] = horarioSeleccionado;
+
                 // Mostrar el horario seleccionado en el lblMensajeError como ejemplo
                 lblMensajeError2.Text = $"Horario seleccionado: {horarioSeleccionado}";
             }
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            lblMensaje.Text = "";
+
+            // Obtener los datos ingresados en el formulario
+            string nombreCompleto = ddlProfesionales.SelectedItem.Text;
+            string legajoMedico = negMedico.ObtenerLegajoPorNombreCompleto(nombreCompleto);
+
+            DateTime fechaSeleccionada = DateTime.Parse(txtDia.Text);
+
+            // Obtener el horario seleccionado desde Session
+            string horarioSeleccionado = Session["horarioSeleccionado"].ToString();
+
+            TimeSpan horaSeleccionada = TimeSpan.Parse(horarioSeleccionado);
+
+            string dni = Convert.ToString(txtDniPaciente.Text);
+
+            turno.setLegajo_Medico(legajoMedico);
+            turno.setFecha(fechaSeleccionada);
+            turno.setHora(horaSeleccionada);
+            turno.setDni_Paciente(txtDniPaciente.Text);
+            turno.setIdLocalidadPaciente(negocioPaciente.ObtenerLocalidadPorDNI(dni));
+            turno.setAsistencia(true);
+
+            bool turnoAgregado = negocioTurno.AgregarTurno(turno);
+
+            if (turnoAgregado)
+            {
+                lblMensaje.Text = "El turno fue asignado correctamente";
+            }
+            else
+            {
+                lblMensaje.Text = "Error al asignar turno";
+            }
+
+            Session["horarioSeleccionado"] = null;
         }
     }
     
