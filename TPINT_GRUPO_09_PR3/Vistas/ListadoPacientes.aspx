@@ -59,11 +59,12 @@
         </div>
 
         <div style="width: 100%; margin-top: 20px;">
-            <asp:GridView runat="server" ID="gvPacientes" CssClass="table table-hover" AutoGenerateColumns="true">
+            <asp:GridView runat="server" ID="gvPacientes" CssClass="table table-hover" AutoGenerateColumns="False">
                 <Columns>
+                    <asp:BoundField DataField="Fecha_De_Nacimiento"  DataFormatString="{0:dd-MM-yyyy}" HeaderText="Fecha" />
                     <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
-                            <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnClick="btnModificar_Click" />
+                            <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnCommand="btnModificar_Command1" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Acciones2">
@@ -109,7 +110,6 @@
                         </div>
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
-
                                 <div>
                                     <asp:Label ID="lblProvincia_M" Text="Provincia:" runat="server" />
                                     <asp:DropDownList ID="ddlProvincia_M" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_M_SelectedIndexChanged"></asp:DropDownList>
