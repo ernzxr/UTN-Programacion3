@@ -21,7 +21,8 @@
             <asp:Label ID="lblPassword" runat="server" Text="Contraseña" CssClass="form-label mb-3"></asp:Label>
             <asp:TextBox ID="txtPass" TextMode="Password" CssClass="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvActual" runat="server" ControlToValidate="txtPass" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="rfvPActual" runat="server" ControlToValidate="txtPass" CssClass="mb-3" ForeColor="#CC0000" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$" ValidationGroup="grupo1">(*) La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una minúscula y un número.</asp:RegularExpressionValidator>
+            <!--<asp:RegularExpressionValidator ID="rfvPActual" runat="server" ControlToValidate="txtPass" CssClass="mb-3" ForeColor="#CC0000" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)" ValidationGroup="grupo1">(*) La contraseña .</asp:RegularExpressionValidator> -->
+             <asp:Label ID="lblError" runat="server" Text="" CssClass="form-label mb-3"></asp:Label>
 
             <asp:Button ID="btnLogin" runat="server" Text="Ingresar" OnClick="btnLogin_Click" CssClass="btn btn-primary" />
         </div>
