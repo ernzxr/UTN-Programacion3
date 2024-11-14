@@ -118,3 +118,17 @@ INSERT INTO Medicos(Legajo_Me,Id_Localidad_Me,Id_Especialidad_Me,Id_Nacionalidad
 VALUES(@LEGAJO,@LOCALIDAD,@ESPECIALIDAD,@NACIONALIDAD,@GENERO,@USUARIO,@DNI,@EMAIL,@NOMBRE,@APELLIDO,@FECHANACIMIENTO,@DIRECCION,@TELEFONO)
 RETURN
 GO
+
+-- FILTRAR AUSENCIAS
+CREATE OR ALTER PROCEDURE spFiltrarAusenciasLegajo
+@LEGAJO CHAR(5)
+AS 
+	BEGIN
+		SELECT Legajo_Medico_AM, (Me.Nombre_Me + ' ' + Me.Apellido_Me) AS Nombre_Completo, 
+		TAM.Descripcion_TAM, Fecha_Inicio_AM, Fecha_Fin_AM  
+		FROM Ausencias_Medicos  
+        INNER JOIN Tipos_Ausencias_Medicos AS TAM ON Id_Tipo_Ausencia_AM = TAM.Id_Tipo_Ausencia_TAM
+        INNER JOIN Medicos AS Me ON Legajo_Medico_AM = Legajo_Me
+        WHERE Legajo_Medico_AM = @LEGAJO
+	END
+GO
