@@ -18,6 +18,7 @@
         <!-- <asp:Label ID="lblTipoUsuario" runat="server" Text="Tipo Usuario" CssClass="form-label mb-3"></asp:Label> -->
         <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="form-label mb-3"></asp:Label>
         <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control"></asp:TextBox>
+         <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
 
         <asp:Label ID="lblPassword" runat="server" Text="Contraseña" CssClass="form-label mb-3"></asp:Label>
         <asp:TextBox ID="txtPass" TextMode="Password" CssClass="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
