@@ -49,6 +49,11 @@ namespace Negocio
             return dao.existeMedico(dni, idNacionalidad);
         }
 
+        public Boolean existeLegajo(string legajo)
+        {
+            return dao.existeLegajo(legajo);
+        }
+
         public string ObtenerLegajoPorNombreCompleto(string nombreCompleto)
         {
             return dao.ObtenerLegajoPorNombreCompleto(nombreCompleto);

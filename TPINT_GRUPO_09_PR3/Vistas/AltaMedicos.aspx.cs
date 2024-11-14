@@ -104,49 +104,55 @@ namespace Vistas
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             lblMensaje.Text = "";
-
-            Usuario user = new Usuario();
-
-            user.SetUsuarioUs(txtUsuario.Text);
-            user.SetClaveUs(txtPassword.Text);
-            user.SetEmailUs(txtUsuario.Text + "@clinica.com.ar");
-            user.SetIdTipoUsuario(2);
-
-            if (nUsuario.agregarUsuario(user))
+            if (Page.IsValid)
             {
-                Medico medico = new Medico();
-
-                medico.setLegajo(txtLegajo.Text);
-                medico.setIdLocalidad(Convert.ToInt32(ddlLocalidad.SelectedValue));
-                medico.setIdEspecilidad(Convert.ToInt32(ddlEspecialidad.SelectedValue));
-                medico.setIdNacionalidad(Convert.ToInt32(ddlNacionalidad.SelectedValue));
-                medico.setIdGenero(Convert.ToInt32(rblGenero.SelectedValue));
-                medico.setUsuario(txtUsuario.Text);
-                medico.setDni(txtDNI.Text);
-                medico.setEmail(txtCorreoElectronico.Text);
-                medico.setNombre(txtNombre.Text);
-                medico.setApellido(txtApellido.Text);
-                medico.setFechaNacimiento(Convert.ToDateTime(txtFechaNacimiento.Text));
-                medico.setDireccion(txtDireccion.Text);
-                medico.setTelefono(txtTelefono.Text);
-
-                if (nMedico.agregarMedico(medico))
+                if (!nUsuario.existeUsuario(txtUsuario.Text) &&
+                !nMedico.existeLegajo(txtLegajo.Text) &&
+                !nMedico.existeMedico(txtDNI.Text, Convert.ToInt32(ddlNacionalidad.SelectedValue)))
                 {
+                    Usuario user = new Usuario();
 
-                    lblMensaje.Text = "Médico agregado exitosamente.";
-                    LimpiarCampos();
-                }
-                else
-                {
+                    user.SetUsuarioUs(txtUsuario.Text);
+                    user.SetClaveUs(txtPassword.Text);
+                    user.SetEmailUs(txtUsuario.Text + "@clinica.com.ar");
+                    user.SetIdTipoUsuario(2);
 
-                    lblMensaje.Text = "Hubo un error al agregar el médico.";
+                    Medico medico = new Medico();
+
+                    medico.setLegajo(txtLegajo.Text);
+                    medico.setIdLocalidad(Convert.ToInt32(ddlLocalidad.SelectedValue));
+                    medico.setIdEspecilidad(Convert.ToInt32(ddlEspecialidad.SelectedValue));
+                    medico.setIdNacionalidad(Convert.ToInt32(ddlNacionalidad.SelectedValue));
+                    medico.setIdGenero(Convert.ToInt32(rblGenero.SelectedValue));
+                    medico.setUsuario(txtUsuario.Text);
+                    medico.setDni(txtDNI.Text);
+                    medico.setEmail(txtCorreoElectronico.Text);
+                    medico.setNombre(txtNombre.Text);
+                    medico.setApellido(txtApellido.Text);
+                    medico.setFechaNacimiento(Convert.ToDateTime(txtFechaNacimiento.Text));
+                    medico.setDireccion(txtDireccion.Text);
+                    medico.setTelefono(txtTelefono.Text);
+
+                    if (!nUsuario.agregarUsuario(user))
+                    {
+                        lblMensaje.Text = "Hubo un error al agregar el usuario.";
+                        return;
+                    }
+
+                    if (nMedico.agregarMedico(medico))
+                    {
+
+                        lblMensaje.Text += "Médico agregado exitosamente.";
+                        LimpiarCampos();
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "Hubo un error al agregar el médico.";
+                    }
                 }
-            }
-            else
-            {
-                lblMensaje.Text = "El usuario ya existe.";
             }
         }
+
 
         protected void cvExisteUsuario_ServerValidate(object source, ServerValidateEventArgs args)
         {
@@ -160,9 +166,9 @@ namespace Vistas
             }
         }
 
-        protected void cvGenero_ServerValidate(object source, ServerValidateEventArgs args)
+        protected void cvExisteLegajo_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            if (rblGenero.SelectedValue == "")
+            if (nMedico.existeLegajo(txtLegajo.Text))
             {
                 args.IsValid = false;
             }

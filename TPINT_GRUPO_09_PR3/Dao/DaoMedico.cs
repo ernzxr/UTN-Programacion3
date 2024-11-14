@@ -83,10 +83,15 @@ namespace Dao
         }
         public Boolean existeMedico(string dni, int idNacionalidad)
         {
-            string consulta = "SELECT * FROM Medicos WHERE Estado_Pa = '" + 1 + "' AND Dni_Me = '" + dni + "' AND Id_Nacionalidad_Pa = " + idNacionalidad;
+            string consulta = "SELECT * FROM Medicos WHERE DNI_Me = '" + dni + "' AND Id_Nacionalidad_Me = " + idNacionalidad;
             return ds.existe(consulta);
         }
 
+        public Boolean existeLegajo(string legajo)
+        {
+            string consulta = "SELECT * FROM Medicos WHERE Legajo_Me = '" + legajo + "'";
+            return ds.existe(consulta);
+        }
 
         public string ObtenerLegajoPorNombreCompleto(string nombreCompleto)
         {
