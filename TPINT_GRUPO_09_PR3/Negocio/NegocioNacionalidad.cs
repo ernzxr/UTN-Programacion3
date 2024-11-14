@@ -1,4 +1,5 @@
 ﻿using Dao;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,6 +20,24 @@ namespace Negocio
         {
             DaoNacionalidad dao = new DaoNacionalidad();
             return dao.getNacionalidad();
+        }
+
+        public int getIdnacionalidad(string nacionalidad)
+        {
+            DaoNacionalidad dao = new DaoNacionalidad();
+            DataTable dt = dao.getNacionalidadPorNombre(nacionalidad);
+
+            int id = 0;
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+
+                id = int.Parse(dr["Id_Nacionalidad"].ToString());
+            }
+
+            return id;
+            
         }
     }
 }

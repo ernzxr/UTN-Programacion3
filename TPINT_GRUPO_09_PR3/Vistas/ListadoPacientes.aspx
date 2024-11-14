@@ -67,6 +67,7 @@
                     <asp:BoundField DataField="Fecha_De_Nacimiento"  DataFormatString="{0:dd-MM-yyyy}" HeaderText="Fecha" />
                     <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
                     <asp:BoundField DataField="Provincia" HeaderText="Provincia" />
+                    <asp:BoundField DataField="Localidad" HeaderText="Localidad" />
                     <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
                     <asp:BoundField DataField="Email" HeaderText="Correo Electronico" />
                     <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
@@ -75,12 +76,12 @@
                             <asp:CheckBox ID="chkEstado" runat="server" Checked='<%# Convert.ToBoolean(Eval("Estado")) %>' Enabled="false" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Acciones">
+                    <asp:TemplateField HeaderText="Modificar">
                         <ItemTemplate>
                             <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnCommand="btnModificar_Command1" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Acciones2">
+                    <asp:TemplateField HeaderText="Eliminar">
                         <ItemTemplate>
                             <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnCommand="btnEliminar_Command" />
                         </ItemTemplate>

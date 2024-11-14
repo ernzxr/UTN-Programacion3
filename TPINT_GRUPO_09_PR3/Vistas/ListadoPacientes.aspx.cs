@@ -67,7 +67,7 @@ namespace Vistas
 
         public void CargarLocalidad(DropDownList ddl, DataRow paciente)
         {
-            DataTable Localidad = negL.getTablaLocalidad(BuscarProvincia(paciente));
+            DataTable Localidad = negL.getTablaLocalidad(int.Parse(paciente["Id_Provincia"].ToString()));
             ddl.DataSource = Localidad;
             ddl.DataTextField = "Descripcion_Lo";
             ddl.DataValueField = "Id_Localidad_Lo";
@@ -87,56 +87,6 @@ namespace Vistas
 
             ddlLocalidad_M.Items.Insert(0, new ListItem("Seleccionar...", "0"));
         }
-
-        public int BuscarSexo(DataRow paciente)
-        {
-            int idSexo = 0;
-
-            foreach (ListItem item in ddlSexo_M.Items)
-            {
-                if (item.Text == paciente["Sexo"].ToString())
-                {
-                    idSexo = int.Parse(item.Value);
-                    break;
-                }
-            }
-
-            return idSexo;
-        }
-
-        public int BuscarProvincia(DataRow paciente)
-        {
-            int idProvincia = 0;
-
-            foreach (ListItem item in ddlProvincia_M.Items)
-            {
-                if (item.Text == paciente["Provincia"].ToString())
-                {
-                    idProvincia = int.Parse(item.Value);
-                    break;
-                }
-            }
-
-            return idProvincia;
-        }
-
-        public int BuscarLocalidad(DataRow paciente)
-        {
-            int idLocalidad = 0;
-
-            foreach (ListItem item in ddlLocalidad_M.Items)
-            {
-                if (item.Text == paciente["Localidad"].ToString())
-                {
-                    idLocalidad = int.Parse(item.Value);
-                    break;
-                }
-            }
-
-            return idLocalidad;
-        }
-
-
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
             string dni = txtDNI.Text;
@@ -172,15 +122,7 @@ namespace Vistas
                 string nacionalidad = values[1];
                 int idNacionalidad = 0;
 
-
-                foreach (ListItem item in ddlNacionalidad.Items)
-                {
-                    if (item.Text == nacionalidad)
-                    {
-                        idNacionalidad = int.Parse(item.Value);
-                        break;
-                    }
-                }
+                idNacionalidad = negn.getIdnacionalidad(nacionalidad);
 
                 DataTable dtPaciente = NegP.getPaciente(dni, idNacionalidad);
 
@@ -192,14 +134,14 @@ namespace Vistas
                     ddlNacionalidad_M.SelectedValue = idNacionalidad.ToString();
                     txtNombre_M.Text = paciente["Nombre"].ToString();
                     txtApellido_M.Text = paciente["Apellido"].ToString();
-                    ddlSexo_M.SelectedValue = BuscarSexo(paciente).ToString();
+                    ddlSexo_M.SelectedValue = paciente["Id_Genero"].ToString();
 
                     DateTime fechaNacimiento = Convert.ToDateTime(paciente["Fecha_De_Nacimiento"]);
                     txtFechaNacimiento_M.Text = fechaNacimiento.ToString("yyyy-MM-dd");
-                    ddlProvincia_M.SelectedValue = BuscarProvincia(paciente).ToString();
+                    ddlProvincia_M.SelectedValue = paciente["Id_Provincia"].ToString();
 
                     CargarLocalidad(ddlLocalidad_M, paciente);
-                    ddlLocalidad_M.SelectedValue = BuscarLocalidad(paciente).ToString();
+                    ddlLocalidad_M.SelectedValue = paciente["Id_Localidad"].ToString();
 
                     txtDireccion_M.Text = paciente["Direccion"].ToString();
                     txtEmail_M.Text = paciente["Email"].ToString();
