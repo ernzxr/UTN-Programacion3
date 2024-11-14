@@ -65,7 +65,6 @@
         <asp:DropDownList ID="ddlEspecialidad" class="form-select" runat="server"></asp:DropDownList>
         <asp:RequiredFieldValidator ID="rfvEspecialidad" CssClass="mb-5" runat="server" ControlToValidate="ddlEspecialidad" ForeColor="#CC0000" ValidationGroup="gpAgregar" InitialValue="0" Display="Dynamic">(*) Seleccione una opción.</asp:RequiredFieldValidator>
 
-
         <h3>Datos Personales</h3>
 
         <asp:Label ID="lblDNI" runat="server" Text="DNI" Style="align-self: flex-start"></asp:Label>
@@ -94,7 +93,7 @@
 
         <asp:Label ID="lblFechaNacimiento" runat="server" Text="Fecha de Nacimiento" Style="align-self: flex-start"></asp:Label>
         <asp:TextBox ID="txtFechaNacimiento" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvFechaNacimiento" CssClass="mb-5" runat="server" ControlToValidate="txtFechaNacimiento" ForeColor="#CC0000" ValidationGroup="gpAgregar">(*) Complete el campo.</asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="rfvFechaNacimiento" CssClass="mb-5" runat="server" ControlToValidate="txtFechaNacimiento" ForeColor="#CC0000" ValidationGroup="gpAgregar" Display="Dynamic">(*) Complete el campo.</asp:RequiredFieldValidator>
 
         <asp:Label ID="lblNacionalidad" runat="server" Text="Nacionalidad" Style="align-self: flex-start"></asp:Label>
         <asp:DropDownList ID="ddlNacionalidad" class="form-select" runat="server"></asp:DropDownList>
