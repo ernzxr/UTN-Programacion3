@@ -174,6 +174,7 @@ CREATE TABLE Turnos (
 	Id_Nacionalidad_Paciente_Tu INT NOT NULL,
 	Asistencia_Tu BIT DEFAULT 0 NOT NULL,
 	Observaciones_Tu VARCHAR(255),
+	Estado_Tu BIT DEFAULT 1 NOT NULL,
 	CONSTRAINT PK_Turnos PRIMARY KEY (Legajo_Medico_Tu, Fecha_Tu, Hora_Tu),
 	CONSTRAINT FK_Turnos_Medicos FOREIGN KEY (Legajo_Medico_Tu) REFERENCES Medicos (Legajo_Me),
 	CONSTRAINT FK_Turnos_Pacientes FOREIGN KEY (DNI_Paciente_Tu, Id_Nacionalidad_Paciente_Tu) REFERENCES Pacientes (DNI_Pa, Id_Nacionalidad_Pa)
@@ -418,139 +419,6 @@ VALUES
 ('29878', 5, '09:00', '13:00')
 GO
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD:TPINT_GRUPO_09_PR3/ScriptBD/UTN2C2024PR3CLINICA.sql
-CREATE PROCEDURE spAgregarPaciente
-(
-@DNI CHAR(8),
-@NOMBRE VARCHAR(50),
-@APELLIDO VARCHAR(50),
-@SEXO INT,
-@FECHANACIMIENTO DATE,
-@NACIONALIDAD INT,
-@LOCALIDAD INT,
-@DIRECCION VARCHAR(100),
-@CORREOELECTRONICO VARCHAR(100),
-@TELEFONO VARCHAR(15),
-@ESTADO BIT
-)
-AS
-INSERT INTO Pacientes(Dni_Pa, Nombre_Pa, Apellido_Pa, Id_Genero_Pa, Fecha_Nacimiento_Pa, Id_Nacionalidad_Pa, Id_Localidad_Pa, Direccion_Pa, Email_Pa, Telefono_Pa, Estado_Pa)
-VALUES (@DNI, @NOMBRE, @APELLIDO, @SEXO, @FECHANACIMIENTO, @NACIONALIDAD, @LOCALIDAD, @DIRECCION, @CORREOELECTRONICO, @TELEFONO, @ESTADO)
-RETURN 
-GO
-
-CREATE PROCEDURE sp_ObtenerLegajoPorNombreCompleto
-    @NombreCompleto VARCHAR(100)
-AS
-BEGIN
-    SELECT Legajo_Me
-    FROM Medicos
-    WHERE (Nombre_Me + ' ' + Apellido_Me) = @NombreCompleto
-END
-GO
-
-CREATE PROCEDURE spObtenerDiasLaborales
-    @LegajoMedico CHAR(5)
-AS
-BEGIN
-    SELECT Id_Dia_Semana_HM, Hora_Inicio_HM, Hora_Fin_HM 
-    FROM Horarios_Medicos 
-    WHERE Legajo_Medico_HM = @LegajoMedico
-END
-GO
-
-CREATE PROCEDURE sp_ObtenerFechasAusencias
-    @LegajoMedico CHAR(5)
-AS
-BEGIN
-    SELECT Fecha_Inicio_AM, Fecha_Fin_AM
-    FROM Ausencias_Medicos 
-    WHERE Legajo_Medico_AM = @LegajoMedico
-END
-GO
-
-CREATE PROCEDURE spObtenerFechasConTurnosCompletos
-    @LegajoMedico CHAR(5)
-AS
-BEGIN
-    SELECT Fecha_Tu
-    FROM Turnos
-    WHERE Legajo_Medico_Tu = @LegajoMedico
-    GROUP BY Fecha_Tu
-    HAVING COUNT(*) >= (SELECT MAX(DATEDIFF(HOUR, Hora_Inicio_HM, Hora_Fin_HM))
-                        FROM Horarios_Medicos
-                        WHERE Legajo_Medico_HM = @LegajoMedico)
-END
-GO
-
-CREATE PROCEDURE sp_ActualizarPaciente
-(
-@DNI CHAR(8),
-@NOMBRE VARCHAR(50),
-@APELLIDO VARCHAR(50),
-@SEXO INT,
-@FECHANACIMIENTO DATE,
-@NACIONALIDAD INT,
-@LOCALIDAD INT,
-@DIRECCION VARCHAR(100),
-@CORREOELECTRONICO VARCHAR(100),
-@TELEFONO VARCHAR(15),
-@ESTADO BIT
-)
-AS
-BEGIN
-UPDATE Pacientes SET 
-Nombre_Pa = @NOMBRE,
-Apellido_Pa = @APELLIDO,
-Id_Genero_Pa = @SEXO,
-Fecha_Nacimiento_Pa = @FECHANACIMIENTO,
-Id_Localidad_Pa = @LOCALIDAD,
-Direccion_Pa = @DIRECCION,
-Email_Pa = @CORREOELECTRONICO,
-Telefono_Pa = @TELEFONO,
-Estado_Pa = @ESTADO
-WHERE DNI_Pa = @DNI AND Id_Nacionalidad_Pa = @NACIONALIDAD
-END
-GO
-
-CREATE PROCEDURE spBajaLogicaPaciente
-    @DNI CHAR(8),
-    @NACIONALIDAD INT
-AS
-BEGIN
-    UPDATE Pacientes
-    SET Estado_Pa = 0
-    WHERE DNI_Pa = @DNI AND Id_Nacionalidad_Pa = @NACIONALIDAD;
-END;
-GO
-
-CREATE PROCEDURE spObtenerLocalidadPorDNI
-    @DniPaciente CHAR(8)
-AS
-BEGIN
-    SELECT Id_Localidad_Pa
-    FROM Pacientes
-    WHERE DNI_Pa = @DniPaciente
-END
-GO
-
-CREATE PROCEDURE spAgregarTurno
-(
-@LEGAJOMEDICO CHAR(5),
-@FECHA DATE,
-@HORA TIME(7),
-@DNIPACIENTE CHAR(8),
-@IDLOCALIDADP INT,
-@ASISTENCIA BIT
-)
-AS
-INSERT INTO Turnos(Legajo_Medico_Tu, Fecha_Tu, Hora_Tu, DNI_Paciente_Tu, Id_Localidad_Paciente_Tu, Asistencia_Tu)
-VALUES (@LEGAJOMEDICO, @FECHA, @HORA, @DNIPACIENTE, @IDLOCALIDADP, @ASISTENCIA)
-RETURN
-=======
->>>>>>> Stashed changes
 -- CARGA DE PACIENTES
 INSERT INTO Pacientes (DNI_Pa, Id_Localidad_Pa, Id_Nacionalidad_Pa, Id_Genero_Pa, Email_Pa, Nombre_Pa, Apellido_Pa, Fecha_Nacimiento_Pa, Direccion_Pa, Telefono_Pa)
 VALUES
@@ -569,19 +437,4 @@ VALUES
 ('44444444', 13, 1, 2, 'mgutierrez@gmail.com', 'María', 'Gutiérrez', '1989-05-29', 'Calle de los Árboles 678', '1256789012'),
 ('45454545', 14, 2, 1, 'ncarrasco@gmail.com', 'Nicolás', 'Carrasco', '1990-07-22', 'Av. Buenos Aires 890', '1267890123'),
 ('46464646', 15, 1, 2, 'orivero@gmail.com', 'Olivia', 'Rivero', '1995-10-17', 'Calle del Sol 234', '1278901234')
-<<<<<<< Updated upstream
-=======
->>>>>>> 4adcc02196e066c2dfb68b0aea5556900d845cff:TPINT_GRUPO_09_PR3/ScriptBD/bdScript.sql
->>>>>>> Stashed changes
-GO
-
-CREATE PROCEDURE spObtenerHorariosAsignados
-    @LegajoMedico CHAR(5),
-    @Fecha DATE
-AS
-BEGIN
-    SELECT Hora_Tu
-    FROM Turnos
-    WHERE Legajo_Medico_Tu = @LegajoMedico AND Fecha_Tu = @Fecha
-END
 GO

@@ -98,6 +98,17 @@ namespace Dao
             SqlParametros.Value = user.GetIdTipoUsuario();
         }
 
+        private void ArmarParametrosNuevaClave(ref SqlCommand Comando, string usuario, string email, string nuevaClave)
+        {
+            SqlParameter SqlParametros = new SqlParameter();
+            SqlParametros = Comando.Parameters.Add("@Usuario", SqlDbType.VarChar, 50);
+            SqlParametros.Value = usuario;
+            SqlParametros = Comando.Parameters.Add("@NuevaClave", SqlDbType.VarChar, 80);
+            SqlParametros.Value = nuevaClave;
+            SqlParametros = Comando.Parameters.Add("@Email", SqlDbType.VarChar, 100);
+            SqlParametros.Value = email;
+        }
+
         public bool VerificarYActualizarClave(string usuario, string email, string nuevaClave)
         {
             // Consulta SQL para verificar si el usuario y el email existen en la base de datos
@@ -134,13 +145,8 @@ namespace Dao
             if (existe)
             {
                 // Si el usuario y el email existen, se procede a cambiar la contraseña
-                SqlCommand cmdActualizar = new SqlCommand("ActualizarClave", conexion);
-                cmdActualizar.CommandType = CommandType.StoredProcedure;
-
-                // Agregar los parámetros del procedimiento almacenado
-                cmdActualizar.Parameters.AddWithValue("@Email", email);
-                cmdActualizar.Parameters.AddWithValue("@Usuario", usuario);
-                cmdActualizar.Parameters.AddWithValue("@NuevaClave", nuevaClave);
+                SqlCommand cmdActualizar = new SqlCommand();
+                ArmarParametrosNuevaClave(ref cmdActualizar, usuario, email, nuevaClave);
 
                 // Ejecutar el procedimiento almacenado para actualizar la contraseña
                 _accesoDatos.EjecutarProcedimientoAlmacenado(cmdActualizar, "ActualizarClave");

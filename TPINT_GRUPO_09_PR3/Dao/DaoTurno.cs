@@ -34,8 +34,8 @@ namespace Dao
             SqlParametros.Value = tur.getHora();
             SqlParametros = Comando.Parameters.Add("@DNIPACIENTE", SqlDbType.Char);
             SqlParametros.Value = tur.getDNI_Paciente();
-            SqlParametros = Comando.Parameters.Add("@IDLOCALIDADP", SqlDbType.Int);
-            SqlParametros.Value = tur.getIdLocalidadPaciente();
+            SqlParametros = Comando.Parameters.Add("@IDNACIONALIDADP", SqlDbType.Int);
+            SqlParametros.Value = tur.getIdNacionalidad();
             SqlParametros = Comando.Parameters.Add("@ASISTENCIA", SqlDbType.Bit);
             SqlParametros.Value = tur.getAsistencia();
 

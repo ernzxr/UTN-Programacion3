@@ -111,5 +111,10 @@ namespace Negocio
         {
             return dao.ObtenerLocalidadPorDNI(dniPaciente);
         }
+
+        public int ObtenerNacionalidadPorDNI(string dniPaciente)
+        {
+            return dao.ObtenerNacionalidadPorDNI(dniPaciente);
+        }
     }
 }

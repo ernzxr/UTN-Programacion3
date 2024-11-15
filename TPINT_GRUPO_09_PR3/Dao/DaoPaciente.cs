@@ -171,5 +171,20 @@ namespace Dao
 
             return -1;
         }
+
+        public int ObtenerNacionalidadPorDNI(string dniPaciente)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@DniPaciente", dniPaciente);
+
+            DataTable tabla = ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerNacionalidadPorDNI");
+
+            if (tabla.Rows.Count > 0)
+            {
+                return Convert.ToInt32(tabla.Rows[0]["Id_Nacionalidad_Pa"]);
+            }
+
+            return -1;
+        }
     }
 }

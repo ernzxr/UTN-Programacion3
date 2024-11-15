@@ -272,6 +272,7 @@ namespace Vistas
             turno.setDni_Paciente(txtDniPaciente.Text);
             turno.setIdLocalidadPaciente(negocioPaciente.ObtenerLocalidadPorDNI(dni));
             turno.setAsistencia(true);
+            turno.setIdNacionalidad(negocioPaciente.ObtenerNacionalidadPorDNI(dni));
 
             bool turnoAgregado = negocioTurno.AgregarTurno(turno);
 

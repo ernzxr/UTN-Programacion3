@@ -12,7 +12,7 @@ AS
 GO
 
 -- AGREGAR PACIENTES
-CREATE PROCEDURE spAgregarPaciente
+CREATE OR ALTER PROCEDURE spAgregarPaciente
 (
 @DNI CHAR(8),
 @NOMBRE VARCHAR(50),
@@ -32,7 +32,7 @@ VALUES (@DNI, @NOMBRE, @APELLIDO, @SEXO, @FECHANACIMIENTO, @NACIONALIDAD, @LOCAL
 RETURN 
 GO
 
-CREATE PROCEDURE sp_ObtenerLegajoPorNombreCompleto
+CREATE OR ALTER PROCEDURE sp_ObtenerLegajoPorNombreCompleto
     @NombreCompleto VARCHAR(100)
 AS
 BEGIN
@@ -42,7 +42,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spObtenerDiasLaborales
+CREATE OR ALTER PROCEDURE spObtenerDiasLaborales
     @LegajoMedico CHAR(5)
 AS
 BEGIN
@@ -52,7 +52,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE sp_ObtenerFechasAusencias
+CREATE OR ALTER PROCEDURE sp_ObtenerFechasAusencias
     @LegajoMedico CHAR(5)
 AS
 BEGIN
@@ -62,7 +62,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spObtenerFechasConTurnosCompletos
+CREATE OR ALTER PROCEDURE spObtenerFechasConTurnosCompletos
     @LegajoMedico CHAR(5)
 AS
 BEGIN
@@ -121,7 +121,7 @@ GO
 
 -- FILTRAR AUSENCIAS
 CREATE OR ALTER PROCEDURE spFiltrarAusenciasLegajo
-@LEGAJO CHAR(5)
+@LEGAJO VARCHAR(5)
 AS 
 	BEGIN
 		SELECT Legajo_Medico_AM, (Me.Nombre_Me + ' ' + Me.Apellido_Me) AS Nombre_Completo, 
@@ -129,6 +129,106 @@ AS
 		FROM Ausencias_Medicos  
         INNER JOIN Tipos_Ausencias_Medicos AS TAM ON Id_Tipo_Ausencia_AM = TAM.Id_Tipo_Ausencia_TAM
         INNER JOIN Medicos AS Me ON Legajo_Medico_AM = Legajo_Me
-        WHERE Legajo_Medico_AM = @LEGAJO
+        WHERE Legajo_Medico_AM LIKE '%' + @LEGAJO + '%'
 	END
 GO
+
+CREATE OR ALTER PROCEDURE spObtenerHorariosAsignados
+    @LegajoMedico CHAR(5),
+    @Fecha DATE
+AS
+BEGIN
+    SELECT Hora_Tu
+    FROM Turnos
+    WHERE Legajo_Medico_Tu = @LegajoMedico AND Fecha_Tu = @Fecha
+END
+GO
+
+CREATE OR ALTER PROCEDURE ActualizarClave
+    @Email VARCHAR(100),
+    @Usuario VARCHAR(50),
+    @NuevaClave VARCHAR(80)
+AS
+BEGIN
+    UPDATE Usuarios
+    SET Clave_Us = @NuevaClave
+    WHERE Email_Us = @Email AND Usuario_Us = @Usuario;
+END
+GO
+
+CREATE OR ALTER PROCEDURE spBajaLogicaPaciente
+    @DNI CHAR(8),
+    @NACIONALIDAD INT
+AS
+BEGIN
+    UPDATE Pacientes
+    SET Estado_Pa = 0
+    WHERE DNI_Pa = @DNI AND Id_Nacionalidad_Pa = @NACIONALIDAD;
+END
+GO
+
+CREATE OR ALTER PROCEDURE sp_ActualizarPaciente
+(
+@DNI CHAR(8),
+@NOMBRE VARCHAR(50),
+@APELLIDO VARCHAR(50),
+@SEXO INT,
+@FECHANACIMIENTO DATE,
+@NACIONALIDAD INT,
+@LOCALIDAD INT,
+@DIRECCION VARCHAR(100),
+@CORREOELECTRONICO VARCHAR(100),
+@TELEFONO VARCHAR(15),
+@ESTADO BIT
+)
+AS
+BEGIN
+UPDATE Pacientes SET 
+Nombre_Pa = @NOMBRE,
+Apellido_Pa = @APELLIDO,
+Id_Genero_Pa = @SEXO,
+Fecha_Nacimiento_Pa = @FECHANACIMIENTO,
+Id_Localidad_Pa = @LOCALIDAD,
+Direccion_Pa = @DIRECCION,
+Email_Pa = @CORREOELECTRONICO,
+Telefono_Pa = @TELEFONO,
+Estado_Pa = @ESTADO
+WHERE DNI_Pa = @DNI AND Id_Nacionalidad_Pa = @NACIONALIDAD
+END
+GO
+
+CREATE OR ALTER PROCEDURE spObtenerLocalidadPorDNI
+    @DniPaciente CHAR(8)
+AS
+BEGIN
+    SELECT Id_Localidad_Pa
+    FROM Pacientes
+    WHERE DNI_Pa = @DniPaciente
+END
+GO
+
+CREATE OR ALTER PROCEDURE spObtenerNacionalidadPorDNI
+    @DniPaciente CHAR(8)
+AS
+BEGIN
+    SELECT Id_Nacionalidad_Pa
+    FROM Pacientes
+    WHERE DNI_Pa = @DniPaciente
+END
+GO
+
+CREATE OR ALTER PROCEDURE spAgregarTurno
+(
+@LEGAJOMEDICO CHAR(5),
+@FECHA DATE,
+@HORA TIME(7),
+@DNIPACIENTE CHAR(8),
+@IDNACIONALIDADP INT,
+@ASISTENCIA BIT
+)
+AS
+INSERT INTO Turnos(Legajo_Medico_Tu, Fecha_Tu, Hora_Tu, DNI_Paciente_Tu, Id_Nacionalidad_Paciente_Tu, Asistencia_Tu)
+VALUES (@LEGAJOMEDICO, @FECHA, @HORA, @DNIPACIENTE, @IDNACIONALIDADP, @ASISTENCIA)
+RETURN
+GO
+
