@@ -59,5 +59,12 @@ namespace Negocio
             return dao.ObtenerLegajoPorNombreCompleto(nombreCompleto);
         }
 
+        public Medico ObtenerMedicoPorLegajo(string legajo)
+        {
+            Medico medico = dao.ObtenerMedicoPorLegajo(legajo);
+
+            return medico;
+        }
+
     }
 }

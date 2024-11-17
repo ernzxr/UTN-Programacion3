@@ -8,26 +8,22 @@ using System.Threading.Tasks;
 
 namespace Dao
 {
-    internal class AccesoDatos
+    public class AccesoDatos
     {
-        String rutaBDClinica = "Data Source=localhost\\sqlexpress; Initial Catalog=UTN2C2024PR3CLINICA; Integrated Security=True";
+        private string rutaBDClinica = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=UTN2C2024PR3CLINICA;Integrated Security=True;";
+        public AccesoDatos(){ }
 
-        public AccesoDatos()
+        public SqlConnection ObtenerConexion()
         {
-
-        }
-
-        internal SqlConnection ObtenerConexion()
-        {
-            SqlConnection cn = new SqlConnection(rutaBDClinica);
             try
             {
+                SqlConnection cn = new SqlConnection(rutaBDClinica);
                 cn.Open();
                 return cn;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return null;
+                throw new Exception("No se pudo establecer la conexión con la base de datos. Detalles: " + ex.Message);
             }
         }
 

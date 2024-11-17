@@ -60,6 +60,24 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revLegajo;
 
         /// <summary>
+        /// Control lblMensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
+
+        /// <summary>
+        /// Control btnAceptarLegajo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptarLegajo;
+
+        /// <summary>
         /// Control Subtitulo.
         /// </summary>
         /// <remarks>
@@ -69,13 +87,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label Subtitulo;
 
         /// <summary>
-        /// Control rblDias.
+        /// Control cklDias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblDias;
+        protected global::System.Web.UI.WebControls.CheckBoxList cklDias;
 
         /// <summary>
         /// Control lblHoraEntrada.
@@ -150,12 +168,12 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revHoraSalida;
 
         /// <summary>
-        /// Control btnAceptar.
+        /// Control btnGuardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAceptar;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
     }
 }

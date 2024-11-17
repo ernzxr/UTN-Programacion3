@@ -6,18 +6,23 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Entidades;
+using System.ComponentModel.Design;
 
 namespace Dao
 {
     public class DaoMedico
     {
         AccesoDatos ds = new AccesoDatos();
-
+       
+       private string connectionString; 
+        
+      
         public DaoMedico()
         {
-
+          connectionString = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=UTN2C2024PR3CLINICA;Integrated Security=True;";
         }
-
+        
+           
         public int agregarMedico(Medico medico)
         {
             SqlCommand cmd = new SqlCommand();
@@ -103,15 +108,55 @@ namespace Dao
             return tabla.Rows.Count > 0 ? tabla.Rows[0]["Legajo_Me"].ToString() : null;
         }
 
+        public Medico ObtenerMedicoPorLegajo(string legajo)
+        {
+             SqlConnection conexion = new SqlConnection(connectionString); 
+            //SqlConnection conexion = ds.ObtenerConexion(); 
+            
+                SqlCommand comando = new SqlCommand("SELECT Legajo_Me, Nombre_Me, Apellido_Me FROM Medicos WHERE Legajo_Me = @legajo", conexion);
+                comando.Parameters.AddWithValue("@legajo", legajo);
 
+                try
+                {
+                    conexion.Open();
+                    SqlDataReader reader = comando.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        Medico medico = new Medico();
+
+                        medico.setLegajo(reader["Legajo_Me"].ToString());
+                        medico.setNombre(reader["Nombre_Me"].ToString());
+                        medico.setApellido(reader["Apellido_Me"].ToString());
+                        return medico;
+                        
+                    }
+                    else
+                    {
+                        return null;
+                        
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al acceder a la base de datos: " + ex.Message);
+                }
+            
+        }
 
     }
 
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
