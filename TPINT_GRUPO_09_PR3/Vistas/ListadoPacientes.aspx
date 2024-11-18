@@ -36,6 +36,16 @@
             cursor: pointer;
             transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
+        .modal-controls {
+            display:flex;
+            flex-direction:column;
+            align-items:flex-start;
+            margin-bottom: 20px;
+        }
+        .modal-labels {
+            margin-bottom:15px;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -98,55 +108,55 @@
                     </div>
                     <div class="modal-body">
                         <p>Ingrese Datos a Modificar</p>
-                        <div>
-                            <asp:Label ID="lblDni_M" Text="DNI:" runat="server" />
-                            <asp:TextBox ID="txtDNI_M" runat="server" ReadOnly="true" class="form-control" />
+                        <div class="modal-controls">
+                            <asp:Label ID="lblDni_M" Text="DNI:" runat="server" style="margin-bottom:5px;"/>
+                            <asp:TextBox ID="txtDNI_M" runat="server" ReadOnly="true" class="form-control modal-labels" />
                         </div>
-                        <div>
+                        <div class="modal-controls">
                             <asp:Label ID="lblNacionalidad_M" Text="Nacionalidad:" runat="server" />
-                            <asp:DropDownList ID="ddlNacionalidad_M" runat="server" Enabled="false"></asp:DropDownList>
+                            <asp:DropDownList class="form-select" ID="ddlNacionalidad_M" runat="server" Enabled="false"></asp:DropDownList>
                         </div>
-                        <div>
+                        <div class="modal-controls">
                             <asp:Label ID="lblNombre_M" Text="Nombre:" runat="server" />
                             <asp:TextBox ID="txtNombre_M" runat="server" class="form-control" />
                         </div>
-                        <div>
+                        <div class="modal-controls">
                             <asp:Label ID="lblApellido_M" Text="Apellido:" runat="server" />
                             <asp:TextBox ID="txtApellido_M" runat="server" class="form-control" />
                         </div>
-                        <div>
+                        <div class="modal-controls">
                             <asp:Label ID="lblSexo_M" Text="Sexo:" runat="server" />
-                            <asp:DropDownList ID="ddlSexo_M" runat="server"></asp:DropDownList>
+                            <asp:DropDownList class="form-select" ID="ddlSexo_M" runat="server"></asp:DropDownList>
                         </div>
-                        <div>
+                        <div class="modal-controls">
                             <asp:Label ID="lblFechaNacimiento_M" Text="Fecha de Nacimiento:" runat="server" />
                             <asp:TextBox ID="txtFechaNacimiento_M" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
                         </div>
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
-                                <div>
+                                <div class="modal-controls">
                                     <asp:Label ID="lblProvincia_M" Text="Provincia:" runat="server" />
-                                    <asp:DropDownList ID="ddlProvincia_M" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_M_SelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList class="form-select" ID="ddlProvincia_M" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvincia_M_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
-                                <div>
+                                <div class="modal-controls">
                                     <asp:Label ID="lblLocalidad_M" Text="Localidad:" runat="server" />
-                                    <asp:DropDownList ID="ddlLocalidad_M" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList class="form-select" ID="ddlLocalidad_M" runat="server"></asp:DropDownList>
                                 </div>
                             </ContentTemplate>
                         </asp:UpdatePanel>
-                        <div>
+                        <div class="modal-controls">
                             <asp:Label ID="lblDireccion_M" Text="Direccion:" runat="server" />
                             <asp:TextBox ID="txtDireccion_M" runat="server" class="form-control" />
                         </div>
-                        <div>
+                        <div class="modal-controls">
                             <asp:Label ID="lblEmail_M" Text="Email:" runat="server" />
                             <asp:TextBox ID="txtEmail_M" runat="server" class="form-control" />
                         </div>
-                        <div>
+                        <div class="modal-controls">
                             <asp:Label ID="lblTelefono_M" Text="Telefono:" runat="server" />
                             <asp:TextBox ID="txtTelefono_M" runat="server" class="form-control" />
                         </div>
-                        <div>
+                        <div class="modal-controls">
                             <asp:CheckBox ID="chkEstado_M" Text="Activo" runat="server" />
                         </div>
                     </div>
