@@ -31,12 +31,14 @@ namespace Vistas
             {
                 // Redirige a la página de administrador
                 Session["TipoUsuario"] = 1;
+                Session["Usuario"] = txtUsuario.Text;
                 Response.Redirect("InicioAdmin.aspx");
             }
             else if (tipoUsuario == "Médico")
             {
                 // Redirige a la página de médico
                 Session["TipoUsuario"] = 2;
+                Session["Usuario"] = txtUsuario.Text;
                 Response.Redirect("InicioMedico.aspx");
             }
             else

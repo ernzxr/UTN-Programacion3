@@ -11,7 +11,11 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Usuario"] != null)
+            {
+                lblUsuarioAdmin.Text = Session["Usuario"].ToString();
+                lblUsuarioMedico.Text = Session["Usuario"].ToString();
+            }
         }
 
         protected void btnSalir_Click(object sender, EventArgs e)
