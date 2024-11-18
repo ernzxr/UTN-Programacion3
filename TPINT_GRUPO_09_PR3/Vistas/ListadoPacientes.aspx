@@ -63,7 +63,7 @@
             <asp:RequiredFieldValidator ID="rfvNacionalidad" CssClass="auto-style2" runat="server" ControlToValidate="ddlNacionalidad" ForeColor="#CC0000" ValidationGroup="grupo1" InitialValue="0">(*) Seleccione una opción.</asp:RequiredFieldValidator>
             <div>
                 <asp:Button ID="btnFiltrar" class="btn-azul" runat="server" Text="Filtrar" Width="150px" ValidationGroup="grupo1" OnClick="btnFiltrar_Click" />
-                <asp:Button ID="btnMostrarTodo" class="btn-azul" runat="server" Text="Mostrar Todo" Width="150px" OnClick="btnMostrarTodo_Click" />
+                <asp:Button ID="btnMostrarTodo" class="btn-azul" runat="server" Text="Mostrar Todo" Width="150px" OnClick="btnMostrarTodo_Click"/>
             </div>
         </div>
 
@@ -88,18 +88,18 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Modificar">
                         <ItemTemplate>
-                            <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnCommand="btnModificar_Command1" />
+                            <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnCommand="btnModificar_Command1"/>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Eliminar">
                         <ItemTemplate>
-                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnCommand="btnEliminar_Command" />
+                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnCommand="btnEliminar_Command"/>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>
-        <div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -110,19 +110,21 @@
                         <p>Ingrese Datos a Modificar</p>
                         <div class="modal-controls">
                             <asp:Label ID="lblDni_M" Text="DNI:" runat="server" style="margin-bottom:5px;"/>
-                            <asp:TextBox ID="txtDNI_M" runat="server" ReadOnly="true" class="form-control modal-labels" />
+                            <asp:TextBox ID="txtDNI_M" runat="server" ReadOnly="true" class="form-control modal-labels" Disabled="true"/>
                         </div>
                         <div class="modal-controls">
                             <asp:Label ID="lblNacionalidad_M" Text="Nacionalidad:" runat="server" />
-                            <asp:DropDownList class="form-select" ID="ddlNacionalidad_M" runat="server" Enabled="false"></asp:DropDownList>
+                            <asp:DropDownList class="form-select" ID="ddlNacionalidad_M" runat="server" Disabled="true"></asp:DropDownList>
                         </div>
                         <div class="modal-controls">
                             <asp:Label ID="lblNombre_M" Text="Nombre:" runat="server" />
-                            <asp:TextBox ID="txtNombre_M" runat="server" class="form-control" />
+                            <asp:TextBox ID="txtNombre_M" runat="server" class="form-control" ValidationGroup="grupoModal"/>
+                            <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre_M" ValidationGroup="grupoModal">Complete el campo</asp:RequiredFieldValidator>
                         </div>
                         <div class="modal-controls">
                             <asp:Label ID="lblApellido_M" Text="Apellido:" runat="server" />
                             <asp:TextBox ID="txtApellido_M" runat="server" class="form-control" />
+                            <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido_M" ValidationGroup="grupoModal">Complete el campo</asp:RequiredFieldValidator>
                         </div>
                         <div class="modal-controls">
                             <asp:Label ID="lblSexo_M" Text="Sexo:" runat="server" />
@@ -147,22 +149,28 @@
                         <div class="modal-controls">
                             <asp:Label ID="lblDireccion_M" Text="Direccion:" runat="server" />
                             <asp:TextBox ID="txtDireccion_M" runat="server" class="form-control" />
+                            <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccion_M" ValidationGroup="grupoModal">Complete el campo</asp:RequiredFieldValidator>
                         </div>
                         <div class="modal-controls">
                             <asp:Label ID="lblEmail_M" Text="Email:" runat="server" />
-                            <asp:TextBox ID="txtEmail_M" runat="server" class="form-control" />
+                            <asp:TextBox ID="txtEmail_M" runat="server" TextMode="Email" class="form-control" />
+                            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail_M" ValidationGroup="grupoModal">Complete el campo</asp:RequiredFieldValidator>
                         </div>
                         <div class="modal-controls">
                             <asp:Label ID="lblTelefono_M" Text="Telefono:" runat="server" />
                             <asp:TextBox ID="txtTelefono_M" runat="server" class="form-control" />
+                            <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono_M" ValidationGroup="grupoModal">Complete el campo</asp:RequiredFieldValidator>
                         </div>
                         <div class="modal-controls">
                             <asp:CheckBox ID="chkEstado_M" Text="Activo" runat="server" />
                         </div>
+                        <div>
+                            <asp:Label ID="lblCatch" runat="server" />
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button class="btn btn-primary" Text="Guardar cambios" runat="server" OnClick="btnModificarM_Click" />
+                        <asp:Button class="btn btn-primary" Text="Guardar cambios" runat="server" OnClick="btnModificarM_Click" ValidationGroup="grupoModal"/>
                     </div>
                 </div>
             </div>
