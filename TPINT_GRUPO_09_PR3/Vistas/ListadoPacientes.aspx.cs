@@ -218,5 +218,12 @@ namespace Vistas
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "showDeleteModal", "showDeleteModal();", true);
             }
         }
+
+        protected void gvPacientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvPacientes.PageIndex = e.NewPageIndex;
+            gvPacientes.DataSource = NegP.getPacientes();
+            gvPacientes.DataBind();
+        }
     }
 }

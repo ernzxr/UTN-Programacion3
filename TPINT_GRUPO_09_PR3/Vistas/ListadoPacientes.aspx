@@ -36,16 +36,48 @@
             cursor: pointer;
             transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
+
         .modal-controls {
-            display:flex;
-            flex-direction:column;
-            align-items:flex-start;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             margin-bottom: 20px;
         }
+
         .modal-labels {
-            margin-bottom:15px;
+            margin-bottom: 15px;
         }
 
+        .simple-pager {
+            background-color: #f8f9fa; /* Fondo claro */
+            border: 1px solid #ddd; /* Borde suave */
+            border-radius: 4px; /* Bordes ligeramente redondeados */
+            padding: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+            .simple-pager a, .simple-pager span {
+                display: inline-block;
+                padding: 8px 12px; /* Espaciado interno */
+                color: #007bff; /* Azul Bootstrap */
+                text-decoration: none; /* Sin subrayado */
+                border: 1px solid transparent; /* Sin borde inicialmente */
+                border-radius: 3px; /* Botones ligeramente redondeados */
+                transition: background-color 0.3s ease, color 0.3s ease; /* Suavidad al interactuar */
+            }
+
+                .simple-pager a:hover {
+                    background-color: #007bff; /* Fondo azul al pasar el mouse */
+                    color: white; /* Texto blanco */
+                }
+
+            .simple-pager .active {
+                background-color: #0056b3; /* Fondo azul oscuro */
+                color: white; /* Texto blanco */
+                font-weight: bold;
+                border-color: #0056b3;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -68,13 +100,13 @@
         </div>
 
         <div style="width: 100%; margin-top: 20px;">
-            <asp:GridView runat="server" ID="gvPacientes" CssClass="table table-hover" AutoGenerateColumns="False">
+            <asp:GridView runat="server" ID="gvPacientes" CssClass="table table-hover" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="gvPacientes_PageIndexChanging" PageSize="6" PagerStyle-HorizontalAlign="Center" PagerStyle-CssClass="simple-pager">
                 <Columns>
                     <asp:BoundField DataField="DNI" HeaderText="DNI" />
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                     <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
                     <asp:BoundField DataField="Sexo" HeaderText="Sexo" />
-                    <asp:BoundField DataField="Fecha_De_Nacimiento"  DataFormatString="{0:dd-MM-yyyy}" HeaderText="Fecha" />
+                    <asp:BoundField DataField="Fecha_De_Nacimiento" DataFormatString="{0:dd-MM-yyyy}" HeaderText="Fecha" />
                     <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
                     <asp:BoundField DataField="Provincia" HeaderText="Provincia" />
                     <asp:BoundField DataField="Localidad" HeaderText="Localidad" />
@@ -109,7 +141,7 @@
                     <div class="modal-body">
                         <p>Ingrese Datos a Modificar</p>
                         <div class="modal-controls">
-                            <asp:Label ID="lblDni_M" Text="DNI:" runat="server" style="margin-bottom:5px;"/>
+                            <asp:Label ID="lblDni_M" Text="DNI:" runat="server" Style="margin-bottom: 5px;" />
                             <asp:TextBox ID="txtDNI_M" runat="server" ReadOnly="true" class="form-control modal-labels" />
                         </div>
                         <div class="modal-controls">
