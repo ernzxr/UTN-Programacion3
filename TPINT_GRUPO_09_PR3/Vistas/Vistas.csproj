@@ -89,6 +89,7 @@
     <Content Include="ListadoMedicos.aspx" />
     <Content Include="ListadoPacientes.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MiPerfil.aspx" />
     <Content Include="ModificarDatosMedico.aspx" />
     <Content Include="Styles\layout.css" />
     <Content Include="TurnosAsignados.aspx" />
@@ -185,6 +186,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MiPerfil.aspx.cs">
+      <DependentUpon>MiPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MiPerfil.aspx.designer.cs">
+      <DependentUpon>MiPerfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="ModificarDatosMedico.aspx.cs">
       <DependentUpon>ModificarDatosMedico.aspx</DependentUpon>
