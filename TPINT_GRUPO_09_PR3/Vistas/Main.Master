@@ -112,7 +112,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <asp:HyperLink class="nav-link active" aria-current="page" ID="hlPerfil" runat="server" NavigateUrl="~/Perfil.aspx">Mi Perfil</asp:HyperLink>
+                            <asp:HyperLink class="nav-link active" aria-current="page" ID="hlPerfil" runat="server" NavigateUrl="~/MiPerfil.aspx">Mi Perfil</asp:HyperLink>
                         </li>
                     </ul>
                     <asp:Label ID="lblUsuarioMedico" runat="server" Text="" class="me-3"></asp:Label>
