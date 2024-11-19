@@ -84,6 +84,7 @@
     <Content Include="Images\Card-7.jpg" />
     <Content Include="Images\imagen1.jpg" />
     <Content Include="Images\imagen2.jpg" />
+    <Content Include="Informes.aspx" />
     <Content Include="InicioAdmin.aspx" />
     <Content Include="InicioMedico.aspx" />
     <Content Include="ListadoMedicos.aspx" />
@@ -151,6 +152,13 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Informes.aspx.cs">
+      <DependentUpon>Informes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Informes.aspx.designer.cs">
+      <DependentUpon>Informes.aspx</DependentUpon>
     </Compile>
     <Compile Include="InicioAdmin.aspx.cs">
       <DependentUpon>InicioAdmin.aspx</DependentUpon>

@@ -142,11 +142,11 @@
                         <p>Ingrese Datos a Modificar</p>
                         <div class="modal-controls">
                             <asp:Label ID="lblDni_M" Text="DNI:" runat="server" style="margin-bottom:5px;"/>
-                            <asp:TextBox ID="txtDNI_M" runat="server" ReadOnly="true" class="form-control modal-labels" Disabled="true"/>
+                            <asp:TextBox ID="txtDNI_M" style="cursor: not-allowed;" runat="server" ReadOnly="true" class="form-control modal-labels"/>
                         </div>
                         <div class="modal-controls">
                             <asp:Label ID="lblNacionalidad_M" Text="Nacionalidad:" runat="server" />
-                            <asp:DropDownList class="form-select" ID="ddlNacionalidad_M" runat="server" Disabled="true"></asp:DropDownList>
+                            <asp:DropDownList style="cursor:not-allowed; padding-right:270px; padding-top: 7px; padding-bottom:7px; border-radius: 5px;" ID="ddlNacionalidad_M" runat="server" Enabled="false"></asp:DropDownList>
                         </div>
                         <div class="modal-controls">
                             <asp:Label ID="lblNombre_M" Text="Nombre:" runat="server" />
