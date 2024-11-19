@@ -15,10 +15,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main-login" style="position: relative;">
 
-        <!-- <asp:Label ID="lblTipoUsuario" runat="server" Text="Tipo Usuario" CssClass="form-label mb-3"></asp:Label> -->
         <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="form-label mb-3"></asp:Label>
         <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control"></asp:TextBox>
-         <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
+        
 
         <asp:Label ID="lblPassword" runat="server" Text="Contraseña" CssClass="form-label mb-3"></asp:Label>
         <asp:TextBox ID="txtPass" TextMode="Password" CssClass="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
@@ -26,8 +26,8 @@
 
         <asp:HyperLink ID="hlPass" runat="server" NavigateUrl="~/CambiarContraseña.aspx">He olvidado mi contraseña</asp:HyperLink>
 
-        <!--<asp:RegularExpressionValidator ID="rfvPActual" runat="server" ControlToValidate="txtPass" CssClass="mb-3" ForeColor="#CC0000" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)" ValidationGroup="grupo1">(*) La contraseña .</asp:RegularExpressionValidator> -->
-        <asp:Label ID="lblError" runat="server" Text="" CssClass="form-label mb-3"></asp:Label>
+       
+        <asp:Label ID="lblMensaje" runat="server" Text="" CssClass="form-label mb-3"></asp:Label>
 
         <asp:Button ID="btnLogin" runat="server" Text="Ingresar" OnClick="btnLogin_Click" CssClass="btn btn-primary" />
     </div>

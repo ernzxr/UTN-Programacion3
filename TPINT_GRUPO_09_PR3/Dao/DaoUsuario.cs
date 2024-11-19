@@ -157,8 +157,7 @@ namespace Dao
             return false; // Usuario o email no encontrados
         }
 
-
-
+        }
     }
-}
+
 
