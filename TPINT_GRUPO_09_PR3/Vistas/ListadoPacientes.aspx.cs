@@ -186,8 +186,6 @@ namespace Vistas
 
                 lblCatch.Text = "";
 
-                lblDNI.Text = modifico.ToString();
-
                 gvPacientes.DataSource = NegP.getPacientes();
                 gvPacientes.DataBind();
 
