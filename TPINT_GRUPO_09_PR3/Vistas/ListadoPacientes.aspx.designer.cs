@@ -132,13 +132,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblDni_M;
 
         /// <summary>
-        /// Control txtDNI_M.
+        /// Control lblDNI2_M.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDNI_M;
+        protected global::System.Web.UI.WebControls.Label lblDNI2_M;
 
         /// <summary>
         /// Control lblNacionalidad_M.

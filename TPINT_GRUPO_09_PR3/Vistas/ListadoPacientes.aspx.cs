@@ -130,7 +130,7 @@ namespace Vistas
                 {
                     DataRow paciente = dtPaciente.Rows[0];
 
-                    txtDNI_M.Text = paciente["DNI"].ToString();
+                    lblDNI2_M.Text = paciente["DNI"].ToString();
                     ddlNacionalidad_M.SelectedValue = idNacionalidad.ToString();
                     txtNombre_M.Text = paciente["Nombre"].ToString();
                     txtApellido_M.Text = paciente["Apellido"].ToString();
@@ -181,7 +181,7 @@ namespace Vistas
             {
                 int idNacionalidad = int.Parse(ddlNacionalidad_M.SelectedValue);
 
-                bool modifico = NegP.ModificarPaciente(txtDNI_M.Text, txtNombre_M.Text, txtApellido_M.Text, int.Parse(ddlSexo_M.SelectedValue), Convert.ToDateTime(txtFechaNacimiento_M.Text),
+                bool modifico = NegP.ModificarPaciente(lblDNI2_M.Text, txtNombre_M.Text, txtApellido_M.Text, int.Parse(ddlSexo_M.SelectedValue), Convert.ToDateTime(txtFechaNacimiento_M.Text),
                     int.Parse(ddlNacionalidad_M.SelectedValue), int.Parse(ddlLocalidad_M.SelectedValue), txtDireccion_M.Text, txtEmail_M.Text, txtTelefono_M.Text, chkEstado_M.Checked);
 
                 lblCatch.Text = "";

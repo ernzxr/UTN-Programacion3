@@ -142,7 +142,8 @@
                         <p>Ingrese Datos a Modificar</p>
                         <div class="modal-controls">
                             <asp:Label ID="lblDni_M" Text="DNI:" runat="server" style="margin-bottom:5px;"/>
-                            <asp:TextBox ID="txtDNI_M" style="cursor: not-allowed;" runat="server" ReadOnly="true" class="form-control modal-labels"/>
+                            <asp:Label ID="lblDNI2_M"  style="border: 1px solid #ccc; padding:8px; padding-right:372px; padding-top: 7px; padding-bottom:7px; border-radius: 5px;" runat="server" />
+                            <%--<asp:TextBox ID="txtDNI_M" style="cursor: not-allowed;" runat="server" ReadOnly="true" class="form-control modal-labels"/>--%>
                         </div>
                         <div class="modal-controls">
                             <asp:Label ID="lblNacionalidad_M" Text="Nacionalidad:" runat="server" />
