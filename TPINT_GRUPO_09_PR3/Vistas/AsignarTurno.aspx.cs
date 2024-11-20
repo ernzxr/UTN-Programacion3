@@ -79,8 +79,7 @@ namespace Vistas
             lblMensajeError2.Text = "";
 
             // Limpiar el DataList antes de procesar la nueva fecha
-            dlHorario.DataSource = null;
-            dlHorario.DataBind();
+            Limpiar_dlHorario();
 
             // Obtener el nombre completo del médico seleccionado
             string nombreCompleto = ddlProfesionales.SelectedItem.Text;
@@ -106,6 +105,21 @@ namespace Vistas
                 return;
             }
 
+            // Verificar si es un día de ausencia
+            DataTable fechasAusencias = negocioAusenciaMedico.ObtenerFechasAusencias(legajoMedico);
+            foreach (DataRow row in fechasAusencias.Rows)
+            {
+                DateTime fechaInicio = Convert.ToDateTime(row["Fecha_Inicio_AM"]);
+                DateTime fechaFin = Convert.ToDateTime(row["Fecha_Fin_AM"]);
+                if (fechaSeleccionada >= fechaInicio && fechaSeleccionada <= fechaFin)
+                {
+                    lblMensajeError.Text = "El médico está ausente en la fecha seleccionada.";
+                    txtDia.Text = "";
+                    return;
+                }
+            }
+
+
             // Obtener día de la semana
             int idDiaSemana = (int)fechaSeleccionada.DayOfWeek;
 
@@ -129,19 +143,6 @@ namespace Vistas
                 return;
             }
 
-            // Verificar si es un día de ausencia
-            DataTable fechasAusencias = negocioAusenciaMedico.ObtenerFechasAusencias(legajoMedico);
-            foreach (DataRow row in fechasAusencias.Rows)
-            {
-                DateTime fechaInicio = Convert.ToDateTime(row["Fecha_Inicio_AM"]);
-                DateTime fechaFin = Convert.ToDateTime(row["Fecha_Fin_AM"]);
-                if (fechaSeleccionada >= fechaInicio && fechaSeleccionada <= fechaFin)
-                {
-                    lblMensajeError.Text = "El médico está ausente en la fecha seleccionada.";
-                    txtDia.Text = "";
-                    return;
-                }
-            }
 
             // Validar si todos los turnos están completos
             DataTable fechasTurnosCompletos = negocioHorario.ObtenerFechasConTurnosCompletos(legajoMedico);
@@ -178,8 +179,7 @@ namespace Vistas
                 if (horarioFiltrado.Length == 0)
                 {
                     lblMensajeError.Text = "El médico no trabaja en el día seleccionado.";
-                    dlHorario.DataSource = null;
-                    dlHorario.DataBind();
+                    Limpiar_dlHorario();
                     return;
                 }
 
@@ -216,8 +216,7 @@ namespace Vistas
                 if (dtHorarios.Rows.Count == 0)
                 {
                     lblMensajeError.Text = "No hay horarios disponibles para el día seleccionado.";
-                    dlHorario.DataSource = null;
-                    dlHorario.DataBind();
+                    Limpiar_dlHorario();
                     return;
                 }
 
@@ -228,8 +227,7 @@ namespace Vistas
             else
             {
                 lblMensajeError2.Text = "Error al obtener los horarios de trabajo del médico.";
-                dlHorario.DataSource = null;
-                dlHorario.DataBind();
+                Limpiar_dlHorario();
             }
 
         }
@@ -286,6 +284,40 @@ namespace Vistas
             }
 
             Session["horarioSeleccionado"] = null;
+        }
+
+        public void Limpiar_dlHorario()
+        {
+            // Limpiar el DataList antes de procesar la nueva fecha
+            dlHorario.DataSource = null;
+            dlHorario.DataBind();
+        }
+
+        public void LimpiarCampos()
+        {
+            txtDniPaciente.Text = "";
+            txtDia.Text = "";
+            Limpiar_dlHorario();
+            lblMensajeError.Text = "";
+            lblMensajeError2.Text = "";
+
+            // Limpiar DropDownLists
+            ddlEspecialidades.ClearSelection();
+            ddlProfesionales.ClearSelection();
+
+            // Restablecer la selección inicial
+            if (ddlEspecialidades.Items.Count > 0)
+            {
+                ddlEspecialidades.SelectedIndex = -1; // Quitar selección
+                ddlEspecialidades.Items[0].Selected = true; // Seleccionar el primer ítem (disabled)
+            }
+
+            if (ddlProfesionales.Items.Count > 0)
+            {
+                ddlProfesionales.SelectedIndex = -1; // Quitar selección
+                ddlProfesionales.Items[0].Selected = true; // Seleccionar el primer ítem (disabled)
+            }
+
         }
     }
     
