@@ -84,7 +84,6 @@
     <Content Include="Images\Card-7.jpg" />
     <Content Include="Images\imagen1.jpg" />
     <Content Include="Images\imagen2.jpg" />
-    <Content Include="Informes.aspx" />
     <Content Include="InicioAdmin.aspx" />
     <Content Include="InicioMedico.aspx" />
     <Content Include="ListadoMedicos.aspx" />
@@ -92,6 +91,7 @@
     <Content Include="Login.aspx" />
     <Content Include="MiPerfil.aspx" />
     <Content Include="ModificarDatosMedico.aspx" />
+    <Content Include="ReporteHorarios.aspx" />
     <Content Include="Styles\layout.css" />
     <Content Include="TurnosAsignados.aspx" />
     <Content Include="Web.config" />
@@ -153,13 +153,6 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Informes.aspx.cs">
-      <DependentUpon>Informes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Informes.aspx.designer.cs">
-      <DependentUpon>Informes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="InicioAdmin.aspx.cs">
       <DependentUpon>InicioAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -216,6 +209,13 @@
     </Compile>
     <Compile Include="Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteHorarios.aspx.cs">
+      <DependentUpon>ReporteHorarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteHorarios.aspx.designer.cs">
+      <DependentUpon>ReporteHorarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="TurnosAsignados.aspx.cs">
       <DependentUpon>TurnosAsignados.aspx</DependentUpon>
