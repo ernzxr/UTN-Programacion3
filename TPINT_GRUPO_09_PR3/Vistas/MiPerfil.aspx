@@ -18,23 +18,23 @@
                 </tr>
                 <tr>
                     <td><strong>Legajo:</strong></td>
-                    <td><asp:TextBox ID="txtLegajo" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtLegajo" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td><strong>Nombre:</strong></td>
-                    <td><asp:TextBox ID="txtNombreApellido" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtNombre" runat="server" ReadOnly="true" CssClass ="form-control"></asp:TextBox></td>
                 </tr>
                  <tr>
                     <td><strong>Apellido:</strong></td>
-                     <td><asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox></td>
+                     <td><asp:TextBox ID="txtApellido" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox></td>
                  </tr>
                 <tr>
                     <td><strong>Especialidad</strong></td>
-                    <td><asp:TextBox ID="txtEspecialidad" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtEspecialidad" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox></td>
                  </tr>
                 <tr>
                     <td><strong>Usuario:</strong></td>
-                    <td><asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtUsuario" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox></td>
                 </tr>
 
                 <!-- Título: Datos Personales -->
@@ -43,23 +43,24 @@
                 </tr>
                 <tr>
                      <td><strong>Dni</strong></td>
-                     <td><asp:TextBox ID="txtDni" runat="server" CssClass="form-control"></asp:TextBox></td>
+                     <td><asp:TextBox ID="txtDni" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox></td>
              </tr>
                 <tr>
                     <td><strong>Fecha de Nacimiento:</strong></td>
-                    <td><asp:TextBox ID="txtNacimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtNacimiento" runat="server" ReadOnly="true" CssClass="form-control" TextMode="Date"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td><strong>Dirección:</strong></td>
-                    <td><asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtDireccion" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td><strong>Provincia:</strong></td>
-                    <td><asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><strong>Localidad:</strong></td>
+                    <td><asp:TextBox ID="txtLocalidad" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox></td>
                 </tr>
+
                 <tr>
                     <td><strong>Nacionalidad:</strong></td>
-                    <td><asp:TextBox ID="txtNacionalidad" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtNacionalidad" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox></td>
                 </tr>
 
                 <!-- Título: Contacto -->
@@ -68,14 +69,14 @@
                 </tr>
                 <tr>
                     <td><strong>Email:</strong></td>
-                    <td><asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtEmail" runat="server" ReadOnly="true" CssClass="form-control" TextMode="Email"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td><strong>Teléfono:</strong></td>
-                    <td><asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtTelefono" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox></td>
                 </tr>
             </table>
-
+            <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
            
 
            

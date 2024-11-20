@@ -66,5 +66,12 @@ namespace Negocio
             return medico;
         }
 
+        public Medico ObtenerDatosMedicoPorUsuario(string usuario)
+        {
+            DaoMedico daoMedico = new DaoMedico();
+            return daoMedico.ObtenerDatosMedicoPorUsuario(usuario);
+        }
+
+       
     }
 }

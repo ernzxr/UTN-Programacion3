@@ -33,13 +33,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.TextBox txtLegajo;
 
         /// <summary>
-        /// Control txtNombreApellido.
+        /// Control txtNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreApellido;
+        protected global::System.Web.UI.WebControls.TextBox txtNombre;
 
         /// <summary>
         /// Control txtApellido.
@@ -96,13 +96,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.TextBox txtDireccion;
 
         /// <summary>
-        /// Control txtProvincia.
+        /// Control txtLocalidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProvincia;
+        protected global::System.Web.UI.WebControls.TextBox txtLocalidad;
 
         /// <summary>
         /// Control txtNacionalidad.
@@ -130,5 +130,14 @@ namespace Vistas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTelefono;
+
+        /// <summary>
+        /// Control lblMensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
     }
 }
