@@ -249,38 +249,56 @@ namespace Vistas
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            lblMensaje.Text = "";
-
-            // Obtener los datos ingresados en el formulario
-            string nombreCompleto = ddlProfesionales.SelectedItem.Text;
-            string legajoMedico = negMedico.ObtenerLegajoPorNombreCompleto(nombreCompleto);
-
-            DateTime fechaSeleccionada = DateTime.Parse(txtDia.Text);
-
-            // Obtener el horario seleccionado desde Session
-            string horarioSeleccionado = Session["horarioSeleccionado"].ToString();
-
-            TimeSpan horaSeleccionada = TimeSpan.Parse(horarioSeleccionado);
+            if (Session["horarioSeleccionado"] == null)
+            {
+                lblMensaje.Text = "Debe seleccionar un horario para el turno.";
+                return;
+            }
 
             string dni = Convert.ToString(txtDniPaciente.Text);
 
-            turno.setLegajo_Medico(legajoMedico);
-            turno.setFecha(fechaSeleccionada);
-            turno.setHora(horaSeleccionada);
-            turno.setDni_Paciente(txtDniPaciente.Text);
-            turno.setIdLocalidadPaciente(negocioPaciente.ObtenerLocalidadPorDNI(dni));
-            turno.setAsistencia(true);
-            turno.setIdNacionalidad(negocioPaciente.ObtenerNacionalidadPorDNI(dni));
-
-            bool turnoAgregado = negocioTurno.AgregarTurno(turno);
-
-            if (turnoAgregado)
+            if (negocioPaciente.existePacienteDni(dni))
             {
-                lblMensaje.Text = "El turno fue asignado correctamente";
+                lblMensaje.Text = "";
+
+                // Obtener los datos ingresados en el formulario
+                string nombreCompleto = ddlProfesionales.SelectedItem.Text;
+                string legajoMedico = negMedico.ObtenerLegajoPorNombreCompleto(nombreCompleto);
+
+                DateTime fechaSeleccionada = DateTime.Parse(txtDia.Text);
+
+                // Obtener el horario seleccionado desde Session
+                string horarioSeleccionado = Session["horarioSeleccionado"].ToString();
+
+                TimeSpan horaSeleccionada = TimeSpan.Parse(horarioSeleccionado);
+
+                turno.setLegajo_Medico(legajoMedico);
+                turno.setFecha(fechaSeleccionada);
+                turno.setHora(horaSeleccionada);
+                turno.setDni_Paciente(txtDniPaciente.Text);
+                turno.setIdLocalidadPaciente(negocioPaciente.ObtenerLocalidadPorDNI(dni));
+                turno.setAsistencia(true);
+                turno.setIdNacionalidad(negocioPaciente.ObtenerNacionalidadPorDNI(dni));
+
+                bool turnoAgregado = negocioTurno.AgregarTurno(turno);
+
+                if (turnoAgregado)
+                {
+                    lblMensaje.Text = "El turno fue asignado correctamente";
+                    LimpiarCampos();
+                }
+                else
+                {
+                    lblMensaje.Text = "Error al asignar turno";
+                    LimpiarCampos();
+                }
+
+                Session["horarioSeleccionado"] = null;
             }
             else
             {
-                lblMensaje.Text = "Error al asignar turno";
+                lblMensaje.Text = "Error al asignar turno. El DNI no existe";
+                LimpiarCampos();
             }
 
             Session["horarioSeleccionado"] = null;
