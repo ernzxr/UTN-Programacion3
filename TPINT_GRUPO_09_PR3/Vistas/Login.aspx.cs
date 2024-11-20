@@ -42,17 +42,23 @@ namespace Vistas
             else if (tipoUsuario == "El usuario debe ingresarse solo en minúsculas.")
             {
                 // Mostramos un mensaje de error para casos de mayúsculas
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "Por favor, ingrese el usuario solo en minúsculas.";
+                txtUsuario.Text = "";
             }
             else if (tipoUsuario == "Credenciales incorrectas")
             {
                 // Mostramos un mensaje de error si las credenciales no coinciden
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "Usuario o contraseña incorrectos.";
+                txtUsuario.Text = "";
             }
             else
             {
                 // Mensaje genérico para usuarios no reconocidos
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "Tipo de usuario no reconocido.";
+                txtUsuario.Text = "";
             }
 
         }
