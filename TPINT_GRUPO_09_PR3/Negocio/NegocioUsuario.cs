@@ -17,23 +17,21 @@ namespace Negocio
 
         public string VerificarUsuario(string usuario, string contraseña)
         {
-            // Validar que el usuario esté en minúsculas
-            if (usuario != usuario.ToLower())
-            {
-                return "El usuario debe ingresarse solo en minúsculas.";
-            }
-            // Llamamos al Dao para obtener el usuario
             Usuario usuarioDB = _daoUsuario.ObtenerUsuarioPorCredenciales(usuario, contraseña);
+
             if (usuarioDB != null)
             {
-                // Verificamos el tipo de usuario
-                if (usuarioDB.IdTipoUsuario_Us == 1) //  1 es admin
+                if (!usuarioDB.Usuario_Us.Equals(usuario, StringComparison.Ordinal))
+                {
+                    return "Credenciales incorrectas";
+                }
+
+                if (usuarioDB.IdTipoUsuario_Us == 1)
                     return "Administrador";
-                else if (usuarioDB.IdTipoUsuario_Us == 2) //  2 es medico
+                else if (usuarioDB.IdTipoUsuario_Us == 2)
                     return "Médico";
             }
 
-            // Si no se encuentra el usuario o las credenciales son incorrectas
             return "Credenciales incorrectas";
         }
 

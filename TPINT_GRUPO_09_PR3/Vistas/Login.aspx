@@ -23,6 +23,7 @@
         <asp:Label ID="lblPassword" runat="server" Text="Contraseña" CssClass="form-label mb-3"></asp:Label>
         <asp:TextBox ID="txtPass" TextMode="Password" CssClass="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvActual" runat="server" ControlToValidate="txtPass" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>
+        <asp:RegularExpressionValidator ID="revPass" runat="server" ValidationGroup="grupo1" ValidationExpression="^\d{3,8}$" ControlToValidate="txtPass" ForeColor="#CC0000" ViewStateMode="Inherit" Text="(*) Solo se permiten números con entre 3 y 8 dígitos."></asp:RegularExpressionValidator>
 
         <asp:HyperLink ID="hlPass" runat="server" NavigateUrl="~/CambiarContraseña.aspx">He olvidado mi contraseña</asp:HyperLink>
 

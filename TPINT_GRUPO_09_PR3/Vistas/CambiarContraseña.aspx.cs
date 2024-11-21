@@ -25,13 +25,8 @@ namespace Vistas
             string nuevaClave = txtClave.Text.Trim();
             string confirmarClave = txtConfirmarClave.Text.Trim();
 
-            // Verificar si la nueva contraseña y la confirmación coinciden
-            if (nuevaClave != confirmarClave)
-            {
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
-                lblMensaje.Text = "Las contraseñas no coinciden. Por favor, intente nuevamente.";
-                return; // Salir del método si no coinciden
-            }
+          
+           
 
             // Llamar al método de negocio para cambiar la contraseña
             bool exito = _usuarioNegocio.CambiarContraseña(usuario, email, nuevaClave);

@@ -17,47 +17,42 @@ namespace Vistas
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-           
+            // Capturamos los valores ingresados
             string usuario = txtUsuario.Text;
             string contraseña = txtPass.Text;
 
-           
+            // Instanciamos la capa de negocio
             NegocioUsuario negocioUsuario = new NegocioUsuario();
 
-           
+            // Verificamos las credenciales
             string tipoUsuario = negocioUsuario.VerificarUsuario(usuario, contraseña);
 
             if (tipoUsuario == "Administrador")
             {
+                // Usuario administrador: Redirigimos a la página de inicio de admin
                 Session["TipoUsuario"] = 1;
-                Session["Usuario"] = txtUsuario.Text;
+                Session["Usuario"] = usuario; // Guardamos el usuario en sesión
                 Response.Redirect("InicioAdmin.aspx");
             }
             else if (tipoUsuario == "Médico")
             {
+                // Usuario médico: Redirigimos a la página de inicio de médico
                 Session["TipoUsuario"] = 2;
-                Session["Usuario"] = txtUsuario.Text;
+                Session["Usuario"] = usuario; // Guardamos el usuario en sesión
                 Response.Redirect("InicioMedico.aspx");
-            }
-            else if (tipoUsuario == "El usuario debe ingresarse solo en minúsculas.")
-            {
-                // Mostramos un mensaje de error para casos de mayúsculas
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
-                lblMensaje.Text = "Por favor, ingrese el usuario solo en minúsculas.";
-                txtUsuario.Text = "";
             }
             else if (tipoUsuario == "Credenciales incorrectas")
             {
                 // Mostramos un mensaje de error si las credenciales no coinciden
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
-                lblMensaje.Text = "Usuario o contraseña incorrectos.";
+                lblMensaje.Text = "Usuario o contraseña incorrectos. Por favor, intente nuevamente.";
                 txtUsuario.Text = "";
             }
             else
             {
-                // Mensaje genérico para usuarios no reconocidos
+                // Mensaje genérico para cualquier otro caso no esperado
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
-                lblMensaje.Text = "Tipo de usuario no reconocido.";
+                lblMensaje.Text = "Ha ocurrido un error inesperado. Comuníquese con soporte.";
                 txtUsuario.Text = "";
             }
 
