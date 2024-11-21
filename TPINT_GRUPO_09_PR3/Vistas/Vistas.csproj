@@ -92,6 +92,7 @@
     <Content Include="MiPerfil.aspx" />
     <Content Include="ModificarDatosMedico.aspx" />
     <Content Include="ReporteHorarios.aspx" />
+    <Content Include="ReportesInformes.aspx" />
     <Content Include="Styles\layout.css" />
     <Content Include="TurnosAsignados.aspx" />
     <Content Include="Web.config" />
@@ -216,6 +217,13 @@
     </Compile>
     <Compile Include="ReporteHorarios.aspx.designer.cs">
       <DependentUpon>ReporteHorarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesInformes.aspx.cs">
+      <DependentUpon>ReportesInformes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportesInformes.aspx.designer.cs">
+      <DependentUpon>ReportesInformes.aspx</DependentUpon>
     </Compile>
     <Compile Include="TurnosAsignados.aspx.cs">
       <DependentUpon>TurnosAsignados.aspx</DependentUpon>

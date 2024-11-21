@@ -39,11 +39,13 @@ namespace Vistas
                     }
                     else
                     {
+                        lblMensaje.ForeColor = System.Drawing.Color.Red;
                         lblMensaje.Text = "No se encontraron datos para el usuario.";
                     }
                 }
                 else
                 {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblMensaje.Text = "Usuario no válido.";
                 }
             }

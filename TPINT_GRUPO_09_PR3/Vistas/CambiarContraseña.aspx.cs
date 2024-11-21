@@ -41,12 +41,20 @@ namespace Vistas
             {
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
                 lblMensaje.Text = "La contraseña se ha actualizado correctamente.";
-                Response.Redirect("Login.aspx");
+                txtUsuario.Text = "";
+                txtEmail.Text = "";
+                txtClave.Text = "";
+                txtConfirmarClave.Text = "";
+               // Response.Redirect("Login.aspx");
             }
             else
             {
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "El usuario o el email no son válidos.";
+                txtUsuario.Text = "";
+                txtEmail.Text = "";
+                txtClave.Text = "";
+                txtConfirmarClave.Text = "";
             }
         }
     }
