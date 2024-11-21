@@ -110,7 +110,7 @@ namespace Dao
 
         public Medico ObtenerMedicoPorLegajo(string legajo)
         {
-             SqlConnection conexion = new SqlConnection(connectionString); 
+           SqlConnection conexion = new SqlConnection(connectionString); 
             //SqlConnection conexion = ds.ObtenerConexion(); 
             
                 SqlCommand comando = new SqlCommand("SELECT Legajo_Me, Nombre_Me, Apellido_Me FROM Medicos WHERE Legajo_Me = @legajo", conexion);

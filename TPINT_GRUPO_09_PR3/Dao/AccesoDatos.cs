@@ -23,6 +23,8 @@ namespace Dao
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Error al intentar conectar con la base de datos:");
+                Console.WriteLine(ex.Message); // Aquí se imprimirá el mensaje de error específico
                 throw new Exception("No se pudo establecer la conexión con la base de datos. Detalles: " + ex.Message);
             }
         }

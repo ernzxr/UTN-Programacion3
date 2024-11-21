@@ -69,5 +69,6 @@ namespace Entidades
         {
             Hora_Fin_HM = horaFin;
         }
+
     }
 }
