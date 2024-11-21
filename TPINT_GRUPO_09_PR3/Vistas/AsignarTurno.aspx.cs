@@ -79,8 +79,7 @@ namespace Vistas
             lblMensajeError2.Text = "";
 
             // Limpiar el DataList antes de procesar la nueva fecha
-            dlHorario.DataSource = null;
-            dlHorario.DataBind();
+            Limpiar_dlHorario();
 
             // Obtener el nombre completo del médico seleccionado
             string nombreCompleto = ddlProfesionales.SelectedItem.Text;
@@ -106,6 +105,21 @@ namespace Vistas
                 return;
             }
 
+            // Verificar si es un día de ausencia
+            DataTable fechasAusencias = negocioAusenciaMedico.ObtenerFechasAusencias(legajoMedico);
+            foreach (DataRow row in fechasAusencias.Rows)
+            {
+                DateTime fechaInicio = Convert.ToDateTime(row["Fecha_Inicio_AM"]);
+                DateTime fechaFin = Convert.ToDateTime(row["Fecha_Fin_AM"]);
+                if (fechaSeleccionada >= fechaInicio && fechaSeleccionada <= fechaFin)
+                {
+                    lblMensajeError.Text = "El médico está ausente en la fecha seleccionada.";
+                    txtDia.Text = "";
+                    return;
+                }
+            }
+
+
             // Obtener día de la semana
             int idDiaSemana = (int)fechaSeleccionada.DayOfWeek;
 
@@ -129,19 +143,6 @@ namespace Vistas
                 return;
             }
 
-            // Verificar si es un día de ausencia
-            DataTable fechasAusencias = negocioAusenciaMedico.ObtenerFechasAusencias(legajoMedico);
-            foreach (DataRow row in fechasAusencias.Rows)
-            {
-                DateTime fechaInicio = Convert.ToDateTime(row["Fecha_Inicio_AM"]);
-                DateTime fechaFin = Convert.ToDateTime(row["Fecha_Fin_AM"]);
-                if (fechaSeleccionada >= fechaInicio && fechaSeleccionada <= fechaFin)
-                {
-                    lblMensajeError.Text = "El médico está ausente en la fecha seleccionada.";
-                    txtDia.Text = "";
-                    return;
-                }
-            }
 
             // Validar si todos los turnos están completos
             DataTable fechasTurnosCompletos = negocioHorario.ObtenerFechasConTurnosCompletos(legajoMedico);
@@ -178,8 +179,7 @@ namespace Vistas
                 if (horarioFiltrado.Length == 0)
                 {
                     lblMensajeError.Text = "El médico no trabaja en el día seleccionado.";
-                    dlHorario.DataSource = null;
-                    dlHorario.DataBind();
+                    Limpiar_dlHorario();
                     return;
                 }
 
@@ -216,8 +216,7 @@ namespace Vistas
                 if (dtHorarios.Rows.Count == 0)
                 {
                     lblMensajeError.Text = "No hay horarios disponibles para el día seleccionado.";
-                    dlHorario.DataSource = null;
-                    dlHorario.DataBind();
+                    Limpiar_dlHorario();
                     return;
                 }
 
@@ -228,8 +227,7 @@ namespace Vistas
             else
             {
                 lblMensajeError2.Text = "Error al obtener los horarios de trabajo del médico.";
-                dlHorario.DataSource = null;
-                dlHorario.DataBind();
+                Limpiar_dlHorario();
             }
 
         }
@@ -251,41 +249,93 @@ namespace Vistas
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            lblMensaje.Text = "";
-
-            // Obtener los datos ingresados en el formulario
-            string nombreCompleto = ddlProfesionales.SelectedItem.Text;
-            string legajoMedico = negMedico.ObtenerLegajoPorNombreCompleto(nombreCompleto);
-
-            DateTime fechaSeleccionada = DateTime.Parse(txtDia.Text);
-
-            // Obtener el horario seleccionado desde Session
-            string horarioSeleccionado = Session["horarioSeleccionado"].ToString();
-
-            TimeSpan horaSeleccionada = TimeSpan.Parse(horarioSeleccionado);
+            if (Session["horarioSeleccionado"] == null)
+            {
+                lblMensaje.Text = "Debe seleccionar un horario para el turno.";
+                return;
+            }
 
             string dni = Convert.ToString(txtDniPaciente.Text);
 
-            turno.setLegajo_Medico(legajoMedico);
-            turno.setFecha(fechaSeleccionada);
-            turno.setHora(horaSeleccionada);
-            turno.setDni_Paciente(txtDniPaciente.Text);
-            turno.setIdLocalidadPaciente(negocioPaciente.ObtenerLocalidadPorDNI(dni));
-            turno.setAsistencia(true);
-            turno.setIdNacionalidad(negocioPaciente.ObtenerNacionalidadPorDNI(dni));
-
-            bool turnoAgregado = negocioTurno.AgregarTurno(turno);
-
-            if (turnoAgregado)
+            if (negocioPaciente.existePacienteDni(dni))
             {
-                lblMensaje.Text = "El turno fue asignado correctamente";
+                lblMensaje.Text = "";
+
+                // Obtener los datos ingresados en el formulario
+                string nombreCompleto = ddlProfesionales.SelectedItem.Text;
+                string legajoMedico = negMedico.ObtenerLegajoPorNombreCompleto(nombreCompleto);
+
+                DateTime fechaSeleccionada = DateTime.Parse(txtDia.Text);
+
+                // Obtener el horario seleccionado desde Session
+                string horarioSeleccionado = Session["horarioSeleccionado"].ToString();
+
+                TimeSpan horaSeleccionada = TimeSpan.Parse(horarioSeleccionado);
+
+                turno.setLegajo_Medico(legajoMedico);
+                turno.setFecha(fechaSeleccionada);
+                turno.setHora(horaSeleccionada);
+                turno.setDni_Paciente(txtDniPaciente.Text);
+                turno.setIdLocalidadPaciente(negocioPaciente.ObtenerLocalidadPorDNI(dni));
+                turno.setAsistencia(true);
+                turno.setIdNacionalidad(negocioPaciente.ObtenerNacionalidadPorDNI(dni));
+
+                bool turnoAgregado = negocioTurno.AgregarTurno(turno);
+
+                if (turnoAgregado)
+                {
+                    lblMensaje.Text = "El turno fue asignado correctamente";
+                    LimpiarCampos();
+                }
+                else
+                {
+                    lblMensaje.Text = "Error al asignar turno";
+                    LimpiarCampos();
+                }
+
+                Session["horarioSeleccionado"] = null;
             }
             else
             {
-                lblMensaje.Text = "Error al asignar turno";
+                lblMensaje.Text = "Error al asignar turno. El DNI no existe";
+                LimpiarCampos();
             }
 
             Session["horarioSeleccionado"] = null;
+        }
+
+        public void Limpiar_dlHorario()
+        {
+            // Limpiar el DataList antes de procesar la nueva fecha
+            dlHorario.DataSource = null;
+            dlHorario.DataBind();
+        }
+
+        public void LimpiarCampos()
+        {
+            txtDniPaciente.Text = "";
+            txtDia.Text = "";
+            Limpiar_dlHorario();
+            lblMensajeError.Text = "";
+            lblMensajeError2.Text = "";
+
+            // Limpiar DropDownLists
+            ddlEspecialidades.ClearSelection();
+            ddlProfesionales.ClearSelection();
+
+            // Restablecer la selección inicial
+            if (ddlEspecialidades.Items.Count > 0)
+            {
+                ddlEspecialidades.SelectedIndex = -1; // Quitar selección
+                ddlEspecialidades.Items[0].Selected = true; // Seleccionar el primer ítem (disabled)
+            }
+
+            if (ddlProfesionales.Items.Count > 0)
+            {
+                ddlProfesionales.SelectedIndex = -1; // Quitar selección
+                ddlProfesionales.Items[0].Selected = true; // Seleccionar el primer ítem (disabled)
+            }
+
         }
     }
     

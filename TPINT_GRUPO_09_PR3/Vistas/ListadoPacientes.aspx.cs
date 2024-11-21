@@ -130,7 +130,7 @@ namespace Vistas
                 {
                     DataRow paciente = dtPaciente.Rows[0];
 
-                    txtDNI_M.Text = paciente["DNI"].ToString();
+                    lblDNI2_M.Text = paciente["DNI"].ToString();
                     ddlNacionalidad_M.SelectedValue = idNacionalidad.ToString();
                     txtNombre_M.Text = paciente["Nombre"].ToString();
                     txtApellido_M.Text = paciente["Apellido"].ToString();
@@ -151,6 +151,8 @@ namespace Vistas
                     chkEstado_M.Checked = chequeado ? true : false;
 
                 }
+
+                lblCatch.Text = "";
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal();", true);
             }
@@ -175,11 +177,35 @@ namespace Vistas
 
         protected void btnModificarM_Click(Object sender, EventArgs e)
         {
-            bool modifico = NegP.ModificarPaciente(txtDNI_M.Text, txtNombre_M.Text, txtApellido_M.Text, int.Parse(ddlSexo_M.SelectedValue), Convert.ToDateTime(txtFechaNacimiento_M.Text),
-                int.Parse(ddlNacionalidad_M.SelectedValue), int.Parse(ddlLocalidad_M.SelectedValue), txtDireccion_M.Text, txtEmail_M.Text, txtTelefono_M.Text, chkEstado_M.Checked);
+            try
+            {
+                int idNacionalidad = int.Parse(ddlNacionalidad_M.SelectedValue);
 
-            gvPacientes.DataSource = NegP.getPacientes();
-            gvPacientes.DataBind();
+                bool modifico = NegP.ModificarPaciente(lblDNI2_M.Text, txtNombre_M.Text, txtApellido_M.Text, int.Parse(ddlSexo_M.SelectedValue), Convert.ToDateTime(txtFechaNacimiento_M.Text),
+                    int.Parse(ddlNacionalidad_M.SelectedValue), int.Parse(ddlLocalidad_M.SelectedValue), txtDireccion_M.Text, txtEmail_M.Text, txtTelefono_M.Text, chkEstado_M.Checked);
+
+                lblCatch.Text = "";
+
+                gvPacientes.DataSource = NegP.getPacientes();
+                gvPacientes.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+
+                if (ex.Message.Contains("Violation of UNIQUE KEY constraint"))
+                {
+                    lblCatch.Text = "El email ingresado ya está registrado en otro paciente.";
+                    lblCatch.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    lblCatch.Text = "Ocurrió un error inesperado: " + ex.Message;
+                    lblCatch.ForeColor = System.Drawing.Color.Red;
+                }
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal();", true);
+            }
 
         }
 
@@ -217,6 +243,13 @@ namespace Vistas
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "showDeleteModal", "showDeleteModal();", true);
             }
+        }
+
+        protected void gvPacientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvPacientes.PageIndex = e.NewPageIndex;
+            gvPacientes.DataSource = NegP.getPacientes();
+            gvPacientes.DataBind();
         }
     }
 }

@@ -127,6 +127,13 @@ namespace Dao
             string consulta = "SELECT * FROM Pacientes WHERE Estado_Pa = '" + 1 + "' AND Dni_Pa = '" + dni + "' AND Id_Nacionalidad_Pa = " + idNacionalidad;
             return ds.existe(consulta);
         }
+
+        public Boolean existePacienteDni(string dni)
+        {
+            string consulta = "SELECT * FROM Pacientes WHERE Estado_Pa = '" + 1 + "' AND Dni_Pa = " + dni;
+            return ds.existe(consulta);
+        }
+
         public DataTable filtrarPaciente(string dni, int idNacionalidad)
         {
             string consulta = "SELECT Dni_Pa AS DNI, Descripcion_Na AS Nacionalidad, Nombre_Pa AS Nombre, Apellido_Pa AS Apellido, Descripcion_Ge AS Sexo, " +

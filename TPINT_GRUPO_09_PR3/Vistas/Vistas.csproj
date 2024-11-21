@@ -89,6 +89,8 @@
     <Content Include="ListadoMedicos.aspx" />
     <Content Include="ListadoPacientes.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="ReporteHorarios.aspx" />
+    <Content Include="ReportesInformes.aspx" />
     <Content Include="Styles\layout.css" />
     <Content Include="TurnosAsignados.aspx" />
     <Content Include="Web.config" />
@@ -192,6 +194,20 @@
     </Compile>
     <Compile Include="Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteHorarios.aspx.cs">
+      <DependentUpon>ReporteHorarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteHorarios.aspx.designer.cs">
+      <DependentUpon>ReporteHorarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesInformes.aspx.cs">
+      <DependentUpon>ReportesInformes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportesInformes.aspx.designer.cs">
+      <DependentUpon>ReportesInformes.aspx</DependentUpon>
     </Compile>
     <Compile Include="TurnosAsignados.aspx.cs">
       <DependentUpon>TurnosAsignados.aspx</DependentUpon>

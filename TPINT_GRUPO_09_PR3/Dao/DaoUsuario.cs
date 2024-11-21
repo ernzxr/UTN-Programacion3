@@ -111,8 +111,11 @@ namespace Dao
 
         public bool VerificarYActualizarClave(string usuario, string email, string nuevaClave)
         {
-            // Consulta SQL para verificar si el usuario y el email existen en la base de datos
-            string consulta = "SELECT COUNT(*) FROM Usuarios WHERE Usuario_Us = @Usuario AND Email_Us = @Email";
+            string consulta = @"
+            SELECT TU.Id_Tipo_Usuario_TU
+            FROM Usuarios U
+            INNER JOIN Tipos_Usuarios TU ON U.Id_Tipo_Usuario_Us = TU.Id_Tipo_Usuario_TU
+            WHERE U.Usuario_Us = @Usuario AND U.Email_Us = @Email";
 
             // Crear el comando y agregar los parámetros
             SqlCommand comando = new SqlCommand(consulta);
@@ -130,21 +133,28 @@ namespace Dao
             // Asignar la conexión al comando
             comando.Connection = conexion;
 
-            // Ejecutar la consulta para verificar si existe el usuario y el email
+            // Ejecutar la consulta para verificar si existe el usuario y obtener el tipo de usuario
             SqlDataReader reader = comando.ExecuteReader();
 
-            bool existe = false;
-            if (reader.Read() && reader.GetInt32(0) > 0)
+            int tipoUsuario = -1; // Variable para almacenar el tipo de usuario
+            if (reader.Read())
             {
-                existe = true; // Si el conteo es mayor a 0, el usuario y el email existen
+                tipoUsuario = reader.GetInt32(0); // Obtenemos el valor de Id_Tipo_Usuario_TU
             }
 
             // Cerrar la conexión y el lector
+            reader.Close();
             conexion.Close();
 
-            if (existe)
+            if (tipoUsuario == 1)
             {
-                // Si el usuario y el email existen, se procede a cambiar la contraseña
+                return false;
+                
+            }
+
+            if (tipoUsuario == 2)
+            {
+                // Si el usuario es válido y no es administrador, procedemos a cambiar la clave
                 SqlCommand cmdActualizar = new SqlCommand();
                 ArmarParametrosNuevaClave(ref cmdActualizar, usuario, email, nuevaClave);
 
@@ -157,8 +167,7 @@ namespace Dao
             return false; // Usuario o email no encontrados
         }
 
-
-
+        }
     }
-}
+
 

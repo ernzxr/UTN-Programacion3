@@ -93,6 +93,7 @@
                             <asp:HyperLink class="nav-link active" aria-current="page" ID="hlReportesInformes" runat="server" NavigateUrl="~/ReportesInformes.aspx">Reportes e Informes</asp:HyperLink>
                         </li>
                     </ul>
+                    <asp:Label ID="lblUsuarioAdmin" runat="server" Text="" class="me-3"></asp:Label>
                     <asp:Button class="btn btn-danger" ID="btnSalirAdm" runat="server" Text="Salir" OnClick="btnSalir_Click" />
                     <% }
                         else if (Session["TipoUsuario"] != null && Session["TipoUsuario"].ToString() == "2")
@@ -107,13 +108,10 @@
                         </li>
 
                         <li class="nav-item">
-                            <asp:HyperLink class="nav-link active" aria-current="page" ID="hlReportesInformesMedico" runat="server" NavigateUrl="~/ReportesInformes.aspx">Reportes e Informes</asp:HyperLink>
-                        </li>
-
-                        <li class="nav-item">
-                            <asp:HyperLink class="nav-link active" aria-current="page" ID="hlPerfil" runat="server" NavigateUrl="~/Perfil.aspx">Mi Perfil</asp:HyperLink>
+                            <asp:HyperLink class="nav-link active" aria-current="page" ID="hlPerfil" runat="server" NavigateUrl="~/MiPerfil.aspx">Mi Perfil</asp:HyperLink>
                         </li>
                     </ul>
+                    <asp:Label ID="lblUsuarioMedico" runat="server" Text="" class="me-3"></asp:Label>
                     <asp:Button class="btn btn-danger" ID="btnSalirMed" runat="server" Text="Salir" OnClick="btnSalir_Click" />
                     <% } %>
                 </div>

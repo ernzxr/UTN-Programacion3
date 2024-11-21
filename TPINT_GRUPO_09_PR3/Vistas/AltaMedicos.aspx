@@ -35,6 +35,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager runat="server" />
     <div style="width: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
 
         <asp:Label ID="lblTitulo" runat="server" Text="Agregar Médico" CssClass="auto-style1"></asp:Label>
@@ -101,13 +102,17 @@
 
         <h3>Datos de Contacto</h3>
 
-        <asp:Label ID="lblProvincia" runat="server" Text="Provincia" Style="align-self: flex-start"></asp:Label>
-        <asp:DropDownList ID="ddlProvincia" class="form-select" runat="server" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-        <asp:RequiredFieldValidator ID="rfvProvincia" CssClass="mb-5" runat="server" ControlToValidate="ddlProvincia" ForeColor="#CC0000" ValidationGroup="gpAgregar" InitialValue="0" Display="Dynamic">(*) Seleccione una opción.</asp:RequiredFieldValidator>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <asp:Label ID="lblProvincia" runat="server" Text="Provincia" Style="align-self: flex-start"></asp:Label>
+                <asp:DropDownList ID="ddlProvincia" class="form-select" runat="server" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                <asp:RequiredFieldValidator ID="rfvProvincia" CssClass="mb-5" runat="server" ControlToValidate="ddlProvincia" ForeColor="#CC0000" ValidationGroup="gpAgregar" InitialValue="0" Display="Dynamic">(*) Seleccione una opción.</asp:RequiredFieldValidator>
 
-        <asp:Label ID="lblLocalidad" runat="server" Text="Localidad" Style="align-self: flex-start"></asp:Label>
-        <asp:DropDownList ID="ddlLocalidad" class="form-select" runat="server"></asp:DropDownList>
-        <asp:RequiredFieldValidator ID="rfvLocalidad" CssClass="mb-5" runat="server" ControlToValidate="ddlLocalidad" ForeColor="#CC0000" ValidationGroup="gpAgregar" InitialValue="0" Display="Dynamic">(*) Seleccione una opción.</asp:RequiredFieldValidator>
+                <asp:Label ID="lblLocalidad" runat="server" Text="Localidad" Style="align-self: flex-start"></asp:Label>
+                <asp:DropDownList ID="ddlLocalidad" class="form-select" runat="server"></asp:DropDownList>
+                <asp:RequiredFieldValidator ID="rfvLocalidad" CssClass="mb-5" runat="server" ControlToValidate="ddlLocalidad" ForeColor="#CC0000" ValidationGroup="gpAgregar" InitialValue="0" Display="Dynamic">(*) Seleccione una opción.</asp:RequiredFieldValidator>
+            </ContentTemplate>
+        </asp:UpdatePanel>
 
         <asp:Label ID="lblDireccion" runat="server" Text="Dirección" Style="align-self: flex-start"></asp:Label>
         <asp:TextBox ID="txtDireccion" class="form-control" runat="server"></asp:TextBox>

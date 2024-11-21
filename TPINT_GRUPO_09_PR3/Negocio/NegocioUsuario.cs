@@ -17,14 +17,19 @@ namespace Negocio
 
         public string VerificarUsuario(string usuario, string contraseña)
         {
+            // Validar que el usuario esté en minúsculas
+            if (usuario != usuario.ToLower())
+            {
+                return "El usuario debe ingresarse solo en minúsculas.";
+            }
             // Llamamos al Dao para obtener el usuario
             Usuario usuarioDB = _daoUsuario.ObtenerUsuarioPorCredenciales(usuario, contraseña);
             if (usuarioDB != null)
             {
                 // Verificamos el tipo de usuario
-                if (usuarioDB.IdTipoUsuario_Us == 1) // Supongamos que 1 es Administrador
+                if (usuarioDB.IdTipoUsuario_Us == 1) //  1 es admin
                     return "Administrador";
-                else if (usuarioDB.IdTipoUsuario_Us == 2) // Supongamos que 2 es Médico
+                else if (usuarioDB.IdTipoUsuario_Us == 2) //  2 es medico
                     return "Médico";
             }
 
@@ -54,7 +59,13 @@ namespace Negocio
         {
             // Llamar al método de DaoUsuario para verificar y actualizar la contraseña
             return _daoUsuario.VerificarYActualizarClave(usuario, email, nuevaClave);
+            
+            
         }
+
+        
+            
+        
     }
 
 

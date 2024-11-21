@@ -17,34 +17,52 @@ namespace Vistas
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            // Obtén el nombre de usuario y la contraseña desde los controles de la página
+           
             string usuario = txtUsuario.Text;
             string contraseña = txtPass.Text;
 
-            // Instancia de NegocioUsuario
+           
             NegocioUsuario negocioUsuario = new NegocioUsuario();
 
-            // Verifica el tipo de usuario
+           
             string tipoUsuario = negocioUsuario.VerificarUsuario(usuario, contraseña);
 
             if (tipoUsuario == "Administrador")
             {
-                // Redirige a la página de administrador
                 Session["TipoUsuario"] = 1;
+                Session["Usuario"] = txtUsuario.Text;
                 Response.Redirect("InicioAdmin.aspx");
             }
             else if (tipoUsuario == "Médico")
             {
-                // Redirige a la página de médico
                 Session["TipoUsuario"] = 2;
+                Session["Usuario"] = txtUsuario.Text;
                 Response.Redirect("InicioMedico.aspx");
+            }
+            else if (tipoUsuario == "El usuario debe ingresarse solo en minúsculas.")
+            {
+                // Mostramos un mensaje de error para casos de mayúsculas
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Por favor, ingrese el usuario solo en minúsculas.";
+                txtUsuario.Text = "";
+            }
+            else if (tipoUsuario == "Credenciales incorrectas")
+            {
+                // Mostramos un mensaje de error si las credenciales no coinciden
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Usuario o contraseña incorrectos.";
+                txtUsuario.Text = "";
             }
             else
             {
-                // Muestra un mensaje de error si las credenciales son incorrectas
-                Session.Clear();
-                lblError.Text = "Credenciales incorrectas";
+                // Mensaje genérico para usuarios no reconocidos
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Tipo de usuario no reconocido.";
+                txtUsuario.Text = "";
             }
+
         }
+        
+
     }
 }

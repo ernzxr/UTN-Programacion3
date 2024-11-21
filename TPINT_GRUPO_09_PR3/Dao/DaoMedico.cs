@@ -59,7 +59,7 @@ namespace Dao
             SqlParametros.Value = medico.getEmail();
 
             SqlParametros = cmd.Parameters.Add("@NOMBRE", SqlDbType.VarChar);
-            SqlParametros.Value = medico.getEmail();
+            SqlParametros.Value = medico.getNombre();
 
             SqlParametros = cmd.Parameters.Add("@APELLIDO", SqlDbType.VarChar);
             SqlParametros.Value = medico.getApellido();
@@ -143,6 +143,50 @@ namespace Dao
                     throw new Exception("Error al acceder a la base de datos: " + ex.Message);
                 }
             
+        }
+
+        public Medico ObtenerDatosMedicoPorUsuario(string usuario)
+        {
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                SqlCommand comando = new SqlCommand(
+                    "SELECT Legajo_Me, Nombre_Me, Apellido_Me, DNI_Me, Fecha_Nacimiento_Me, Direccion_Me, " +
+                    "Telefono_Me, Email_Me, Id_Localidad_Me, Id_Especialidad_Me, Id_Nacionalidad_Me " +
+                    "FROM Medicos WHERE Usuario_Me = @Usuario AND Estado_Me = 1", conexion);
+
+                comando.Parameters.AddWithValue("@Usuario", usuario);
+
+                try
+                {
+                    conexion.Open();
+                    SqlDataReader reader = comando.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        Medico medico = new Medico();
+                        medico.setLegajo(reader["Legajo_Me"].ToString());
+                        medico.setNombre(reader["Nombre_Me"].ToString());
+                        medico.setApellido(reader["Apellido_Me"].ToString());
+                        medico.setDni(reader["DNI_Me"].ToString());
+                        medico.setFechaNacimiento(Convert.ToDateTime(reader["Fecha_Nacimiento_Me"]));
+                        medico.setDireccion(reader["Direccion_Me"].ToString());
+                        medico.setTelefono(reader["Telefono_Me"].ToString());
+                        medico.setEmail(reader["Email_Me"].ToString());
+                        medico.setIdLocalidad(Convert.ToInt32(reader["Id_Localidad_Me"]));
+                        medico.setIdEspecilidad(Convert.ToInt32(reader["Id_Especialidad_Me"]));
+                        medico.setIdNacionalidad(Convert.ToInt32(reader["Id_Nacionalidad_Me"]));
+                        return medico;
+                    }
+                    else
+                    {
+                        return null; // No se encontró el médico
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al obtener los datos del médico: " + ex.Message);
+                }
+            }
         }
 
     }
