@@ -19,7 +19,7 @@ namespace Dao
 
         public DataTable getLocalidad(int idProv)
         {
-            string consulta = "SELECT * FROM Localidades INNER JOIN Provincias ON Id_Provincia_Lo = Id_Provincia_Pr WHERE Id_Provincia_Pr = " + idProv;
+            string consulta = "SELECT * FROM Localidades WHERE Id_Provincia_Lo = " + idProv;
             return ds.ObtenerTabla("Localidades", consulta);
         }
 
@@ -29,6 +29,11 @@ namespace Dao
             return ds.ObtenerTabla("Localidades", consulta);
         }
 
+        public DataTable getIdProvincia(int idLocalidad)
+        {
+            string consulta = "SELECT Id_Provincia_Lo AS Id_Provincia FROM Localidades WHERE Id_Localidad_Lo = " + idLocalidad;
+            return ds.ObtenerTabla("Localidades", consulta);
+        }
         
         }
 

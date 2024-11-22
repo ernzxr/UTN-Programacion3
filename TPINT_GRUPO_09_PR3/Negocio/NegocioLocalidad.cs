@@ -1,4 +1,5 @@
 ﻿using Dao;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,9 +17,18 @@ namespace Negocio
 
         }
 
-        public DataTable getTablaLocalidad(int idProv)
+        public DataTable getTablaLocalidad(Provincia2 provincia)
         {
             DaoLocalidad dao = new DaoLocalidad();
+            int idProv = (int)provincia;
+
+            return dao.getLocalidad(idProv);
+        }
+
+        public DataTable getLocalidad(int idProv)
+        {
+            DaoLocalidad dao = new DaoLocalidad();
+
             return dao.getLocalidad(idProv);
         }
 
@@ -38,5 +48,24 @@ namespace Negocio
 
             return descripcion;
         }
+
+        public int getIdProvincia(int idLocalidad)
+        {
+            DaoLocalidad dao = new DaoLocalidad();
+            DataTable dt = dao.getIdProvincia(idLocalidad);
+
+            int id = 0;
+
+            if(dt != null && dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+
+                id = int.Parse(dr["Id_Provincia"].ToString());
+
+            }
+
+            return id;
+        }
+
     }
 }

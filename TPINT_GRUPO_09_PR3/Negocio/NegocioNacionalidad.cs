@@ -39,5 +39,23 @@ namespace Negocio
             return id;
             
         }
+
+        public string getDescripcionNacionalidad(int idNacionalidad)
+        {
+            DaoNacionalidad dao = new DaoNacionalidad();
+            DataTable dt = dao.getDescripcionNacionalidad(idNacionalidad);
+
+            string descripcion = "";
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+
+                descripcion = dr["Descripcion"].ToString();
+            }
+
+            return descripcion;
+
+        }
     }
 }

@@ -28,5 +28,11 @@ namespace Dao
             return ds.ObtenerTabla("Nacionalidades", consulta);
         }
 
+        public DataTable getDescripcionNacionalidad(int idNacionalidad)
+        {
+            string consulta = "Select Descripcion_Na AS Descripcion FROM Nacionalidades WHERE Id_Nacionalidad_Na = " + idNacionalidad;
+            return ds.ObtenerTabla("Nacionalidades", consulta);
+        }
+
     }
 }

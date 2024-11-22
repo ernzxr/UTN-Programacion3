@@ -107,13 +107,25 @@
                     <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
                     <asp:TemplateField HeaderText="Genero">
                         <ItemTemplate>
-                            <asp:label ID="lblSexo_Prueba" Text='<%# Eval("Id_Genero") %>' runat="server" />
+                            <asp:label ID="lblGenero" Text='<%# Eval("Id_Genero") %>' runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="Fecha_De_Nacimiento" DataFormatString="{0:dd-MM-yyyy}" HeaderText="Fecha" />
-                    <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
-                    <asp:BoundField DataField="Provincia" HeaderText="Provincia" />
-                    <asp:BoundField DataField="Localidad" HeaderText="Localidad" />
+                    <asp:TemplateField HeaderText="Nacionalidad">
+                        <ItemTemplate>
+                            <asp:Label ID="lblNacionalidad" Text='<%# Eval("Id_Nacionalidad") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Provincia">
+                        <ItemTemplate>
+                            <asp:Label ID="lblProvincia" Text='<%# Eval("Id_Localidad") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Localidad">
+                        <ItemTemplate>
+                            <asp:label ID="lblLocalidad" Text='<%# Eval("Id_Localidad") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
                     <asp:BoundField DataField="Email" HeaderText="Correo Electronico" />
                     <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
@@ -124,12 +136,12 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Modificar">
                         <ItemTemplate>
-                            <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnCommand="btnModificar_Command1"/>
+                            <asp:Button ID="btnModificar" runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("DNI") + "," + Eval("Id_Nacionalidad") %>' OnCommand="btnModificar_Command1"/>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Eliminar">
                         <ItemTemplate>
-                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("DNI") + "," + Eval("Nacionalidad") %>' OnCommand="btnEliminar_Command"/>
+                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("DNI") + "," + Eval("Id_Nacionalidad") %>' OnCommand="btnEliminar_Command"/>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

@@ -70,15 +70,15 @@ namespace Vistas
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int idProv = Convert.ToInt32(ddlProvincia.SelectedValue);
+            //int idProv = Convert.ToInt32(ddlProvincia.SelectedValue);
 
-            DataTable Localidad = nLocalidad.getTablaLocalidad(idProv);
-            ddlLocalidad.DataSource = Localidad;
-            ddlLocalidad.DataTextField = "Descripcion_Lo";
-            ddlLocalidad.DataValueField = "Id_Localidad_Lo";
-            ddlLocalidad.DataBind();
+            //DataTable Localidad = nLocalidad.getTablaLocalidad(idProv);
+            //ddlLocalidad.DataSource = Localidad;
+            //ddlLocalidad.DataTextField = "Descripcion_Lo";
+            //ddlLocalidad.DataValueField = "Id_Localidad_Lo";
+            //ddlLocalidad.DataBind();
 
-            ddlLocalidad.Items.Insert(0, new ListItem("---Seleccionar---", "0"));
+            //ddlLocalidad.Items.Insert(0, new ListItem("---Seleccionar---", "0"));
         }
 
         public void LimpiarCampos()

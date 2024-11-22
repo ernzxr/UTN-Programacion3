@@ -1,4 +1,5 @@
-﻿using Negocio;
+﻿using Entidades;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -65,15 +66,15 @@ namespace Vistas
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int idProv = Convert.ToInt32(ddlProvincia.SelectedValue);
+            //int idProv = Convert.ToInt32(ddlProvincia.SelectedValue);
 
-            DataTable Localidad = negl.getTablaLocalidad(idProv);
-            ddlLocalidad.DataSource = Localidad;
-            ddlLocalidad.DataTextField = "Descripcion_Lo";
-            ddlLocalidad.DataValueField = "Id_Localidad_Lo";
-            ddlLocalidad.DataBind();
+            //DataTable Localidad = negl.getTablaLocalidad(idProv);
+            //ddlLocalidad.DataSource = Localidad;
+            //ddlLocalidad.DataTextField = "Descripcion_Lo";
+            //ddlLocalidad.DataValueField = "Id_Localidad_Lo";
+            //ddlLocalidad.DataBind();
 
-            ddlLocalidad.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+            //ddlLocalidad.Items.Insert(0, new ListItem("Seleccionar...", "0"));
         }
 
         public void limpiarCampos()

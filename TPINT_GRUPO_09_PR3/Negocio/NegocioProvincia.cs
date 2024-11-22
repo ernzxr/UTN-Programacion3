@@ -1,4 +1,5 @@
 ﻿using Dao;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,5 +21,16 @@ namespace Negocio
             DaoProvincia dao = new DaoProvincia();
             return dao.getProvincia();
         }
+
+        public string getDescripcionProvincia(int idProvincia)
+        {
+            string descripcionProvincia = "";
+
+            Provincia2 provincia = (Provincia2)idProvincia;
+            descripcionProvincia = provincia.ToString();
+
+            return descripcionProvincia.ToString();
+        }
+
     }
 }

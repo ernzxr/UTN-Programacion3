@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -43,28 +44,24 @@ namespace Vistas
                 ddl.Items.Add(new ListItem(genero.ToString(), ((int)genero).ToString()));
             }
         }
-
-        public string GetDescripcionLocalidad(object idLocalidad)
-        {
-            if (idLocalidad == null)
-                return "Desconocida";
-
-            int id = Convert.ToInt32(idLocalidad);
-
-            NegocioLocalidad negocioLocalidad = new NegocioLocalidad();
-            return negocioLocalidad.getDescripcionLocalidad(id);
-        }
-
-
         public void CargarDdlProvincia(DropDownList ddl)
         {
+            var provincias = Enum.GetValues(typeof(Provincia2))
+                         .Cast<Provincia2>()
+                         .Select(p => new
+                         {
+                             // Convierte el nombre del enum a uno amigable para el usuario
+                             Text = string.Join(" ", Regex.Split(p.ToString(), @"(?<=[a-z])(?=[A-Z])")),
+                             Value = ((int)p).ToString()
+                         });
+
             ddl.Items.Clear();
             ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
 
-            foreach (Provincia2 provincia in Enum.GetValues(typeof(Provincia2)))
-            {
-                ddl.Items.Add(new ListItem(provincia.ToString(), ((int)provincia).ToString()));
-            }
+            ddl.DataSource = provincias;
+            ddl.DataTextField = "Text";
+            ddl.DataValueField = "Value";
+            ddl.DataBind();
         }
 
         public void CargarNacionalidad(DropDownList ddl)
@@ -78,9 +75,9 @@ namespace Vistas
             ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
         }
 
-        public void CargarLocalidad(DropDownList ddl, DataRow paciente)
+        public void CargarLocalidad(DropDownList ddl, int idProv)
         {
-            DataTable Localidad = negL.getTablaLocalidad(int.Parse(paciente["Id_Provincia"].ToString()));
+            DataTable Localidad = negL.getLocalidad(idProv);
             ddl.DataSource = Localidad;
             ddl.DataTextField = "Descripcion_Lo";
             ddl.DataValueField = "Id_Localidad_Lo";
@@ -89,9 +86,9 @@ namespace Vistas
             ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
         }
 
-        protected void CargarLocalidades(int idProvincia)
+        protected void CargarLocalidades(Provincia2 provincia)
         {
-            DataTable localidades = negL.getTablaLocalidad(idProvincia);
+            DataTable localidades = negL.getTablaLocalidad(provincia);
 
             ddlLocalidad_M.DataSource = localidades;
             ddlLocalidad_M.DataTextField = "Descripcion_Lo";
@@ -132,10 +129,7 @@ namespace Vistas
                 string[] values = commandArgument.Split(',');
 
                 string dni = values[0];
-                string nacionalidad = values[1];
-                int idNacionalidad = 0;
-
-                idNacionalidad = negn.getIdnacionalidad(nacionalidad);
+                int idNacionalidad = int.Parse(values[1]);
 
                 DataTable dtPaciente = NegP.getPaciente(dni, idNacionalidad);
 
@@ -151,9 +145,11 @@ namespace Vistas
 
                     DateTime fechaNacimiento = Convert.ToDateTime(paciente["Fecha_De_Nacimiento"]);
                     txtFechaNacimiento_M.Text = fechaNacimiento.ToString("yyyy-MM-dd");
-                    ddlProvincia_M.SelectedValue = paciente["Id_Provincia"].ToString();
 
-                    CargarLocalidad(ddlLocalidad_M, paciente);
+                    int idProvincia = negL.getIdProvincia(Convert.ToInt32(paciente["Id_Localidad"].ToString()));
+                    ddlProvincia_M.SelectedValue = idProvincia.ToString();
+
+                    CargarLocalidad(ddlLocalidad_M, idProvincia);
                     ddlLocalidad_M.SelectedValue = paciente["Id_Localidad"].ToString();
 
                     txtDireccion_M.Text = paciente["Direccion"].ToString();
@@ -174,11 +170,11 @@ namespace Vistas
 
         protected void ddlProvincia_M_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int idProvincia = int.Parse(ddlProvincia_M.SelectedValue);
-            CargarLocalidades(idProvincia);
+
+            Provincia2 provinciaSeleccionada = (Provincia2)Enum.Parse(typeof(Provincia2), ddlProvincia_M.SelectedValue);
+            CargarLocalidades(provinciaSeleccionada);
+
         }
-
-
 
         protected void btnConfirmDelete_Click(Object sender, EventArgs e)
         {
@@ -230,18 +226,7 @@ namespace Vistas
                 string[] values = commandArgument.Split(',');
 
                 string dni = values[0];
-                string nacionalidad = values[1];
-                int idNacionalidad = 0;
-
-
-                foreach (ListItem item in ddlNacionalidad.Items)
-                {
-                    if (item.Text == nacionalidad)
-                    {
-                        idNacionalidad = int.Parse(item.Value);
-                        break;
-                    }
-                }
+                int idNacionalidad = int.Parse(values[1]);
 
                 DataTable dtPaciente = NegP.getPaciente(dni, idNacionalidad);
 
@@ -269,28 +254,71 @@ namespace Vistas
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var generoId = DataBinder.Eval(e.Row.DataItem, "Id_Genero");
+                var idGenero = DataBinder.Eval(e.Row.DataItem, "Id_Genero");
+                var idLocalidad = DataBinder.Eval(e.Row.DataItem, "Id_Localidad");
+                var idNacionalidad = DataBinder.Eval(e.Row.DataItem, "Id_Nacionalidad");
 
-                Label lblSexo = (Label)e.Row.FindControl("lblSexo_Prueba");
+                Label lblSexo = (Label)e.Row.FindControl("lblGenero");
+                Label lblLocalidad = (Label)e.Row.FindControl("lblLocalidad");
+                Label lblProvincia = (Label)e.Row.FindControl("lblProvincia");
+                Label lblNacionalidad = (Label)e.Row.FindControl("lblNacionalidad");
 
-                if (lblSexo != null && generoId != DBNull.Value)
+                if (lblSexo != null && idGenero != DBNull.Value)
                 {
                     // Convertir el valor de "Id_Genero" al enum Genero
-                    if (Enum.IsDefined(typeof(Genero), generoId))
+                    if (Enum.IsDefined(typeof(Genero), idGenero))
                     {
                         // Convertimos el Id_Genero a su valor enum
-                        Genero generoEnum = (Genero)Enum.ToObject(typeof(Genero), generoId);
-                        lblSexo.Text = generoEnum.ToString(); // Muestra "Masculino", "Femenino", etc.
+                        Genero generoEnum = (Genero)Enum.ToObject(typeof(Genero), idGenero);
+                        lblSexo.Text = generoEnum.ToString();
                     }
                     else
                     {
-                        lblSexo.Text = "No especificado";  // Si el valor no existe en el enum
+                        lblSexo.Text = "No especificado";
                     }
                 }
                 else
                 {
-                    lblSexo.Text = "No disponible";  // Si no se encuentra el valor o el label
+                    lblSexo.Text = "No disponible";
                 }
+
+                if(lblLocalidad != null && idLocalidad != DBNull.Value)
+                {
+                    string descripcionLocalidad = negL.getDescripcionLocalidad(Convert.ToInt32(idLocalidad));
+
+                    lblLocalidad.Text = !string.IsNullOrEmpty(descripcionLocalidad) ? descripcionLocalidad : "No especificada";
+                }
+                else
+                {
+                    lblLocalidad.Text = "No Disponible";
+                }
+
+                if(lblProvincia != null && idLocalidad != DBNull.Value)
+                {
+                    int idProvincia = negL.getIdProvincia(Convert.ToInt32(idLocalidad));
+
+                    string descripcionProvincia = NegProv.getDescripcionProvincia(idProvincia);
+                    descripcionProvincia = System.Text.RegularExpressions.Regex.Replace(descripcionProvincia, "([a-z])([A-Z])", "$1 $2");
+
+                    lblProvincia.Text = !string.IsNullOrEmpty(descripcionProvincia) ? descripcionProvincia : "No especificada";
+
+                }
+                else
+                {
+                    lblProvincia.Text = "No Disponible";
+                }
+
+                if(lblNacionalidad != null && idNacionalidad != DBNull.Value)
+                {
+                    string descripcionNacionalidad = negn.getDescripcionNacionalidad(Convert.ToInt32(idNacionalidad));
+
+                    lblNacionalidad.Text = !string.IsNullOrEmpty(descripcionNacionalidad) ? descripcionNacionalidad : "No especificada";
+                }
+                else
+                {
+                    lblNacionalidad.Text = "No Disponible";
+                }
+
             }
 
         }
