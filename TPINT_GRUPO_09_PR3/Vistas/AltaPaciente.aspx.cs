@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -55,26 +56,41 @@ namespace Vistas
 
         public void CargarProvincia()
         {
-            DataTable Provincia = negp.getTablaProvincia();
-            ddlProvincia.DataSource = Provincia;
-            ddlProvincia.DataTextField = "Descripcion_Pr";
-            ddlProvincia.DataValueField = "Id_Provincia_Pr";
+            var provincias = Enum.GetValues(typeof(Provincia2))
+                         .Cast<Provincia2>()
+                         .Select(p => new
+                         {
+                             // Convierte el nombre del enum a uno amigable para el usuario
+                             Text = string.Join(" ", Regex.Split(p.ToString(), @"(?<=[a-z])(?=[A-Z])")),
+                             Value = ((int)p).ToString()
+                         });
+
+            ddlProvincia.Items.Clear();
+
+            ddlProvincia.DataSource = provincias;
+            ddlProvincia.DataTextField = "Text";
+            ddlProvincia.DataValueField = "Value";
             ddlProvincia.DataBind();
 
             ddlProvincia.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+
+        }
+        protected void CargarLocalidades(Provincia2 provincia)
+        {
+            DataTable localidades = negl.getTablaLocalidad(provincia);
+
+            ddlLocalidad.DataSource = localidades;
+            ddlLocalidad.DataTextField = "Descripcion_Lo";
+            ddlLocalidad.DataValueField = "Id_Localidad_Lo";
+            ddlLocalidad.DataBind();
+
+            ddlLocalidad.Items.Insert(0, new ListItem("Seleccionar...", "0"));
         }
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //int idProv = Convert.ToInt32(ddlProvincia.SelectedValue);
-
-            //DataTable Localidad = negl.getTablaLocalidad(idProv);
-            //ddlLocalidad.DataSource = Localidad;
-            //ddlLocalidad.DataTextField = "Descripcion_Lo";
-            //ddlLocalidad.DataValueField = "Id_Localidad_Lo";
-            //ddlLocalidad.DataBind();
-
-            //ddlLocalidad.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+            Provincia2 provinciaSeleccionada = (Provincia2)Enum.Parse(typeof(Provincia2), ddlProvincia.SelectedValue);
+            CargarLocalidades(provinciaSeleccionada);
         }
 
         public void limpiarCampos()

@@ -56,12 +56,13 @@ namespace Vistas
                          });
 
             ddl.Items.Clear();
-            ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
 
             ddl.DataSource = provincias;
             ddl.DataTextField = "Text";
             ddl.DataValueField = "Value";
             ddl.DataBind();
+
+            ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
         }
 
         public void CargarNacionalidad(DropDownList ddl)
