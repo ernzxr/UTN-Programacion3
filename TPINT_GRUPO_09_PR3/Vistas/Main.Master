@@ -70,9 +70,6 @@
                                 <li>
                                     <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlListadoPacientes" runat="server" NavigateUrl="~/ListadoPacientes.aspx">Listado</asp:HyperLink>
                                 </li>
-                                <li>
-                                    <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlModificarPaciente" runat="server" NavigateUrl="~/ModificarPaciente.aspx">Modificación</asp:HyperLink>
-                                </li>
                             </ul>
                         </li>
 

@@ -57,5 +57,10 @@ namespace Dao
             return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerHorariosAsignados");
         }
 
+        public DataTable getTablaTurnos()
+        {
+            SqlCommand comando = new SqlCommand();
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerTurnos");
+        }
     }
 }

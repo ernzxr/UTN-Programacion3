@@ -88,6 +88,7 @@
     <Content Include="InicioMedico.aspx" />
     <Content Include="ListadoMedicos.aspx" />
     <Content Include="ListadoPacientes.aspx" />
+    <Content Include="ListarTurnos.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="ReporteHorarios.aspx" />
     <Content Include="ReportesInformes.aspx" />
@@ -179,6 +180,13 @@
     </Compile>
     <Compile Include="ListadoPacientes.aspx.designer.cs">
       <DependentUpon>ListadoPacientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListarTurnos.aspx.cs">
+      <DependentUpon>ListarTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListarTurnos.aspx.designer.cs">
+      <DependentUpon>ListarTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

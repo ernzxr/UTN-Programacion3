@@ -4,7 +4,7 @@ GO
 CREATE DATABASE UTN2C2024PR3CLINICA
 ON 
 ( NAME = UTN2C2024PR3CLINICA_dat,
-  FILENAME = 'C:\TrabajosPracticosProgIII\UTN-Programacion3\TPINT_GRUPO_09_PR3\ClinicaBD\UTN2C2024PR3CLINICA.mdf' )
+  FILENAME = 'D:\ernzxr\Google Drive\ernzxr\Estudio\UTN\UTN Pacheco\Tecnicatura\3er Cuatrimestre\Programación III\TP Integrador\BASE DE DATOS\UTN2C2024PR3CLINICA.mdf' )
 GO
 
 USE UTN2C2024PR3CLINICA
@@ -167,18 +167,42 @@ CREATE TABLE Ausencias_Medicos (
 )
 GO
 
+CREATE TABLE Ciclos_Turnos (
+	Id_Ciclo_Turno_CT INT IDENTITY(1, 1) NOT NULL,
+	Cod_Ciclo_Turno_CT CHAR(3) NOT NULL,
+	Descripcion_CT VARCHAR(50) NOT NULL,
+	CONSTRAINT PK_Ciclos_Turnos PRIMARY KEY (Id_Ciclo_Turno_CT),
+	CONSTRAINT UK_Cod_Ciclo_Turno UNIQUE (Cod_Ciclo_Turno_CT)
+)
+GO
+
+CREATE TABLE Detalles_Turnos (
+	Id_Detalle_Turno_DT INT IDENTITY(1, 1) NOT NULL,
+	Cod_Detalle_Turno_DT CHAR(3) NOT NULL,
+	Descripcion_DT VARCHAR(50) NOT NULL,
+	CONSTRAINT PK_Detalles_Turnos PRIMARY KEY (Id_Detalle_Turno_DT),
+	CONSTRAINT UK_Cod_Detalle_Turno UNIQUE (Cod_Detalle_Turno_DT)
+)
+GO
+
 CREATE TABLE Turnos (
+	Id_Turno_Tu INT IDENTITY(1, 1) NOT NULL,
+	Id_Ciclo_Turno_Tu INT DEFAULT 1 NOT NULL ,
+	Id_Detalle_Turno_Tu INT DEFAULT 1 NOT NULL,
 	Legajo_Medico_Tu CHAR(5) NOT NULL,
 	Fecha_Tu DATE NOT NULL,
 	Hora_Tu TIME(0) NOT NULL,
 	DNI_Paciente_Tu CHAR(8) NOT NULL,
 	Id_Nacionalidad_Paciente_Tu INT NOT NULL,
 	Asistencia_Tu BIT DEFAULT 0 NOT NULL,
-	Observaciones_Tu VARCHAR(255),
+	Observaciones_Tu VARCHAR(255) DEFAULT 'Sin observaciones',
 	Estado_Tu BIT DEFAULT 1 NOT NULL,
-	CONSTRAINT PK_Turnos PRIMARY KEY (Legajo_Medico_Tu, Fecha_Tu, Hora_Tu),
+	CONSTRAINT PK_Turnos PRIMARY KEY (Id_Turno_Tu),
 	CONSTRAINT FK_Turnos_Medicos FOREIGN KEY (Legajo_Medico_Tu) REFERENCES Medicos (Legajo_Me),
-	CONSTRAINT FK_Turnos_Pacientes FOREIGN KEY (DNI_Paciente_Tu, Id_Nacionalidad_Paciente_Tu) REFERENCES Pacientes (DNI_Pa, Id_Nacionalidad_Pa)
+	CONSTRAINT FK_Turnos_Pacientes FOREIGN KEY (DNI_Paciente_Tu, Id_Nacionalidad_Paciente_Tu) REFERENCES Pacientes (DNI_Pa, Id_Nacionalidad_Pa),
+	CONSTRAINT FK_Turnos_CT FOREIGN KEY (Id_Ciclo_Turno_Tu) REFERENCES Ciclos_Turnos (Id_Ciclo_Turno_CT),
+	CONSTRAINT FK_Turnos_DT FOREIGN KEY (Id_Detalle_Turno_Tu) REFERENCES Detalles_Turnos (Id_Detalle_Turno_DT),
+	CONSTRAINT UK_Fecha_Hora_Paciente UNIQUE (Fecha_Tu, Hora_Tu, Id_Nacionalidad_Paciente_Tu, DNI_Paciente_Tu)
 )
 GO
 
@@ -408,16 +432,96 @@ GO
 -- CARGA DE HORARIOS
 INSERT INTO Horarios_Medicos (Legajo_Medico_HM, Id_Dia_Semana_HM, Hora_Inicio_HM, Hora_Fin_HM)
 VALUES
-('11111', 1, '09:00', '13:00'),
-('11111', 2, '09:00', '13:00'),
-('11111', 3, '09:00', '13:00'),
-('11111', 4, '09:00', '13:00'),
-('11111', 5, '09:00', '13:00'),
+-- Juan
+('11111', 1, '08:00', '12:00'),
+('11111', 2, '08:00', '12:00'),
+('11111', 3, '08:00', '12:00'),
+('11111', 4, '08:00', '12:00'),
+('11111', 5, '08:00', '12:00'), 
+-- Ernesto
 ('29878', 1, '09:00', '13:00'),
 ('29878', 2, '09:00', '13:00'),
 ('29878', 3, '09:00', '13:00'),
 ('29878', 4, '09:00', '13:00'),
-('29878', 5, '09:00', '13:00')
+('29878', 5, '09:00', '13:00'),
+-- Facundo
+('33333', 1, '10:00', '14:00'),
+('33333', 2, '10:00', '14:00'),
+('33333', 3, '10:00', '14:00'),
+('33333', 4, '10:00', '14:00'),
+('33333', 5, '10:00', '14:00'),
+-- Gabriela
+('44444', 1, '08:00', '12:00'),
+('44444', 2, '08:00', '12:00'),
+('44444', 3, '08:00', '12:00'),
+('44444', 4, '08:00', '12:00'),
+('44444', 5, '08:00', '12:00'),
+-- Victoria
+('55555', 1, '07:00', '11:00'),
+('55555', 2, '07:00', '11:00'),
+('55555', 3, '07:00', '11:00'),
+('55555', 4, '07:00', '11:00'),
+('55555', 5, '07:00', '11:00'),
+-- María
+('66666', 1, '08:00', '12:00'),
+('66666', 2, '08:00', '12:00'),
+('66666', 3, '08:00', '12:00'),
+('66666', 4, '08:00', '12:00'),
+('66666', 5, '08:00', '12:00'),
+-- Leon
+('77777', 1, '09:00', '13:00'),
+('77777', 2, '09:00', '13:00'),
+('77777', 3, '09:00', '13:00'),
+('77777', 4, '09:00', '13:00'),
+('77777', 5, '09:00', '13:00'),
+-- Daniel
+('88888', 1, '10:00', '14:00'),
+('88888', 2, '10:00', '14:00'),
+('88888', 3, '10:00', '14:00'),
+('88888', 4, '10:00', '14:00'),
+('88888', 5, '10:00', '14:00'),
+-- Martín
+('99999', 1, '08:00', '12:00'),
+('99999', 2, '08:00', '12:00'),
+('99999', 3, '08:00', '12:00'),
+('99999', 4, '08:00', '12:00'),
+('99999', 5, '08:00', '12:00'),
+-- Carmen
+('10000', 1, '09:00', '13:00'),
+('10000', 2, '09:00', '13:00'),
+('10000', 3, '09:00', '13:00'),
+('10000', 4, '09:00', '13:00'),
+('10000', 5, '09:00', '13:00'),
+-- Roberto
+('20000', 1, '08:00', '12:00'),
+('20000', 2, '08:00', '12:00'),
+('20000', 3, '08:00', '12:00'),
+('20000', 4, '08:00', '12:00'),
+('20000', 5, '08:00', '12:00'),
+-- Mercedes
+('30000', 1, '08:00', '12:00'),
+('30000', 2, '08:00', '12:00'),
+('30000', 3, '08:00', '12:00'),
+('30000', 4, '08:00', '12:00'),
+('30000', 5, '08:00', '12:00'),
+-- Esteban
+('40000', 1, '07:00', '11:00'),
+('40000', 2, '07:00', '11:00'),
+('40000', 3, '07:00', '11:00'),
+('40000', 4, '07:00', '11:00'),
+('40000', 5, '07:00', '11:00'),
+-- Elena
+('50000', 1, '10:00', '14:00'),
+('50000', 2, '10:00', '14:00'),
+('50000', 3, '10:00', '14:00'),
+('50000', 4, '10:00', '14:00'),
+('50000', 5, '10:00', '14:00'),
+-- Luis
+('60000', 1, '09:00', '13:00'),
+('60000', 2, '09:00', '13:00'),
+('60000', 3, '09:00', '13:00'),
+('60000', 4, '09:00', '13:00'),
+('60000', 5, '09:00', '13:00');
 GO
 
 -- CARGA DE PACIENTES
@@ -438,4 +542,146 @@ VALUES
 ('44444444', 13, 1, 2, 'mgutierrez@gmail.com', 'María', 'Gutiérrez', '1989-05-29', 'Calle de los Árboles 678', '1256789012'),
 ('45454545', 14, 2, 1, 'ncarrasco@gmail.com', 'Nicolás', 'Carrasco', '1990-07-22', 'Av. Buenos Aires 890', '1267890123'),
 ('46464646', 15, 1, 2, 'orivero@gmail.com', 'Olivia', 'Rivero', '1995-10-17', 'Calle del Sol 234', '1278901234')
+GO
+
+-- CARGA DE DATOS PARA LOS CICLOS DE UN TURNO
+INSERT INTO Ciclos_Turnos (Cod_Ciclo_Turno_CT, Descripcion_CT) VALUES 
+('ACT', 'Activo'),
+('PEN', 'Pendiente'),
+('REP', 'Reprogramado'),
+('TER', 'Terminado'),
+('CAN', 'Cancelado')
+GO
+
+-- CARGA DE DATOS PARA ESPECIFICAR DETALLES SEGUN EL CICLO
+INSERT INTO Detalles_Turnos (Cod_Detalle_Turno_DT, Descripcion_DT) VALUES 
+('N/A', 'No Aplica'),
+('AUS', 'Ausencia Medico'),
+('SOL', 'Solicitud de Reprogramacion'),
+('CAN', 'Cancelacion Administrativa')
+GO
+
+-- CARGA DE TURNOS
+INSERT INTO Turnos (Legajo_Medico_Tu, Fecha_Tu, Hora_Tu, Id_Ciclo_Turno_Tu, Id_Detalle_Turno_Tu, Id_Nacionalidad_Paciente_Tu, DNI_Paciente_Tu, Estado_Tu, Asistencia_Tu)
+VALUES
+-- Médico 1
+('11111', '2024-11-15', '08:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('11111', '2024-11-29', '08:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('11111', '2024-11-14', '08:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('11111', '2024-11-13', '09:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('11111', '2024-11-12', '09:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('11111', '2024-11-11', '08:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('11111', '2024-11-18', '08:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0 
+-- Médico 2
+('29878', '2024-11-16', '11:00', 4, 1, 1, '30303030', 1, 0), -- Ciclo 'TER' (No aplica), Estado 1
+('29878', '2024-11-30', '11:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('29878', '2024-11-15', '11:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('29878', '2024-11-14', '11:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('29878', '2024-11-13', '11:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('29878', '2024-11-12', '11:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('29878', '2024-11-19', '11:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0 
+-- Médico 3
+('33333', '2024-11-17', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('33333', '2024-12-01', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('33333', '2024-11-16', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('33333', '2024-11-15', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('33333', '2024-11-14', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('33333', '2024-11-13', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('33333', '2024-11-20', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
+-- Médico 4				
+('44444', '2024-11-18', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('44444', '2024-12-02', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('44444', '2024-11-17', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('44444', '2024-11-16', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('44444', '2024-11-15', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('44444', '2024-11-14', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('44444', '2024-11-21', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
+-- Médico 5				
+('55555', '2024-11-19', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('55555', '2024-12-03', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('55555', '2024-11-18', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('55555', '2024-11-17', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('55555', '2024-11-16', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('55555', '2024-11-15', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('55555', '2024-11-22', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
+-- Médico 6	
+('66666', '2024-11-20', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('66666', '2024-12-04', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('66666', '2024-11-19', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('66666', '2024-11-18', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('66666', '2024-11-17', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('66666', '2024-11-16', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('66666', '2024-11-23', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
+-- Médico 7				
+('77777', '2024-11-21', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('77777', '2024-12-05', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('77777', '2024-11-20', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('77777', '2024-11-19', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('77777', '2024-11-18', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('77777', '2024-11-17', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('77777', '2024-11-24', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
+-- Médico 8				
+('88888', '2024-11-22', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('88888', '2024-12-06', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('88888', '2024-11-21', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('88888', '2024-11-20', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('88888', '2024-11-19', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('88888', '2024-11-18', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('88888', '2024-11-25', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
+-- Médico 9				
+('99999', '2024-11-23', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('99999', '2024-12-07', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('99999', '2024-11-22', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('99999', '2024-11-21', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('99999', '2024-11-20', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('99999', '2024-11-19', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('99999', '2024-11-26', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
+-- Médico 10
+('10000', '2024-11-24', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('10000', '2024-12-08', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('10000', '2024-11-23', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('10000', '2024-11-22', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('10000', '2024-11-21', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('10000', '2024-11-20', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('10000', '2024-11-27', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
+-- Médico 11				
+('20000', '2024-11-25', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('20000', '2024-12-09', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('20000', '2024-11-24', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('20000', '2024-11-23', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('20000', '2024-11-22', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('20000', '2024-11-21', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('20000', '2024-11-28', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
+-- Médico 12				
+('30000', '2024-11-26', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('30000', '2024-12-10', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('30000', '2024-11-25', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('30000', '2024-11-24', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('30000', '2024-11-23', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('30000', '2024-11-22', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('30000', '2024-11-29', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
+-- Médico 13				
+('40000', '2024-11-27', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('40000', '2024-12-11', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('40000', '2024-11-26', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('40000', '2024-11-25', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('40000', '2024-11-24', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('40000', '2024-11-23', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('40000', '2024-11-30', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
+-- Médico 14				
+('50000', '2024-11-28', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('50000', '2024-12-12', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('50000', '2024-11-27', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('50000', '2024-11-26', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('50000', '2024-11-25', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('50000', '2024-11-24', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('50000', '2024-12-01', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
+-- Médico 15				
+('60000', '2024-11-29', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
+('60000', '2024-12-13', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
+('60000', '2024-11-28', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia Médica), Estado 0
+('60000', '2024-11-27', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia Médica), Estado 0 
+('60000', '2024-11-26', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
+('60000', '2024-11-25', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia Médica), Estado 0 
+('60000', '2024-12-02', '10:00', 5, 4, 1, '46464646', 0, 0) -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
 GO

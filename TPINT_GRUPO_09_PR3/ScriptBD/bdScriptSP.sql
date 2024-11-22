@@ -232,3 +232,41 @@ VALUES (@LEGAJOMEDICO, @FECHA, @HORA, @DNIPACIENTE, @IDNACIONALIDADP, @ASISTENCI
 RETURN
 GO
 
+CREATE OR ALTER PROCEDURE spViewAusenciasMedicos
+AS
+SELECT 
+    Legajo_Medico_AM, 
+    (Me.Nombre_Me + ' ' + Me.Apellido_Me) AS Nombre_Completo, 
+    TAM.Descripcion_TAM, 
+    Fecha_Inicio_AM, 
+    Fecha_Fin_AM
+FROM 
+    Ausencias_Medicos 
+INNER JOIN 
+    Tipos_Ausencias_Medicos AS TAM ON Id_Tipo_Ausencia_AM = TAM.Id_Tipo_Ausencia_TAM 
+INNER JOIN 
+    Medicos AS Me ON Legajo_Medico_AM = Legajo_Me;
+GO
+
+CREATE OR ALTER PROCEDURE spObtenerTurnos
+AS
+SELECT 
+	Id_Turno_Tu,
+	Id_Ciclo_Turno_Tu,
+	CT.Descripcion_CT AS Ciclo_Tu,
+	Id_Detalle_Turno_Tu,
+	DT.Descripcion_DT AS Detalle_Ciclo_Tu,
+	Legajo_Medico_Tu,
+	Fecha_Tu,
+	Hora_Tu,
+	DNI_Paciente_Tu,
+	Id_Nacionalidad_Paciente_Tu,
+	Asistencia_Tu,
+	Observaciones_Tu
+FROM 
+	Turnos
+INNER JOIN
+	Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
+INNER JOIN
+	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
+GO
