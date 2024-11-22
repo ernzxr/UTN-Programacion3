@@ -286,12 +286,72 @@ SELECT
 	DNI_Paciente_Tu,
 	Id_Nacionalidad_Paciente_Tu,
 	Asistencia_Tu,
-	Observaciones_Tu
+	Observaciones_Tu,
+	Nombre_Pa + ' ' + Apellido_Pa AS [Nombre_Completo_Paciente_Tu]
 FROM 
 	Turnos
 INNER JOIN
 	Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
 INNER JOIN
 	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
-WHERE Legajo_Medico_Tu = @LEGAJO
+INNER JOIN
+	Pacientes AS Pa ON DNI_Paciente_Tu = DNI_Pa AND Id_Nacionalidad_Pa = Id_Nacionalidad_Paciente_Tu
+WHERE Legajo_Medico_Tu = @LEGAJO AND Estado_Tu = 1 AND Id_Ciclo_Turno_Tu = 1
+GO
+
+CREATE OR ALTER PROCEDURE spObtenerTurnosMedicoTodos
+@LEGAJO CHAR(5)
+AS
+SELECT 
+	Id_Turno_Tu,
+	Id_Ciclo_Turno_Tu,
+	CT.Descripcion_CT AS Ciclo_Tu,
+	Id_Detalle_Turno_Tu,
+	DT.Descripcion_DT AS Detalle_Ciclo_Tu,
+	Legajo_Medico_Tu,
+	Fecha_Tu,
+	Hora_Tu,
+	DNI_Paciente_Tu,
+	Id_Nacionalidad_Paciente_Tu,
+	Asistencia_Tu,
+	Observaciones_Tu,
+	Nombre_Pa + ' ' + Apellido_Pa AS [Nombre_Completo_Paciente_Tu]
+FROM 
+	Turnos
+INNER JOIN
+	Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
+INNER JOIN
+	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
+INNER JOIN
+	Pacientes AS Pa ON DNI_Paciente_Tu = DNI_Pa AND Id_Nacionalidad_Pa = Id_Nacionalidad_Paciente_Tu
+WHERE Legajo_Medico_Tu = @LEGAJO AND Id_Ciclo_Turno_CT != 1 AND Id_Ciclo_Turno_CT != 2
+GO
+
+CREATE OR ALTER PROCEDURE spObtenerTurnosMedicoFiltrados
+@LEGAJO CHAR(5),
+@FILTRO INT
+AS
+SELECT 
+	Id_Turno_Tu,
+	Id_Ciclo_Turno_Tu,
+	CT.Descripcion_CT AS Ciclo_Tu,
+	Id_Detalle_Turno_Tu,
+	DT.Descripcion_DT AS Detalle_Ciclo_Tu,
+	Legajo_Medico_Tu,
+	Fecha_Tu,
+	Hora_Tu,
+	DNI_Paciente_Tu,
+	Id_Nacionalidad_Paciente_Tu,
+	Asistencia_Tu,
+	Observaciones_Tu,
+	Nombre_Pa + ' ' + Apellido_Pa AS [Nombre_Completo_Paciente_Tu]
+FROM 
+	Turnos
+INNER JOIN
+	Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
+INNER JOIN
+	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
+INNER JOIN
+	Pacientes AS Pa ON DNI_Paciente_Tu = DNI_Pa AND Id_Nacionalidad_Pa = Id_Nacionalidad_Paciente_Tu
+WHERE Legajo_Medico_Tu = @LEGAJO AND Id_Ciclo_Turno_CT = @FILTRO
 GO

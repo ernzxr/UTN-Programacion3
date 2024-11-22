@@ -70,5 +70,22 @@ namespace Dao
 
             return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerTurnosMedico");
         }
+
+        public DataTable getTablaTurnosMedicoFiltrados(string legajo, int filtro)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@LEGAJO", legajo);
+            comando.Parameters.AddWithValue("@FILTRO", filtro);
+
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerTurnosMedicoFiltrados");
+        }
+
+        public DataTable getTablaTurnosMedicoTodos(string legajo)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@LEGAJO", legajo);
+
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerTurnosMedicoTodos");
+        }
     }
 }

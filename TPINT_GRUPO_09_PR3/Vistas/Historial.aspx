@@ -1,9 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="MisTurnos.aspx.cs" Inherits="Vistas.MisTurnos" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Historial.aspx.cs" Inherits="Vistas.Historial" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="text-center">Mis Turnos</h1>
+    <h1 class="text-center">Historial de Turnos</h1>
+    <div>
+        <asp:Button ID="btnVerTodos" runat="server" Text="Todos" OnClick="btnVerTodos_Click" />
+        <asp:DropDownList ID="ddlFiltros" runat="server"></asp:DropDownList>
+        <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" OnClick="btnFiltrar_Click" />
+    </div>
     <asp:GridView
         DataKeyNames="Id_Turno_Tu"
         ID="gvTurnos"

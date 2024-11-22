@@ -29,6 +29,16 @@ namespace Negocio
             return daoTurno.getTablaTurnosMedico(legajo);
         }
 
+        public DataTable getTurnosMedicoTodos(string legajo)
+        {
+            return daoTurno.getTablaTurnosMedicoTodos(legajo);
+        }
+
+        public DataTable getTurnosMedicoFiltrados(string legajo, int filtro)
+        {
+            return daoTurno.getTablaTurnosMedicoFiltrados(legajo, filtro);
+        }
+
         public DataTable ObtenerHorariosAsignados(string legajoMedico, DateTime fechaSeleccionada)
         {
             return daoTurno.ObtenerHorariosAsignados(legajoMedico, fechaSeleccionada);
