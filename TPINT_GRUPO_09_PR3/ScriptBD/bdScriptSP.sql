@@ -389,3 +389,24 @@ SELECT COUNT(*) AS TotalTurnos
 FROM Turnos
 WHERE Id_Ciclo_Turno_Tu = 2;
 GO
+
+-- REPORTE: 5 PACIENTES CON MAS TURNOS POR ESPECIALIDAD
+CREATE OR ALTER PROCEDURE spObtener5PacientesConMasTurnos
+@IdEspecialidad INT,
+@FechaInicio DATE,
+@FechaFinal DATE
+AS
+BEGIN
+SELECT TOP 5 Pacientes.Nombre_Pa + ' ' + Pacientes.Apellido_Pa AS Nombre_Completo, COUNT(Turnos.Fecha_Tu) AS Turnos_Asistidos
+FROM Turnos INNER JOIN Pacientes
+ON Turnos.DNI_Paciente_Tu = Pacientes.DNI_Pa AND Turnos.Id_Nacionalidad_Paciente_Tu = Pacientes.Id_Nacionalidad_Pa
+INNER JOIN Medicos
+ON Turnos.Legajo_Medico_Tu = Medicos.Legajo_Me
+WHERE Medicos.Id_Especialidad_Me = @IdEspecialidad AND Turnos.Fecha_Tu BETWEEN @FechaInicio AND @FechaFinal
+AND Turnos.Asistencia_Tu = 1
+GROUP BY Pacientes.Nombre_Pa, Pacientes.Apellido_Pa
+ORDER BY Turnos_Asistidos DESC, Pacientes.Apellido_Pa, Pacientes.Nombre_Pa
+END
+GO
+
+--EXEC spObtener5PacientesConMasTurnos 1, '2024-06-01', '2024-06-30'
