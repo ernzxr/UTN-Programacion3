@@ -74,6 +74,7 @@
     <Content Include="AusenciasMedicos.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="CargarDiasYHorariosMedicos.aspx" />
+    <Content Include="GestionTurnos.aspx" />
     <Content Include="Historial.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Images\Card-1.jpg" />
@@ -147,6 +148,13 @@
     </Compile>
     <Compile Include="CargarDiasYHorariosMedicos.aspx.designer.cs">
       <DependentUpon>CargarDiasYHorariosMedicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionTurnos.aspx.cs">
+      <DependentUpon>GestionTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionTurnos.aspx.designer.cs">
+      <DependentUpon>GestionTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Historial.aspx.cs">
       <DependentUpon>Historial.aspx</DependentUpon>

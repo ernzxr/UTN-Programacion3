@@ -83,6 +83,11 @@
                                 <li>
                                     <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlListarTurnos" runat="server" NavigateUrl="~/ListarTurnos.aspx">Listar Turnos</asp:HyperLink>
                                 </li>
+                                <li>
+                                    <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlGestionTurnos" runat="server" NavigateUrl="~/GestionTurnos.aspx">
+                                        Gestión Turnos (<asp:Label ID="lblTurnosPendientes" runat="server" Text="0"></asp:Label>)
+                                    </asp:HyperLink>
+                                </li>
                             </ul>
                         </li>
 

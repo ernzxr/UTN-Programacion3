@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,8 @@ namespace Vistas
 {
     public partial class Site1 : System.Web.UI.MasterPage
     {
+        NegocioTurno negocioTurno = new NegocioTurno(); 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario"] != null)
@@ -16,6 +19,8 @@ namespace Vistas
                 lblUsuarioAdmin.Text = Session["Usuario"].ToString();
                 lblUsuarioMedico.Text = Session["Usuario"].ToString();
             }
+
+            lblTurnosPendientes.Text = negocioTurno.getTurnosPendientesCount().ToString();
         }
 
         protected void btnSalir_Click(object sender, EventArgs e)

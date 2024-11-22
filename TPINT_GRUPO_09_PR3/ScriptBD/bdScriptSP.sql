@@ -355,3 +355,37 @@ INNER JOIN
 	Pacientes AS Pa ON DNI_Paciente_Tu = DNI_Pa AND Id_Nacionalidad_Pa = Id_Nacionalidad_Paciente_Tu
 WHERE Legajo_Medico_Tu = @LEGAJO AND Id_Ciclo_Turno_CT = @FILTRO
 GO
+
+CREATE OR ALTER PROCEDURE spObtenerTurnosPendientes
+AS
+SELECT 
+	Id_Turno_Tu,
+	Id_Ciclo_Turno_Tu,
+	CT.Descripcion_CT AS Ciclo_Tu,
+	Id_Detalle_Turno_Tu,
+	DT.Descripcion_DT AS Detalle_Ciclo_Tu,
+	Legajo_Medico_Tu,
+	Fecha_Tu,
+	Hora_Tu,
+	DNI_Paciente_Tu,
+	Id_Nacionalidad_Paciente_Tu,
+	Asistencia_Tu,
+	Observaciones_Tu,
+	Nombre_Pa + ' ' + Apellido_Pa AS [Nombre_Completo_Paciente_Tu]
+FROM 
+	Turnos
+INNER JOIN
+	Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
+INNER JOIN
+	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
+INNER JOIN
+	Pacientes AS Pa ON DNI_Paciente_Tu = DNI_Pa AND Id_Nacionalidad_Pa = Id_Nacionalidad_Paciente_Tu
+WHERE Id_Ciclo_Turno_Tu = 2
+GO
+
+CREATE OR ALTER PROCEDURE spObtenerTurnosPendientesCount
+AS
+SELECT COUNT(*) AS TotalTurnos
+FROM Turnos
+WHERE Id_Ciclo_Turno_Tu = 2;
+GO

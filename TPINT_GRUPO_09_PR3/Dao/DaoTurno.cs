@@ -87,5 +87,17 @@ namespace Dao
 
             return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerTurnosMedicoTodos");
         }
+
+        public DataTable getTablaTurnosPendientes()
+        {
+            SqlCommand comando = new SqlCommand();
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerTurnosPendientes");
+        }
+
+        public int getTurnosPendientesCount()
+        {
+            SqlCommand comando = new SqlCommand();
+            return ds.EjecutarProcedimientoAlmacenadoFuncion(comando, "spObtenerTurnosPendientesCount");
+        }
     }
 }

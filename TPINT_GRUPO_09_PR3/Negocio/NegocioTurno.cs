@@ -43,5 +43,15 @@ namespace Negocio
         {
             return daoTurno.ObtenerHorariosAsignados(legajoMedico, fechaSeleccionada);
         }
+
+        public DataTable getTurnosPendientes()
+        {
+            return daoTurno.getTablaTurnosPendientes();
+        }
+
+        public int getTurnosPendientesCount()
+        {
+            return daoTurno.getTurnosPendientesCount();
+        }
     }
 }

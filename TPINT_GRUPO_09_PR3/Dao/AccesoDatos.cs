@@ -88,6 +88,18 @@ namespace Dao
             return ObtenerTabla(Comando);
         }
 
+        public int EjecutarProcedimientoAlmacenadoFuncion(SqlCommand Comando, String NombreSP)
+        {
+            SqlConnection Conexion = ObtenerConexion();
+
+            Comando.Connection = Conexion;
+            Comando.CommandType = CommandType.StoredProcedure;
+            Comando.CommandText = NombreSP;
+
+            object result = Comando.ExecuteScalar();
+            return Convert.ToInt32(result);
+        }
+
         public Boolean existe(String consulta)
         {
             Boolean estado = false;
