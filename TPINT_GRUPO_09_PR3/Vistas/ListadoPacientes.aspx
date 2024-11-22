@@ -100,12 +100,16 @@
         </div>
 
         <div style="width: 100%; margin-top: 20px;">
-            <asp:GridView runat="server" ID="gvPacientes" CssClass="table table-hover" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="gvPacientes_PageIndexChanging" PageSize="6" PagerStyle-HorizontalAlign="Center" PagerStyle-CssClass="simple-pager">
+            <asp:GridView runat="server" ID="gvPacientes" OnRowDataBound="gvPacientes_RowDataBound" CssClass="table table-hover" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="gvPacientes_PageIndexChanging" PageSize="6" PagerStyle-HorizontalAlign="Center" PagerStyle-CssClass="simple-pager">
                 <Columns>
                     <asp:BoundField DataField="DNI" HeaderText="DNI" />
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                     <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
-                    <asp:BoundField DataField="Sexo" HeaderText="Sexo" />
+                    <asp:TemplateField HeaderText="Genero">
+                        <ItemTemplate>
+                            <asp:label ID="lblSexo_Prueba" Text='<%# Eval("Id_Genero") %>' runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="Fecha_De_Nacimiento" DataFormatString="{0:dd-MM-yyyy}" HeaderText="Fecha" />
                     <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
                     <asp:BoundField DataField="Provincia" HeaderText="Provincia" />

@@ -1,4 +1,5 @@
 ﻿using Dao;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,5 +21,16 @@ namespace Negocio
             DaoSexo dao = new DaoSexo();
             return dao.getSexo();
         }
+
+        public string getDescripcionSexo(int idGenero)
+        {
+            string descripcionSexo = "";
+
+            Genero genero = (Genero)idGenero;
+            descripcionSexo = genero.ToString();
+
+            return descripcionSexo.ToString();
+        }
+
     }
 }

@@ -148,10 +148,10 @@ namespace Dao
 
         public DataTable filtrarPacientes()
         {
-            string consulta = "SELECT Dni_Pa AS DNI, Descripcion_Na AS Nacionalidad, Nombre_Pa AS Nombre, Apellido_Pa AS Apellido, Descripcion_Ge AS Sexo," +
+            string consulta = "SELECT Dni_Pa AS DNI, Descripcion_Na AS Nacionalidad, Nombre_Pa AS Nombre, Apellido_Pa AS Apellido," +
                 " Fecha_Nacimiento_Pa as Fecha_De_Nacimiento, Descripcion_Pr AS Provincia, Descripcion_Lo AS Localidad, Direccion_Pa AS Direccion, " +
-                "Email_Pa as Email, Telefono_Pa as Telefono, Estado_Pa as Estado FROM Pacientes INNER JOIN Nacionalidades ON Id_Nacionalidad_Pa = Id_Nacionalidad_Na " +
-                "INNER JOIN Generos ON Id_Genero_Pa = Id_Genero_Ge INNER JOIN Localidades ON Id_Localidad_Pa = Id_Localidad_Lo INNER JOIN Provincias ON Id_Provincia_Lo = " +
+                "Email_Pa as Email, Telefono_Pa as Telefono, Estado_Pa as Estado, Id_Genero_Pa AS Id_Genero FROM Pacientes INNER JOIN Nacionalidades ON Id_Nacionalidad_Pa = Id_Nacionalidad_Na " +
+                "INNER JOIN Localidades ON Id_Localidad_Pa = Id_Localidad_Lo INNER JOIN Provincias ON Id_Provincia_Lo = " +
                 "Id_Provincia_Pr";
             DataTable tabla = ds.ObtenerTabla("Pacientes", consulta);
 

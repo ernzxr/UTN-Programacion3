@@ -24,9 +24,9 @@
                 <asp:Button ID="btnAceptar" Text="Aceptar" runat="server" class="btn btn-primary" Style="margin-top: 15px;" />
             </div>
             <div style="width: 300px; height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <asp:Label Text="Especialista" runat="server" Style="margin-bottom: 15px;" />
-                <asp:Label Text="Franja Horaria" runat="server" Style="margin-bottom: 15px;" />
-                <asp:Label Text="Cantidad de Turnos (Porcentaje)" runat="server" Style="margin-bottom: 15px;" />
+                <asp:Label ID="lblEspecialista" Text="Especialista" runat="server" Style="margin-bottom: 15px;" />
+                <asp:Label ID="lblFranja_Horaria" Text="Franja Horaria" runat="server" Style="margin-bottom: 15px;" />
+                <asp:Label ID="lblCant_Turnos" Text="Cantidad de Turnos (Porcentaje)" runat="server" Style="margin-bottom: 15px;" />
             </div>
         </div>
     </div>

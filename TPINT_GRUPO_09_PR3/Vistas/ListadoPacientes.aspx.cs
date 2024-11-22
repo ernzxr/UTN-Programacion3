@@ -28,10 +28,43 @@ namespace Vistas
                 CargarNacionalidad(ddlNacionalidad);
                 CargarNacionalidad(ddlNacionalidad_M);
                 CargarNacionalidad(ddlNacionalidad_E);
-                CargarSexo(ddlSexo_M);
-                CargarProvincia(ddlProvincia_M);
+                CargarDdlSexo(ddlSexo_M);
+                CargarDdlProvincia(ddlProvincia_M);
             }
 
+        }
+        public void CargarDdlSexo(DropDownList ddl)
+        {
+            ddl.Items.Clear();
+            ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+
+            foreach (Genero genero in Enum.GetValues(typeof(Genero)))
+            {
+                ddl.Items.Add(new ListItem(genero.ToString(), ((int)genero).ToString()));
+            }
+        }
+
+        public string GetDescripcionLocalidad(object idLocalidad)
+        {
+            if (idLocalidad == null)
+                return "Desconocida";
+
+            int id = Convert.ToInt32(idLocalidad);
+
+            NegocioLocalidad negocioLocalidad = new NegocioLocalidad();
+            return negocioLocalidad.getDescripcionLocalidad(id);
+        }
+
+
+        public void CargarDdlProvincia(DropDownList ddl)
+        {
+            ddl.Items.Clear();
+            ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+
+            foreach (Provincia2 provincia in Enum.GetValues(typeof(Provincia2)))
+            {
+                ddl.Items.Add(new ListItem(provincia.ToString(), ((int)provincia).ToString()));
+            }
         }
 
         public void CargarNacionalidad(DropDownList ddl)
@@ -40,26 +73,6 @@ namespace Vistas
             ddl.DataSource = Nacionalidad;
             ddl.DataTextField = "Descripcion_Na";
             ddl.DataValueField = "Id_Nacionalidad_Na";
-            ddl.DataBind();
-
-            ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
-        }
-        public void CargarSexo(DropDownList ddl)
-        {
-            DataTable sexo = negS.getTablaSexo();
-            ddl.DataSource = sexo;
-            ddl.DataTextField = "Descripcion_Ge";
-            ddl.DataValueField = "Id_Genero_Ge";
-            ddl.DataBind();
-
-            ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
-        }
-        public void CargarProvincia(DropDownList ddl)
-        {
-            DataTable Provincia = NegProv.getTablaProvincia();
-            ddl.DataSource = Provincia;
-            ddl.DataTextField = "Descripcion_Pr";
-            ddl.DataValueField = "Id_Provincia_Pr";
             ddl.DataBind();
 
             ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
@@ -250,6 +263,36 @@ namespace Vistas
             gvPacientes.PageIndex = e.NewPageIndex;
             gvPacientes.DataSource = NegP.getPacientes();
             gvPacientes.DataBind();
+        }
+
+        protected void gvPacientes_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                var generoId = DataBinder.Eval(e.Row.DataItem, "Id_Genero");
+
+                Label lblSexo = (Label)e.Row.FindControl("lblSexo_Prueba");
+
+                if (lblSexo != null && generoId != DBNull.Value)
+                {
+                    // Convertir el valor de "Id_Genero" al enum Genero
+                    if (Enum.IsDefined(typeof(Genero), generoId))
+                    {
+                        // Convertimos el Id_Genero a su valor enum
+                        Genero generoEnum = (Genero)Enum.ToObject(typeof(Genero), generoId);
+                        lblSexo.Text = generoEnum.ToString(); // Muestra "Masculino", "Femenino", etc.
+                    }
+                    else
+                    {
+                        lblSexo.Text = "No especificado";  // Si el valor no existe en el enum
+                    }
+                }
+                else
+                {
+                    lblSexo.Text = "No disponible";  // Si no se encuentra el valor o el label
+                }
+            }
+
         }
     }
 }
