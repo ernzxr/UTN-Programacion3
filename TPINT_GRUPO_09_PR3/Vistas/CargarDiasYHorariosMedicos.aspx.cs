@@ -6,15 +6,29 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace Vistas
 {
     public partial class CargarDiasYHorariosMedicos : System.Web.UI.Page
     {
+        NegocioHorarioMedico horarioE = new NegocioHorarioMedico();
+        NegocioHorarioMedico horarioS = new NegocioHorarioMedico();
+
+        private string horaEntradaSeleccionada;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
+            if (!IsPostBack)
+            {
+            CargarHorasEntradaM();
+            CargarHorasSalidaM();
+            }
         }
+
+
 
         protected void txtLegajo_TextChanged(object sender, EventArgs e)
         {
@@ -55,7 +69,7 @@ namespace Vistas
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-           
+
             string legajo = txtLegajo.Text;
 
             string diasSeleccionados = "";
@@ -82,14 +96,14 @@ namespace Vistas
                 lblMensaje.Text = "Debe seleccionar al menos un día.";
                 return;
             }
-  
-            string entradaHoraInicio = txtHoraEntrada.Text;
-            string entradaHoraFin = txtHoraSalida.Text;
+
+            string entradaHoraInicio = ddlHEntrada.Text;
+            string entradaHoraFin = ddlHSalida.Text;
 
             DateTime horaInicio;
             DateTime horaFin;
 
-           
+
 
             if (!DateTime.TryParse(entradaHoraInicio, out horaInicio))
             {
@@ -105,7 +119,7 @@ namespace Vistas
 
             bool resultado = true;
 
-           
+
             string[] diasArray = diasSeleccionados.Split(',');
 
             try
@@ -159,10 +173,61 @@ namespace Vistas
             }
             cklDias.ClearSelection();
             txtLegajo.Text = "";
-            txtHoraEntrada.Text = "";
-            txtHoraSalida.Text = "";
+            ddlHEntrada.Items.Clear();
+            ddlHSalida.Items.Clear();
         }
 
-       
+
+
+
+    
+
+        public void CargarHorasEntradaM()
+        {
+            string[] horasE = horarioE.ObtenerHorasE();
+            ddlHEntrada.DataSource = horasE;
+            ddlHEntrada.DataBind();
+            
+        }
+
+
+
+
+      protected void ddlHEntrada_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            horaEntradaSeleccionada = ddlHEntrada.SelectedValue;
+            CargarHorasSalidaM();
+
+
+        }
+
+        protected void ddlHSalida_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string horaSalida = ddlHSalida.SelectedValue;
+
+        }
+
+
+
+        public void CargarHorasSalidaM()
+        {
+            if (!string.IsNullOrEmpty(horaEntradaSeleccionada))
+            {
+
+                string[] horasS = horarioS.ObtenerHorasS(horaEntradaSeleccionada);
+                ddlHSalida.DataSource = horasS;
+                ddlHSalida.DataBind();
+            }
+            else
+            {
+                lblMsjeErrorCargaHorario.Text = "Por favor, selecciona primero una hora de entrada.";
+            }
+        }
+        
+        
+
+
+
+
     }
 }
