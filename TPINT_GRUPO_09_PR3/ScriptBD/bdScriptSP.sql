@@ -270,3 +270,28 @@ INNER JOIN
 INNER JOIN
 	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
 GO
+
+CREATE OR ALTER PROCEDURE spObtenerTurnosMedico
+@LEGAJO CHAR(5)
+AS
+SELECT 
+	Id_Turno_Tu,
+	Id_Ciclo_Turno_Tu,
+	CT.Descripcion_CT AS Ciclo_Tu,
+	Id_Detalle_Turno_Tu,
+	DT.Descripcion_DT AS Detalle_Ciclo_Tu,
+	Legajo_Medico_Tu,
+	Fecha_Tu,
+	Hora_Tu,
+	DNI_Paciente_Tu,
+	Id_Nacionalidad_Paciente_Tu,
+	Asistencia_Tu,
+	Observaciones_Tu
+FROM 
+	Turnos
+INNER JOIN
+	Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
+INNER JOIN
+	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
+WHERE Legajo_Medico_Tu = @LEGAJO
+GO

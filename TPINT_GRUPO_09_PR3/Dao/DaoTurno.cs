@@ -62,5 +62,13 @@ namespace Dao
             SqlCommand comando = new SqlCommand();
             return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerTurnos");
         }
+
+        public DataTable getTablaTurnosMedico(string legajo)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@LEGAJO", legajo);
+
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerTurnosMedico");
+        }
     }
 }

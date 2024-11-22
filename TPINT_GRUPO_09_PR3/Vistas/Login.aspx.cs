@@ -23,6 +23,7 @@ namespace Vistas
 
             // Instanciamos la capa de negocio
             NegocioUsuario negocioUsuario = new NegocioUsuario();
+            NegocioMedico negocioMedico = new NegocioMedico();
 
             // Verificamos las credenciales
             string tipoUsuario = negocioUsuario.VerificarUsuario(usuario, contraseña);
@@ -39,6 +40,7 @@ namespace Vistas
                 // Usuario médico: Redirigimos a la página de inicio de médico
                 Session["TipoUsuario"] = 2;
                 Session["Usuario"] = usuario; // Guardamos el usuario en sesión
+                Session["Legajo"] = negocioMedico.ObtenerDatosMedicoPorUsuario(usuario).getLegajo(); // Guardamos el legajo en sesión
                 Response.Redirect("InicioMedico.aspx");
             }
             else if (tipoUsuario == "Credenciales incorrectas")

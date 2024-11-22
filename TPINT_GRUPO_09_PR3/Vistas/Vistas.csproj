@@ -90,6 +90,7 @@
     <Content Include="ListadoPacientes.aspx" />
     <Content Include="ListarTurnos.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MisTurnos.aspx" />
     <Content Include="ReporteHorarios.aspx" />
     <Content Include="ReportesInformes.aspx" />
     <Content Include="Styles\layout.css" />
@@ -194,6 +195,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MisTurnos.aspx.cs">
+      <DependentUpon>MisTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MisTurnos.aspx.designer.cs">
+      <DependentUpon>MisTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main.Master.cs">
