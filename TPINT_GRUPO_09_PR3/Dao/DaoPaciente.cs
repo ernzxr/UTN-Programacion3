@@ -190,5 +190,26 @@ namespace Dao
 
             return -1;
         }
+
+        private void ArmarParametrosReportePacientesConMasTurnos(ref SqlCommand Comando, int especialidad, DateTime fechaInicial, DateTime fechaFinal)
+        {
+            SqlParameter SqlParametros = new SqlParameter();
+            SqlParametros = Comando.Parameters.Add("@IdEspecialidad", SqlDbType.Int);
+            SqlParametros.Value = especialidad;
+
+            SqlParametros = Comando.Parameters.Add("@FechaInicio", SqlDbType.Date);
+            SqlParametros.Value = fechaInicial;
+
+            SqlParametros = Comando.Parameters.Add("@FechaFinal", SqlDbType.Date);
+            SqlParametros.Value = fechaFinal;
+        }
+
+        public DataTable reportePacientesConMasTurnos(int especialidad, DateTime fechaInicial, DateTime fechaFinal)
+        {
+            SqlCommand comando = new SqlCommand();
+            ArmarParametrosReportePacientesConMasTurnos(ref comando, especialidad, fechaInicial, fechaFinal);
+            DataTable tabla = ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtener5PacientesConMasTurnos");
+            return tabla;
+        }
     }
 }

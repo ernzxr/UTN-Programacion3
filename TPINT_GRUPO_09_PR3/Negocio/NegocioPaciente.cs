@@ -121,5 +121,10 @@ namespace Negocio
         {
             return dao.ObtenerNacionalidadPorDNI(dniPaciente);
         }
+
+        public DataTable ReportePacientesConMasTurnos(int especialidad, DateTime fechaInicial, DateTime fechaFinal)
+        {
+            return dao.reportePacientesConMasTurnos(especialidad, fechaInicial, fechaFinal);
+        }
     }
 }

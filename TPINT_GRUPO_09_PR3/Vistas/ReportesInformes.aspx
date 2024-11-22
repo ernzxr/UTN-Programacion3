@@ -41,11 +41,9 @@
         <div class="col-md-4">
             <div class="card text-center mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Turnos por Especialidad</h5>
-                    <p class="card-text">
-                        Visualiza la cantidad de turnos agendados por cada especialidad médica.
+                    <h5 class="card-title">Pacientes la mayor cantidad de turnos asistidos por cada especialidad médica dentro de un rango de fechas específico.
                     </p>
-                    <asp:HyperLink ID="hlTurnosEspecialidad" runat="server" NavigateUrl="TurnosEspecialidad.aspx" CssClass="btn btn-primary">
+                    <asp:HyperLink ID="hlTurnosEspecialidad" runat="server" NavigateUrl="ReportePacientesFrecuentes.aspx" CssClass="btn btn-primary">
                         Consultar Informe
                     </asp:HyperLink>
                 </div>
