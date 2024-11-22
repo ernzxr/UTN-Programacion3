@@ -4,7 +4,7 @@ GO
 CREATE DATABASE UTN2C2024PR3CLINICA
 ON 
 ( NAME = UTN2C2024PR3CLINICA_dat,
-  FILENAME = 'D:\ernzxr\Google Drive\ernzxr\Estudio\UTN\UTN Pacheco\Tecnicatura\3er Cuatrimestre\ProgramaciÛn III\TP Integrador\BASE DE DATOS\UTN2C2024PR3CLINICA.mdf' )
+  FILENAME = 'D:\ernzxr\Google Drive\ernzxr\Estudio\UTN\UTN Pacheco\Tecnicatura\3er Cuatrimestre\Programaci√≥n III\TP Integrador\BASE DE DATOS\UTN2C2024PR3CLINICA.mdf' )
 GO
 
 USE UTN2C2024PR3CLINICA
@@ -212,17 +212,17 @@ INSERT INTO Provincias (Cod_Provincia_Pr, Descripcion_Pr) VALUES
 ('CAT', 'Catamarca'),
 ('CHA', 'Chaco'),
 ('CHU', 'Chubut'),
-('CBA', 'CÛrdoba'),
+('CBA', 'C√≥rdoba'),
 ('COR', 'Corrientes'),
-('ERI', 'Entre RÌos'),
+('ERI', 'Entre R√≠os'),
 ('FOR', 'Formosa'),
 ('JUJ', 'Jujuy'),
 ('LPA', 'La Pampa'),
 ('LRI', 'La Rioja'),
 ('MEN', 'Mendoza'),
 ('MIS', 'Misiones'),
-('NEU', 'NeuquÈn'),
-('RNE', 'RÌo Negro'),
+('NEU', 'Neuqu√©n'),
+('RNE', 'R√≠o Negro'),
 ('SAL', 'Salta'),
 ('SJU', 'San Juan'),
 ('SLS', 'San Luis'),
@@ -230,8 +230,8 @@ INSERT INTO Provincias (Cod_Provincia_Pr, Descripcion_Pr) VALUES
 ('SFE', 'Santa Fe'),
 ('SDE', 'Santiago del Estero'),
 ('TDF', 'Tierra del Fuego'),
-('TUC', 'Tucum·n'),
-('CAB', 'Ciudad AutÛnoma de Buenos Aires')
+('TUC', 'Tucum√°n'),
+('CAB', 'Ciudad Aut√≥noma de Buenos Aires')
 GO
 
 -- CARGA DE DATOS PARA LOCALIDADES
@@ -241,21 +241,21 @@ INSERT INTO Localidades (Cod_Localidad_Lo, Descripcion_Lo, Id_Provincia_Lo) VALU
 ('BUE03', 'Bragado', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'BUE')),
 ('BUE04', 'General Pacheco', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'BUE')),
 ('CAT01', 'San Fernando del Valle', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CAT')),
-('CAT02', 'BelÈn', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CAT')),
+('CAT02', 'Bel√©n', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CAT')),
 ('CHA01', 'Resistencia', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CHA')),
-('CHA02', 'Roque S·enz PeÒa', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CHA')),
+('CHA02', 'Roque S√°enz Pe√±a', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CHA')),
 ('CHU01', 'Rawson', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CHU')),
 ('CHU02', 'Trelew', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CHU')),
-('CBA01', 'CÛrdoba', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CBA')),
+('CBA01', 'C√≥rdoba', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CBA')),
 ('CBA02', 'Villa Carlos Paz', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CBA')),
 ('COR01', 'Corrientes', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'COR')),
 ('COR02', 'Goya', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'COR')),
-('ERI01', 'Paran·', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'ERI')),
+('ERI01', 'Paran√°', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'ERI')),
 ('ERI02', 'Concordia', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'ERI')),
 ('FOR01', 'Formosa', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'FOR')),
 ('FOR02', 'Clorinda', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'FOR')),
 ('JUJ01', 'San Salvador de Jujuy', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'JUJ')),
-('JUJ02', 'Palpal·', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'JUJ')),
+('JUJ02', 'Palpal√°', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'JUJ')),
 ('LPA01', 'Santa Rosa', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'LPA')),
 ('LPA02', 'General Pico', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'LPA')),
 ('LRI01', 'La Rioja', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'LRI')),
@@ -263,27 +263,27 @@ INSERT INTO Localidades (Cod_Localidad_Lo, Descripcion_Lo, Id_Provincia_Lo) VALU
 ('MEN01', 'Mendoza', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'MEN')),
 ('MEN02', 'San Rafael', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'MEN')),
 ('MIS01', 'Posadas', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'MIS')),
-('MIS02', 'Ober·', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'MIS')),
-('NEU01', 'NeuquÈn', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'NEU')),
-('NEU02', 'San MartÌn de los Andes', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'NEU')),
+('MIS02', 'Ober√°', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'MIS')),
+('NEU01', 'Neuqu√©n', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'NEU')),
+('NEU02', 'San Mart√≠n de los Andes', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'NEU')),
 ('RNE01', 'Viedma', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'RNE')),
 ('RNE02', 'Bariloche', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'RNE')),
 ('SAL01', 'Salta', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SAL')),
 ('SAL02', 'Tartagal', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SAL')),
 ('SJU01', 'San Juan', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SJU')),
-('SJU02', 'J·chal', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SJU')),
+('SJU02', 'J√°chal', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SJU')),
 ('SLS01', 'San Luis', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SLS')),
 ('SLS02', 'Villa Mercedes', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SLS')),
-('SCR01', 'RÌo Gallegos', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SCR')),
+('SCR01', 'R√≠o Gallegos', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SCR')),
 ('SCR02', 'Caleta Olivia', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SCR')),
 ('SFE01', 'Santa Fe', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SFE')),
 ('SFE02', 'Rosario', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SFE')),
 ('SDE01', 'Santiago del Estero', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SDE')),
 ('SDE02', 'La Banda', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'SDE')),
 ('TDF01', 'Ushuaia', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TDF')),
-('TDF02', 'RÌo Grande', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TDF')),
-('TUC01', 'San Miguel de Tucum·n', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TUC')),
-('TUC02', 'ConcepciÛn', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TUC')),
+('TDF02', 'R√≠o Grande', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TDF')),
+('TUC01', 'San Miguel de Tucum√°n', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TUC')),
+('TUC02', 'Concepci√≥n', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'TUC')),
 ('CAB01', 'Palermo', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CAB')),
 ('CAB02', 'Recoleta', (SELECT Id_Provincia_Pr FROM Provincias WHERE Cod_Provincia_Pr = 'CAB'))
 GO
@@ -291,39 +291,39 @@ GO
 -- CARGA DE DATOS PARA ESPECIALIDADES
 INSERT INTO Especialidades (Cod_Especialidad_Es, Descripcion_Es) VALUES 
 ('MED', 'Medicina General'),
-('CAR', 'CardiologÌa'),
-('DER', 'DermatologÌa'),
-('NEU', 'NeurologÌa'),
-('PED', 'PediatrÌa'),
-('PSY', 'PsiquiatrÌa'),
+('CAR', 'Cardiolog√≠a'),
+('DER', 'Dermatolog√≠a'),
+('NEU', 'Neurolog√≠a'),
+('PED', 'Pediatr√≠a'),
+('PSY', 'Psiquiatr√≠a'),
 ('GIN', 'Gineco-Obstetricia'),
-('ONC', 'OncologÌa'),
+('ONC', 'Oncolog√≠a'),
 ('ORT', 'Ortopedia'),
-('OTO', 'OtorrinolaringologÌa'),
-('PSR', 'PsicologÌa'),
-('REH', 'RehabilitaciÛn'),
-('TRA', 'TraumatologÌa'),
-('CIR', 'CirugÌa General'),
-('FIS', 'FisiatrÌa'),
-('NUT', 'NutriciÛn'),
-('INM', 'InmunologÌa'),
-('URO', 'UrologÌa'),
-('NEF', 'NefrologÌa'),
-('INF', 'InfectologÌa'),
+('OTO', 'Otorrinolaringolog√≠a'),
+('PSR', 'Psicolog√≠a'),
+('REH', 'Rehabilitaci√≥n'),
+('TRA', 'Traumatolog√≠a'),
+('CIR', 'Cirug√≠a General'),
+('FIS', 'Fisiatr√≠a'),
+('NUT', 'Nutrici√≥n'),
+('INM', 'Inmunolog√≠a'),
+('URO', 'Urolog√≠a'),
+('NEF', 'Nefrolog√≠a'),
+('INF', 'Infectolog√≠a'),
 ('ADO', 'Adicciones'),
-('RAD', 'RadiologÌa'),
-('END', 'EndocrinologÌa'),
-('ALO', 'AlergologÌa'),
-('GER', 'GeriatrÌa'),
-('PNE', 'NeumonologÌa'),
-('HEM', 'HematologÌa'),
-('GEN', 'GenÈtica MÈdica')
+('RAD', 'Radiolog√≠a'),
+('END', 'Endocrinolog√≠a'),
+('ALO', 'Alergolog√≠a'),
+('GER', 'Geriatr√≠a'),
+('PNE', 'Neumonolog√≠a'),
+('HEM', 'Hematolog√≠a'),
+('GEN', 'Gen√©tica M√©dica')
 GO
 
 -- CARGA DE DATOS PARA TIPO DE USUARIOS
 INSERT INTO Tipos_Usuarios (Cod_Tipo_Usuario_TU, Descripcion_TU) VALUES
 ('ADM', 'Administrador'),
-('MED', 'MÈdico')
+('MED', 'M√©dico')
 GO
 
 -- CARGA DE USUARIOS
@@ -355,16 +355,16 @@ INSERT INTO Nacionalidades (Cod_Nacionalidad_Na, Descripcion_Na) VALUES
 ('CO', 'Colombia'),
 ('CR', 'Costa Rica'),
 ('CU', 'Cuba'),
-('DO', 'Rep˙blica Dominicana'),
+('DO', 'Rep√∫blica Dominicana'),
 ('EC', 'Ecuador'),
 ('SV', 'El Salvador'),
 ('GT', 'Guatemala'),
 ('HN', 'Honduras'),
-('MX', 'MÈxico'),
+('MX', 'M√©xico'),
 ('NI', 'Nicaragua'),
-('PA', 'Panam·'),
+('PA', 'Panam√°'),
 ('PY', 'Paraguay'),
-('PE', 'Per˙'),
+('PE', 'Per√∫'),
 ('PR', 'Puerto Rico'),
 ('UR', 'Uruguay'),
 ('VE', 'Venezuela')
@@ -380,21 +380,21 @@ GO
 -- CARGA DE DATOS PARA MEDICOS
 INSERT INTO Medicos (Usuario_Me, Legajo_Me, Id_Localidad_Me, Id_Especialidad_Me, Id_Nacionalidad_Me, DNI_Me, Email_Me, Nombre_Me, Apellido_Me, Id_Genero_Me, Fecha_Nacimiento_Me, Direccion_Me, Telefono_Me)
 VALUES
-('medico','11111', 1, 2, 1, '20202020', 'jperez@gmail.com', 'Juan', 'PÈrez', 1, '1985-05-15', 'Av. Siempre Viva 123', '1123456789'),
-('riveiro','29878', 3, 3, 1, '38553293', 'riveiro@gmail.com', 'Ernesto JosÈ', 'Riveiro', 1, '1995-03-08', 'Calle 2367', '2342458560'),
+('medico','11111', 1, 2, 1, '20202020', 'jperez@gmail.com', 'Juan', 'P√©rez', 1, '1985-05-15', 'Av. Siempre Viva 123', '1123456789'),
+('riveiro','29878', 3, 3, 1, '38553293', 'riveiro@gmail.com', 'Ernesto Jos√©', 'Riveiro', 1, '1995-03-08', 'Calle 2367', '2342458560'),
 ('chenagil','33333', 2, 1, 1, '40404040', 'chenagil@gmail.com', 'Facundo Tomas', 'Chena Gil', 1, '1978-01-10', 'Calle 123', '1145678901'),
 ('lavia','44444', 4, 2, 1, '50505050', 'lavia@gmail.com', 'Gabriela Beatriz', 'Lavia', 2, '1982-09-20', 'Av. Libertador 234', '1156789012'),
 ('luques','55555', 5, 3, 1, '60606060', 'luques@gmail.com', 'Victoria Abril', 'Luques', 2, '1988-12-11', 'Calle Primavera 567', '1167890123'),
-('reyesgorbaran','66666', 6, 1, 1, '70707070', 'reyesgorbaran@gmail.com', 'MarÌa Victoria', 'Reyes Gorbar·n', 2, '1995-03-14', 'Calle Luna 890', '1178901234'),
-('leon','77777', 7, 2, 1, '80808080', 'leon@gmail.com', 'Justina', 'Leon', 2, '1987-08-30', 'Av. Tucum·n 234', '1189012345'),
-('sanchez','88888', 8, 3, 8, '90909090', 'dsanchez@gmail.com', 'Daniel', 'S·nchez', 1, '1980-04-25', 'Calle Sol 123', '1190123456'),
-('hernandez','99999', 9, 1, 9, '10101010', 'mhernandez@gmail.com', 'MartÌn', 'Hern·ndez', 1, '1992-06-18', 'Calle del Mar 456', '1201234567'),
-('clopez','10000', 10, 2, 10, '11111111', 'clopez@gmail.com', 'Carmen', 'LÛpez', 2, '1993-11-05', 'Av. Buenos Aires 123', '1212345678'),
-('rjimenez','20000', 11, 3, 1, '12121212', 'rjimenez@gmail.com', 'Roberto', 'JimÈnez', 1, '1986-07-13', 'Calle Rivadavia 789', '1223456789'),
-('mperez','30000', 12, 1, 2, '13131313', 'mperez@gmail.com', 'Mercedes', 'PÈrez', 2, '1984-09-22', 'Av. San MartÌn 456', '1234567890'),
-('erodriguez','40000', 13, 2, 3, '14141414', 'erodriguez@gmail.com', 'Esteban', 'RodrÌguez', 3, '1994-01-02', 'Calle de los ¡rboles 567', '1245678901'),
-('egarcia','50000', 14, 3, 4, '15151515', 'egarcia@gmail.com', 'Elena', 'GarcÌa', 3, '1983-06-25', 'Calle Azul 890', '1256789012'),
-('lfernandez','60000', 15, 1, 5, '16161616', 'lfernandez@gmail.com', 'Luis', 'Fern·ndez', 1, '1991-04-03', 'Calle del Sol 321', '1267890123')
+('reyesgorbaran','66666', 6, 1, 1, '70707070', 'reyesgorbaran@gmail.com', 'Mar√≠a Victoria', 'Reyes Gorbar√°n', 2, '1995-03-14', 'Calle Luna 890', '1178901234'),
+('leon','77777', 7, 2, 1, '80808080', 'leon@gmail.com', 'Justina', 'Leon', 2, '1987-08-30', 'Av. Tucum√°n 234', '1189012345'),
+('sanchez','88888', 8, 3, 8, '90909090', 'dsanchez@gmail.com', 'Daniel', 'S√°nchez', 1, '1980-04-25', 'Calle Sol 123', '1190123456'),
+('hernandez','99999', 9, 1, 9, '10101010', 'mhernandez@gmail.com', 'Mart√≠n', 'Hern√°ndez', 1, '1992-06-18', 'Calle del Mar 456', '1201234567'),
+('clopez','10000', 10, 2, 10, '11111111', 'clopez@gmail.com', 'Carmen', 'L√≥pez', 2, '1993-11-05', 'Av. Buenos Aires 123', '1212345678'),
+('rjimenez','20000', 11, 3, 1, '12121212', 'rjimenez@gmail.com', 'Roberto', 'Jim√©nez', 1, '1986-07-13', 'Calle Rivadavia 789', '1223456789'),
+('mperez','30000', 12, 1, 2, '13131313', 'mperez@gmail.com', 'Mercedes', 'P√©rez', 2, '1984-09-22', 'Av. San Mart√≠n 456', '1234567890'),
+('erodriguez','40000', 13, 2, 3, '14141414', 'erodriguez@gmail.com', 'Esteban', 'Rodr√≠guez', 3, '1994-01-02', 'Calle de los √Årboles 567', '1245678901'),
+('egarcia','50000', 14, 3, 4, '15151515', 'egarcia@gmail.com', 'Elena', 'Garc√≠a', 3, '1983-06-25', 'Calle Azul 890', '1256789012'),
+('lfernandez','60000', 15, 1, 5, '16161616', 'lfernandez@gmail.com', 'Luis', 'Fern√°ndez', 1, '1991-04-03', 'Calle del Sol 321', '1267890123')
 GO
 
 -- CARGA DIAS DE LA SEMANA
@@ -412,10 +412,10 @@ GO
 INSERT INTO Tipos_Ausencias_Medicos (Cod_Tipo_Ausencia_TAM, Descripcion_TAM) VALUES
 ('VA', 'Vacaciones'),
 ('FR', 'Franco semanal'),
-('DE', 'DÌa de estudio'),
-('JM', 'Justificativo mÈdico'),
+('DE', 'D√≠a de estudio'),
+('JM', 'Justificativo m√©dico'),
 ('TA', 'Trabajo administrativo'),
-('DA', 'DÌa adicional por emergencias'),
+('DA', 'D√≠a adicional por emergencias'),
 ('OT', 'Otros')
 GO
 
@@ -462,7 +462,7 @@ VALUES
 ('55555', 3, '07:00', '11:00'),
 ('55555', 4, '07:00', '11:00'),
 ('55555', 5, '07:00', '11:00'),
--- MarÌa
+-- Mar√≠a
 ('66666', 1, '08:00', '12:00'),
 ('66666', 2, '08:00', '12:00'),
 ('66666', 3, '08:00', '12:00'),
@@ -480,7 +480,7 @@ VALUES
 ('88888', 3, '10:00', '14:00'),
 ('88888', 4, '10:00', '14:00'),
 ('88888', 5, '10:00', '14:00'),
--- MartÌn
+-- Mart√≠n
 ('99999', 1, '08:00', '12:00'),
 ('99999', 2, '08:00', '12:00'),
 ('99999', 3, '08:00', '12:00'),
@@ -530,17 +530,17 @@ VALUES
 ('30303030', 2, 1, 2, 'amarcos@gmail.com', 'Ana', 'Marcos', '1995-02-17', 'Calle Rio 123', '1134567890'),
 ('32323232', 4, 2, 1, 'bluma@gmail.com', 'Bruno', 'Luna', '1988-04-25', 'Calle Nube 234', '1145678901'),
 ('34343434', 3, 1, 2, 'cromero@gmail.com', 'Carla', 'Romero', '1992-06-30', 'Av. Libertador 123', '1156789012'),
-('35353535', 5, 3, 1, 'dmendez@gmail.com', 'Dami·n', 'MÈndez', '1985-10-10', 'Calle Primavera 567', '1167890123'),
+('35353535', 5, 3, 1, 'dmendez@gmail.com', 'Dami√°n', 'M√©ndez', '1985-10-10', 'Calle Primavera 567', '1167890123'),
 ('36363636', 6, 1, 2, 'efranco@gmail.com', 'Elena', 'Franco', '1990-03-21', 'Calle Sol 890', '1178901234'),
-('37373737', 2, 1, 1, 'fgomez@gmail.com', 'Fernando', 'GÛmez', '1994-12-05', 'Av. Siempre Viva 234', '1189012345'),
-('38383838', 7, 2, 2, 'gperalta@gmail.com', 'Gabriela', 'Peralta', '1991-07-19', 'Calle Tucum·n 456', '1190123456'),
-('39393939', 8, 3, 1, 'hlopez@gmail.com', 'Hern·n', 'LÛpez', '1987-01-27', 'Av. Rivadavia 789', '1201234567'),
+('37373737', 2, 1, 1, 'fgomez@gmail.com', 'Fernando', 'G√≥mez', '1994-12-05', 'Av. Siempre Viva 234', '1189012345'),
+('38383838', 7, 2, 2, 'gperalta@gmail.com', 'Gabriela', 'Peralta', '1991-07-19', 'Calle Tucum√°n 456', '1190123456'),
+('39393939', 8, 3, 1, 'hlopez@gmail.com', 'Hern√°n', 'L√≥pez', '1987-01-27', 'Av. Rivadavia 789', '1201234567'),
 ('40404040', 9, 1, 2, 'idelgado@gmail.com', 'Isabel', 'Delgado', '1986-11-10', 'Calle Luna 321', '1212345678'),
-('41414141', 10, 2, 1, 'jgonzalez@gmail.com', 'Jorge', 'Gonz·lez', '1992-08-14', 'Calle Azul 567', '1223456789'),
+('41414141', 10, 2, 1, 'jgonzalez@gmail.com', 'Jorge', 'Gonz√°lez', '1992-08-14', 'Calle Azul 567', '1223456789'),
 ('42424242', 11, 1, 2, 'kleiva@gmail.com', 'Karina', 'Leiva', '1993-03-18', 'Calle del Mar 234', '1234567890'),
-('43434343', 12, 3, 1, 'lramirez@gmail.com', 'Luis', 'RamÌrez', '1985-09-09', 'Av. San MartÌn 456', '1245678901'),
-('44444444', 13, 1, 2, 'mgutierrez@gmail.com', 'MarÌa', 'GutiÈrrez', '1989-05-29', 'Calle de los ¡rboles 678', '1256789012'),
-('45454545', 14, 2, 1, 'ncarrasco@gmail.com', 'Nicol·s', 'Carrasco', '1990-07-22', 'Av. Buenos Aires 890', '1267890123'),
+('43434343', 12, 3, 1, 'lramirez@gmail.com', 'Luis', 'Ram√≠rez', '1985-09-09', 'Av. San Mart√≠n 456', '1245678901'),
+('44444444', 13, 1, 2, 'mgutierrez@gmail.com', 'Mar√≠a', 'Guti√©rrez', '1989-05-29', 'Calle de los √Årboles 678', '1256789012'),
+('45454545', 14, 2, 1, 'ncarrasco@gmail.com', 'Nicol√°s', 'Carrasco', '1990-07-22', 'Av. Buenos Aires 890', '1267890123'),
 ('46464646', 15, 1, 2, 'orivero@gmail.com', 'Olivia', 'Rivero', '1995-10-17', 'Calle del Sol 234', '1278901234')
 GO
 
@@ -564,124 +564,124 @@ GO
 -- CARGA DE TURNOS
 INSERT INTO Turnos (Legajo_Medico_Tu, Fecha_Tu, Hora_Tu, Id_Ciclo_Turno_Tu, Id_Detalle_Turno_Tu, Id_Nacionalidad_Paciente_Tu, DNI_Paciente_Tu, Estado_Tu, Asistencia_Tu)
 VALUES
--- MÈdico 1
+-- M√©dico 1
 ('11111', '2024-11-15', '08:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('11111', '2024-11-29', '08:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('11111', '2024-11-14', '08:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('11111', '2024-11-13', '09:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('11111', '2024-11-14', '08:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('11111', '2024-11-13', '09:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('11111', '2024-11-12', '09:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('11111', '2024-11-11', '08:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('11111', '2024-11-11', '08:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('11111', '2024-11-18', '08:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0 
--- MÈdico 2
+-- M√©dico 2
 ('29878', '2024-11-16', '11:00', 4, 1, 1, '30303030', 1, 0), -- Ciclo 'TER' (No aplica), Estado 1
 ('29878', '2024-11-30', '11:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('29878', '2024-11-15', '11:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('29878', '2024-11-14', '11:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('29878', '2024-11-15', '11:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('29878', '2024-11-14', '11:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('29878', '2024-11-13', '11:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('29878', '2024-11-12', '11:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('29878', '2024-11-12', '11:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('29878', '2024-11-19', '11:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0 
--- MÈdico 3
+-- M√©dico 3
 ('33333', '2024-11-17', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('33333', '2024-12-01', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('33333', '2024-11-16', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('33333', '2024-11-15', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('33333', '2024-11-16', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('33333', '2024-11-15', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('33333', '2024-11-14', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('33333', '2024-11-13', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('33333', '2024-11-13', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('33333', '2024-11-20', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
--- MÈdico 4				
+-- M√©dico 4				
 ('44444', '2024-11-18', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('44444', '2024-12-02', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('44444', '2024-11-17', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('44444', '2024-11-16', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('44444', '2024-11-17', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('44444', '2024-11-16', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('44444', '2024-11-15', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('44444', '2024-11-14', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('44444', '2024-11-14', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('44444', '2024-11-21', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
--- MÈdico 5				
+-- M√©dico 5				
 ('55555', '2024-11-19', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('55555', '2024-12-03', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('55555', '2024-11-18', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('55555', '2024-11-17', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('55555', '2024-11-18', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('55555', '2024-11-17', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('55555', '2024-11-16', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('55555', '2024-11-15', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('55555', '2024-11-15', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('55555', '2024-11-22', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
--- MÈdico 6	
+-- M√©dico 6	
 ('66666', '2024-11-20', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('66666', '2024-12-04', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('66666', '2024-11-19', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('66666', '2024-11-18', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('66666', '2024-11-19', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('66666', '2024-11-18', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('66666', '2024-11-17', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('66666', '2024-11-16', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('66666', '2024-11-16', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('66666', '2024-11-23', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
--- MÈdico 7				
+-- M√©dico 7				
 ('77777', '2024-11-21', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('77777', '2024-12-05', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('77777', '2024-11-20', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('77777', '2024-11-19', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('77777', '2024-11-20', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('77777', '2024-11-19', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('77777', '2024-11-18', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('77777', '2024-11-17', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('77777', '2024-11-17', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('77777', '2024-11-24', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
--- MÈdico 8				
+-- M√©dico 8				
 ('88888', '2024-11-22', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('88888', '2024-12-06', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('88888', '2024-11-21', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('88888', '2024-11-20', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('88888', '2024-11-21', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('88888', '2024-11-20', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('88888', '2024-11-19', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('88888', '2024-11-18', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('88888', '2024-11-18', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('88888', '2024-11-25', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
--- MÈdico 9				
+-- M√©dico 9				
 ('99999', '2024-11-23', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('99999', '2024-12-07', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('99999', '2024-11-22', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('99999', '2024-11-21', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('99999', '2024-11-22', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('99999', '2024-11-21', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('99999', '2024-11-20', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('99999', '2024-11-19', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('99999', '2024-11-19', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('99999', '2024-11-26', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
--- MÈdico 10
+-- M√©dico 10
 ('10000', '2024-11-24', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('10000', '2024-12-08', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('10000', '2024-11-23', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('10000', '2024-11-22', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('10000', '2024-11-23', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('10000', '2024-11-22', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('10000', '2024-11-21', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('10000', '2024-11-20', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('10000', '2024-11-20', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('10000', '2024-11-27', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
--- MÈdico 11				
+-- M√©dico 11				
 ('20000', '2024-11-25', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('20000', '2024-12-09', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('20000', '2024-11-24', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('20000', '2024-11-23', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('20000', '2024-11-24', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('20000', '2024-11-23', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('20000', '2024-11-22', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('20000', '2024-11-21', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('20000', '2024-11-21', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('20000', '2024-11-28', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
--- MÈdico 12				
+-- M√©dico 12				
 ('30000', '2024-11-26', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('30000', '2024-12-10', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('30000', '2024-11-25', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('30000', '2024-11-24', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('30000', '2024-11-25', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('30000', '2024-11-24', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('30000', '2024-11-23', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('30000', '2024-11-22', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('30000', '2024-11-22', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('30000', '2024-11-29', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
--- MÈdico 13				
+-- M√©dico 13				
 ('40000', '2024-11-27', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('40000', '2024-12-11', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('40000', '2024-11-26', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('40000', '2024-11-25', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('40000', '2024-11-26', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('40000', '2024-11-25', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('40000', '2024-11-24', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('40000', '2024-11-23', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('40000', '2024-11-23', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('40000', '2024-11-30', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
--- MÈdico 14				
+-- M√©dico 14				
 ('50000', '2024-11-28', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('50000', '2024-12-12', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('50000', '2024-11-27', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('50000', '2024-11-26', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('50000', '2024-11-27', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('50000', '2024-11-26', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('50000', '2024-11-25', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('50000', '2024-11-24', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('50000', '2024-11-24', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('50000', '2024-12-01', '10:00', 5, 4, 1, '46464646', 0, 0), -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
--- MÈdico 15				
+-- M√©dico 15				
 ('60000', '2024-11-29', '10:00', 4, 1, 1, '30303030', 1, 1), -- Ciclo 'TER' (No aplica), Estado 1
 ('60000', '2024-12-13', '10:00', 1, 1, 2, '45454545', 1, 0), -- Ciclo 'ACT' (No aplica), Estado 1
-('60000', '2024-11-28', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia MÈdica), Estado 0
-('60000', '2024-11-27', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia MÈdica), Estado 0 
+('60000', '2024-11-28', '10:00', 2, 2, 3, '39393939', 0, 0), -- Ciclo 'PEN' (Ausencia M√©dica), Estado 0
+('60000', '2024-11-27', '10:00', 3, 2, 2, '38383838', 0, 0), -- Ciclo 'REP' (Ausencia M√©dica), Estado 0 
 ('60000', '2024-11-26', '10:00', 3, 3, 2, '32323232', 0, 0), -- Ciclo 'REP' (Solicitud de Reprogramacion), Estado 0 
-('60000', '2024-11-25', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia MÈdica), Estado 0 
+('60000', '2024-11-25', '10:00', 5, 2, 1, '37373737', 0, 0), -- Ciclo 'CAN' (Ausencia M√©dica), Estado 0 
 ('60000', '2024-12-02', '10:00', 5, 4, 1, '46464646', 0, 0) -- Ciclo 'CAN' (Cancelacion Administrativa), Estado 0
 GO
