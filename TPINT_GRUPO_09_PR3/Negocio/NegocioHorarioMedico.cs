@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entidades;
+using System.Reflection;
 
 namespace Negocio
 {
@@ -29,13 +30,60 @@ namespace Negocio
 
         public bool AgregarHorariosMedicos(HorarioMedico horarioMedico)
         {
-            
-                daoHorario.GuardarHorariosMedicos(horarioMedico);
-                return true;
 
-            
-            
+            daoHorario.GuardarHorariosMedicos(horarioMedico);
+            return true;
+
+
+
 
         }
+
+        public string[] ObtenerHorasE()
+        {
+            string[] horas = new string[24];
+            for (int i = 0; i < 24; i++)
+            {
+                {
+                    horas[i] = i.ToString("D2") + ":00:00";
+
+                }
+            }
+                return horas;
+        }
+
+        public string[] ObtenerHorasS(string horaEntradaSeleccionada)
+        {
+
+            string[] horasDisponibles = new string[24];
+            int index = 0;
+
+
+            for (int i = 0; i < 24; i++)
+            {
+                string horaGenerada = i.ToString("D2") + ":00:00";
+
+
+                if (string.Compare(horaGenerada, horaEntradaSeleccionada) > 0)
+                {
+                    horasDisponibles[index] = horaGenerada;
+                    index++;
+                }
+            }
+            string[] horasFinales = new string[index];
+
+            for (int i = 0; i < index; i++)
+            {
+                horasFinales[i] = horasDisponibles[i];
+            }
+            return horasFinales;
+
+         }
+
+           
+            
+  
+    
+
     }
 }

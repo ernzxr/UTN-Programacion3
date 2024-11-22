@@ -96,76 +96,67 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.CheckBoxList cklDias;
 
         /// <summary>
-        /// Control lblHoraEntrada.
+        /// Control lblMsjeErrorCargaHorario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHoraEntrada;
+        protected global::System.Web.UI.WebControls.Label lblMsjeErrorCargaHorario;
 
         /// <summary>
-        /// Control txtHoraEntrada.
+        /// Control lblHEntrada.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHoraEntrada;
+        protected global::System.Web.UI.WebControls.Label lblHEntrada;
 
         /// <summary>
-        /// Control rfvHoraEntrada.
+        /// Control ddlHEntrada.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHoraEntrada;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHEntrada;
 
         /// <summary>
-        /// Control revHoraEntrada.
+        /// Control rfvHEntrada.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revHoraEntrada;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHEntrada;
 
         /// <summary>
-        /// Control lblHoraSalida.
+        /// Control lblHSalida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHoraSalida;
+        protected global::System.Web.UI.WebControls.Label lblHSalida;
 
         /// <summary>
-        /// Control txtHoraSalida.
+        /// Control ddlHSalida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHoraSalida;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHSalida;
 
         /// <summary>
-        /// Control rfvHoraSalida.
+        /// Control rfvHSalida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHoraSalida;
-
-        /// <summary>
-        /// Control revHoraSalida.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revHoraSalida;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHSalida;
 
         /// <summary>
         /// Control btnGuardar.
