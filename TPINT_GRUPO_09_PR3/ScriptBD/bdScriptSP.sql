@@ -410,3 +410,123 @@ END
 GO
 
 --EXEC spObtener5PacientesConMasTurnos 1, '2024-06-01', '2024-06-30'
+
+CREATE PROCEDURE spBuscarTurnos
+    @Busqueda NVARCHAR(255)
+AS
+BEGIN
+SELECT 
+      Id_Turno_Tu,
+      Id_Ciclo_Turno_Tu,
+      CT.Descripcion_CT AS Ciclo_Tu,
+      Id_Detalle_Turno_Tu,
+      DT.Descripcion_DT AS Detalle_Ciclo_Tu,
+      Legajo_Medico_Tu,
+      Fecha_Tu,
+      Hora_Tu,
+      DNI_Paciente_Tu,
+      Id_Nacionalidad_Paciente_Tu,
+      Asistencia_Tu,
+      Observaciones_Tu
+FROM 
+    Turnos
+INNER JOIN
+	Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
+INNER JOIN
+	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
+WHERE 
+        CAST(Id_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
+        CAST(Id_Ciclo_Turno_Tu) LIKE '%' + @Busqueda + '%' OR
+        CT.Descripcion_CT LIKE '%' + @Busqueda + '%' OR
+        CAST(Id_Detalle_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
+        DT.Descripcion_DT LIKE '%' + @Busqueda + '%' OR
+        Legajo_Medico_Tu LIKE '%' + @Busqueda + '%' OR
+        CONVERT(VARCHAR, Fecha_Tu, 120) LIKE '%' + @Busqueda + '%' OR
+        CONVERT(VARCHAR, Hora_Tu, 120) LIKE '%' + @Busqueda + '%' OR
+        DNI_Paciente_Tu LIKE '%' + @Busqueda + '%' OR
+        CAST(Id_Nacionalidad_Paciente_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
+        CAST(Asistencia_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
+        Observaciones_Tu LIKE '%' + @Busqueda + '%'
+END
+GO
+
+
+CREATE PROCEDURE spFiltrarTurnosPorLegajo
+    @LegajoMedico CHAR(5)
+AS
+BEGIN
+  SELECT 
+      Id_Turno_Tu,
+      Id_Ciclo_Turno_Tu,
+      CT.Descripcion_CT AS Ciclo_Tu,
+      Id_Detalle_Turno_Tu,
+      DT.Descripcion_DT AS Detalle_Ciclo_Tu,
+      Legajo_Medico_Tu,
+      Fecha_Tu,
+      Hora_Tu,
+      DNI_Paciente_Tu,
+      Id_Nacionalidad_Paciente_Tu,
+      Asistencia_Tu,
+      Observaciones_Tu
+  FROM Turnos
+  INNER JOIN
+	Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
+  INNER JOIN
+	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
+  WHERE Legajo_Medico_Tu = @LegajoMedico
+END
+GO
+
+
+CREATE PROCEDURE spFiltrarTurnosPorDni
+    @DniPaciente CHAR(8)
+AS
+BEGIN
+  SELECT 
+      Id_Turno_Tu,
+      Id_Ciclo_Turno_Tu,
+      CT.Descripcion_CT AS Ciclo_Tu,
+      Id_Detalle_Turno_Tu,
+      DT.Descripcion_DT AS Detalle_Ciclo_Tu,
+      Legajo_Medico_Tu,
+      Fecha_Tu,
+      Hora_Tu,
+      DNI_Paciente_Tu,
+      Id_Nacionalidad_Paciente_Tu,
+      Asistencia_Tu,
+      Observaciones_Tu
+  FROM Turnos
+  INNER JOIN
+	Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
+  INNER JOIN
+	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
+  WHERE DNI_Paciente_Tu = @DniPaciente
+END
+GO
+
+
+CREATE PROCEDURE spFiltrarTurnosPorDia
+    @Fecha DATE
+AS
+BEGIN
+  SELECT 
+      Id_Turno_Tu,
+      Id_Ciclo_Turno_Tu,
+      CT.Descripcion_CT AS Ciclo_Tu,
+      Id_Detalle_Turno_Tu,
+      DT.Descripcion_DT AS Detalle_Ciclo_Tu,
+      Legajo_Medico_Tu,
+      Fecha_Tu,
+      Hora_Tu,
+      DNI_Paciente_Tu,
+      Id_Nacionalidad_Paciente_Tu,
+      Asistencia_Tu,
+      Observaciones_Tu
+  FROM Turnos
+  INNER JOIN
+	Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
+  INNER JOIN
+	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
+  WHERE Fecha_Tu = @Fecha
+END
+GO
