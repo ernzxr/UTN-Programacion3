@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
  <div class="container mt-5">
     <h1 class="text-center">Reportes e Informes</h1>
-    <p class="text-center">Selecciona el informe que deseas consultar:</p>
+    <p class="text-center">Selecciona el informe o reporte que deseas consultar:</p>
 
     <div class="row justify-content-center">
         <!-- Card 1 -->
@@ -44,7 +44,7 @@
                     <h5 class="card-title">Pacientes la mayor cantidad de turnos asistidos por cada especialidad médica dentro de un rango de fechas específico.
                     </p>
                     <asp:HyperLink ID="hlTurnosEspecialidad" runat="server" NavigateUrl="ReportePacientesFrecuentes.aspx" CssClass="btn btn-primary">
-                        Consultar Informe
+                        Consultar Reporte
                     </asp:HyperLink>
                 </div>
             </div>
