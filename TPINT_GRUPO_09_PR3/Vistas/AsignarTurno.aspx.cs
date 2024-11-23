@@ -27,6 +27,7 @@ namespace Vistas
 
             if (!IsPostBack)
             {
+                LimpiarCampos();
                 CargarEspecialidades();
             }
         }
