@@ -19,19 +19,15 @@ namespace Vistas
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            // Obtener los valores ingresados por el usuario
+           
             string usuario = txtUsuario.Text.Trim();
             string email = txtEmail.Text.Trim();
             string nuevaClave = txtClave.Text.Trim();
             string confirmarClave = txtConfirmarClave.Text.Trim();
 
-          
            
-
-            // Llamar al método de negocio para cambiar la contraseña
             bool exito = _usuarioNegocio.CambiarContraseña(usuario, email, nuevaClave);
 
-            // Mostrar mensaje según el resultado
             if (exito)
             {
                 lblMensaje.ForeColor = System.Drawing.Color.Green;

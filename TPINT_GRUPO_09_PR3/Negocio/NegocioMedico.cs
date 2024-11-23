@@ -65,10 +65,12 @@ namespace Negocio
 
             return medico;
         }
-
-        public Medico ObtenerDatosMedicoPorUsuario(string usuario)
+        public (string legajo, string nombre, string apellido, string dni, DateTime fechaNacimiento,
+        string direccion, string telefono, string email, string nombreEspecialidad,
+        string nombreLocalidad, string nombreProvincia, string nombreNacionalidad)
+    ObtenerDatosMedicoPorUsuario(string usuario) // Aquí también debe coincidir
         {
-            return dao.ObtenerDatosMedicoPorUsuario(usuario);
+            return dao.ObtenerDatosMedicoPorUsuario(usuario); // Llamada al método
         }
     }
 }

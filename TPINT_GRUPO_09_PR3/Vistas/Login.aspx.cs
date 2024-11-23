@@ -40,7 +40,8 @@ namespace Vistas
                 // Usuario médico: Redirigimos a la página de inicio de médico
                 Session["TipoUsuario"] = 2;
                 Session["Usuario"] = usuario; // Guardamos el usuario en sesión
-                Session["Legajo"] = negocioMedico.ObtenerDatosMedicoPorUsuario(usuario).getLegajo(); // Guardamos el legajo en sesión
+                var medico = negocioMedico.ObtenerDatosMedicoPorUsuario(usuario); // Obtenemos la tupla con los datos del médico
+                Session["Legajo"] = medico.legajo; // Guardamos el legajo en sesión
                 Response.Redirect("InicioMedico.aspx");
             }
             else if (tipoUsuario == "Credenciales incorrectas")

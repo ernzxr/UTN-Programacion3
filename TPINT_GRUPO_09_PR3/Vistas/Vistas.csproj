@@ -92,6 +92,7 @@
     <Content Include="ListadoPacientes.aspx" />
     <Content Include="ListarTurnos.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MiPerfil.aspx" />
     <Content Include="MisTurnos.aspx" />
     <Content Include="ReporteHorarios.aspx" />
     <Content Include="ReportePacientesFrecuentes.aspx" />
@@ -212,6 +213,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MiPerfil.aspx.cs">
+      <DependentUpon>MiPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MiPerfil.aspx.designer.cs">
+      <DependentUpon>MiPerfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="MisTurnos.aspx.cs">
       <DependentUpon>MisTurnos.aspx</DependentUpon>
