@@ -53,5 +53,30 @@ namespace Negocio
         {
             return daoTurno.getTurnosPendientesCount();
         }
+
+        public Boolean existeLegajo(string legajo)
+        {
+            return daoTurno.existeLegajo(legajo);
+        }
+
+        public DataTable BuscarTurnos(string busqueda)
+        {
+            return daoTurno.BuscarTurnos(busqueda);
+        }
+
+        public DataTable ObtenerTurnosPorFecha(DateTime fecha)
+        {
+            return daoTurno.FiltrarTurnosPorFecha(fecha);
+        }
+
+        public DataTable ObtenerTurnosPorLegajo(string legajoMedico)
+        {
+            return daoTurno.FiltrarTurnosPorLegajo(legajoMedico);
+        }
+
+        public DataTable ObtenerTurnosPorDni(string dni)
+        {
+            return daoTurno.FiltrarTurnosPorDni(dni);
+        }
     }
 }

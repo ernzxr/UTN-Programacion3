@@ -99,5 +99,40 @@ namespace Dao
             SqlCommand comando = new SqlCommand();
             return ds.EjecutarProcedimientoAlmacenadoFuncion(comando, "spObtenerTurnosPendientesCount");
         }
+
+        public Boolean existeLegajo(string legajo)
+        {
+            string consulta = "SELECT * FROM Turnos WHERE Legajo_Medico_Tu = '" + legajo + "'";
+            return ds.existe(consulta);
+        }
+
+        public DataTable BuscarTurnos(string busqueda)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@Busqueda", busqueda);
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spBuscarTurnos");
+        }
+
+        public DataTable FiltrarTurnosPorLegajo(string legajoMedico)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@LegajoMedico", legajoMedico);
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spFiltrarTurnosPorLegajo");
+        }
+
+        public DataTable FiltrarTurnosPorDni(string dni)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@DniPaciente", dni);
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spFiltrarTurnosPorDni");
+        }
+
+        public DataTable FiltrarTurnosPorFecha(DateTime fecha)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@Fecha", fecha);
+
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spFiltrarTurnosPorDia");
+        }
     }
 }
