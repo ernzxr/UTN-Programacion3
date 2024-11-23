@@ -556,3 +556,15 @@ Hora_Fin_HM = @HoraFin
 WHERE Legajo_Medico_HM = @Legajo AND  Id_Dia_Semana_HM = @Dia
 END
 GO
+
+CREATE OR ALTER PROCEDURE sp_AgregarHorarioMedico
+   @Legajo CHAR(5),
+   @Dia INT,
+   @HoraInicio TIME(0),
+   @HoraFin TIME(0)
+AS
+BEGIN
+   INSERT INTO Horarios_Medicos(Legajo_Medico_HM, Id_Dia_Semana_HM,Hora_Inicio_HM,Hora_Fin_HM)
+VALUES (@Legajo, @Dia, @HoraInicio, @HoraFin)
+END
+GO
