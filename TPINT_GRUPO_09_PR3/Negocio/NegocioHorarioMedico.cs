@@ -80,10 +80,32 @@ namespace Negocio
 
          }
 
-           
-            
-  
-    
 
+        public DataTable ObtenerHorariosMedicos(string legajo)
+        {
+            return daoHorario.ObtenerHorariosMedicos(legajo);
+        }
+
+        public bool ActualizarHorariosMedicos(string legajo, int dia, DateTime horaInicio, DateTime horaFin)
+        {
+            int cantFilas = 0;
+            HorarioMedico horarioMedico = new HorarioMedico();
+
+            horarioMedico.setLegajoMedico(legajo);
+            horarioMedico.setIdDiaSemana(dia);
+            horarioMedico.setHoraInicio(horaInicio);
+            horarioMedico.setHoraFin(horaFin);
+
+
+            cantFilas = daoHorario.ActualizarHorariosMedicos(horarioMedico);
+            if (cantFilas == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
