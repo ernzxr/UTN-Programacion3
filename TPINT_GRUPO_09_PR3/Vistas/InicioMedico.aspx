@@ -55,7 +55,7 @@
           <img src="Images/Card-6.jpg" class="card-img-top" alt="Mi Perfil">
           <div class="card-body">
             <h5 class="card-title">Mi Perfil</h5>
-            <p class="card-text">Visualiza y edita la información de tu perfil profesional entre otros detalles.</p>
+            <p class="card-text">Visualizala información de tu perfil profesional.</p>
           </div>
         </div>
       </div>

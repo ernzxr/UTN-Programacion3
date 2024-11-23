@@ -18,24 +18,38 @@ namespace Vistas
                 string usuario = (string)Session["Usuario"]; // Suponiendo que el usuario está en sesión
                 if (!string.IsNullOrEmpty(usuario))
                 {
+                    // Instanciar la clase NegocioMedico
                     NegocioMedico negocioMedico = new NegocioMedico();
-                    Medico medico = negocioMedico.ObtenerDatosMedicoPorUsuario(usuario);
 
-                    if (medico != null)
+                    // Obtener los datos del médico por usuario
+                    var datosMedico = negocioMedico.ObtenerDatosMedicoPorUsuario(usuario);
+
+                    if (datosMedico.legajo != null)
                     {
-                        txtLegajo.Text = medico.getLegajo();
-                        txtNombre.Text = medico.getNombre();
-                        txtApellido.Text = medico.getApellido();
-                        txtDni.Text = medico.getDni();
-                        txtNacimiento.Text = medico.getFechaNacimiento().ToShortDateString();
-                        txtDireccion.Text = medico.getDireccion();
-                        txtTelefono.Text = medico.getTelefono();
-                        txtEmail.Text = medico.getEmail();
+                        // Asignar los valores obtenidos a los controles del formulario
+                        txtLegajo.Text = datosMedico.legajo;
+                        txtNombre.Text = datosMedico.nombre;
+                        txtApellido.Text = datosMedico.apellido;
+                        txtDni.Text = datosMedico.dni;
+                        txtUsuario.Text = usuario;
+                        if (datosMedico.fechaNacimiento != default(DateTime))
+                        {
+                            // Usar el formato directamente sin necesidad de TryParse
+                            txtNacimiento.Text = datosMedico.fechaNacimiento.ToString("dd/MM/yyyy"); // Ajuste de formato
+                        }
+                        else
+                        {
+                            txtNacimiento.Text = ""; // Si no es válida, dejamos el campo vacío
+                        }
+                        txtDireccion.Text = datosMedico.direccion;
+                        txtTelefono.Text = datosMedico.telefono;
+                        txtEmail.Text = datosMedico.email;
 
-                        // Obtener nombres descriptivos de Localidad, Especialidad y Nacionalidad
-                       // txtLocalidad.Text = negocioMedico.ObtenerNombreLocalidad(medico.getIdLocalidad());
-                        //txtEspecialidad.Text = negocioMedico.ObtenerNombreEspecialidad(medico.getIdEspecialidad());
-                       // txtNacionalidad.Text = negocioMedico.ObtenerNombreNacionalidad(medico.getNacionalidad());
+                        // Asignar los valores de las otras propiedades descriptivas
+                        txtEspecialidad.Text = datosMedico.nombreEspecialidad;
+                        txtLocalidad.Text = datosMedico.nombreLocalidad;
+                        txtProvincia.Text = datosMedico.nombreProvincia;
+                        txtNacionalidad.Text = datosMedico.nombreNacionalidad;
                     }
                     else
                     {
