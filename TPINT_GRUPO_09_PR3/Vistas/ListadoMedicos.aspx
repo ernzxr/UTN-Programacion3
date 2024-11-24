@@ -100,12 +100,13 @@
                 </div>
                 <div class="modal-body">
                     <p>Ingrese Datos a Modificar</p>
+                         <p></p>   
                      <div>
                         <asp:Label ID="lblLegajo_M" Text="LEGAJO:" runat="server" />
                         <asp:TextBox ID="txtLegajo_M" runat="server" ReadOnly="true" class="form-control" />
                     </div>
                 </div>
-                                           
+                         <p></p>                  
                     <div>
                           <asp:Label ID="Especialidad_M" Text="Especialidad:" runat="server" />
                           <asp:DropDownList ID="ddlEspecialidad_M" runat="server"></asp:DropDownList>

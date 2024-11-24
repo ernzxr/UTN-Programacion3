@@ -18,6 +18,7 @@ namespace Vistas
         NegocioSexo negS = new NegocioSexo();
         NegocioProvincia NegProv = new NegocioProvincia();
         NegocioLocalidad negL = new NegocioLocalidad();
+        NegocioEspecialidad negEs = new NegocioEspecialidad();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,6 +29,7 @@ namespace Vistas
                 CargarNacionalidad(ddlNacionalidad_M);
                 CargarSexo(ddlSexo_M);
                 CargarProvincia(ddlProvincia_M);
+                CargarEspecialidad(ddlEspecialidad_M);
             }
 
         }
@@ -43,6 +45,16 @@ namespace Vistas
             ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
         }
 
+        public void CargarEspecialidad(DropDownList ddl)
+        {
+            DataTable Especialidad = negEs.getTablaEspecialidad();
+            ddl.DataSource = Especialidad;
+            ddl.DataTextField = "Descripcion_Es";
+            ddl.DataValueField = "Id_Especialidad_Es";
+            ddl.DataBind();
+
+            ddl.Items.Insert(0, new ListItem("Seleccionar...", "0"));
+        }
         /* protected void CargarLocalidades(int idProvincia)
          {
              DataTable localidades = negL.getTablaLocalidad(idProvincia);

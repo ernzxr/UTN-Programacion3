@@ -238,6 +238,15 @@ namespace Dao
             return ds.EjecutarProcedimientoAlmacenado(comando, "spBajaLogicaMedico");
         }
 
+        public void ArmarParametrosBajaLogica(ref SqlCommand comando, Medico medico)
+        {
+            SqlParameter SqlParametros = new SqlParameter();
+
+            SqlParametros = comando.Parameters.Add("@LEGAJO", SqlDbType.Char);
+            SqlParametros.Value = medico.getLegajo();
+
+
+        }
         public int ActualizarMedico(Medico medico)
         {
             SqlCommand comando = new SqlCommand();
@@ -246,6 +255,7 @@ namespace Dao
 
         }
 
+
         private void ArmarParametrosActualizarMedico(ref SqlCommand comando, Medico medico)
         {
             SqlParameter SqlParametros = new SqlParameter();
@@ -253,7 +263,7 @@ namespace Dao
             SqlParametros = comando.Parameters.Add("@LEGAJO", SqlDbType.Char);
             SqlParametros.Value = medico.getLegajo();
 
-            SqlParametros = comando.Parameters.Add("@Especialidad", SqlDbType.Char);
+            SqlParametros = comando.Parameters.Add("@Especialidad", SqlDbType.Int);
             SqlParametros.Value = medico.getIdEspecialidad();
 
             SqlParametros = comando.Parameters.Add("@DNI", SqlDbType.Char);
@@ -290,15 +300,6 @@ namespace Dao
             SqlParametros.Value = medico.getEstado();
         }
 
-        public void ArmarParametrosBajaLogica(ref SqlCommand comando, Medico medico)
-        {
-            SqlParameter SqlParametros = new SqlParameter();
-
-            SqlParametros = comando.Parameters.Add("@LEGAJO", SqlDbType.Char);
-            SqlParametros.Value = medico.getLegajo();
-
-        }
-
 
         public DataTable getMedicoPorLegajo(string legajo)
         {
@@ -325,7 +326,73 @@ namespace Dao
                     "SELECT Descripcion_Lo FROM Localidades WHERE Id_Localidad_Lo = @IdLocalidad",
                     conexion);
 
-                comando.Parameters.AddWithValue("@IdLocalidad", idLocalidad);
+                comando.Parameters.Add("@IdLocalidad", SqlDbType.Int).Value = idLocalidad;
+
+                try
+                {
+                    conexion.Open();
+                    object resultado = comando.ExecuteScalar();
+                    return resultado != null ? resultado.ToString() : null;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al obtener el nombre de la localidad: " + ex.Message);
+                }
+            }
+        }
+        public string ObtenerNombreEspecialidad(int idEspecialidad)
+        {
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                SqlCommand comando = new SqlCommand(
+                    "SELECT Descripcion_Lo FROM Especialidades WHERE Id_Especialidad_Es = @Especialidad",
+                    conexion);
+
+                comando.Parameters.Add("@IdEspecialidad", SqlDbType.Int).Value = idEspecialidad;
+
+                try
+                {
+                    conexion.Open();
+                    object resultado = comando.ExecuteScalar();
+                    return resultado != null ? resultado.ToString() : null;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al obtener el nombre de la localidad: " + ex.Message);
+                }
+            }
+        }
+        public string ObtenerNombreProvincia(int idProvincia)
+        {
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                SqlCommand comando = new SqlCommand(
+                    "SELECT Descripcion_Lo FROM Provincias WHERE Id_Provincia_Pr = @Provincia",
+                    conexion);
+
+                comando.Parameters.Add("@IdEspecialidad", SqlDbType.Int).Value = idProvincia;
+
+                try
+                {
+                    conexion.Open();
+                    object resultado = comando.ExecuteScalar();
+                    return resultado != null ? resultado.ToString() : null;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al obtener el nombre de la localidad: " + ex.Message);
+                }
+            }
+        }
+        public string ObtenerNombreNacionalidad(int idNacionalidad)
+        {
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                SqlCommand comando = new SqlCommand(
+                    "SELECT Descripcion_Lo FROM Nacionalidades WHERE Id_Nacionalidad_Na = @Nacionalidad",
+                    conexion);
+
+                comando.Parameters.Add("@IdNacionalidad", SqlDbType.Int).Value = idNacionalidad;
 
                 try
                 {
@@ -340,6 +407,7 @@ namespace Dao
             }
         }
 
+    }    
 }
 
 
