@@ -531,14 +531,40 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE sp_AgregarHorarioMedico
+CREATE OR ALTER PROCEDURE spObtenerHorariosMedicos
+@Legajo CHAR(5)
+AS
+BEGIN
+SELECT @Legajo AS Legajo, Descripcion_DS, Hora_Inicio_HM, Hora_Fin_HM
+FROM Horarios_Medicos RIGHT JOIN Dias_Semanas
+ON Id_Dia_Semana_HM = Id_Dia_Semana_DS AND Legajo_Medico_HM = @Legajo
+END
+GO
+
+CREATE OR ALTER PROCEDURE spActualizarHorariosMedicos
 @Legajo CHAR(5),
 @Dia INT,
 @HoraInicio TIME(0),
 @HoraFin TIME(0)
 AS
 BEGIN
-INSERT INTO Horarios_Medicos(Legajo_Medico_HM, Id_Dia_Semana_HM,Hora_Inicio_HM,Hora_Fin_HM)
+UPDATE Horarios_Medicos SET
+Legajo_Medico_HM = @Legajo,
+Id_Dia_Semana_HM = @Dia,
+Hora_Inicio_HM = @HoraInicio,
+Hora_Fin_HM = @HoraFin
+WHERE Legajo_Medico_HM = @Legajo AND  Id_Dia_Semana_HM = @Dia
+END
+GO
+
+CREATE OR ALTER PROCEDURE sp_AgregarHorarioMedico
+   @Legajo CHAR(5),
+   @Dia INT,
+   @HoraInicio TIME(0),
+   @HoraFin TIME(0)
+AS
+BEGIN
+   INSERT INTO Horarios_Medicos(Legajo_Medico_HM, Id_Dia_Semana_HM,Hora_Inicio_HM,Hora_Fin_HM)
 VALUES (@Legajo, @Dia, @HoraInicio, @HoraFin)
 END
 GO

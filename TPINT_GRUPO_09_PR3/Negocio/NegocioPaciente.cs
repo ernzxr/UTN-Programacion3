@@ -87,9 +87,33 @@ namespace Negocio
             }
         }
 
-        public DataTable getPaciente(string dni, int idNacionalidad)
+        public Paciente getPaciente(string dni, int idNacionalidad)
         {
-            return dao.filtrarPaciente(dni, idNacionalidad); 
+            DataTable dtPaciente = new DataTable();
+            Paciente paciente = new Paciente();
+
+            dtPaciente = dao.filtrarPaciente(dni, idNacionalidad);
+
+            DataRow pac = dtPaciente.Rows[0];
+
+            paciente.setDni(pac["DNI"].ToString());
+            paciente.setNacionalidad(int.Parse(pac["Id_Nacionalidad"].ToString()));
+            paciente.setNombre(pac["Nombre"].ToString());
+            paciente.setApellido(pac["Apellido"].ToString());
+            paciente.setGenero(int.Parse(pac["Id_Genero"].ToString()));
+
+            DateTime fechaNacimiento = Convert.ToDateTime(pac["Fecha_De_Nacimiento"]);
+            paciente.setFechaNacimiento(fechaNacimiento);
+
+            paciente.setLocalidad(int.Parse(pac["Id_Localidad"].ToString()));
+            paciente.setDireccion(pac["Direccion"].ToString());
+            paciente.setEmail(pac["Email"].ToString());
+            paciente.setTelefono(pac["Telefono"].ToString());
+
+            Boolean estado = Convert.ToBoolean(pac["Estado"]);
+            paciente.setEstado(estado);
+
+            return paciente; 
         }
 
         public DataTable getPacientes()

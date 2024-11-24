@@ -92,7 +92,9 @@
     <Content Include="ListadoPacientes.aspx" />
     <Content Include="ListarTurnos.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MiPerfil.aspx" />
     <Content Include="MisTurnos.aspx" />
+    <Content Include="ModificarHorariosMedicos.aspx" />
     <Content Include="ReporteHorarios.aspx" />
     <Content Include="ReportePacientesFrecuentes.aspx" />
     <Content Include="ReportesInformes.aspx" />
@@ -213,12 +215,26 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MiPerfil.aspx.cs">
+      <DependentUpon>MiPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MiPerfil.aspx.designer.cs">
+      <DependentUpon>MiPerfil.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MisTurnos.aspx.cs">
       <DependentUpon>MisTurnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MisTurnos.aspx.designer.cs">
       <DependentUpon>MisTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarHorariosMedicos.aspx.cs">
+      <DependentUpon>ModificarHorariosMedicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarHorariosMedicos.aspx.designer.cs">
+      <DependentUpon>ModificarHorariosMedicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main.Master.cs">

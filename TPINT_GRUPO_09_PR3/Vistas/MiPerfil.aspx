@@ -47,7 +47,7 @@
              </tr>
                 <tr>
                     <td><strong>Fecha de Nacimiento:</strong></td>
-                    <td><asp:TextBox ID="txtNacimiento" runat="server" ReadOnly="true" CssClass="form-control" TextMode="Date"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtNacimiento" runat="server" ReadOnly="true" CssClass="form-control" ></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td><strong>Dirección:</strong></td>
@@ -56,6 +56,10 @@
                 <tr>
                     <td><strong>Localidad:</strong></td>
                     <td><asp:TextBox ID="txtLocalidad" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox></td>
+                </tr>
+                 <tr>
+                    <td><strong>Provincia:</strong></td>
+                    <td><asp:TextBox ID="txtProvincia" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox></td>
                 </tr>
 
                 <tr>

@@ -34,9 +34,6 @@ namespace Negocio
             daoHorario.GuardarHorariosMedicos(horarioMedico);
             return true;
 
-
-
-
         }
 
         public string[] ObtenerHorasE()
@@ -80,10 +77,32 @@ namespace Negocio
 
          }
 
-           
-            
-  
-    
 
+        public DataTable ObtenerHorariosMedicos(string legajo)
+        {
+            return daoHorario.ObtenerHorariosMedicos(legajo);
+        }
+
+        public bool ActualizarHorariosMedicos(string legajo, int dia, TimeSpan horaInicio, TimeSpan horaFin)
+        {
+            int cantFilas = 0;
+            HorarioMedico horarioMedico = new HorarioMedico();
+
+            horarioMedico.setLegajoMedico(legajo);
+            horarioMedico.setIdDiaSemana(dia);
+            horarioMedico.setHoraInicio(horaInicio);
+            horarioMedico.setHoraFin(horaFin);
+
+
+            cantFilas = daoHorario.ActualizarHorariosMedicos(horarioMedico);
+            if (cantFilas == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -37,5 +37,12 @@ namespace Dao
             return null;
         }
 
+        public DataTable GetIdDia(string descripcionDia)
+        {
+           string consulta = "SELECT Id_Dia_Semana_DS FROM Dias_Semanas WHERE Descripcion_DS = '" + descripcionDia + "'";
+           return ds.ObtenerTabla("Dias_Semana", consulta);
+        }
+
+
    }
 }

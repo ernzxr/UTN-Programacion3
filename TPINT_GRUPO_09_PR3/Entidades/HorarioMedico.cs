@@ -11,8 +11,8 @@ namespace Entidades
         //Atributos
         private string Legajo_Medico_HM;
         private int Id_Dia_Semana_HM;
-        private DateTime Hora_Inicio_HM;
-        private DateTime Hora_Fin_HM;
+        private TimeSpan Hora_Inicio_HM;
+        private TimeSpan Hora_Fin_HM;
 
         //Constructor por defecto
         public HorarioMedico()
@@ -21,7 +21,7 @@ namespace Entidades
         }
 
         //Constructor por parametro
-        public HorarioMedico(string legajo, int idDiaSemana, DateTime horaInicio, DateTime horaFin)
+        public HorarioMedico(string legajo, int idDiaSemana, TimeSpan horaInicio, TimeSpan horaFin)
         {
             this.Legajo_Medico_HM = legajo;
             this.Id_Dia_Semana_HM = idDiaSemana;
@@ -50,22 +50,22 @@ namespace Entidades
             Id_Dia_Semana_HM = idDiaSemana;
         }
 
-        public DateTime getHoraInicio()
+        public TimeSpan getHoraInicio()
         {
             return Hora_Inicio_HM;
         }
 
-        public void setHoraInicio(DateTime horaInicio)
+        public void setHoraInicio(TimeSpan horaInicio)
         {
             Hora_Inicio_HM = horaInicio;
         }
 
-        public DateTime getHoraFin()
+        public TimeSpan getHoraFin()
         {
             return Hora_Fin_HM;
         }
 
-        public void setHoraFin(DateTime horaFin)
+        public void setHoraFin(TimeSpan horaFin)
         {
             Hora_Fin_HM = horaFin;
         }

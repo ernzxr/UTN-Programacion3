@@ -132,35 +132,28 @@ namespace Vistas
                 string dni = values[0];
                 int idNacionalidad = int.Parse(values[1]);
 
-                DataTable dtPaciente = NegP.getPaciente(dni, idNacionalidad);
+                Paciente paciente = NegP.getPaciente(dni, idNacionalidad);
 
-                if (dtPaciente != null && dtPaciente.Rows.Count > 0)
-                {
-                    DataRow paciente = dtPaciente.Rows[0];
+                lblDNI2_M.Text = paciente.getDni().ToString();
+                ddlNacionalidad_M.SelectedValue = idNacionalidad.ToString();
+                txtNombre_M.Text = paciente.getNombre().ToString();
+                txtApellido_M.Text = paciente.getApellido().ToString();
+                ddlSexo_M.SelectedValue = paciente.getGenero().ToString();
 
-                    lblDNI2_M.Text = paciente["DNI"].ToString();
-                    ddlNacionalidad_M.SelectedValue = idNacionalidad.ToString();
-                    txtNombre_M.Text = paciente["Nombre"].ToString();
-                    txtApellido_M.Text = paciente["Apellido"].ToString();
-                    ddlSexo_M.SelectedValue = paciente["Id_Genero"].ToString();
+                txtFechaNacimiento_M.Text = paciente.getFechaNacimiento().ToString("yyyy-MM-dd");
 
-                    DateTime fechaNacimiento = Convert.ToDateTime(paciente["Fecha_De_Nacimiento"]);
-                    txtFechaNacimiento_M.Text = fechaNacimiento.ToString("yyyy-MM-dd");
+                int idProvincia = negL.getIdProvincia(Convert.ToInt32(paciente.getLocalidad().ToString()));
+                ddlProvincia_M.SelectedValue = idProvincia.ToString();
 
-                    int idProvincia = negL.getIdProvincia(Convert.ToInt32(paciente["Id_Localidad"].ToString()));
-                    ddlProvincia_M.SelectedValue = idProvincia.ToString();
+                CargarLocalidad(ddlLocalidad_M, idProvincia);
+                ddlLocalidad_M.SelectedValue = paciente.getLocalidad().ToString();
 
-                    CargarLocalidad(ddlLocalidad_M, idProvincia);
-                    ddlLocalidad_M.SelectedValue = paciente["Id_Localidad"].ToString();
+                txtDireccion_M.Text = paciente.getDireccion().ToString();
+                txtEmail_M.Text = paciente.getEmail().ToString();
+                txtTelefono_M.Text = paciente.getTelefono().ToString();
 
-                    txtDireccion_M.Text = paciente["Direccion"].ToString();
-                    txtEmail_M.Text = paciente["Email"].ToString();
-                    txtTelefono_M.Text = paciente["Telefono"].ToString();
+                chkEstado_M.Checked = paciente.getEstado() ? true : false;
 
-                    bool chequeado = Convert.ToBoolean(paciente["Estado"]);
-                    chkEstado_M.Checked = chequeado ? true : false;
-
-                }
 
                 lblCatch.Text = "";
 
@@ -229,16 +222,14 @@ namespace Vistas
                 string dni = values[0];
                 int idNacionalidad = int.Parse(values[1]);
 
-                DataTable dtPaciente = NegP.getPaciente(dni, idNacionalidad);
+                Paciente paciente = NegP.getPaciente(dni, idNacionalidad);
 
-                if (dtPaciente != null && dtPaciente.Rows.Count > 0)
-                {
-                    DataRow paciente = dtPaciente.Rows[0];
 
-                    txtDNI_E.Text = paciente["DNI"].ToString();
-                    ddlNacionalidad_E.SelectedValue = idNacionalidad.ToString();
 
-                }
+                txtDNI_E.Text = paciente.getDni().ToString();
+                ddlNacionalidad_E.SelectedValue = idNacionalidad.ToString();
+
+
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "showDeleteModal", "showDeleteModal();", true);
             }

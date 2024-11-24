@@ -39,8 +39,8 @@ namespace Dao
 
             SqlCommand cmd = new SqlCommand();
 
-            TimeSpan horaTransformada = horarioMedico.getHoraInicio().TimeOfDay;
-            TimeSpan horaTransformadaFin = horarioMedico.getHoraFin().TimeOfDay;
+            TimeSpan horaTransformada = horarioMedico.getHoraInicio();
+            TimeSpan horaTransformadaFin = horarioMedico.getHoraFin();
 
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@Legajo", horarioMedico.getLegajoMedico());
@@ -57,6 +57,46 @@ namespace Dao
                 Console.WriteLine("Stack Trace: " + ex.StackTrace);
                 throw new Exception("Error al guardar horario médico: " + ex.Message, ex); // Re-lanzar la excepción con más contexto
             }
+        }
+
+        private void ArmarParametrosObtenerHorariosMedicos(ref SqlCommand Comando, string legajo)
+        {
+            SqlParameter SqlParametros = new SqlParameter();
+            SqlParametros = Comando.Parameters.Add("@Legajo", SqlDbType.Char);
+            SqlParametros.Value = legajo;
+        }
+
+        public DataTable ObtenerHorariosMedicos(string legajo)
+        {
+            SqlCommand comando = new SqlCommand();
+            ArmarParametrosObtenerHorariosMedicos(ref comando, legajo);
+            DataTable tabla = ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtenerHorariosMedicos");
+            return tabla;
+        }
+
+        public int ActualizarHorariosMedicos(HorarioMedico horarioMedico)
+        {
+            SqlCommand comando = new SqlCommand();
+            ArmarParametrosActualizarHorariosMedicos(ref comando, horarioMedico);
+            return ds.EjecutarProcedimientoAlmacenado(comando, "spActualizarHorariosMedicos");
+        }
+
+
+        private void ArmarParametrosActualizarHorariosMedicos(ref SqlCommand comando, HorarioMedico horarioMedico)
+        {
+            SqlParameter SqlParametros = new SqlParameter();
+
+            SqlParametros = comando.Parameters.Add("@Legajo", SqlDbType.Char);
+            SqlParametros.Value = horarioMedico.getLegajoMedico();
+
+            SqlParametros = comando.Parameters.Add("@Dia", SqlDbType.Int);
+            SqlParametros.Value = horarioMedico.getIdDiaSemana();
+
+            SqlParametros = comando.Parameters.Add("@HoraInicio", SqlDbType.Time);
+            SqlParametros.Value = horarioMedico.getHoraInicio();
+
+            SqlParametros = comando.Parameters.Add("@HoraFin", SqlDbType.Time);
+            SqlParametros.Value = horarioMedico.getHoraFin();
         }
     }
 }
