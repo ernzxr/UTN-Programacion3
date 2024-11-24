@@ -104,5 +104,24 @@ namespace Negocio
                 return false;
             }
         }
+
+        public bool EliminarHorariosMedicos(string legajo, int dia)
+        {
+            int cantFilas = 0;
+            HorarioMedico horarioMedico = new HorarioMedico();
+
+            horarioMedico.setLegajoMedico(legajo);
+            horarioMedico.setIdDiaSemana(dia);
+
+            cantFilas = daoHorario.EliminarHorariosMedicos(horarioMedico);
+            if (cantFilas == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

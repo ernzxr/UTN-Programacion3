@@ -39,8 +39,8 @@ namespace Dao
 
             SqlCommand cmd = new SqlCommand();
 
-            TimeSpan horaTransformada = horarioMedico.getHoraInicio();
-            TimeSpan horaTransformadaFin = horarioMedico.getHoraFin();
+            TimeSpan? horaTransformada = horarioMedico.getHoraInicio();
+            TimeSpan? horaTransformadaFin = horarioMedico.getHoraFin();
 
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@Legajo", horarioMedico.getLegajoMedico());
@@ -98,5 +98,24 @@ namespace Dao
             SqlParametros = comando.Parameters.Add("@HoraFin", SqlDbType.Time);
             SqlParametros.Value = horarioMedico.getHoraFin();
         }
+
+        private void ArmarParametrosEliminarHorariosMedicos(ref SqlCommand comando, HorarioMedico horarioMedico)
+        {
+            SqlParameter SqlParametros = new SqlParameter();
+
+            SqlParametros = comando.Parameters.Add("@Legajo", SqlDbType.Char);
+            SqlParametros.Value = horarioMedico.getLegajoMedico();
+
+            SqlParametros = comando.Parameters.Add("@Dia", SqlDbType.Int);
+            SqlParametros.Value = horarioMedico.getIdDiaSemana();
+        }
+
+        public int EliminarHorariosMedicos(HorarioMedico horarioMedico)
+        {
+            SqlCommand comando = new SqlCommand();
+            ArmarParametrosEliminarHorariosMedicos(ref comando, horarioMedico);
+            return ds.EjecutarProcedimientoAlmacenado(comando, "spEliminarHorariosMedicos");
+        }
+
     }
 }
