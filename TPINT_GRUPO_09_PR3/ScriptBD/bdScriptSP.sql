@@ -718,3 +718,17 @@ BEGIN
         Hora_Tu = @Hora
 END
 GO
+
+CREATE OR ALTER PROCEDURE spEliminarHorariosMedicos
+@Legajo CHAR(5),
+@Dia INT
+AS
+BEGIN
+UPDATE Horarios_Medicos SET
+Legajo_Medico_HM = @Legajo,
+Id_Dia_Semana_HM = @Dia,
+Hora_Inicio_HM = NULL,
+Hora_Fin_HM = NULL
+WHERE Legajo_Medico_HM = @Legajo AND  Id_Dia_Semana_HM = @Dia
+END
+GO
