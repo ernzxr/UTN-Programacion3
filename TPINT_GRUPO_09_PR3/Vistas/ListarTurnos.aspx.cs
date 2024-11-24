@@ -48,7 +48,7 @@ namespace Vistas
                     Session["DatosFiltrados"] = dt;
                     gvTurnos.DataSource = dt;
                     gvTurnos.DataBind();
-                    lblMensajeError.Text = "";
+                    LimpiarCampos();
                 }
                 else
                 {
@@ -186,6 +186,7 @@ namespace Vistas
 
         public void LimpiarCampos()
         {
+            txtBuscar.Text = "";
             txtLegajo.Text = "";
             txtDniPaciente.Text = "";
             txtDia.Text = "";
