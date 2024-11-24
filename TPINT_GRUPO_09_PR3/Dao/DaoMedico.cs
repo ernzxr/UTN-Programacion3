@@ -94,7 +94,7 @@ namespace Dao
 
         public Boolean existeLegajo(string legajo)
         {
-            string consulta = "SELECT * FROM Medicos WHERE Legajo_Me = '" + legajo + "'";
+            string consulta = "SELECT * FROM Medicos WHERE Legajo_Me = '" + legajo + "' AND Estado_ME = 1";
             return ds.existe(consulta);
         }
 

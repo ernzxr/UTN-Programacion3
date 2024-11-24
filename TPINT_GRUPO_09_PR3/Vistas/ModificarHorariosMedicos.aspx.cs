@@ -14,36 +14,48 @@ namespace Vistas
     {
         NegocioHorarioMedico neghm = new NegocioHorarioMedico();
         NegocioDiaSemana negDS = new NegocioDiaSemana();
+        NegocioMedico negm = new NegocioMedico();
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
         }
-
-        protected void btnBuscar_Click(object sender, EventArgs e)
+        public void cargarGrid(string legajo)
         {
-            //primero verificar si existe el legajo del medico
-
-            //si existe lo vinculo
-            DataTable dt = neghm.ObtenerHorariosMedicos(txtLegajo.Text);
-            Session["TablaHorariosMedicos"] = dt;
+            DataTable dt = neghm.ObtenerHorariosMedicos(legajo);
             gvHorariosMedicos.DataSource = dt;
             gvHorariosMedicos.DataBind();
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (negm.existeLegajo(txtLegajo.Text))
+            {
+                lblMensaje.Text = "";
+                Session["Legajo"] = txtLegajo.Text;
+                cargarGrid(Session["Legajo"].ToString());
+            }
+            else
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "No existe ese legajo.";
+            }
+
+            txtLegajo.Text = "";
+        }
+
 
         protected void gvHorariosMedicos_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvHorariosMedicos.EditIndex = e.NewEditIndex;
 
-            gvHorariosMedicos.DataSource = Session["TablaHorariosMedicos"];
-            gvHorariosMedicos.DataBind();
+            cargarGrid(Session["Legajo"].ToString());
         }
 
         protected void gvHorariosMedicos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gvHorariosMedicos.EditIndex = -1;
 
-            gvHorariosMedicos.DataSource = Session["TablaHorariosMedicos"];
-            gvHorariosMedicos.DataBind();
+            cargarGrid(Session["Legajo"].ToString());
         }
 
         protected void gvHorariosMedicos_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -53,7 +65,7 @@ namespace Vistas
             string s_HoraInicio = ((TextBox)gvHorariosMedicos.Rows[e.RowIndex].FindControl("eit_txtHoraInicio")).Text;
             string s_HoraFin = ((TextBox)gvHorariosMedicos.Rows[e.RowIndex].FindControl("eit_txtHoraFin")).Text;
 
-            int diaEntero = negDS.getIdDiaSemana(s_Dia); //obtener el id del dia segun descripcion
+            int diaEntero = negDS.getIdDiaSemana(s_Dia);
 
             HorarioMedico horarioMedico = new HorarioMedico();
             horarioMedico.setLegajoMedico(s_Legajo);
@@ -64,8 +76,7 @@ namespace Vistas
             bool actualizo = neghm.ActualizarHorariosMedicos(horarioMedico.getLegajoMedico(), horarioMedico.getIdDiaSemana(), horarioMedico.getHoraInicio(), horarioMedico.getHoraFin());
 
             gvHorariosMedicos.EditIndex = -1;
-            gvHorariosMedicos.DataSource = Session["TablaHorariosMedicos"];
-            gvHorariosMedicos.DataBind();
+            cargarGrid(Session["Legajo"].ToString());
         }
     }
 }
