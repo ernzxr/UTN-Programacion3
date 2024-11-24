@@ -78,5 +78,23 @@ namespace Vistas
             gvHorariosMedicos.EditIndex = -1;
             cargarGrid(Session["Legajo"].ToString());
         }
+
+        protected void gvHorariosMedicos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            //string s_Legajo = ((Label)gvHorariosMedicos.Rows[e.RowIndex].FindControl("eit_lblLegajo")).Text;
+            //string s_Dia = ((Label)gvHorariosMedicos.Rows[e.RowIndex].FindControl("eit_lblDia")).Text;
+
+            //int diaEntero = negDS.getIdDiaSemana(s_Dia);
+
+            //HorarioMedico horarioMedico = new HorarioMedico();
+            //horarioMedico.setLegajoMedico(s_Legajo);
+            //horarioMedico.setIdDiaSemana(diaEntero);
+
+            
+            //bool actualizo = neghm.ActualizarHorariosMedicos(horarioMedico.getLegajoMedico(), horarioMedico.getIdDiaSemana(), null, null);
+            
+            //cargarGrid(Session["Legajo"].ToString());
+
+        }
     }
 }
