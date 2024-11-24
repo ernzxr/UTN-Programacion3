@@ -49,9 +49,9 @@ namespace Negocio
             return dao.existeMedico(dni, idNacionalidad);
         }
 
-        public Boolean existeLegajo(string legajo)
+        public Boolean existeMedico(string legajo)
         {
-            return dao.existeLegajo(legajo);
+            return dao.existeMedico(legajo);
         }
 
         public string ObtenerLegajoPorNombreCompleto(string nombreCompleto)
@@ -70,5 +70,77 @@ namespace Negocio
         {
             return dao.ObtenerDatosMedicoPorUsuario(usuario);
         }
+
+        public Boolean existeLegajo(string legajo)
+        {
+            return dao.existeLegajo(legajo);
+        }
+
+
+        public DataTable getMedico(string legajo)
+        {
+            return dao.filtrarMedico(legajo);
+        }
+
+        public DataTable getMedico()
+        {
+            return dao.filtrarMedico();
+        }
+
+        public bool bajaMedico(string legajo)
+        {
+            int cantFilas = 0;
+            Medico medico = new Medico();
+
+            medico.setDni(legajo);
+            
+
+            cantFilas = dao.bajaMedico(medico);
+            if (cantFilas == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ModificarMedico(int especialidad, string dni, string nombre, string apellido, int sexo, DateTime fecha, int idnacionalidad, int idlocalidad, string direccion, string email, string telefono, Boolean estado)
+        {
+            int cantFilas = 0;
+            Medico medico = new Medico();
+
+            medico.setIdEspecilidad(especialidad);
+            medico.setDni(dni);
+            medico.setNombre(nombre);
+            medico.setApellido(apellido);
+            medico.setIdGenero(sexo);
+            medico.setFechaNacimiento(fecha);
+            medico.setIdNacionalidad(idnacionalidad);
+            medico.setIdLocalidad(idlocalidad);
+            medico.setDireccion(direccion);
+            medico.setEmail(email);
+            medico.setTelefono(telefono);
+            medico.setEstado(estado);
+
+            cantFilas = dao.ActualizarMedico(medico);
+            if (cantFilas == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+       
+               
+        public DataTable getMedicoPorLegajo(string legajo)
+        {
+             return dao.getMedicoPorLegajo(legajo);
+        }
     }
+
+
 }

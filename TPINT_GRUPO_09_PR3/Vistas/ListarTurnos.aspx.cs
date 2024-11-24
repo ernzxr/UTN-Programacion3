@@ -61,7 +61,7 @@ namespace Vistas
                 lblMensajeError.Text = "Ingrese un valor para buscar.";
             }
         }
-
+       
         protected void btnFiltrarLegajo_Click(object sender, EventArgs e)
         {
             if (negocioMedico.existeLegajo(txtLegajo.Text.Trim()))
