@@ -70,7 +70,6 @@
     <Content Include="AltaMedicos.aspx" />
     <Content Include="AltaPaciente.aspx" />
     <Content Include="AsignarTurno.aspx" />
-    <Content Include="BajaMedicos.aspx" />
     <Content Include="AusenciasMedicos.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="CargarDiasYHorariosMedicos.aspx" />
@@ -123,13 +122,6 @@
     </Compile>
     <Compile Include="AsignarTurno.aspx.designer.cs">
       <DependentUpon>AsignarTurno.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BajaMedicos.aspx.cs">
-      <DependentUpon>BajaMedicos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BajaMedicos.aspx.designer.cs">
-      <DependentUpon>BajaMedicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="AusenciasMedicos.aspx.cs">
       <DependentUpon>AusenciasMedicos.aspx</DependentUpon>
