@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Entidades;
 using Negocio;
 
 namespace Vistas
@@ -40,8 +41,12 @@ namespace Vistas
                 // Usuario médico: Redirigimos a la página de inicio de médico
                 Session["TipoUsuario"] = 2;
                 Session["Usuario"] = usuario; // Guardamos el usuario en sesión
-                var medico = negocioMedico.ObtenerDatosMedicoPorUsuario(usuario); // Obtenemos la tupla con los datos del médico
-                Session["Legajo"] = medico.legajo; // Guardamos el legajo en sesión
+
+                Medico medico = new Medico();
+                medico = negocioMedico.ObtenerDatosMedicoPorUsuario(usuario);
+                string legajo = medico.getLegajo();
+                Session["Legajo"] = legajo; // Guardamos el legajo en sesión
+
                 Response.Redirect("InicioMedico.aspx");
             }
             else if (tipoUsuario == "Credenciales incorrectas")

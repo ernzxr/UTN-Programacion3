@@ -411,7 +411,7 @@ GO
 
 --EXEC spObtener5PacientesConMasTurnos 1, '2024-06-01', '2024-06-30'
 
-CREATE PROCEDURE spBuscarTurnos
+CREATE OR ALTER PROCEDURE spBuscarTurnos
     @Busqueda NVARCHAR(255)
 AS
 BEGIN
@@ -436,7 +436,7 @@ INNER JOIN
 	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
 WHERE 
         CAST(Id_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
-        CAST(Id_Ciclo_Turno_Tu) LIKE '%' + @Busqueda + '%' OR
+        CAST(Id_Ciclo_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
         CT.Descripcion_CT LIKE '%' + @Busqueda + '%' OR
         CAST(Id_Detalle_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
         DT.Descripcion_DT LIKE '%' + @Busqueda + '%' OR
@@ -451,7 +451,7 @@ END
 GO
 
 
-CREATE PROCEDURE spFiltrarTurnosPorLegajo
+CREATE OR ALTER PROCEDURE spFiltrarTurnosPorLegajo
     @LegajoMedico CHAR(5)
 AS
 BEGIN
@@ -478,7 +478,7 @@ END
 GO
 
 
-CREATE PROCEDURE spFiltrarTurnosPorDni
+CREATE OR ALTER PROCEDURE spFiltrarTurnosPorDni
     @DniPaciente CHAR(8)
 AS
 BEGIN
@@ -505,7 +505,7 @@ END
 GO
 
 
-CREATE PROCEDURE spFiltrarTurnosPorDia
+CREATE OR ALTER PROCEDURE spFiltrarTurnosPorDia
     @Fecha DATE
 AS
 BEGIN
@@ -615,7 +615,7 @@ WHERE Legajo_Me = @LEGAJO
 END
 GO
 
-CREATE PROCEDURE spBuscarTurnosMedico
+CREATE OR ALTER PROCEDURE spBuscarTurnosMedico
     @LEGAJO CHAR(5),
     @Busqueda NVARCHAR(255)
 AS
@@ -661,7 +661,7 @@ END
 GO
 
 
-CREATE PROCEDURE spFiltrarTurnosMedicoPorDniFecha
+CREATE OR ALTER PROCEDURE spFiltrarTurnosMedicoPorDniFecha
     @DniPaciente CHAR(8),
     @Fecha DATE,
     @LegajoMedico CHAR(5)
@@ -696,7 +696,7 @@ END
 GO
 
 
-CREATE PROCEDURE spActualizarTurno
+CREATE OR ALTER PROCEDURE spActualizarTurno
 (
     @LegajoMedico CHAR(5),
     @DniPaciente CHAR(8),

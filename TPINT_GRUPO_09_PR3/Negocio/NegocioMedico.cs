@@ -31,7 +31,7 @@ namespace Negocio
         public bool agregarMedico(Medico medico)
         {
             int cantFilas = 0;
-            
+
             cantFilas = dao.agregarMedico(medico);
             if (cantFilas == 1)
             {
@@ -65,10 +65,11 @@ namespace Negocio
 
             return medico;
         }
-        public (string legajo, string nombre, string apellido, string dni, DateTime fechaNacimiento,
-        string direccion, string telefono, string email, string nombreEspecialidad,
-        string nombreLocalidad, string nombreProvincia, string nombreNacionalidad)
-    ObtenerDatosMedicoPorUsuario(string usuario) // Aquí también debe coincidir
+
+        // public (string legajo, string nombre, string apellido, string dni, DateTime fechaNacimiento,
+        // string direccion, string telefono, string email, string nombreEspecialidad,
+        // string nombreLocalidad, string nombreProvincia, string nombreNacionalidad)
+        public Medico ObtenerDatosMedicoPorUsuario(string usuario) // Aquí también debe coincidir
         {
             return dao.ObtenerDatosMedicoPorUsuario(usuario); // Llamada al método
         }
@@ -95,7 +96,7 @@ namespace Negocio
             Medico medico = new Medico();
 
             medico.setLegajo(legajo);
-            
+
 
             cantFilas = dao.bajaMedico(medico);
             if (cantFilas == 1)
@@ -137,11 +138,11 @@ namespace Negocio
                 return false;
             }
         }
-       
-               
+
+
         public DataTable getMedicoPorLegajo(string legajo)
         {
-             return dao.getMedicoPorLegajo(legajo);
+            return dao.getMedicoPorLegajo(legajo);
         }
     }
 

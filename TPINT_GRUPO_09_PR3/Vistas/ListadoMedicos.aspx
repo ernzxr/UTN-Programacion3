@@ -1,54 +1,54 @@
 ﻿<%@ Page Title="Listado de Médicos" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ListadoMedicos.aspx.cs" Inherits="Vistas.ListadoMedicos" %>
 
 
- <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-   <script>
-      function showModal() {
-          var modal = document.getElementById('UpdateModal');
-          var myModal = new bootstrap.Modal(modal);
-          myModal.show();
-      }
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script>
+        function showModal() {
+            var modal = document.getElementById('UpdateModal');
+            var myModal = new bootstrap.Modal(modal);
+            myModal.show();
+        }
 
-      function showDeleteModal() {
-          var modal = document.getElementById('DeleteConfirmModal');
-          var myModal = new bootstrap.Modal(modal);
-          myModal.show();
-      }
-     </script>
+        function showDeleteModal() {
+            var modal = document.getElementById('DeleteConfirmModal');
+            var myModal = new bootstrap.Modal(modal);
+            myModal.show();
+        }
+    </script>
 
-  
-  <style type="text/css">
-      .auto-style1 {
-          color: #006699;
-          font-weight: bold;
-          font-size: x-large;
-          font-family: Arial, Helvetica, sans-serif;
-      }
 
-      .btn-azul {
-          background-color: #006699;
-          color: white;
-          border: 1px solid #006699;
-          border-radius: 0.375rem;
-          padding: 0.375rem 0.75rem;
-          font-size: 1rem;
-          font-weight: 400;
-          text-align: center;
-          cursor: pointer;
-          transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-      }
+    <style type="text/css">
+        .auto-style1 {
+            color: #006699;
+            font-weight: bold;
+            font-size: x-large;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-      .modal-controls {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          margin-bottom: 20px;
-      }
+        .btn-azul {
+            background-color: #006699;
+            color: white;
+            border: 1px solid #006699;
+            border-radius: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
 
-      .modal-labels {
-          margin-bottom: 15px;
-      }
-  </style>    
+        .modal-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .modal-labels {
+            margin-bottom: 15px;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -58,7 +58,7 @@
             <asp:Label ID="lblTitulo" runat="server" Text="Listar médicos" CssClass="auto-style1 mb-4"></asp:Label>
 
             <asp:Label ID="lblLegajo" runat="server" Text="Ingrese el legajo del médico" CssClass="mb-2"></asp:Label>
-            <asp:TextBox ID="txtLegajo" class="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
+            <asp:TextBox ID="txtLegajo" class="form-control" runat="server" ValidationGroup="grupo1" MaxLength="5"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajo" ForeColor="#CC0000" ValidationGroup="grupo1" CssClass="auto-style2" Style="font-size: small">(*) Complete el campo.</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txtLegajo" ForeColor="#CC0000" ValidationExpression="^\d+$" ValidationGroup="grupo1" CssClass="auto-style2" Style="font-size: small">(*) Ingrese solo números.</asp:RegularExpressionValidator>
 
@@ -71,6 +71,7 @@
         <div style="width: 100%; margin-top: 20px;">
             <asp:GridView runat="server" ID="gvMedicos" OnRowDataBound="gvMedicos_RowDataBound" CssClass="table table-hover" AutoGenerateColumns="False">
                 <Columns>
+                    <asp:BoundField AccessibleHeaderText="Legajo" DataField="Legajo" HeaderText="Legajo" />
                     <asp:TemplateField HeaderText="Especialidad">
                         <ItemTemplate>
                             <asp:Label ID="lblEspecialidad" Text='<%# Eval("Id_Especialidad") %>' runat="server" />

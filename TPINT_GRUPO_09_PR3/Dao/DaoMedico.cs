@@ -13,16 +13,16 @@ namespace Dao
     public class DaoMedico
     {
         AccesoDatos ds = new AccesoDatos();
-       
-        private string connectionString; 
-        
-      
+
+        private string connectionString;
+
+
         public DaoMedico()
         {
-          connectionString = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=UTN2C2024PR3CLINICA;Integrated Security=True;";
+            connectionString = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=UTN2C2024PR3CLINICA;Integrated Security=True;";
         }
-        
-           
+
+
         public int agregarMedico(Medico medico)
         {
             SqlCommand cmd = new SqlCommand();
@@ -110,97 +110,84 @@ namespace Dao
 
         public Medico ObtenerMedicoPorLegajo(string legajo)
         {
-           SqlConnection conexion = new SqlConnection(connectionString); 
+            SqlConnection conexion = new SqlConnection(connectionString);
             //SqlConnection conexion = ds.ObtenerConexion(); 
-            
-                SqlCommand comando = new SqlCommand("SELECT Legajo_Me, Nombre_Me, Apellido_Me FROM Medicos WHERE Legajo_Me = @legajo", conexion);
-                comando.Parameters.AddWithValue("@legajo", legajo);
 
-                try
-                {
-                    conexion.Open();
-                    SqlDataReader reader = comando.ExecuteReader();
+            SqlCommand comando = new SqlCommand("SELECT Legajo_Me, Nombre_Me, Apellido_Me FROM Medicos WHERE Legajo_Me = @legajo", conexion);
+            comando.Parameters.AddWithValue("@legajo", legajo);
 
-                    if (reader.Read())
-                    {
-                        Medico medico = new Medico();
-
-                        medico.setLegajo(reader["Legajo_Me"].ToString());
-                        medico.setNombre(reader["Nombre_Me"].ToString());
-                        medico.setApellido(reader["Apellido_Me"].ToString());
-                        return medico;
-                        
-                    }
-                    else
-                    {
-                        return null;
-                        
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error al acceder a la base de datos: " + ex.Message);
-                }     
-          }
-        public (string legajo, string nombre, string apellido, string dni, DateTime fechaNacimiento, string direccion, string telefono, string email,
-        string nombreEspecialidad, string nombreLocalidad, string nombreProvincia, string nombreNacionalidad) ObtenerDatosMedicoPorUsuario(string usuario)
-        {
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            try
             {
-                
-                  SqlCommand comando = new SqlCommand(
-            "SELECT m.Legajo_Me, m.Nombre_Me, m.Apellido_Me, m.DNI_Me, m.Fecha_Nacimiento_Me, m.Direccion_Me, m.Telefono_Me, m.Email_Me, " +
-            "m.Id_Localidad_Me, m.Id_Especialidad_Me, m.Id_Nacionalidad_Me, l.Id_Provincia_Lo " +  // Traemos también el Id_Provincia_Lo de la tabla Localidades
-            "FROM Medicos m " +
-            "INNER JOIN Localidades l ON m.Id_Localidad_Me = l.Id_Localidad_Lo " +  // Hacemos un INNER JOIN con Localidades
-            "WHERE m.Usuario_Me = @Usuario AND m.Estado_Me = 1", conexion);
+                conexion.Open();
+                SqlDataReader reader = comando.ExecuteReader();
 
-                comando.Parameters.AddWithValue("@Usuario", usuario);
-
-                try
+                if (reader.Read())
                 {
-                    conexion.Open();
-                    SqlDataReader reader = comando.ExecuteReader();
+                    Medico medico = new Medico();
 
-                    if (reader.Read())
-                    {
-                        // Extraemos los datos del médico
-                        string legajo = reader["Legajo_Me"].ToString();
-                        string nombre = reader["Nombre_Me"].ToString();
-                        string apellido = reader["Apellido_Me"].ToString();
-                        string dni = reader["DNI_Me"].ToString();
-                        DateTime fechaNacimiento = Convert.ToDateTime(reader["Fecha_Nacimiento_Me"]);
-                        string direccion = reader["Direccion_Me"].ToString();
-                        string telefono = reader["Telefono_Me"].ToString();
-                        string email = reader["Email_Me"].ToString();
+                    medico.setLegajo(reader["Legajo_Me"].ToString());
+                    medico.setNombre(reader["Nombre_Me"].ToString());
+                    medico.setApellido(reader["Apellido_Me"].ToString());
+                    return medico;
 
-                        // Extraemos los ids
-                        int idLocalidad = Convert.ToInt32(reader["Id_Localidad_Me"]);
-                        int idEspecialidad = Convert.ToInt32(reader["Id_Especialidad_Me"]);
-                        int idNacionalidad = Convert.ToInt32(reader["Id_Nacionalidad_Me"]);
-                        int idProvincia = Convert.ToInt32(reader["Id_Provincia_Lo"]);  // Extraemos el Id_Provincia_Lo
-
-                        // Obtenemos los nombres relacionados
-                        string nombreEspecialidad = ObtenerNombreEspecialidad(idEspecialidad);
-                        string nombreLocalidad = ObtenerNombreLocalidad(idLocalidad);
-                        string nombreProvincia = ObtenerNombreProvincia(idProvincia);  // Ahora pasamos el idProvincia correcto
-                        string nombreNacionalidad = ObtenerNombreNacionalidad(idNacionalidad);
-
-                        return (legajo, nombre, apellido, dni, fechaNacimiento, direccion, telefono, email,
-                                nombreEspecialidad, nombreLocalidad, nombreProvincia, nombreNacionalidad);
-                    }
-                    else
-                    {
-                        return (null, null, null, null, default, null, null, null, null, null, null, null);
-                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    throw new Exception("Error al obtener los datos del médico: " + ex.Message);
+                    return null;
+
+
                 }
             }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al acceder a la base de datos: " + ex.Message);
+            }
         }
+
+        // public (string legajo, string nombre, string apellido, string dni, DateTime fechaNacimiento, string direccion, string telefono, string email,
+        // string nombreEspecialidad, string nombreLocalidad, string nombreProvincia, string nombreNacionalidad) 
+
+        public Medico ObtenerDatosMedicoPorUsuario(string usuario)
+        {
+            SqlConnection conexion = new SqlConnection(connectionString);
+            //SqlConnection conexion = ds.ObtenerConexion(); 
+
+            SqlCommand comando = new SqlCommand("SELECT * FROM Medicos WHERE Usuario_Me = @Usuario AND Estado_Me = 1", conexion);
+            comando.Parameters.AddWithValue("@Usuario", usuario);
+
+            try
+            {
+                conexion.Open();
+                SqlDataReader reader = comando.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    Medico medico = new Medico();
+                    medico.setLegajo(reader["Legajo_Me"].ToString());
+                    medico.setNombre(reader["Nombre_Me"].ToString());
+                    medico.setApellido(reader["Apellido_Me"].ToString());
+                    medico.setDni(reader["DNI_Me"].ToString());
+                    medico.setFechaNacimiento(Convert.ToDateTime(reader["Fecha_Nacimiento_Me"]));
+                    medico.setDireccion(reader["Direccion_Me"].ToString());
+                    medico.setTelefono(reader["Telefono_Me"].ToString());
+                    medico.setEmail(reader["Email_Me"].ToString());
+                    medico.setIdLocalidad(Convert.ToInt32(reader["Id_Localidad_Me"]));
+                    medico.setIdEspecilidad(Convert.ToInt32(reader["Id_Especialidad_Me"]));
+                    medico.setIdNacionalidad(Convert.ToInt32(reader["Id_Nacionalidad_Me"]));
+                    return medico;
+
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al acceder a la base de datos: " + ex.Message);
+            }
+        }
+
         public string ObtenerNombreEspecialidad(int idEspecialidad)
         {
             using (SqlConnection conexion = new SqlConnection(connectionString))
@@ -405,13 +392,13 @@ namespace Dao
                              "INNER JOIN Localidades ON Id_Localidad_Me = Id_Localidad_Lo " +
                              "INNER JOIN Provincias ON Id_Provincia_Lo = Id_Provincia_Pr " +
                              "WHERE Legajo_Me = '" + legajo + "'";
-           
+
             return ds.ObtenerTabla("Medicos", consulta);
         }
 
-        
 
-    }    
+
+    }
 }
 
 

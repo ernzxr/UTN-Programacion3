@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,57 +12,71 @@ namespace Vistas
 {
     public partial class MiPerfil : System.Web.UI.Page
     {
+        NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+        NegocioLocalidad negocioLocalidad = new NegocioLocalidad();
+        NegocioProvincia negocioProvincia = new NegocioProvincia();
+        NegocioNacionalidad negocioNacionalidad = new NegocioNacionalidad();
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
-                string usuario = (string)Session["Usuario"]; // Suponiendo que el usuario está en sesión
-                if (!string.IsNullOrEmpty(usuario))
+                ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
+                if (Session["Legajo"] == null)
                 {
-                    // Instanciar la clase NegocioMedico
-                    NegocioMedico negocioMedico = new NegocioMedico();
+                    Response.Redirect("Login.aspx");
+                    return;
+                }
 
-                    // Obtener los datos del médico por usuario
-                    var datosMedico = negocioMedico.ObtenerDatosMedicoPorUsuario(usuario);
+                CargarPerfilMedico();
+            }
+        }
 
-                    if (datosMedico.legajo != null)
-                    {
-                        // Asignar los valores obtenidos a los controles del formulario
-                        txtLegajo.Text = datosMedico.legajo;
-                        txtNombre.Text = datosMedico.nombre;
-                        txtApellido.Text = datosMedico.apellido;
-                        txtDni.Text = datosMedico.dni;
-                        txtUsuario.Text = usuario;
-                        if (datosMedico.fechaNacimiento != default(DateTime))
-                        {
-                            // Usar el formato directamente sin necesidad de TryParse
-                            txtNacimiento.Text = datosMedico.fechaNacimiento.ToString("dd/MM/yyyy"); // Ajuste de formato
-                        }
-                        else
-                        {
-                            txtNacimiento.Text = ""; // Si no es válida, dejamos el campo vacío
-                        }
-                        txtDireccion.Text = datosMedico.direccion;
-                        txtTelefono.Text = datosMedico.telefono;
-                        txtEmail.Text = datosMedico.email;
+        public void CargarPerfilMedico()
+        {
+            string usuario = (string)Session["Usuario"]; // Suponiendo que el usuario está en sesión
+            if (!string.IsNullOrEmpty(usuario))
+            {
+                // Instanciar la clase NegocioMedico
+                NegocioMedico negocioMedico = new NegocioMedico();
 
-                        // Asignar los valores de las otras propiedades descriptivas
-                        txtEspecialidad.Text = datosMedico.nombreEspecialidad;
-                        txtLocalidad.Text = datosMedico.nombreLocalidad;
-                        txtProvincia.Text = datosMedico.nombreProvincia;
-                        txtNacionalidad.Text = datosMedico.nombreNacionalidad;
-                    }
-                    else
-                    {
-                        lblMensaje.ForeColor = System.Drawing.Color.Red;
-                        lblMensaje.Text = "No se encontraron datos para el usuario.";
-                    }
+                // Obtener los datos del médico por usuario
+                Medico datosMedico = negocioMedico.ObtenerDatosMedicoPorUsuario(usuario);
+
+                if (datosMedico.getLegajo() != null)
+                {
+                    // Asignar los valores obtenidos a los controles del formulario
+                    txtLegajo.Text = datosMedico.getLegajo();
+                    txtNombre.Text = datosMedico.getNombre();
+                    txtApellido.Text = datosMedico.getApellido();
+                    txtDni.Text = datosMedico.getDni();
+                    txtUsuario.Text = usuario;
+                    txtNacimiento.Text = datosMedico.getFechaNacimiento().ToString("dd/MM/yyyy");
+                    txtDireccion.Text = datosMedico.getDireccion();
+                    txtTelefono.Text = datosMedico.getTelefono();
+                    txtEmail.Text = datosMedico.getEmail();
+
+                    // Asignar los valores de las otras propiedades descriptivas
+                    txtEspecialidad.Text = negocioEspecialidad.getDescripcionEspecialidad(datosMedico.getIdEspecialidad());
+                    txtLocalidad.Text = negocioLocalidad.getDescripcionLocalidad(datosMedico.getIdLocalidad());
+
+                    int idProvincia = negocioLocalidad.getIdProvincia(datosMedico.getIdLocalidad());
+
+                    txtProvincia.Text = negocioProvincia.getDescripcionProvincia(idProvincia);
+                    txtNacionalidad.Text = negocioNacionalidad.getDescripcionNacionalidad(datosMedico.getNacionalidad());
                 }
                 else
                 {
                     lblMensaje.ForeColor = System.Drawing.Color.Red;
-                    lblMensaje.Text = "Usuario no válido.";
+                    lblMensaje.Text = "No se encontraron datos para el usuario.";
                 }
+            }
+            else
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Usuario no válido.";
             }
         }
     }
