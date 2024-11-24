@@ -137,8 +137,8 @@ GO
 CREATE TABLE Horarios_Medicos (
 	Legajo_Medico_HM CHAR(5) NOT NULL,
 	Id_Dia_Semana_HM INT NOT NULL,
-	Hora_Inicio_HM TIME(0) NOT NULL,
-	Hora_Fin_HM TIME(0) NOT NULL,
+	Hora_Inicio_HM TIME(0) NULL,
+	Hora_Fin_HM TIME(0) NULL,
 	CONSTRAINT PK_Horarios_Medicos PRIMARY KEY (Legajo_Medico_HM, Id_Dia_Semana_HM),
 	CONSTRAINT FK_Horarios_Meds_Medicos FOREIGN KEY (Legajo_Medico_HM) REFERENCES Medicos (Legajo_Me),
 	CONSTRAINT FK_Horarios_Medicos_Dias_Semanas FOREIGN KEY (Id_Dia_Semana_HM) REFERENCES Dias_Semanas (Id_Dia_Semana_DS),

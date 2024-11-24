@@ -162,6 +162,38 @@ namespace Dao
            
             return accesoDatos.ObtenerTabla(comando);
         }
+
+        public DataTable BuscarTurnosMedico(string legajo, string busqueda)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@LEGAJO", legajo);
+            comando.Parameters.AddWithValue("@Busqueda", busqueda);
+
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spBuscarTurnosMedico");
+        }
+
+        public DataTable FiltrarTurnosPorDniFecha(string legajo, string dni, DateTime fecha)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@LegajoMedico", legajo);
+            comando.Parameters.AddWithValue("@DniPaciente", dni);
+            comando.Parameters.AddWithValue("@Fecha", fecha);
+
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spFiltrarTurnosMedicoPorDniFecha");
+        }
+
+        public int ActualizarTurno(Turno turno)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@LegajoMedico", turno.getLegajo_Medico());
+            comando.Parameters.AddWithValue("@DniPaciente", turno.getDNI_Paciente());
+            comando.Parameters.AddWithValue("@Fecha", turno.getFecha());
+            comando.Parameters.AddWithValue("@Hora", turno.getHora());
+            comando.Parameters.AddWithValue("@Asistencia", turno.getAsistencia());
+            comando.Parameters.AddWithValue("@Observaciones", turno.getObservacion());
+
+            return ds.EjecutarProcedimientoAlmacenado(comando, "spActualizarTurno");
+        }
     }
    
 }
