@@ -13,6 +13,7 @@ namespace Vistas
     public partial class ModificarHorariosMedicos : System.Web.UI.Page
     {
         NegocioHorarioMedico neghm = new NegocioHorarioMedico();
+        NegocioDiaSemana negDS = new NegocioDiaSemana();
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -52,15 +53,15 @@ namespace Vistas
             string s_HoraInicio = ((TextBox)gvHorariosMedicos.Rows[e.RowIndex].FindControl("eit_txtHoraInicio")).Text;
             string s_HoraFin = ((TextBox)gvHorariosMedicos.Rows[e.RowIndex].FindControl("eit_txtHoraFin")).Text;
 
-            int diaEntero = 1; //obtener el id del dia segun descripcion
+            int diaEntero = negDS.getIdDiaSemana(s_Dia); //obtener el id del dia segun descripcion
 
             HorarioMedico horarioMedico = new HorarioMedico();
             horarioMedico.setLegajoMedico(s_Legajo);
             horarioMedico.setIdDiaSemana(diaEntero);
-            horarioMedico.setHoraInicio(Convert.ToDateTime(s_HoraInicio));
-            horarioMedico.setHoraFin(Convert.ToDateTime(s_HoraFin));
+            horarioMedico.setHoraInicio(TimeSpan.Parse(s_HoraInicio));
+            horarioMedico.setHoraFin(TimeSpan.Parse(s_HoraFin));
 
-            bool actualizo = neghm.ActualizarHorariosMedicos(horarioMedico);
+            bool actualizo = neghm.ActualizarHorariosMedicos(horarioMedico.getLegajoMedico(), horarioMedico.getIdDiaSemana(), horarioMedico.getHoraInicio(), horarioMedico.getHoraFin());
 
             gvHorariosMedicos.EditIndex = -1;
             gvHorariosMedicos.DataSource = Session["TablaHorariosMedicos"];

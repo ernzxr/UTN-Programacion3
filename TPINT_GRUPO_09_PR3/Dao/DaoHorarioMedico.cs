@@ -39,8 +39,8 @@ namespace Dao
 
             SqlCommand cmd = new SqlCommand();
 
-            TimeSpan horaTransformada = horarioMedico.getHoraInicio().TimeOfDay;
-            TimeSpan horaTransformadaFin = horarioMedico.getHoraFin().TimeOfDay;
+            TimeSpan horaTransformada = horarioMedico.getHoraInicio();
+            TimeSpan horaTransformadaFin = horarioMedico.getHoraFin();
 
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@Legajo", horarioMedico.getLegajoMedico());

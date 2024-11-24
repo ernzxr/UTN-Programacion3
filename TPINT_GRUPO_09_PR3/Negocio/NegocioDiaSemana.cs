@@ -24,5 +24,22 @@ namespace Negocio
         {
             return dao.ObtenerDiaSemanaPorId(id);
         }
+
+        public int getIdDiaSemana(string descripcionDia)
+        {
+            int idDia = 0;
+
+            DataTable dt = dao.GetIdDia(descripcionDia);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+
+                idDia = int.Parse(dr["Id_Dia_Semana_DS"].ToString());
+            }
+
+            return idDia;
+        }
+
     }
 }

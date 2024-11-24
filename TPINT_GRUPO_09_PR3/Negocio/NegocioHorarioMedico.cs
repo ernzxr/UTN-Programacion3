@@ -34,9 +34,6 @@ namespace Negocio
             daoHorario.GuardarHorariosMedicos(horarioMedico);
             return true;
 
-
-
-
         }
 
         public string[] ObtenerHorasE()
@@ -86,7 +83,7 @@ namespace Negocio
             return daoHorario.ObtenerHorariosMedicos(legajo);
         }
 
-        public bool ActualizarHorariosMedicos(string legajo, int dia, DateTime horaInicio, DateTime horaFin)
+        public bool ActualizarHorariosMedicos(string legajo, int dia, TimeSpan horaInicio, TimeSpan horaFin)
         {
             int cantFilas = 0;
             HorarioMedico horarioMedico = new HorarioMedico();
