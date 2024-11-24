@@ -614,3 +614,107 @@ Estado_Me = @ESTADO
 WHERE Legajo_Me = @LEGAJO
 END
 GO
+
+CREATE PROCEDURE spBuscarTurnosMedico
+    @LEGAJO CHAR(5),
+    @Busqueda NVARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        Id_Turno_Tu,
+        Id_Ciclo_Turno_Tu,
+        CT.Descripcion_CT AS Ciclo_Tu,
+        Id_Detalle_Turno_Tu,
+        DT.Descripcion_DT AS Detalle_Ciclo_Tu,
+        Legajo_Medico_Tu,
+        Fecha_Tu,
+        Hora_Tu,
+        DNI_Paciente_Tu,
+        Id_Nacionalidad_Paciente_Tu,
+        Asistencia_Tu,
+        Observaciones_Tu
+    FROM 
+        Turnos
+    INNER JOIN
+        Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
+    INNER JOIN
+        Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
+    WHERE 
+        Legajo_Medico_Tu = @LEGAJO AND
+        (
+            CAST(Id_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
+            CAST(Id_Ciclo_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
+            CT.Descripcion_CT LIKE '%' + @Busqueda + '%' OR
+            CAST(Id_Detalle_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
+            DT.Descripcion_DT LIKE '%' + @Busqueda + '%' OR
+            Legajo_Medico_Tu LIKE '%' + @Busqueda + '%' OR
+            CONVERT(VARCHAR, Fecha_Tu, 120) LIKE '%' + @Busqueda + '%' OR
+            CONVERT(VARCHAR, Hora_Tu, 120) LIKE '%' + @Busqueda + '%' OR
+            DNI_Paciente_Tu LIKE '%' + @Busqueda + '%' OR
+            CAST(Id_Nacionalidad_Paciente_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
+            CAST(Asistencia_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
+            Observaciones_Tu LIKE '%' + @Busqueda + '%'
+        )
+END
+GO
+
+
+CREATE PROCEDURE spFiltrarTurnosMedicoPorDniFecha
+    @DniPaciente CHAR(8),
+    @Fecha DATE,
+    @LegajoMedico CHAR(5)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        Id_Turno_Tu,
+        Id_Ciclo_Turno_Tu,
+        CT.Descripcion_CT AS Ciclo_Tu,
+        Id_Detalle_Turno_Tu,
+        DT.Descripcion_DT AS Detalle_Ciclo_Tu,
+        Legajo_Medico_Tu,
+        Fecha_Tu,
+        Hora_Tu,
+        DNI_Paciente_Tu,
+        Id_Nacionalidad_Paciente_Tu,
+        Asistencia_Tu,
+        Observaciones_Tu
+    FROM 
+        Turnos
+    INNER JOIN 
+	    Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
+    INNER JOIN 
+	    Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
+    WHERE 
+        Legajo_Medico_Tu = @LegajoMedico AND
+        DNI_Paciente_Tu = @DniPaciente AND
+        Fecha_Tu = @Fecha;
+END
+GO
+
+
+CREATE PROCEDURE spActualizarTurno
+(
+    @LegajoMedico CHAR(5),
+    @DniPaciente CHAR(8),
+    @Fecha DATE,
+    @Hora TIME(0),
+    @Asistencia BIT,
+    @Observaciones VARCHAR(255)
+)
+AS
+BEGIN
+    UPDATE Turnos
+    SET 
+        Asistencia_Tu = @Asistencia,
+        Observaciones_Tu = @Observaciones
+    WHERE 
+        Legajo_Medico_Tu = @LegajoMedico AND
+        DNI_Paciente_Tu = @DniPaciente AND
+        Fecha_Tu = @Fecha AND
+        Hora_Tu = @Hora
+END
+GO
