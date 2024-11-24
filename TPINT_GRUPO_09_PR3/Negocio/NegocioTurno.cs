@@ -86,5 +86,28 @@ namespace Negocio
         {
             return daoTurno.ObtenerCantidadTurnosPorMes(anio);
         }
+
+        public DataTable BuscarTurnosPorMedico(string legajo, string busqueda)
+        {
+            return daoTurno.BuscarTurnosMedico(legajo, busqueda);
+        }
+
+        public DataTable ObtenerTurnosPorDniFecha(string legajo, string dni, DateTime fecha)
+        {
+            return daoTurno.FiltrarTurnosPorDniFecha(legajo, dni, fecha);
+        }
+
+        public bool ActualizarTurno(Turno turno)
+        {
+            try
+            {
+                int filasAfectadas = daoTurno.ActualizarTurno(turno);
+                return filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar el turno: " + ex.Message);
+            }
+        }
     }
 }
