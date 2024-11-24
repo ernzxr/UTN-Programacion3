@@ -210,23 +210,21 @@ namespace Dao
 
         public DataTable filtrarMedico(string legajo)
         {
-            string consulta = "SELECT Legajo_Me AS Legajo,Descripcion_Es AS Especialidad,Nombre_Me As Nombre,Apellido_ME AS Apellido,DNI_Me AS DNI," +
-                "Descripcion_Ge AS Genero,Fecha_Nacimiento_Me AS Fecha_De_Nacimiento,Descripcion_Na AS Nacionalidad,Descripcion_Pr AS Provincia," +
-                "Descripcion_Lo AS Localidad,Direccion_Me AS Direccion,Email_ME AS Email,Telefono_Me AS Telefono,Estado_Me AS Estado FROM Medicos INNER JOIN Especialidades ON Id_Especialidad_Me = Id_Especialidad_Es " +
-                "INNER JOIN Generos ON Id_Genero_Me = Id_Genero_Ge INNER JOIN Nacionalidades ON Id_Nacionalidad_Me =Id_Nacionalidad_Na " +
-                "INNER JOIN Localidades ON Id_Localidad_Me = Id_Localidad_Lo INNER JOIN Provincias ON Id_Provincia_Lo = Id_Provincia_Pr " +
-                "WHERE Legajo_Me='" + legajo + "'";
+            string consulta = "SELECT Legajo_Me AS Legajo, Nombre_Me As Nombre,Apellido_ME AS Apellido,DNI_Me AS DNI, " +
+                "Fecha_Nacimiento_Me AS Fecha_De_Nacimiento, Direccion_Me AS Direccion,Email_ME AS Email, Telefono_Me AS Telefono, Estado_Me AS Estado, " +
+                "Id_Especialidad_Me AS Id_Especialidad, Id_Genero_Me AS Id_Genero, Id_Nacionalidad_Me AS Id_Nacionalidad, " +
+                "Id_Localidad_Me AS Id_Localidad " +
+                "FROM Medicos WHERE Legajo_Me = '" + legajo + "'";
             DataTable tabla = ds.ObtenerTabla("Medicos", consulta);
 
             return tabla;
         }
         public DataTable filtrarMedico()
         {
-            string consulta = "SELECT Legajo_Me AS Legajo,Descripcion_Es AS Especialidad,Nombre_Me As Nombre,Apellido_ME AS Apellido,DNI_Me AS DNI," +
-                "Descripcion_Ge AS Genero,Fecha_Nacimiento_Me AS Fecha_De_Nacimiento,Descripcion_Na AS Nacionalidad,Descripcion_Pr AS Provincia," +
-                "Descripcion_Lo AS Localidad,Direccion_Me AS Direccion,Email_ME AS Email,Telefono_Me AS Telefono,Estado_Me AS Estado FROM Medicos INNER JOIN Especialidades ON Id_Especialidad_Me = Id_Especialidad_Es " +
-                "INNER JOIN Generos ON Id_Genero_Me = Id_Genero_Ge INNER JOIN Nacionalidades ON Id_Nacionalidad_Me =Id_Nacionalidad_Na " +
-                "INNER JOIN Localidades ON Id_Localidad_Me = Id_Localidad_Lo INNER JOIN Provincias ON Id_Provincia_Lo = Id_Provincia_Pr ";
+            string consulta = "SELECT Legajo_Me AS Legajo, Nombre_Me As Nombre, Apellido_ME AS Apellido, DNI_Me AS DNI, " +
+                "Fecha_Nacimiento_Me AS Fecha_De_Nacimiento, Direccion_Me AS Direccion, Email_ME AS Email, Telefono_Me AS Telefono, " +
+                "Estado_Me AS Estado, Id_Especialidad_Me AS Id_Especialidad, Id_Genero_Me AS Id_Genero, Id_Nacionalidad_Me AS Id_Nacionalidad, " +
+                "Id_Localidad_Me AS Id_Localidad FROM Medicos";
             DataTable tabla = ds.ObtenerTabla("Medicos", consulta);
 
             return tabla;

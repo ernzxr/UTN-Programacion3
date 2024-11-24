@@ -87,7 +87,12 @@ namespace Negocio
             }
         }
 
-        public Paciente getPaciente(string dni, int idNacionalidad)
+        public DataTable getPaciente(string dni, int idNacionalidad)
+        {
+            return dao.filtrarPaciente(dni, idNacionalidad);
+        }
+
+        public Paciente getPacienteAModificar(string dni, int idNacionalidad)
         {
             DataTable dtPaciente = new DataTable();
             Paciente paciente = new Paciente();

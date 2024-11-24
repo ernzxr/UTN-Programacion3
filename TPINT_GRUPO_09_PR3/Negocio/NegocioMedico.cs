@@ -94,7 +94,7 @@ namespace Negocio
             int cantFilas = 0;
             Medico medico = new Medico();
 
-            medico.setDni(legajo);
+            medico.setLegajo(legajo);
             
 
             cantFilas = dao.bajaMedico(medico);
@@ -108,11 +108,12 @@ namespace Negocio
             }
         }
 
-        public bool ModificarMedico(int especialidad, string dni, string nombre, string apellido, int sexo, DateTime fecha, int idnacionalidad, int idlocalidad, string direccion, string email, string telefono, Boolean estado)
+        public bool ModificarMedico(string legajo, int especialidad, string dni, string nombre, string apellido, int sexo, DateTime fecha, int idnacionalidad, int idlocalidad, string direccion, string email, string telefono, Boolean estado)
         {
             int cantFilas = 0;
             Medico medico = new Medico();
 
+            medico.setLegajo(legajo);
             medico.setIdEspecilidad(especialidad);
             medico.setDni(dni);
             medico.setNombre(nombre);

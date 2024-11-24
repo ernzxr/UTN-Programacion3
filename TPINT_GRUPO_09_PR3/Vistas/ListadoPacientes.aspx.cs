@@ -132,7 +132,7 @@ namespace Vistas
                 string dni = values[0];
                 int idNacionalidad = int.Parse(values[1]);
 
-                Paciente paciente = NegP.getPaciente(dni, idNacionalidad);
+                Paciente paciente = NegP.getPacienteAModificar(dni, idNacionalidad);
 
                 lblDNI2_M.Text = paciente.getDni().ToString();
                 ddlNacionalidad_M.SelectedValue = idNacionalidad.ToString();
@@ -222,14 +222,10 @@ namespace Vistas
                 string dni = values[0];
                 int idNacionalidad = int.Parse(values[1]);
 
-                Paciente paciente = NegP.getPaciente(dni, idNacionalidad);
-
-
+                Paciente paciente = NegP.getPacienteAModificar(dni, idNacionalidad);
 
                 txtDNI_E.Text = paciente.getDni().ToString();
                 ddlNacionalidad_E.SelectedValue = idNacionalidad.ToString();
-
-
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "showDeleteModal", "showDeleteModal();", true);
             }

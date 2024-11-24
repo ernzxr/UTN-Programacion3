@@ -22,5 +22,22 @@ namespace Negocio
             DaoEspecialidad dao = new DaoEspecialidad();
             return dao.getEspecialidad();
         }
+
+        public string getDescripcionEspecialidad(int idEspecialidad)
+        {
+            DaoEspecialidad dao = new DaoEspecialidad();
+            DataTable dt = dao.getDescripcionEspecialidad(idEspecialidad);
+
+            string descripcion = "";
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+
+                descripcion = dr["Descripcion"].ToString();
+            }
+
+            return descripcion;
+        }
     }
 }
