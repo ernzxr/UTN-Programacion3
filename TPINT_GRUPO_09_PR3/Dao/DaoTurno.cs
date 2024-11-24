@@ -134,5 +134,34 @@ namespace Dao
 
             return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spFiltrarTurnosPorDia");
         }
+        public DataTable ObtenerAniosDeTurnos()
+        {
+            // Consulta para obtener los años de los turnos
+            string consulta = "SELECT DISTINCT YEAR(Fecha_Tu) AS Anio FROM Turnos ORDER BY Anio;";
+
+            // Utilizar el método para ejecutar consultas directas
+            return ds.ObtenerTabla("AniosTurnos", consulta);
+        }
+        public DataTable ObtenerCantidadTurnosPorMes(int anio)
+        {
+           
+            string consulta = @"
+            SELECT MONTH(Fecha) AS Mes, COUNT(*) AS CantidadTurnos
+            FROM Turnos
+            WHERE YEAR(Fecha) = @Anio
+            GROUP BY MONTH(Fecha)
+            ORDER BY MONTH(Fecha)"; // Ordenar por mes
+
+           
+            SqlCommand comando = new SqlCommand(consulta);
+            comando.Parameters.AddWithValue("@Anio", anio);
+
+          
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+           
+            return accesoDatos.ObtenerTabla(comando);
+        }
     }
+   
 }

@@ -78,5 +78,13 @@ namespace Negocio
         {
             return daoTurno.FiltrarTurnosPorDni(dni);
         }
+        public DataTable ObtenerAniosDeTurnos()
+        {
+            return daoTurno.ObtenerAniosDeTurnos();
+        }
+        public DataTable ObtenerCantidadTurnosPorMes(int anio)
+        {
+            return daoTurno.ObtenerCantidadTurnosPorMes(anio);
+        }
     }
 }
