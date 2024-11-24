@@ -23,5 +23,13 @@ namespace Dao
             string consulta = "SELECT * FROM Especialidades";
             return ds.ObtenerTabla("Especialidades", consulta);
         }
+
+        public DataTable getDescripcionEspecialidad(int idEspeciaidad)
+        {
+            string consulta = "SELECT Descripcion_Es AS Descripcion FROM Especialidades WHERE Id_Especialidad_Es = " + idEspeciaidad;
+            return ds.ObtenerTabla("Especialidades", consulta);
+        }
+
+
     }
 }
