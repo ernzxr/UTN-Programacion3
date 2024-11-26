@@ -58,6 +58,7 @@ namespace Vistas
             }
             else
             {
+                lblInformeEspecialidad.ForeColor = System.Drawing.Color.Black;
                 lblInformeEspecialidad.Text = ddlEspecialidad.SelectedItem.Text;
                 gvPacientesConMasTurnos.DataSource = reporte;
                 gvPacientesConMasTurnos.DataBind();

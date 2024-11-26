@@ -105,6 +105,15 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFechaFin;
 
         /// <summary>
+        /// Control cvFechaFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvFechaFin;
+
+        /// <summary>
         /// Control btnBuscar.
         /// </summary>
         /// <remarks>
