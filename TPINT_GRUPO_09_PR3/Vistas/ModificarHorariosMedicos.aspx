@@ -50,6 +50,7 @@
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox ID="eit_txtHoraInicio" runat="server" Text='<%# Eval("Hora_Inicio_HM") %>' TextMode="Time"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="revHoraInicio" runat="server" ControlToValidate="eit_txtHoraInicio" ValidationExpression="^([0-9]{2}):00:00$" Display="Dynamic" Font-Size="Smaller" ForeColor="#CC0000" Text="(*) Ingrese solo horas." ></asp:RegularExpressionValidator>
                         </EditItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Hora Salida">
@@ -58,6 +59,7 @@
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox ID="eit_txtHoraFin" runat="server" Text='<%# Eval("Hora_Fin_HM") %>' TextMode="Time"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="revHoraFin" runat="server" ControlToValidate="eit_txtHoraFin" ValidationExpression="^([0-9]{2}):00:00$" Display="Dynamic" Font-Size="Smaller" ForeColor="#CC0000" Text="(*) Ingrese solo horas." ></asp:RegularExpressionValidator>
                         </EditItemTemplate>
                     </asp:TemplateField>
                 </Columns>
