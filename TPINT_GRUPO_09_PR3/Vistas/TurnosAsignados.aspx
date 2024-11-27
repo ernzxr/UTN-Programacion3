@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="TurnosAsignados.aspx.cs" Inherits="Vistas.TurnosAsignados" %>
+﻿<%@ Page Title="Turnos Asignados" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="TurnosAsignados.aspx.cs" Inherits="Vistas.TurnosAsignados" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>TurnosAsignados</title>
 </asp:Content>

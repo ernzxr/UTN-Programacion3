@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ModificarHorariosMedicos.aspx.cs" Inherits="Vistas.ModificarHorariosMedicos" %>
+﻿<%@ Page Title="Modificar Horarios Médicos" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ModificarHorariosMedicos.aspx.cs" Inherits="Vistas.ModificarHorariosMedicos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Modificar Horarios Medicos</title>

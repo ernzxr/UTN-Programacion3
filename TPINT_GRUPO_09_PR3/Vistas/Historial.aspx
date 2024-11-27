@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Historial.aspx.cs" Inherits="Vistas.Historial" %>
+﻿<%@ Page Title="Historial" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Historial.aspx.cs" Inherits="Vistas.Historial" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

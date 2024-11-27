@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AusenciasMedicos.aspx.cs" Inherits="Vistas.AusenciasMedicos" %>
+﻿<%@ Page Title="Ausentismo Médico" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AusenciasMedicos.aspx.cs" Inherits="Vistas.AusenciasMedicos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">

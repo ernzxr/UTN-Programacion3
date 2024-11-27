@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="CambiarContraseña.aspx.cs" Inherits="Vistas.CambiarContraseña" %>
+﻿<%@ Page Title="Cambio de contraseñas" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="CambiarContraseña.aspx.cs" Inherits="Vistas.CambiarContraseña" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <title>Cambiar contraseña</title>

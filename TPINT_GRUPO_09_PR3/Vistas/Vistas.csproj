@@ -85,6 +85,7 @@
     <Content Include="Images\Card-7.jpg" />
     <Content Include="Images\imagen1.jpg" />
     <Content Include="Images\imagen2.jpg" />
+    <Content Include="Images\Logo1.png" />
     <Content Include="InformeMesMasTurnos.aspx" />
     <Content Include="InicioAdmin.aspx" />
     <Content Include="InicioMedico.aspx" />

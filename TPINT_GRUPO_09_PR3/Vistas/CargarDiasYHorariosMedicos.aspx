@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Carga horarios médicos" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="CargarDiasYHorariosMedicos.aspx.cs" Inherits="Vistas.CargarDiasYHorariosMedicos" %>
+﻿<%@ Page Title="Carga Horarios Médicos" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="CargarDiasYHorariosMedicos.aspx.cs" Inherits="Vistas.CargarDiasYHorariosMedicos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <style type="text/css">
