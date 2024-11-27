@@ -53,7 +53,7 @@
                         <p class="card-text">
                             Ingresa un año y descubre cuál fue el mes con más turnos registrados.
                         </p>
-                        <asp:HyperLink ID="hlMesMayorTurnos" runat="server" NavigateUrl="InformeMayorTurnos.aspx" CssClass="btn btn-primary">
+                        <asp:HyperLink ID="hlMesMayorTurnos" runat="server" NavigateUrl="InformeTurnosxMes.aspx" CssClass="btn btn-primary">
                             Consultar Informe
                         </asp:HyperLink>
                     </div>

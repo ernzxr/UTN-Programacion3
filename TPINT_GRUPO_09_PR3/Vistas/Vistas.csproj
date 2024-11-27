@@ -85,7 +85,7 @@
     <Content Include="Images\imagen1.jpg" />
     <Content Include="Images\imagen2.jpg" />
     <Content Include="Images\Logo1.png" />
-    <Content Include="InformeMesMasTurnos.aspx" />
+    <Content Include="InformeTurnosxMes.aspx" />
     <Content Include="InicioAdmin.aspx" />
     <Content Include="InicioMedico.aspx" />
     <Content Include="ListadoMedicos.aspx" />
@@ -159,12 +159,12 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="InformeMesMasTurnos.aspx.cs">
-      <DependentUpon>InformeMesMasTurnos.aspx</DependentUpon>
+    <Compile Include="InformeTurnosxMes.aspx.cs">
+      <DependentUpon>InformeTurnosxMes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="InformeMesMasTurnos.aspx.designer.cs">
-      <DependentUpon>InformeMesMasTurnos.aspx</DependentUpon>
+    <Compile Include="InformeTurnosxMes.aspx.designer.cs">
+      <DependentUpon>InformeTurnosxMes.aspx</DependentUpon>
     </Compile>
     <Compile Include="InicioAdmin.aspx.cs">
       <DependentUpon>InicioAdmin.aspx</DependentUpon>
