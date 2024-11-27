@@ -28,16 +28,21 @@ namespace Vistas
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (negm.existeLegajo(txtLegajo.Text))
+            lblMensaje.Text = "";
+            string legajo = txtLegajo.Text;
+
+            if (negm.existeLegajo(legajo))
             {
                 lblMensaje.Text = "";
-                Session["Legajo"] = txtLegajo.Text;
-                cargarGrid(Session["Legajo"].ToString());
+                Session["Legajo"] = legajo;
+                cargarGrid(legajo);
             }
             else
             {
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "No existe ese legajo.";
+                gvHorariosMedicos.DataSource = null;
+                gvHorariosMedicos.DataBind();
             }
 
             txtLegajo.Text = "";
@@ -86,10 +91,42 @@ namespace Vistas
 
             int diaEntero = negDS.getIdDiaSemana(s_Dia);
 
-            bool elimino = neghm.EliminarHorariosMedicos(s_Legajo, diaEntero);
+            Session["LegajoEliminar"] = s_Legajo;
+            Session["DiaEliminar"] = diaEntero;
 
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showDeleteModal", "showDeleteModal();", true);
+        }
+
+        protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        {
+            bool elimino = neghm.EliminarHorariosMedicos(Session["LegajoEliminar"].ToString(), Convert.ToInt32(Session["DiaEliminar"]));
             cargarGrid(Session["Legajo"].ToString());
+        }
 
+        protected void customHoraFin_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            TimeSpan horaFin = TimeSpan.Parse(args.Value);
+            if (horaFin.Minutes == 0)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+
+        protected void customHoraInicio_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            TimeSpan horaInicio = TimeSpan.Parse(args.Value);
+            if (horaInicio.Minutes == 0)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
         }
     }
 }

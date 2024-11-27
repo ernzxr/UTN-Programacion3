@@ -54,7 +54,7 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
-                                    <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlHorariosMedico" runat="server" NavigateUrl="~/ModificarHorariosMedicos.aspx">Horarios</asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlHorariosMedico" runat="server" NavigateUrl="~/HorariosMedicos.aspx">Horarios</asp:HyperLink>
                                 </li>
                                 <li>
                                     <asp:HyperLink class="dropdown-item" aria-current="page" ID="hlAusenciasMedicos" runat="server" NavigateUrl="~/AusenciasMedicos.aspx">Ausencias</asp:HyperLink>

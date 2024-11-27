@@ -72,7 +72,6 @@
     <Content Include="AsignarTurno.aspx" />
     <Content Include="AusenciasMedicos.aspx" />
     <Content Include="CambiarContraseña.aspx" />
-    <Content Include="CargarDiasYHorariosMedicos.aspx" />
     <Content Include="GestionTurnos.aspx" />
     <Content Include="Historial.aspx" />
     <Content Include="Home.aspx" />
@@ -95,7 +94,7 @@
     <Content Include="Login.aspx" />
     <Content Include="MiPerfil.aspx" />
     <Content Include="MisTurnos.aspx" />
-    <Content Include="ModificarHorariosMedicos.aspx" />
+    <Content Include="HorariosMedicos.aspx" />
     <Content Include="ReporteHorarios.aspx" />
     <Content Include="ReportePacientesFrecuentes.aspx" />
     <Content Include="ReportesInformes.aspx" />
@@ -138,13 +137,6 @@
     </Compile>
     <Compile Include="CambiarContraseña.aspx.designer.cs">
       <DependentUpon>CambiarContraseña.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CargarDiasYHorariosMedicos.aspx.cs">
-      <DependentUpon>CargarDiasYHorariosMedicos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CargarDiasYHorariosMedicos.aspx.designer.cs">
-      <DependentUpon>CargarDiasYHorariosMedicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionTurnos.aspx.cs">
       <DependentUpon>GestionTurnos.aspx</DependentUpon>
@@ -230,12 +222,12 @@
     <Compile Include="MisTurnos.aspx.designer.cs">
       <DependentUpon>MisTurnos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ModificarHorariosMedicos.aspx.cs">
-      <DependentUpon>ModificarHorariosMedicos.aspx</DependentUpon>
+    <Compile Include="HorariosMedicos.aspx.cs">
+      <DependentUpon>HorariosMedicos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ModificarHorariosMedicos.aspx.designer.cs">
-      <DependentUpon>ModificarHorariosMedicos.aspx</DependentUpon>
+    <Compile Include="HorariosMedicos.aspx.designer.cs">
+      <DependentUpon>HorariosMedicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main.Master.cs">
