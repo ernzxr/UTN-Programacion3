@@ -1,8 +1,43 @@
-﻿<%@ Page Title="Reporte e informes" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ReportesInformes.aspx.cs" Inherits="Vistas.ReportesInformes" %>
+﻿<%@ Page Title="Reporte e Informes" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ReportesInformes.aspx.cs" Inherits="Vistas.ReportesInformes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
+ <style type="text/css">
+   
+.row {
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+}
+     .col-md-4 {
+         display: flex;
+         justify-content: center;
+         flex: 1 0 20%;
+     }
 
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 380px; 
+    justify-content: space-between; 
+    margin-bottom: 20px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    flex-grow: 1; 
+    padding: 20px; 
+}
+
+.card-body .btn {
+    margin-top: auto; 
+    align-self: center; 
+}
+
+</style>
+
+</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container mt-5">
@@ -19,7 +54,7 @@
                             Ingresa un año y descubre cuál fue el mes con más turnos registrados.
                         </p>
                         <asp:HyperLink ID="hlMesMayorTurnos" runat="server" NavigateUrl="InformeMayorTurnos.aspx" CssClass="btn btn-primary">
-                        Consultar Informe
+                            Consultar Informe
                         </asp:HyperLink>
                     </div>
                 </div>
@@ -31,10 +66,11 @@
                     <div class="card-body">
                         <h5 class="card-title">Distribución de turnos por franja horaria</h5>
                         <p class="card-text">
-                            Analiza cuántos turnos se otorgaron en diferentes franjas horarías(por ejemplo, mañana, tarde) Para cada especialidad.
+                            Analiza cuántos turnos se otorgaron en diferentes franjas horarias (por ejemplo, mañana, tarde) para cada especialidad.
                         </p>
                         <asp:HyperLink ID="hlReporteHorario" runat="server" NavigateUrl="ReporteHorarios.aspx" CssClass="btn btn-primary">
-                        Consultar Informe</asp:HyperLink>
+                            Consultar Informe
+                        </asp:HyperLink>
                     </div>
                 </div>
             </div>
@@ -48,12 +84,11 @@
                             Los cinco pacientes con la mayor cantidad de turnos asistidos por cada especialidad médica dentro de un rango de fechas específico.
                         </p>
                         <asp:HyperLink ID="hlTurnosEspecialidad" runat="server" NavigateUrl="ReportePacientesFrecuentes.aspx" CssClass="btn btn-primary">
-                        Consultar Reporte
+                            Consultar Reporte
                         </asp:HyperLink>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </asp:Content>
