@@ -725,3 +725,28 @@ Hora_Fin_HM = NULL
 WHERE Legajo_Medico_HM = @Legajo AND  Id_Dia_Semana_HM = @Dia
 END
 GO
+
+CREATE OR ALTER PROCEDURE spActualizarTurnoMedico
+(
+    @LegajoMedico CHAR(5),
+    @DniPaciente CHAR(8),
+    @Fecha DATE,
+    @Hora TIME(0),
+    @Asistencia BIT,
+    @Observaciones VARCHAR(255)
+)
+AS
+BEGIN
+    UPDATE Turnos
+    SET 
+        Asistencia_Tu = @Asistencia,
+        Observaciones_Tu = @Observaciones,
+        Id_Ciclo_Turno_Tu = (SELECT Id_Ciclo_Turno_CT FROM Ciclos_Turnos WHERE Descripcion_CT = 'Terminado'),
+        Id_Detalle_Turno_Tu = (SELECT Id_Detalle_Turno_DT FROM Detalles_Turnos WHERE Descripcion_DT = 'No Aplica')
+    WHERE 
+        Legajo_Medico_Tu = @LegajoMedico AND
+        DNI_Paciente_Tu = @DniPaciente AND
+        Fecha_Tu = @Fecha AND
+        Hora_Tu = @Hora
+END
+GO
