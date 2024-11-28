@@ -82,9 +82,16 @@ namespace Negocio
         {
             return daoTurno.ObtenerAniosDeTurnos();
         }
-        public DataTable ObtenerCantidadTurnosPorMes(int anio)
+
+        public DataTable ObtenerMesesDeTurnos()
         {
-            return daoTurno.ObtenerCantidadTurnosPorMes(anio);
+            return daoTurno.ObtenerMesesDeTurnos();
+        }
+
+        public int ReporteCantidadTurnosPorMesYAnio(int anio, int mes)
+        {
+            DaoTurno daoTurno = new DaoTurno();
+            return daoTurno.ObtenerCantidadTurnosPorMesYAnio(anio, mes);
         }
 
         public DataTable BuscarTurnosPorMedico(string legajo, string busqueda)

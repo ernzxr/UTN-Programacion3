@@ -72,7 +72,7 @@
 
             <asp:Label ID="lblDniPaciente" runat="server" Text="Dni del paciente:" 
                 style="font-weight: bold;"></asp:Label>
-            <asp:TextBox ID="txtDniPaciente" runat="server" 
+            <asp:TextBox ID="txtDniPaciente" runat="server" MaxLength="8"
                 style="width: 100%; padding: 5px;"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvDniPaciente" runat="server" ControlToValidate="txtDniPaciente"
                 ErrorMessage="El DNI es requerido" style="color: red; font-size: 12px;"></asp:RequiredFieldValidator>
