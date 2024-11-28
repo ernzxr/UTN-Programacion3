@@ -192,7 +192,7 @@ namespace Dao
             comando.Parameters.AddWithValue("@Asistencia", turno.getAsistencia());
             comando.Parameters.AddWithValue("@Observaciones", turno.getObservacion());
 
-            return ds.EjecutarProcedimientoAlmacenado(comando, "spActualizarTurno");
+            return ds.EjecutarProcedimientoAlmacenado(comando, "spActualizarTurnoMedico");
         }
     }
    
