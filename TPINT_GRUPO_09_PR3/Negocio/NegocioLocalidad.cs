@@ -17,12 +17,10 @@ namespace Negocio
 
         }
 
-        public DataTable getTablaLocalidad(Provincia2 provincia)
+        public DataTable getTablaLocalidad(int idProvincia)
         {
             DaoLocalidad dao = new DaoLocalidad();
-            int idProv = (int)provincia;
-
-            return dao.getLocalidad(idProv);
+            return dao.getLocalidad(idProvincia);
         }
 
         public DataTable getLocalidad(int idProv)

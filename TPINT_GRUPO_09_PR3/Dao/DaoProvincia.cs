@@ -21,5 +21,12 @@ namespace Dao
             string consulta = "SELECT * FROM Provincias";
             return ds.ObtenerTabla("Provincias", consulta);
         }
+
+        public DataTable getDescripcionProvincia(int idProvincia)
+        {
+            string consulta = "SELECT Descripcion_Pr AS Descripcion FROM PROVINCIAS WHERE Id_Provincia_Pr = " + idProvincia;
+            return ds.ObtenerTabla("Provincias", consulta);
+        }
+
     }
 }

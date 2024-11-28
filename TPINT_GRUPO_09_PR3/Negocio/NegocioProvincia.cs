@@ -25,11 +25,20 @@ namespace Negocio
         public string getDescripcionProvincia(int idProvincia)
         {
             string descripcionProvincia = "";
+            DataTable dt = new DataTable();
 
-            Provincia2 provincia = (Provincia2)idProvincia;
-            descripcionProvincia = provincia.ToString();
+            DaoProvincia dao = new DaoProvincia();
 
-            return descripcionProvincia.ToString();
+            dt = dao.getDescripcionProvincia(idProvincia);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+
+                descripcionProvincia = dr["Descripcion"].ToString();
+            }
+
+            return descripcionProvincia;
         }
 
     }
