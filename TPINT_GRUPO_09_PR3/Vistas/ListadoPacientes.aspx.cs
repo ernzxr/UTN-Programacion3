@@ -110,7 +110,12 @@ namespace Vistas
 
                 txtDNI.Text = "";
                 ddlNacionalidad.SelectedValue = "0";
+                lblError_Filtrar.Text = "";
 
+            }
+            else
+            {
+                lblError_Filtrar.Text = "No existe el paciente/fue dado de baja";
             }
         }
 
@@ -121,6 +126,7 @@ namespace Vistas
 
             txtDNI.Text = "";
             ddlNacionalidad.SelectedValue = "0";
+            lblError_Filtrar.Text = "";
         }
         protected void btnModificar_Command1(object sender, CommandEventArgs e)
         {
@@ -174,8 +180,12 @@ namespace Vistas
         {
             bool borro = NegP.bajaPaciente(txtDNI_E.Text, int.Parse(ddlNacionalidad_E.SelectedValue));
 
-            gvPacientes.DataSource = NegP.getPacientes();
-            gvPacientes.DataBind();
+            if (borro)
+            {
+                gvPacientes.DataSource = NegP.getPacientes();
+                gvPacientes.DataBind();
+
+            }
         }
 
         protected void btnModificarM_Click(Object sender, EventArgs e)

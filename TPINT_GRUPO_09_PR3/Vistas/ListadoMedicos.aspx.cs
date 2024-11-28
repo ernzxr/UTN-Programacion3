@@ -120,6 +120,11 @@ namespace Vistas
                 gvMedicos.DataBind();
 
                 txtLegajo.Text = "";
+                lblError_Filtrar.Text = "";
+            }
+            else
+            {
+                lblError_Filtrar.Text = "El medico no existe/fue dado de baja.";
             }
         }
         protected void btnMostrarTodo_Click(object sender, EventArgs e)
@@ -128,6 +133,7 @@ namespace Vistas
             gvMedicos.DataBind();
 
             txtLegajo.Text = "";
+            lblError_Filtrar.Text = "";
         }
 
         protected void btnModificar_Command1(object sender, CommandEventArgs e) 

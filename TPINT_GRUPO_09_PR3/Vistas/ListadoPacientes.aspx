@@ -97,6 +97,7 @@
                 <asp:Button ID="btnFiltrar" class="btn-azul" runat="server" Text="Filtrar" Width="150px" ValidationGroup="grupo1" OnClick="btnFiltrar_Click" />
                 <asp:Button ID="btnMostrarTodo" class="btn-azul" runat="server" Text="Mostrar Todo" Width="150px" OnClick="btnMostrarTodo_Click"/>
             </div>
+            <asp:Label ID="lblError_Filtrar" runat="server" />
         </div>
 
         <div style="width: 100%; margin-top: 20px;">

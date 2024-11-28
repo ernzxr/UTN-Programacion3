@@ -290,21 +290,21 @@ namespace Dao
 
         public DataTable filtrarMedico(string legajo)
         {
-            string consulta = "SELECT Legajo_Me AS Legajo, Nombre_Me As Nombre,Apellido_ME AS Apellido,DNI_Me AS DNI, " +
-                "Fecha_Nacimiento_Me AS Fecha_De_Nacimiento, Direccion_Me AS Direccion,Email_ME AS Email, Telefono_Me AS Telefono, Estado_Me AS Estado, " +
+            string consulta = "SELECT Legajo_Me AS Legajo, Nombre_Me As Nombre, Apellido_Me AS Apellido,DNI_Me AS DNI, " +
+                "Fecha_Nacimiento_Me AS Fecha_De_Nacimiento, Direccion_Me AS Direccion, Email_Me AS Email, Telefono_Me AS Telefono, Estado_Me AS Estado, " +
                 "Id_Especialidad_Me AS Id_Especialidad, Id_Genero_Me AS Id_Genero, Id_Nacionalidad_Me AS Id_Nacionalidad, " +
                 "Id_Localidad_Me AS Id_Localidad " +
-                "FROM Medicos WHERE Legajo_Me = '" + legajo + "'";
+                "FROM Medicos WHERE Legajo_Me = '" + legajo + "'" + " AND Estado_Me = " + 1;
             DataTable tabla = ds.ObtenerTabla("Medicos", consulta);
 
             return tabla;
         }
         public DataTable filtrarMedico()
         {
-            string consulta = "SELECT Legajo_Me AS Legajo, Nombre_Me As Nombre, Apellido_ME AS Apellido, DNI_Me AS DNI, " +
-                "Fecha_Nacimiento_Me AS Fecha_De_Nacimiento, Direccion_Me AS Direccion, Email_ME AS Email, Telefono_Me AS Telefono, " +
+            string consulta = "SELECT Legajo_Me AS Legajo, Nombre_Me As Nombre, Apellido_Me AS Apellido, DNI_Me AS DNI, " +
+                "Fecha_Nacimiento_Me AS Fecha_De_Nacimiento, Direccion_Me AS Direccion, Email_Me AS Email, Telefono_Me AS Telefono, " +
                 "Estado_Me AS Estado, Id_Especialidad_Me AS Id_Especialidad, Id_Genero_Me AS Id_Genero, Id_Nacionalidad_Me AS Id_Nacionalidad, " +
-                "Id_Localidad_Me AS Id_Localidad FROM Medicos";
+                "Id_Localidad_Me AS Id_Localidad FROM Medicos WHERE Estado_Me = " + 1;
             DataTable tabla = ds.ObtenerTabla("Medicos", consulta);
 
             return tabla;

@@ -139,7 +139,7 @@ namespace Dao
             string consulta = "SELECT Dni_Pa AS DNI, Nombre_Pa AS Nombre, Apellido_Pa AS Apellido, " +
                 "Fecha_Nacimiento_Pa as Fecha_De_Nacimiento, Direccion_Pa AS Direccion, Email_Pa as Email, " +
                 "Telefono_Pa as Telefono, Estado_Pa as Estado, Id_Genero_Pa AS Id_Genero, Id_Localidad_Pa AS Id_Localidad, Id_Nacionalidad_Pa AS Id_Nacionalidad" +
-                " FROM Pacientes WHERE DNI_Pa = '" + dni + "' AND Id_Nacionalidad_Pa = " + idNacionalidad;
+                " FROM Pacientes WHERE DNI_Pa = '" + dni + "' AND Id_Nacionalidad_Pa = " + idNacionalidad  + " AND Estado_Pa = " + 1;
             DataTable tabla = ds.ObtenerTabla("Pacientes", consulta);
 
             return tabla;
@@ -149,7 +149,7 @@ namespace Dao
         {
             string consulta = "SELECT Dni_Pa AS DNI, Nombre_Pa AS Nombre, Apellido_Pa AS Apellido," +
                 " Fecha_Nacimiento_Pa as Fecha_De_Nacimiento, Direccion_Pa AS Direccion, " +
-                "Email_Pa as Email, Telefono_Pa as Telefono, Estado_Pa as Estado, Id_Genero_Pa AS Id_Genero, Id_Localidad_Pa AS Id_Localidad, Id_Nacionalidad_Pa AS Id_Nacionalidad FROM Pacientes";
+                "Email_Pa as Email, Telefono_Pa as Telefono, Estado_Pa as Estado, Id_Genero_Pa AS Id_Genero, Id_Localidad_Pa AS Id_Localidad, Id_Nacionalidad_Pa AS Id_Nacionalidad FROM Pacientes WHERE Estado_Pa = " + 1;
             DataTable tabla = ds.ObtenerTabla("Pacientes", consulta);
 
             return tabla;
