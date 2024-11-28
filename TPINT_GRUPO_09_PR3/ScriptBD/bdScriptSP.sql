@@ -46,8 +46,9 @@ CREATE OR ALTER PROCEDURE spObtenerDiasLaborales
     @LegajoMedico CHAR(5)
 AS
 BEGIN
-    SELECT Id_Dia_Semana_HM, Hora_Inicio_HM, Hora_Fin_HM 
+    SELECT Id_Dia_Semana_HM, Hora_Inicio_HM, Hora_Fin_HM, Descripcion_DS AS DescripcionDia
     FROM Horarios_Medicos 
+	INNER JOIN Dias_Semanas ON Id_Dia_Semana_HM = Id_Dia_Semana_DS
     WHERE Legajo_Medico_HM = @LegajoMedico
 END
 GO
