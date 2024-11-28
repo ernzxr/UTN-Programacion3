@@ -33,7 +33,6 @@ namespace Vistas
             }
 
         }
-
         public void CargarNacionalidad(DropDownList ddl)
         {
             DataTable Nacionalidad = negn.getTablaNacionalidad();

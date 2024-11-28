@@ -56,28 +56,17 @@ namespace Vistas
 
         public void CargarProvincia()
         {
-            var provincias = Enum.GetValues(typeof(Provincia2))
-                         .Cast<Provincia2>()
-                         .Select(p => new
-                         {
-                             // Convierte el nombre del enum a uno amigable para el usuario
-                             Text = string.Join(" ", Regex.Split(p.ToString(), @"(?<=[a-z])(?=[A-Z])")),
-                             Value = ((int)p).ToString()
-                         });
-
-            ddlProvincia.Items.Clear();
-
-            ddlProvincia.DataSource = provincias;
-            ddlProvincia.DataTextField = "Text";
-            ddlProvincia.DataValueField = "Value";
+            DataTable Provincia = negp.getTablaProvincia();
+            ddlProvincia.DataSource = Provincia;
+            ddlProvincia.DataTextField = "Descripcion_Pr";
+            ddlProvincia.DataValueField = "Id_Provincia_Pr";
             ddlProvincia.DataBind();
 
             ddlProvincia.Items.Insert(0, new ListItem("Seleccionar...", "0"));
-
         }
-        protected void CargarLocalidades(Provincia2 provincia)
+        protected void CargarLocalidades(int idProvincia)
         {
-            DataTable localidades = negl.getTablaLocalidad(provincia);
+            DataTable localidades = negl.getTablaLocalidad(idProvincia);
 
             ddlLocalidad.DataSource = localidades;
             ddlLocalidad.DataTextField = "Descripcion_Lo";
@@ -89,8 +78,8 @@ namespace Vistas
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Provincia2 provinciaSeleccionada = (Provincia2)Enum.Parse(typeof(Provincia2), ddlProvincia.SelectedValue);
-            CargarLocalidades(provinciaSeleccionada);
+            int idProvinciaSeleccionada = int.Parse(ddlProvincia.SelectedValue);
+            CargarLocalidades(idProvinciaSeleccionada);
         }
 
         public void limpiarCampos()
