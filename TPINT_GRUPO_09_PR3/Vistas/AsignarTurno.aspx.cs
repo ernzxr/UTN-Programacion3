@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using Negocio;
 using Entidades;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace Vistas
 {
@@ -58,15 +60,13 @@ namespace Vistas
             ddlProfesionales.Items.Clear();
 
             dt.Columns.Add("NombreCompleto", typeof(string), "Nombre_Me + ' ' + Apellido_Me");
-            int autoIncrementValue = 1;
 
             foreach (DataRow row in dt.Rows)
             {
                 string nombreCompleto = row["NombreCompleto"].ToString();
 
                 // Agregar el ítem al DropDownList con value autoincremental
-                ddlProfesionales.Items.Add(new ListItem(nombreCompleto, autoIncrementValue.ToString()));
-                autoIncrementValue++; // Incrementar el valor para el siguiente ítem
+                ddlProfesionales.Items.Add(new ListItem(nombreCompleto, row["Legajo_Me"].ToString()));
             }
 
             ddlProfesionales.Items.Insert(0, new ListItem("-- Seleccionar --", "0"));
@@ -106,27 +106,16 @@ namespace Vistas
                 return;
             }
 
-            // Verificar si es un día de ausencia
-            DataTable fechasAusencias = negocioAusenciaMedico.ObtenerFechasAusencias(legajoMedico);
-            foreach (DataRow row in fechasAusencias.Rows)
-            {
-                DateTime fechaInicio = Convert.ToDateTime(row["Fecha_Inicio_AM"]);
-                DateTime fechaFin = Convert.ToDateTime(row["Fecha_Fin_AM"]);
-                if (fechaSeleccionada >= fechaInicio && fechaSeleccionada <= fechaFin)
-                {
-                    lblMensajeError.Text = "El médico está ausente en la fecha seleccionada.";
-                    txtDia.Text = "";
-                    return;
-                }
-            }
 
 
+            DataTable diasLaborales = negocioHorario.ObtenerDiasLaborales(legajoMedico);
             // Obtener día de la semana
             int idDiaSemana = (int)fechaSeleccionada.DayOfWeek;
 
             // Validar si es un día laborable
-            DataTable diasLaborales = negocioHorario.ObtenerDiasLaborales(legajoMedico);
+
             bool esDiaLaborable = false;
+           
 
             foreach (DataRow row in diasLaborales.Rows)
             {
@@ -144,6 +133,7 @@ namespace Vistas
                 return;
             }
 
+        
 
             // Validar si todos los turnos están completos
             DataTable fechasTurnosCompletos = negocioHorario.ObtenerFechasConTurnosCompletos(legajoMedico);
@@ -156,7 +146,6 @@ namespace Vistas
                     return;
                 }
             }
-
             // Cargar los horarios disponibles para la fecha seleccionada
             CargarHorariosDisponibles(legajoMedico, fechaSeleccionada);
         }
@@ -336,6 +325,79 @@ namespace Vistas
                 ddlProfesionales.SelectedIndex = -1; // Quitar selección
                 ddlProfesionales.Items[0].Selected = true; // Seleccionar el primer ítem (disabled)
             }
+
+        }
+
+        protected void ddlProfesionales_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string legajoMedico = ddlProfesionales.SelectedValue;
+
+            // Verificar si es un día de ausencia
+            DataTable fechasAusencias = negocioAusenciaMedico.ObtenerFechasAusencias(legajoMedico);
+            List<DateTime> fechasDeAusencia = new List<DateTime>();
+
+            foreach (DataRow row in fechasAusencias.Rows)
+            {
+                DateTime fechaInicio = Convert.ToDateTime(row["Fecha_Inicio_AM"]);
+                DateTime fechaFin = Convert.ToDateTime(row["Fecha_Fin_AM"]);
+
+
+                while (fechaInicio <= fechaFin)
+                {
+                    fechasDeAusencia.Add(fechaInicio);
+                    fechaInicio = fechaInicio.AddDays(1); // Incrementar la fecha por un día
+                }
+            }
+
+            List<string> fechasExcepcionalesFormateadas = fechasDeAusencia
+    .Select(fecha => fecha.ToString("yyyy-MM-dd"))
+    .ToList();
+
+            // Pasar las fechas de ausencia al frontend en formato JSON
+            string fechasAusenciasJson = JsonConvert.SerializeObject(fechasExcepcionalesFormateadas);
+            Debug.WriteLine(fechasAusenciasJson);
+            ClientScript.RegisterStartupScript(this.GetType(), "FecAusencias", "cargarAusencias(" + fechasAusenciasJson + ");", true);
+
+            // Validar si es un día laborable
+            DataTable diasLaborales = negocioHorario.ObtenerDiasLaborales(legajoMedico);
+            List<bool> diasLaboralesLista = new List<bool>();
+            
+            for(int i=0; i<7; i++)
+            {
+                diasLaboralesLista.Add(false);
+            }
+
+            foreach (DataRow row in diasLaborales.Rows)
+            {
+                switch(row["DescripcionDia"].ToString())
+                {
+                    case "Domingo":
+                        diasLaboralesLista[0] = true; // Si es Domingo, ponemos 'true' en el índice 0
+                        break;
+                    case "Lunes":
+                        diasLaboralesLista[1] = true; // Si es Lunes, ponemos 'true' en el índice 1
+                        break;
+                    case "Martes":
+                        diasLaboralesLista[2] = true; // Si es Martes, ponemos 'true' en el índice 2
+                        break;
+                    case "Miercoles":
+                        diasLaboralesLista[3] = true; // Si es Miércoles, ponemos 'true' en el índice 3
+                        break;
+                    case "Jueves":
+                        diasLaboralesLista[4] = true; // Si es Jueves, ponemos 'true' en el índice 4
+                        break;
+                    case "Viernes":
+                        diasLaboralesLista[5] = true; // Si es Viernes, ponemos 'true' en el índice 5
+                        break;
+                    case "Sabado":
+                        diasLaboralesLista[6] = true; // Si es Sábado, ponemos 'true' en el índice 6
+                        break;
+                }
+            }
+
+            string diasLaboralesJson = JsonConvert.SerializeObject(diasLaboralesLista);
+            Debug.WriteLine(diasLaboralesJson);
+            ClientScript.RegisterStartupScript(this.GetType(), "DiasLaborales", "cargarDatePicker(" + diasLaboralesJson + ");", true);
 
         }
     }
