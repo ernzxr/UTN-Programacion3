@@ -13,7 +13,7 @@ namespace Vistas
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
         }
-        protected void btnBuscar_Click(object sender, EventArgs e)
+        protected void btnMostar_Click(object sender, EventArgs e)
         {
         }
     }
