@@ -136,31 +136,26 @@ namespace Dao
         }
         public DataTable ObtenerAniosDeTurnos()
         {
-            // Consulta para obtener los años de los turnos
+         
             string consulta = "SELECT DISTINCT YEAR(Fecha_Tu) AS Anio FROM Turnos ORDER BY Anio;";
-
-            // Utilizar el método para ejecutar consultas directas
             return ds.ObtenerTabla("AniosTurnos", consulta);
         }
-        public DataTable ObtenerCantidadTurnosPorMes(int anio)
+
+        public DataTable ObtenerMesesDeTurnos()
         {
-           
-            string consulta = @"
-            SELECT MONTH(Fecha) AS Mes, COUNT(*) AS CantidadTurnos
-            FROM Turnos
-            WHERE YEAR(Fecha) = @Anio
-            GROUP BY MONTH(Fecha)
-            ORDER BY MONTH(Fecha)"; // Ordenar por mes
+            string consulta = "SELECT DISTINCT MONTH(Fecha_Tu) AS Mes, DATENAME(MONTH, Fecha_Tu) AS NombreMes FROM Turnos ORDER BY Mes;";
+            return ds.ObtenerTabla("MesesTurnos", consulta);
+        }
 
-           
-            SqlCommand comando = new SqlCommand(consulta);
-            comando.Parameters.AddWithValue("@Anio", anio);
-
-          
+        public int ObtenerCantidadTurnosPorMesYAnio(int anio, int mes)
+        {
             AccesoDatos accesoDatos = new AccesoDatos();
+            SqlCommand comando = new SqlCommand();
 
-           
-            return accesoDatos.ObtenerTabla(comando);
+            comando.Parameters.AddWithValue("@Anio", anio);
+            comando.Parameters.AddWithValue("@Mes", mes);
+
+            return accesoDatos.EjecutarProcedimientoAlmacenadoFuncion(comando, "spContarTurnosPorMesYAnio");
         }
 
         public DataTable BuscarTurnosMedico(string legajo, string busqueda)
