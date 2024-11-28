@@ -140,7 +140,7 @@ AS
 BEGIN
     SELECT Hora_Tu
     FROM Turnos
-    WHERE Legajo_Medico_Tu = @LegajoMedico AND Fecha_Tu = @Fecha
+    WHERE Legajo_Medico_Tu = @LegajoMedico AND Fecha_Tu = @Fecha AND Estado_Tu = 1
 END
 GO
 
@@ -371,7 +371,8 @@ SELECT
 	Id_Nacionalidad_Paciente_Tu,
 	Asistencia_Tu,
 	Observaciones_Tu,
-	Nombre_Pa + ' ' + Apellido_Pa AS [Nombre_Completo_Paciente_Tu]
+	Nombre_Pa + ' ' + Apellido_Pa AS [Nombre_Completo_Paciente_Tu],
+	Es.Descripcion_Es AS Especialidad
 FROM 
 	Turnos
 INNER JOIN
@@ -380,6 +381,10 @@ INNER JOIN
 	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
 INNER JOIN
 	Pacientes AS Pa ON DNI_Paciente_Tu = DNI_Pa AND Id_Nacionalidad_Pa = Id_Nacionalidad_Paciente_Tu
+INNER JOIN 
+	Medicos AS Me ON Legajo_Medico_Tu = Me.Legajo_Me
+INNER JOIN
+	Especialidades AS Es ON Me.Id_Especialidad_Me = Es.Id_Especialidad_Es
 WHERE Id_Ciclo_Turno_Tu = 2
 GO
 
@@ -726,39 +731,50 @@ WHERE Legajo_Medico_HM = @Legajo AND  Id_Dia_Semana_HM = @Dia
 END
 GO
 
-CREATE OR ALTER PROCEDURE spActualizarTurnoMedico
-(
-    @LegajoMedico CHAR(5),
-    @DniPaciente CHAR(8),
-    @Fecha DATE,
-    @Hora TIME(0),
-    @Asistencia BIT,
-    @Observaciones VARCHAR(255)
-)
+CREATE OR ALTER PROCEDURE spCancelarTurnoGestion
+@IDTURNO INT
 AS
 BEGIN
-    UPDATE Turnos
-    SET 
-        Asistencia_Tu = @Asistencia,
-        Observaciones_Tu = @Observaciones,
-        Id_Ciclo_Turno_Tu = (SELECT Id_Ciclo_Turno_CT FROM Ciclos_Turnos WHERE Descripcion_CT = 'Terminado'),
-        Id_Detalle_Turno_Tu = (SELECT Id_Detalle_Turno_DT FROM Detalles_Turnos WHERE Descripcion_DT = 'No Aplica')
-    WHERE 
-        Legajo_Medico_Tu = @LegajoMedico AND
-        DNI_Paciente_Tu = @DniPaciente AND
-        Fecha_Tu = @Fecha AND
-        Hora_Tu = @Hora
+UPDATE Turnos SET
+Id_Ciclo_Turno_Tu = 5
+WHERE Id_Turno_Tu = @IDTURNO
 END
 GO
 
-CREATE OR ALTER PROCEDURE spContarTurnosPorMesYAnio
-    @Anio INT,
-    @Mes INT
+CREATE OR ALTER PROCEDURE spObtenerTurnoPorId
+    @IDTURNO INT
 AS
 BEGIN
-    SELECT COUNT(*) AS TotalTurnos
-    FROM Turnos
-    WHERE YEAR(Fecha_Tu) = @Anio AND MONTH(Fecha_Tu) = @Mes AND Estado_Tu = 1; 
-	
+	SET NOCOUNT ON
+	SELECT 
+		Id_Turno_Tu,
+		Id_Ciclo_Turno_Tu,
+		CT.Descripcion_CT AS Ciclo_Tu,
+		Id_Detalle_Turno_Tu,
+		DT.Descripcion_DT AS Detalle_Ciclo_Tu,
+		Legajo_Medico_Tu,
+		Fecha_Tu,
+		Hora_Tu,
+		DNI_Paciente_Tu,
+		Id_Nacionalidad_Paciente_Tu,
+		Asistencia_Tu,
+		Observaciones_Tu,
+		Nombre_Pa + ' ' + Apellido_Pa AS [Nombre_Completo_Paciente_Tu],
+		Es.Descripcion_Es AS Especialidad,
+		Es.Id_Especialidad_Es AS Id_Especialidad
+	FROM 
+		Turnos
+	INNER JOIN
+		Detalles_Turnos AS DT ON Id_Detalle_Turno_Tu = Id_Detalle_Turno_DT
+	INNER JOIN
+		Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
+	INNER JOIN
+		Pacientes AS Pa ON DNI_Paciente_Tu = DNI_Pa AND Id_Nacionalidad_Pa = Id_Nacionalidad_Paciente_Tu
+	INNER JOIN 
+		Medicos AS Me ON Legajo_Medico_Tu = Me.Legajo_Me
+	INNER JOIN
+		Especialidades AS Es ON Me.Id_Especialidad_Me = Es.Id_Especialidad_Es
+    WHERE 
+        Id_Turno_Tu = @IDTURNO
 END
 GO

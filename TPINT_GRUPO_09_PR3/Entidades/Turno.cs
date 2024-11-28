@@ -16,6 +16,7 @@ namespace Entidades
         private int _IdNacionalidad;
         private bool _asistencia;
         private string _observacion;
+        private int _idEspecialidad;
 
         public Turno()
         {
@@ -32,6 +33,16 @@ namespace Entidades
             this._IdLocalidadPaciente = idLocalidadPaciente;
             this._asistencia = asistencia;
             this._observacion = observacion;
+        }
+
+        public int getIdEspecialidad()
+        {
+            return _idEspecialidad;
+        }
+
+        public void setIdEspecialidad(int idEspecialidad)
+        {
+            this._idEspecialidad = idEspecialidad;
         }
 
         public string getLegajo_Medico() {

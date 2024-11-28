@@ -115,5 +115,23 @@ namespace Dao
 
             return estado;
         }
+
+        public SqlDataReader EjecutarProcedimientoAlmacenadoReader(SqlCommand Comando, String NombreSP)
+        {
+            SqlConnection Conexion = ObtenerConexion();
+            Comando.Connection = Conexion;
+            Comando.CommandType = CommandType.StoredProcedure;
+            Comando.CommandText = NombreSP;
+
+            try
+            {
+                return Comando.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+            catch (Exception ex)
+            {
+                Conexion.Close();
+                throw new Exception("Error al ejecutar el procedimiento almacenado: " + ex.Message);
+            }
+        }
     }
 }

@@ -84,7 +84,11 @@ namespace Dao
         public DataTable getMedicoSegunEspecialidad(int id)
         {
             string consulta = "SELECT * FROM Medicos WHERE Id_Especialidad_Me =" + id;
-            return ds.ObtenerTabla("Medicos", consulta);
+                        
+            DataTable dt =  ds.ObtenerTabla("Medicos", consulta);
+            dt.Columns.Add("Nombre_Completo_Me", typeof(string), "Nombre_Me + ' ' + Apellido_Me");
+
+            return dt;
         }
         public Boolean existeMedico(string dni, int idNacionalidad)
         {

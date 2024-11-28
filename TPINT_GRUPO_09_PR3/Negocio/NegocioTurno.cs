@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dao;
+using System.Net;
 
 namespace Negocio
 {
@@ -115,6 +116,17 @@ namespace Negocio
             {
                 throw new Exception("Error al actualizar el turno: " + ex.Message);
             }
+        }
+
+        public bool CancelarTurnoGestion(string idTurno)
+        {
+            return daoTurno.CancelarTurnoGestion(idTurno);
+        }
+
+        public Turno getTurno(string idTurno)
+        {
+            Turno turno = daoTurno.getTurno(idTurno);
+            return turno;
         }
     }
 }

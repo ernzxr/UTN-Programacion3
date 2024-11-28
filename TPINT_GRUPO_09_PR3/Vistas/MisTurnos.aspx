@@ -154,18 +154,7 @@ border: 1px solid #3AC0F2;
                 <asp:Label ID="lblHoraEdit" runat="server" Text='<%# ((TimeSpan)Eval("Hora_Tu")).ToString(@"hh\:mm") %>'></asp:Label>
             </EditItemTemplate>
         </asp:TemplateField>
-
-        
-        <asp:TemplateField HeaderText="Estado">
-            <ItemTemplate>
-                <asp:Label ID="lblEstado" runat="server" Text='<%# Bind("Ciclo_Tu") %>'></asp:Label>
-            </ItemTemplate>
-            <EditItemTemplate>
-                <asp:Label ID="lblEstadoEdit" runat="server" Text='<%# Bind("Ciclo_Tu") %>'></asp:Label>
-            </EditItemTemplate>
-        </asp:TemplateField>
-
-        
+                      
         <asp:TemplateField HeaderText="Asistencia">
             <ItemTemplate>
                 <asp:Label ID="lblAsistencia" runat="server" Text='<%# Bind("Asistencia_Tu") %>'></asp:Label>

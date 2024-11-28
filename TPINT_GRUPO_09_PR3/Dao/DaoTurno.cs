@@ -189,6 +189,54 @@ namespace Dao
 
             return ds.EjecutarProcedimientoAlmacenado(comando, "spActualizarTurnoMedico");
         }
+
+        public bool CancelarTurnoGestion(string idTurno)
+        {
+            SqlCommand comando = new SqlCommand();
+            SqlParameter SqlParametros = new SqlParameter();
+            SqlParametros = comando.Parameters.Add("@IDTURNO", SqlDbType.Int);
+            SqlParametros.Value = idTurno;
+            return ds.EjecutarProcedimientoAlmacenado(comando, "spCancelarTurnoGestion") > 0;
+        }
+
+        public Turno getTurno(string idTurno)
+        {
+            SqlCommand comando = new SqlCommand();
+            SqlParameter SqlParametros = new SqlParameter();
+            SqlParametros = comando.Parameters.Add("@IDTURNO", SqlDbType.Int);
+            SqlParametros.Value = idTurno;
+
+            SqlDataReader reader = ds.EjecutarProcedimientoAlmacenadoReader(comando, "spObtenerTurnoPorId");
+
+            try
+            {
+                if (reader.Read())
+                {
+                    Turno turno = new Turno();
+                    turno.setLegajo_Medico(reader["Legajo_Medico_Tu"].ToString());
+                    turno.setFecha(Convert.ToDateTime(reader["Fecha_Tu"]));
+                    turno.setHora((TimeSpan)reader["Hora_Tu"]);
+                    turno.setDni_Paciente(reader["DNI_Paciente_Tu"].ToString());
+                    turno.setIdNacionalidad(Convert.ToInt32(reader["Id_Nacionalidad_Paciente_Tu"]));
+                    turno.setAsistencia(Convert.ToBoolean(reader["Asistencia_Tu"]));
+                    turno.setObservacion(reader["Observaciones_Tu"].ToString());
+                    turno.setIdEspecialidad(Convert.ToInt32(reader["Id_Especialidad"]));
+                    return turno;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el turno: " + ex.Message);
+            }
+            finally
+            {
+                reader.Close();
+            }
+        }
     }
    
 }
