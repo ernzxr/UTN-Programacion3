@@ -69,7 +69,7 @@ AS
 BEGIN
     SELECT Fecha_Tu
     FROM Turnos
-    WHERE Legajo_Medico_Tu = @LegajoMedico
+    WHERE Legajo_Medico_Tu = @LegajoMedico AND Estado_Tu = 1
     GROUP BY Fecha_Tu
     HAVING COUNT(*) >= (SELECT MAX(DATEDIFF(HOUR, Hora_Inicio_HM, Hora_Fin_HM))
                         FROM Horarios_Medicos
@@ -415,8 +415,6 @@ ORDER BY Turnos_Asistidos DESC, Pacientes.Apellido_Pa, Pacientes.Nombre_Pa
 END
 GO
 
---EXEC spObtener5PacientesConMasTurnos 1, '2024-06-01', '2024-06-30'
-
 CREATE OR ALTER PROCEDURE spBuscarTurnos
     @Busqueda NVARCHAR(255)
 AS
@@ -456,7 +454,6 @@ WHERE
 END
 GO
 
-
 CREATE OR ALTER PROCEDURE spFiltrarTurnosPorLegajo
     @LegajoMedico CHAR(5)
 AS
@@ -483,7 +480,6 @@ BEGIN
 END
 GO
 
-
 CREATE OR ALTER PROCEDURE spFiltrarTurnosPorDni
     @DniPaciente CHAR(8)
 AS
@@ -509,7 +505,6 @@ BEGIN
   WHERE DNI_Paciente_Tu = @DniPaciente
 END
 GO
-
 
 CREATE OR ALTER PROCEDURE spFiltrarTurnosPorDia
     @Fecha DATE
@@ -658,7 +653,6 @@ BEGIN
         )
 END
 GO
-
 
 CREATE OR ALTER PROCEDURE spFiltrarTurnosMedicoPorDniFecha
     @DniPaciente CHAR(8),
