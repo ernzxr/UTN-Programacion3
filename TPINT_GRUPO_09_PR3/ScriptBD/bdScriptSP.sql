@@ -694,30 +694,6 @@ BEGIN
 END
 GO
 
-
-CREATE OR ALTER PROCEDURE spActualizarTurno
-(
-    @LegajoMedico CHAR(5),
-    @DniPaciente CHAR(8),
-    @Fecha DATE,
-    @Hora TIME(0),
-    @Asistencia BIT,
-    @Observaciones VARCHAR(255)
-)
-AS
-BEGIN
-    UPDATE Turnos
-    SET 
-        Asistencia_Tu = @Asistencia,
-        Observaciones_Tu = @Observaciones
-    WHERE 
-        Legajo_Medico_Tu = @LegajoMedico AND
-        DNI_Paciente_Tu = @DniPaciente AND
-        Fecha_Tu = @Fecha AND
-        Hora_Tu = @Hora
-END
-GO
-
 CREATE OR ALTER PROCEDURE spEliminarHorariosMedicos
 @Legajo CHAR(5),
 @Dia INT
@@ -777,5 +753,41 @@ BEGIN
 		Especialidades AS Es ON Me.Id_Especialidad_Me = Es.Id_Especialidad_Es
     WHERE 
         Id_Turno_Tu = @IDTURNO
+END
+GO
+
+CREATE OR ALTER PROCEDURE spActualizarTurnoMedico
+(
+    @LegajoMedico CHAR(5),
+    @DniPaciente CHAR(8),
+    @Fecha DATE,
+    @Hora TIME(0),
+    @Asistencia BIT,
+    @Observaciones VARCHAR(255)
+)
+AS
+BEGIN
+    UPDATE Turnos
+    SET 
+        Asistencia_Tu = @Asistencia,
+        Observaciones_Tu = @Observaciones,
+        Id_Ciclo_Turno_Tu = (SELECT Id_Ciclo_Turno_CT FROM Ciclos_Turnos WHERE Descripcion_CT = 'Terminado'),
+        Id_Detalle_Turno_Tu = (SELECT Id_Detalle_Turno_DT FROM Detalles_Turnos WHERE Descripcion_DT = 'No Aplica')
+    WHERE 
+        Legajo_Medico_Tu = @LegajoMedico AND
+        DNI_Paciente_Tu = @DniPaciente AND
+        Fecha_Tu = @Fecha AND
+        Hora_Tu = @Hora
+END
+GO
+
+CREATE OR ALTER PROCEDURE spContarTurnosPorMesYAnio
+    @Anio INT,
+    @Mes INT
+AS
+BEGIN
+    SELECT COUNT(*) AS TotalTurnos
+    FROM Turnos
+    WHERE YEAR(Fecha_Tu) = @Anio AND MONTH(Fecha_Tu) = @Mes AND Estado_Tu = 1; 
 END
 GO
