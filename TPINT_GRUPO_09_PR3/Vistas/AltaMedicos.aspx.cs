@@ -3,6 +3,7 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -29,7 +30,7 @@ namespace Vistas
                 CargarProvincia();
                 CargarEspecialidad();
                 ddlLocalidad.Items.Insert(0, new ListItem("---Debe seleccionar una provincia---", "0"));
-
+               
             }
         }
 
@@ -182,6 +183,12 @@ namespace Vistas
                 args.IsValid = true;
             }
         }
+
+        
+
+
+
+
     }
 }
 

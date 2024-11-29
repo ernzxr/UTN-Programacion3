@@ -785,3 +785,24 @@ BEGIN
     WHERE YEAR(Fecha_Tu) = @Anio AND MONTH(Fecha_Tu) = @Mes AND Estado_Tu = 1; 
 END
 GO
+
+--Listado de turnos pendientes para el paciente
+
+CREATE OR ALTER PROCEDURE spMostrarTurnosPendientesPorPaciente
+@DNI CHAR(8)
+AS
+BEGIN
+SELECT FORMAT(Fecha_Tu, 'dd-MM-yyyy') AS FECHA,
+	   Hora_Tu AS TURNO,
+       Descripcion_Es AS ESPECIALIDAD, 
+       CONCAT(Nombre_Me, ' ', Apellido_Me) AS PROFESIONAL
+	   
+FROM Turnos AS T
+INNER JOIN Medicos AS M ON T.Legajo_Medico_Tu = M.Legajo_Me
+INNER JOIN Especialidades AS E ON M.Id_Especialidad_Me = E.Id_Especialidad_Es
+INNER JOIN Pacientes AS P ON T.DNI_Paciente_Tu = T.DNI_Paciente_Tu AND T.Id_Nacionalidad_Paciente_Tu = P.Id_Nacionalidad_Pa
+WHERE DNI_Pa = @DNI
+  AND T.Fecha_Tu > CAST(GETDATE() AS DATE)
+  AND T.Estado_Tu = 1;
+END
+

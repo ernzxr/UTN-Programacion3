@@ -94,6 +94,7 @@ namespace Vistas
             txtDireccion.Text = "";
             txtCorreoElectronico.Text = "";
             txtTelefono.Text = "";
+            ddlProvincia.SelectedValue = "0";
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
