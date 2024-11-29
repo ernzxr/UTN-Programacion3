@@ -107,9 +107,83 @@ border: 1px solid #3AC0F2;
         </div>
 
         <div class="px-5 py-3">
-    <asp:GridView ID="gvTurnos" runat="server" CssClass="table table-bordered table-striped table-hover" Width="860px" AllowPaging="True" OnPageIndexChanging="gvTurnos_PageIndexChanging" PageSize="5" 
-        PagerSettings-Mode="NumericFirstLast" PagerSettings-FirstPageText="Inicio" PagerSettings-LastPageText="Fin" PagerStyle-CssClass="gridPager" PagerStyle-HorizontalAlign="Center" PagerStyle-VerticalAlign="Middle" PagerSettings-PageButtonCount="3">
-    </asp:GridView>
+    
+ <asp:GridView  
+ID="gvTurnos" 
+runat="server" 
+CssClass="table table-bordered table-striped table-hover" 
+AutoGenerateColumns="False" 
+AllowPaging="True" 
+AllowSorting="True"
+OnPageIndexChanging="gvTurnos_PageIndexChanging" 
+PageSize="5"
+PagerSettings-Mode="NumericFirstLast" 
+PagerSettings-FirstPageText="Inicio" 
+PagerSettings-LastPageText="Fin" 
+PagerStyle-CssClass="gridPager" 
+PagerStyle-HorizontalAlign="Center" 
+PagerStyle-VerticalAlign="Middle" 
+PagerSettings-PageButtonCount="3">
+
+<Columns>
+    
+    <asp:TemplateField HeaderText="Ciclo">
+       <ItemTemplate>
+          <asp:Label ID="lblCiclo" runat="server" Text='<%# Bind("Ciclo_Tu") %>'></asp:Label>
+       </ItemTemplate>
+    </asp:TemplateField>
+
+    <asp:TemplateField HeaderText="Detalle ciclo">
+       <ItemTemplate>
+           <asp:Label ID="lblDetalleCiclo" runat="server" Text='<%# Bind("Detalle_Ciclo_Tu") %>'></asp:Label>
+       </ItemTemplate>
+    </asp:TemplateField>
+
+    <asp:TemplateField HeaderText="Legajo Médico">
+        <ItemTemplate>
+            <asp:Label ID="lblLegajoMedico" runat="server" Text='<%# Bind("Legajo_Medico_Tu") %>'></asp:Label>
+        </ItemTemplate>
+    </asp:TemplateField>
+
+    <asp:TemplateField HeaderText="DNI del Paciente">
+        <ItemTemplate>
+            <asp:Label ID="lblDni" runat="server" Text='<%# Bind("DNI_Paciente_Tu") %>'></asp:Label>
+        </ItemTemplate>
+    </asp:TemplateField>
+    
+    <asp:TemplateField HeaderText="Fecha del Turno">
+        <ItemTemplate>
+            <asp:Label ID="lblFecha" runat="server" Text='<%# Bind("Fecha_Tu", "{0:yyyy-MM-dd}") %>'></asp:Label>
+        </ItemTemplate>
+    </asp:TemplateField>
+
+    <asp:TemplateField HeaderText="Hora">
+        <ItemTemplate>
+            <asp:Label ID="lblHora" runat="server" Text='<%# ((TimeSpan)Eval("Hora_Tu")).ToString(@"hh\:mm") %>'></asp:Label>
+        </ItemTemplate>
+    </asp:TemplateField>
+
+    <asp:TemplateField HeaderText="Estado">
+        <ItemTemplate>
+            <asp:Label ID="lblEstado" runat="server" Text='<%# Bind("Ciclo_Tu") %>'></asp:Label>
+        </ItemTemplate>
+    </asp:TemplateField>
+    
+    <asp:TemplateField HeaderText="Asistencia">
+        <ItemTemplate>
+            <asp:Label ID="lblAsistencia" runat="server" Text='<%# Bind("Asistencia_Tu") %>'></asp:Label>
+        </ItemTemplate>
+    </asp:TemplateField>
+
+    <asp:TemplateField HeaderText="Observaciones">
+        <ItemTemplate>
+            <asp:Label ID="lblObservaciones" runat="server" Text='<%# Bind("Observaciones_Tu") %>'></asp:Label>
+        </ItemTemplate>
+    </asp:TemplateField>
+
+</Columns>
+</asp:GridView>
+
              </div>
    </div>
 </asp:Content>
