@@ -109,6 +109,7 @@ namespace Vistas
             txtPassword.Text = "";
             rblGenero.SelectedValue = "";
             txtPasswordRepetida.Text = "";
+            ddlProvincia.SelectedValue = "0";
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
