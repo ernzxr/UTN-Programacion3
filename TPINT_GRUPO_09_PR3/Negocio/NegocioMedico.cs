@@ -49,9 +49,14 @@ namespace Negocio
             return dao.existeMedico(dni, idNacionalidad);
         }
 
-        public Boolean existeMedico(string legajo)
+        //public Boolean existeMedico(string legajo)
+        //{
+        //    return dao.existeMedico(legajo);
+        //}
+
+        public Boolean existeMedicoLIKE(string legajo)
         {
-            return dao.existeMedico(legajo);
+            return dao.existeMedicoLIKE(legajo);
         }
 
         public string ObtenerLegajoPorNombreCompleto(string nombreCompleto)
@@ -83,6 +88,11 @@ namespace Negocio
         public DataTable getMedico(string legajo)
         {
             return dao.filtrarMedico(legajo);
+        }
+
+        public DataTable getMedicoLIKE(string legajo)
+        {
+            return dao.filtrarMedicoLIKE(legajo);
         }
 
         public DataTable getMedico()

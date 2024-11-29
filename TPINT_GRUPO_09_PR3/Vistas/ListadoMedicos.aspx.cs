@@ -108,9 +108,9 @@ namespace Vistas
         {
             string legajo = txtLegajo.Text;
             
-            if (Negm.existeMedico(legajo))
+            if (Negm.existeMedicoLIKE(legajo))
             {
-                gvMedicos.DataSource = Negm.getMedico(legajo);
+                gvMedicos.DataSource = Negm.getMedicoLIKE(legajo);
                 gvMedicos.DataBind();
 
                 txtLegajo.Text = "";
@@ -119,6 +119,8 @@ namespace Vistas
             else
             {
                 lblError_Filtrar.Text = "El medico no existe/fue dado de baja.";
+                gvMedicos.DataSource = null;
+                gvMedicos.DataBind();
             }
         }
         protected void btnMostrarTodo_Click(object sender, EventArgs e)
