@@ -18,6 +18,11 @@ namespace Vistas
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+            if (Session["Usuario"] == null)
+            {
+                Response.Redirect("Login.aspx");
+                return;
+            }
             if (IsPostBack == false)
             {
                 CargarAnios();
