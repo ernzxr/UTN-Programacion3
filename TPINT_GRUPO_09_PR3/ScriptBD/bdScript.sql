@@ -4,7 +4,7 @@ GO
 CREATE DATABASE UTN2C2024PR3CLINICA
 ON 
 ( NAME = UTN2C2024PR3CLINICA_dat,
-  FILENAME = 'D:\ernzxr\Google Drive\ernzxr\Estudio\UTN\UTN Pacheco\Tecnicatura\3er Cuatrimestre\Programación III\TP Integrador\BASE DE DATOS\UTN2C2024PR3CLINICA.mdf' )
+  FILENAME = 'C:\TrabajosPracticosProgIII\UTN-Programacion3\TPINT_GRUPO_09_PR3\ClinicaBD\UTN2C2024PR3CLINICA.mdf' )
 GO
 
 USE UTN2C2024PR3CLINICA

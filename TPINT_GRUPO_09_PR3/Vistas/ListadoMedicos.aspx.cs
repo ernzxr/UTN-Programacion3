@@ -218,13 +218,11 @@ namespace Vistas
         
         protected void btnConfirmDelete_Click(Object sender, EventArgs e)
         {
-            bool borro = Negm.bajaMedico(txtLegajo_E.Text);
+           bool borro = Negm.bajaMedico(txtLegajo_E.Text);
 
-            if (borro)
-            {
-                gvMedicos.DataSource = Negm.getMedico();
-                gvMedicos.DataBind();
-            }
+           gvMedicos.DataSource = Negm.getMedico();
+           gvMedicos.DataBind();
+          
         }
 
         protected void btnModificarM_Click(Object sender, EventArgs e)
