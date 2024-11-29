@@ -87,14 +87,15 @@
 
                 <asp:Label ID="lblUsuario" runat="server" Text="Usuario" Style="align-self: flex-start"></asp:Label>
                 <asp:TextBox ID="txtUsuario" class="form-control" runat="server"></asp:TextBox>
+                <asp:RegularExpressionValidator ID="rev" runat="server" ControlToValidate="txtUsuario" Text="*El usuario solo debe contener letras minúsculas" ValidationExpression="^[a-z]+$"></asp:RegularExpressionValidator>
                 <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" ForeColor="#CC0000" ValidationGroup="gpAgregar">(*) Complete el campo.</asp:RequiredFieldValidator>
                 <asp:CustomValidator ID="cvExisteUsuario" OnServerValidate="cvExisteUsuario_ServerValidate" runat="server" ForeColor="#CC0000" ValidationGroup="gpAgregar" ControlToValidate="txtUsuario">(*) El usuario ingresado ya existe.></asp:CustomValidator>
 
                 <asp:Label ID="lblPassword" runat="server" Text="Contraseña" Style="align-self: flex-start"></asp:Label>
-                <asp:TextBox ID="txtPassword" class="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="txtPassword" class="form-control" runat="server" TextMode="Password" MaxLength="8"></asp:TextBox>
 
                 <asp:Label ID="lblRepetirPassword" runat="server" Text="Repetir Contraseña" Style="align-self: flex-start"></asp:Label>
-                <asp:TextBox ID="txtPasswordRepetida" class="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="txtPasswordRepetida" class="form-control" runat="server" TextMode="Password" MaxLength="8"></asp:TextBox>
                 <asp:CompareValidator ID="cvPassword" runat="server" ForeColor="#CC0000" ValidationGroup="gpAgregar" ControlToValidate="txtPasswordRepetida" ControlToCompare="txtPassword" >(*) Las claves no coinciden.></asp:CompareValidator>
             </div>
 
@@ -102,7 +103,7 @@
                 <h3>Datos Médicos</h3>
 
                 <asp:Label ID="lblLegajo" runat="server" Text="Legajo" Style="align-self: flex-start"></asp:Label>
-                <asp:TextBox ID="txtLegajo" class="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
+                <asp:TextBox ID="txtLegajo" class="form-control" runat="server" ValidationGroup="grupo1" MaxLength="5"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajo" ForeColor="#CC0000" ValidationGroup="gpAgregar" >(*) Complete el campo.</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txtLegajo" ForeColor="#CC0000" ValidationExpression="^\d+$" ValidationGroup="gpAgregar">(*) Ingrese solo números.</asp:RegularExpressionValidator>
                 <asp:CustomValidator ID="cvExisteLegajo" OnServerValidate="cvExisteLegajo_ServerValidate" runat="server" ForeColor="#CC0000" ValidationGroup="gpAgregar" ControlToValidate="txtUsuario">(*) El legajo ingresado ya existe.></asp:CustomValidator>
@@ -116,7 +117,7 @@
                 <h3>Datos Personales</h3>
 
                 <asp:Label ID="lblDNI" runat="server" Text="DNI" Style="align-self: flex-start"></asp:Label>
-                <asp:TextBox ID="txtDNI" class="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
+                <asp:TextBox ID="txtDNI" class="form-control" runat="server" ValidationGroup="grupo1" MaxLength="8"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ForeColor="#CC0000" ValidationGroup="gpAgregar">(*) Complete el campo.</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ForeColor="#CC0000" ValidationExpression="^\d+$" ValidationGroup="gpAgregar">(*) Ingrese solo números.</asp:RegularExpressionValidator>
                 <asp:Label ID="lblMensajeDNI" runat="server" CssClass="mb-2" ForeColor="#CC0000" Text=""></asp:Label>
@@ -171,7 +172,7 @@
                 <asp:RequiredFieldValidator ID="rfvCorreoElectronico" CssClass="mb-5" runat="server" ControlToValidate="txtCorreoElectronico" ForeColor="#CC0000" ValidationGroup="gpAgregar">(*) Complete el campo.</asp:RequiredFieldValidator>
 
                 <asp:Label ID="lblTelefono" runat="server" Text="Teléfono" Style="align-self: flex-start"></asp:Label>
-                <asp:TextBox ID="txtTelefono" class="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtTelefono" class="form-control" runat="server" MaxLength="15"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" ForeColor="#CC0000" ValidationGroup="gpAgregar" Display="Dynamic">(*) Complete el campo.</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" ForeColor="#CC0000" ValidationExpression="^\d+$" ValidationGroup="gpAgregar">(*) Ingrese solo números.</asp:RegularExpressionValidator>
             </div>
