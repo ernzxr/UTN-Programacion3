@@ -14,6 +14,7 @@ namespace Vistas
     {
         NegocioTipoAusencia negocioTipoAusencia = new NegocioTipoAusencia();
         NegocioAusenciaMedico negocioAusenciaMedico = new NegocioAusenciaMedico();
+        NegocioMedico negocioMedico = new NegocioMedico();
         AusenciaMedico aus = new AusenciaMedico();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -24,12 +25,14 @@ namespace Vistas
                 Response.Redirect("Login.aspx");
                 return;
             }
-            CargarTiposAusencias();
 
             if (!IsPostBack)
             {
                 CargarAusencias();
+                CargarTiposAusencias();
             }
+
+            alertContainer.InnerHtml = "";
         }
 
         private void CargarAusencias()
@@ -46,36 +49,52 @@ namespace Vistas
             ddlTipoAusencia.DataTextField = "Descripcion_TAM";
             ddlTipoAusencia.DataValueField = "Id_Tipo_Ausencia_TAM";
             ddlTipoAusencia.DataBind();
+        }
 
-            ddlTipoAusencia.Items.Insert(0, new ListItem("Elegir una opción", "-1"));
-            ddlTipoAusencia.Items[0].Attributes["disabled"] = "disabled";
-            ddlTipoAusencia.Items[0].Selected = true;
+        private void ShowBootstrapAlert(string message, string alertType)
+        {
+            string alertHtml = $"<div class='alert alert-{alertType} alert-dismissible fade show' role='alert'>" +
+                               $"{message}" +
+                               "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>" +
+                               "</div>";
+
+            alertContainer.InnerHtml = alertHtml;
+
+
+            // Registrar el script para eliminar el contenido del contenedor cuando se cierre el alert
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "RemoveAlert", "removeAlertOnClose();", true);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            // capturar los datos del formulario y asignarlos a la instancia de Sucursal
-            aus.setLegajoMedico(int.Parse(txtLegajo.Text));
-            aus.setTipoAusencia(int.Parse(ddlTipoAusencia.Text));
-            aus.setFechaInicio(DateTime.Parse(txtFechaInicio.Text));
-            aus.setFechaFin(DateTime.Parse(txtFechaFin.Text));
-
-            // llamar al método AgregarSucursal y verificar el resultado
-
-            bool agregado = negocioAusenciaMedico.AgregarAusencia(aus);
-
-            if (agregado)
+            if (negocioMedico.existeLegajo(txtLegajo.Text))
             {
-                txtLegajo.Text = "OK";
-                CargarTiposAusencias();
-                CargarAusencias();
+
+                // capturar los datos del formulario y asignarlos a la instancia de Sucursal
+                aus.setLegajoMedico(int.Parse(txtLegajo.Text));
+                aus.setTipoAusencia(int.Parse(ddlTipoAusencia.SelectedValue));
+                aus.setFechaInicio(DateTime.Parse(txtFechaInicio.Text));
+                aus.setFechaFin(DateTime.Parse(txtFechaFin.Text));
+
+                // llamar al método AgregarSucursal y verificar el resultado
+
+                bool agregado = negocioAusenciaMedico.AgregarAusencia(aus);
+
+                if (agregado)
+                {
+                    CargarAusencias();
+                }
+                else
+                {
+                    CargarAusencias();
+                }
+
+                aus = new AusenciaMedico();
             }
             else
             {
-                txtLegajo.Text = "FAIL";
+                ShowBootstrapAlert("El legajo ingresado no existe.", "danger");
             }
-
-            aus = new AusenciaMedico();
         }
 
         protected void gvAusencias_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -87,9 +106,16 @@ namespace Vistas
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-            DataTable dt = negocioAusenciaMedico.FiltrarAusencias(txtFiltrarLegajo.Text);
-            gvAusencias.DataSource = dt;
-            gvAusencias.DataBind();
+            if (negocioMedico.existeLegajo(txtFiltrarLegajo.Text))
+            {
+                DataTable dt = negocioAusenciaMedico.FiltrarAusencias(txtFiltrarLegajo.Text);
+                gvAusencias.DataSource = dt;
+                gvAusencias.DataBind();
+            }
+            else
+            {
+                ShowBootstrapAlert("El legajo que quiere filtrar no existe.", "danger");
+            }
         }
 
         protected void btnMostrarTodo_Click(object sender, EventArgs e)

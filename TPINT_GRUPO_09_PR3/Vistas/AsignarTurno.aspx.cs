@@ -120,7 +120,7 @@ namespace Vistas
             // Validar si es un día laborable
 
             bool esDiaLaborable = false;
-           
+
 
             foreach (DataRow row in diasLaborales.Rows)
             {
@@ -138,7 +138,7 @@ namespace Vistas
                 return;
             }
 
-        
+
 
             // Validar si todos los turnos están completos
             DataTable fechasTurnosCompletos = negocioHorario.ObtenerFechasConTurnosCompletos(legajoMedico);
@@ -355,8 +355,8 @@ namespace Vistas
             }
 
             List<string> fechasExcepcionalesFormateadas = fechasDeAusencia
-    .Select(fecha => fecha.ToString("yyyy-MM-dd"))
-    .ToList();
+            .Select(fecha => fecha.ToString("yyyy-MM-dd"))
+            .ToList();
 
             // Pasar las fechas de ausencia al frontend en formato JSON
             string fechasAusenciasJson = JsonConvert.SerializeObject(fechasExcepcionalesFormateadas);
@@ -366,15 +366,15 @@ namespace Vistas
             // Validar si es un día laborable
             DataTable diasLaborales = negocioHorario.ObtenerDiasLaborales(legajoMedico);
             List<bool> diasLaboralesLista = new List<bool>();
-            
-            for(int i=0; i<7; i++)
+
+            for (int i = 0; i < 7; i++)
             {
                 diasLaboralesLista.Add(false);
             }
 
             foreach (DataRow row in diasLaborales.Rows)
             {
-                switch(row["DescripcionDia"].ToString())
+                switch (row["DescripcionDia"].ToString())
                 {
                     case "Domingo":
                         diasLaboralesLista[0] = true; // Si es Domingo, ponemos 'true' en el índice 0
@@ -406,5 +406,5 @@ namespace Vistas
 
         }
     }
-    
+
 }

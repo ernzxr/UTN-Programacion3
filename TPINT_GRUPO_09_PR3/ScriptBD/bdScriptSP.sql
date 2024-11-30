@@ -712,6 +712,16 @@ WHERE Id_Turno_Tu = @IDTURNO
 END
 GO
 
+CREATE OR ALTER PROCEDURE spReprogramarTurnoGestion
+@IDTURNO INT
+AS
+BEGIN
+UPDATE Turnos SET
+Id_Ciclo_Turno_Tu = 3
+WHERE Id_Turno_Tu = @IDTURNO
+END
+GO
+
 CREATE OR ALTER PROCEDURE spObtenerTurnoPorId
     @IDTURNO INT
 AS

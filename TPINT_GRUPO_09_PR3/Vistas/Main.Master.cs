@@ -20,6 +20,11 @@ namespace Vistas
                 lblUsuarioMedico.Text = Session["Usuario"].ToString();
             }
 
+            actualizarTurnosPendientes();
+        }
+
+        public void actualizarTurnosPendientes()
+        {
             lblTurnosPendientes.Text = negocioTurno.getTurnosPendientesCount().ToString();
         }
 

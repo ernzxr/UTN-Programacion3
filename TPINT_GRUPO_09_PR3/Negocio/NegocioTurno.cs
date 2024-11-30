@@ -128,5 +128,10 @@ namespace Negocio
             Turno turno = daoTurno.getTurno(idTurno);
             return turno;
         }
+
+        public bool ReprogramarTurnoGestion(string idTurno)
+        {
+            return daoTurno.ReprogramarTurnoGestion(idTurno);
+        }
     }
 }

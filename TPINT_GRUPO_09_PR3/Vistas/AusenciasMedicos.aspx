@@ -43,8 +43,20 @@
             vertical-align: top;
         }
     </style>
+    <script>
+        function removeAlertOnClose() {
+            let alert = document.querySelector('.alert');
+
+            if (alert) {
+                alert.addEventListener('close.bs.alert', function () {
+                    document.getElementById('<%= alertContainer.ClientID %>').innerHTML = '';
+                });
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div id="alertContainer" runat="server" class="alert-container position-fixed bottom-0 end-0 p-3" style="z-index: 1050;"></div>
     <div style="display: flex;">
         <div class="px-5 py-3 me-5 border rounded">
             <h3 class="text-center">Agregar Ausencia</h3>
@@ -60,7 +72,6 @@
                 <asp:Label ID="lbTipo" runat="server" Text="Tipo" CssClass="form-label" AssociatedControlID="ddlTipoAusencia"></asp:Label>
                 <div style="text-align: left;">
                     <asp:DropDownList ID="ddlTipoAusencia" runat="server" CssClass="form-control mt-3" ValidationGroup="gpAgregar"></asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="rfvTipoAusencia" runat="server" Text="* Elija un tipo de ausencia" ControlToValidate="ddlTipoAusencia" InitialValue="Elegir una opción" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
             </div>
             <div class="form-group mt-3" style="width: 344px;">
@@ -81,9 +92,13 @@
         </div>
 
         <div>
+            <div>
+                <asp:RequiredFieldValidator ID="rfvFiltrar" runat="server" ControlToValidate="txtFiltrarLegajo" ValidationGroup="gpFiltrar" CssClass="text-danger" Text="* Debe ingresar un legajo" Font-Bold="True" Display="Dynamic"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="revLegajo" runat="server" ErrorMessage="* Un legajo contiene 5 números" Font-Bold="True" Display="Dynamic" CssClass="text-danger validator-width" ValidationGroup="gpFiltrar" ControlToValidate="txtFiltrarLegajo" ValidationExpression="^\d{5}$"></asp:RegularExpressionValidator>
+            </div>
             <div class="my-4" style="display: flex;">
-                <asp:TextBox ID="txtFiltrarLegajo" runat="server" CssClass="text-center form-control" Width="70" TextMode="SingleLine"></asp:TextBox>
-                <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-primary mx-4" OnClick="btnFiltrar_Click" />
+                <asp:TextBox ID="txtFiltrarLegajo" runat="server" CssClass="text-center form-control" Width="70" TextMode="SingleLine" MaxLength="5"></asp:TextBox>
+                <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-primary mx-4" OnClick="btnFiltrar_Click" ValidationGroup="gpFiltrar" />
                 <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todos" CssClass="btn btn-primary" OnClick="btnMostrarTodo_Click" />
             </div>
             <asp:GridView ID="gvAusencias" runat="server"

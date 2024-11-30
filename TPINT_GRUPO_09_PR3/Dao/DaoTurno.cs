@@ -237,6 +237,15 @@ namespace Dao
                 reader.Close();
             }
         }
+
+        public bool ReprogramarTurnoGestion(string idTurno)
+        {
+            SqlCommand comando = new SqlCommand();
+            SqlParameter SqlParametros = new SqlParameter();
+            SqlParametros = comando.Parameters.Add("@IDTURNO", SqlDbType.Int);
+            SqlParametros.Value = int.Parse(idTurno);
+            return ds.EjecutarProcedimientoAlmacenado(comando, "spReprogramarTurnoGestion") > 0;
+        }
     }
    
 }

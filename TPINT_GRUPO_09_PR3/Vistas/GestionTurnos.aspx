@@ -43,11 +43,67 @@
             vertical-align: top;
         }
     </style>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <script>
+        let diasLaborables = [];
+        let diasAusencias = [];
+
+        function cargarDatePicker(dias) {
+            diasLaborables = dias;  // Guardar los días laborales en la variable global
+            $(".datepicker").datepicker("refresh");
+            // Refrescar el DatePicker para que reconozca los días laborables
+        }
+
+        function cargarAusencias(dias) {
+            diasAusencias = dias;
+            $(".datepicker").datepicker("refresh");
+        }
+
+        function initializeDatePicker() {
+            $(".datepicker").datepicker({
+                dateFormat: "dd/mm/yy", // Formato de fecha
+                changeMonth: true,      // Permitir cambiar de mes
+                changeYear: true,       // Permitir cambiar de año
+                minDate: 0,             // Fecha mínima: hoy
+                maxDate: "+1y",         // Fecha máxima: 1 año a partir de hoy
+                showAnim: "fadeIn",     // Animación al mostrar
+                beforeShowDay: function (date) {
+                    const dayOfWeek = date.getDay(); // Día de la semana (0 = Domingo, 6 = Sábado)
+                    const isLaborable = diasLaborables[dayOfWeek]; // Verifica si el día es laborable
+                    // Convertimos la fecha a formato "yyyy-mm-dd" para compararla
+                    const dateString = $.datepicker.formatDate("yy-mm-dd", date);
+
+                    // Verificamos si la fecha está en el arreglo de fechas excepcionales
+                    const esExcepcional = diasAusencias.includes(dateString);
+                    return [isLaborable && !esExcepcional]; // Solo permite días laborables
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            initializeDatePicker();
+
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+                initializeDatePicker();
+            });
+        });
+
         function showGestionarModal() {
-            var modal = document.getElementById('GestionarTurnoModal');
-            var myModal = new bootstrap.Modal(modal);
+            let modal = document.getElementById('GestionarTurnoModal');
+            let myModal = new bootstrap.Modal(modal);
             myModal.show();
+        }
+
+        function removeAlertOnClose() {
+            let alert = document.querySelector('.alert');
+
+            if (alert) {
+                alert.addEventListener('close.bs.alert', function () {
+                    document.getElementById('<%= alertContainer.ClientID %>').innerHTML = '';
+                });
+            }
         }
     </script>
 </asp:Content>
@@ -55,6 +111,8 @@
     <h1 class="text-center">Turnos Pendientes de Gestion</h1>
 
     <div id="alertContainer" runat="server" class="alert-container position-fixed bottom-0 end-0 p-3" style="z-index: 1050;"></div>
+    <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
+
 
     <asp:GridView
         DataKeyNames="Id_Turno_Tu"
@@ -105,15 +163,48 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div style="display:flex;flex-direction:column;">
+
+                    <div style="display: flex; flex-direction: column; text-align: left;">
+                        <h3>Informacion</h3>
                         <asp:Label ID="lblPaciente" runat="server"></asp:Label>
                         <asp:Label ID="lblEspecialidad" runat="server"></asp:Label>
-                        <asp:DropDownList ID="ddlMedicosEspecialidad" runat="server"></asp:DropDownList>
+                        <h4>Seleccionar medico</h4>
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
+                                <asp:DropDownList ID="ddlMedicosEspecialidad" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlMedicosEspecialidad_SelectedIndexChanged"></asp:DropDownList>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+
+                        <h4>Elegir fecha del nuevo turno</h4>
+                        <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <asp:TextBox AutoPostBack="true" ID="txtDia" runat="server" CssClass="datepicker" Style="width: 100%; padding: 5px;" OnTextChanged="txtDia_TextChanged"></asp:TextBox>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+
+                        <h4>Horarios disponibles</h4>
+                        <asp:UpdatePanel runat="server" ID="UpdatePanelHorarios" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <div style="display:flex;">
+                                    <asp:DataList ID="dlHorario"
+                                        runat="server"
+                                        Style="width: 150px; padding: 5px;"
+                                        OnItemCommand="dlHorario_ItemCommand">
+                                        <ItemTemplate>
+                                            <asp:Button ID="btnHorario" runat="server" Text='<%# Eval("Horario") %>' CommandArgument='<%# Eval("Horario") %>' CommandName="SeleccionarHorario"
+                                                Style="padding: 10px 20px; font-size: 16px; width: 160px; height: 60px;" />
+                                        </ItemTemplate>
+                                    </asp:DataList>
+                                    <asp:Label AutoPostBack="true" ID="lblHorarioSeleccionado" runat="server" Font-Bold="True" ForeColor="Blue" Font-Size="Medium"></asp:Label>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
-                    <div class="modal-footer">
-                        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-danger" OnClick="btnGuardar_Click" />
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-danger" OnClick="btnGuardar_Click" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
