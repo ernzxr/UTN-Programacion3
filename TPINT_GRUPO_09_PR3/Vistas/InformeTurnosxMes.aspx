@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="InformeTurnosxMes.aspx.cs" Inherits="Vistas.InformeTurnosxMes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <title>Cantidad de turnos segun un mes y año ingresados. </title>
+     <title>Cantidad de turnos según un mes y año ingresados. </title>
  <style>
      .auto-style1 {
          color: #006699;
@@ -13,7 +13,7 @@
 
         <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <div style="width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 30px;">
-                <asp:Label ID="lblTitulo" runat="server" Text="Cantidad de turnos segun un año y mes seleccionados" CssClass="auto-style1 mb-4" ForeColor="#000099"></asp:Label>
+                <asp:Label ID="lblTitulo" runat="server" Text="Cantidad de turnos según un año y mes seleccionados" CssClass="auto-style1 mb-4" ForeColor="#000099"></asp:Label>
          </div>
 
          <div style="width: 80%; display: flex; justify-content: center; gap: 40px; position: relative;">

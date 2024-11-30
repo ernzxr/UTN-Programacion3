@@ -51,7 +51,7 @@
                     <div class="card-body">
                         <h5 class="card-title"> Año y mes con mayor cantidad de turnos</h5>
                         <p class="card-text">
-                           Muestra la cantidad de turnos segun un año y mes seleccionados
+                           Muestra la cantidad de turnos según un año y mes seleccionados
                         </p>
                         <asp:HyperLink ID="hlMesMayorTurnos" runat="server" NavigateUrl="InformeTurnosxMes.aspx" CssClass="btn btn-primary">
                             Consultar Informe

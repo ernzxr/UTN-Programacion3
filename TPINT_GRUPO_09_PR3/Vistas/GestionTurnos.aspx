@@ -108,7 +108,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="text-center">Turnos Pendientes de Gestion</h1>
+    <h1 class="text-center">Turnos Pendientes de Gestión</h1>
 
     <div id="alertContainer" runat="server" class="alert-container position-fixed bottom-0 end-0 p-3" style="z-index: 1050;"></div>
     <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
