@@ -1,5 +1,4 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.Master.cs" Inherits="Vistas.Site1" %>
-
 <!DOCTYPE html>
 
 <html>
