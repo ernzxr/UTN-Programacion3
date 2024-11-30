@@ -100,6 +100,7 @@
     <Content Include="HorariosMedicos.aspx" />
     <Content Include="ReporteHorarios.aspx" />
     <Content Include="ReportePacientesFrecuentes.aspx" />
+    <Content Include="ReportePorcentajeAusencias.aspx" />
     <Content Include="ReportesInformes.aspx" />
     <Content Include="Styles\layout.css" />
     <Content Include="TurnosAsignados.aspx" />
@@ -253,6 +254,13 @@
     </Compile>
     <Compile Include="ReportePacientesFrecuentes.aspx.designer.cs">
       <DependentUpon>ReportePacientesFrecuentes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportePorcentajeAusencias.aspx.cs">
+      <DependentUpon>ReportePorcentajeAusencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportePorcentajeAusencias.aspx.designer.cs">
+      <DependentUpon>ReportePorcentajeAusencias.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReportesInformes.aspx.cs">
       <DependentUpon>ReportesInformes.aspx</DependentUpon>

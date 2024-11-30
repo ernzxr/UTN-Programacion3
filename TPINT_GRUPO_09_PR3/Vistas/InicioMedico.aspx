@@ -38,17 +38,6 @@
         </div>
       </div>
 
-      <!-- Card para Reportes e Informes -->
-      <div class="col">
-        <div class="card">
-          <img src="Images/Card-4.jpg" class="card-img-top" alt="Reportes e Informes">
-          <div class="card-body">
-            <h5 class="card-title">Reportes e Informes</h5>
-            <p class="card-text">Accede a informes detallados y reportes médicos generados en el sistema.</p>
-          </div>
-        </div>
-      </div>
-
       <!-- Card para Mi Perfil -->
       <div class="col">
         <div class="card">

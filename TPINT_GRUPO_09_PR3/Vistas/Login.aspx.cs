@@ -35,6 +35,8 @@ namespace Vistas
                 Session["TipoUsuario"] = 1;
                 Session["Usuario"] = usuario; // Guardamos el usuario en sesión
                 Response.Redirect("InicioAdmin.aspx");
+              
+
             }
             else if (tipoUsuario == "Médico")
             {
@@ -55,6 +57,7 @@ namespace Vistas
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "Usuario o contraseña incorrectos. Por favor, intente nuevamente.";
                 txtUsuario.Text = "";
+                txtPass.Text = "";
             }
             else
             {
@@ -62,6 +65,8 @@ namespace Vistas
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "Ha ocurrido un error inesperado. Comuníquese con soporte.";
                 txtUsuario.Text = "";
+                txtPass.Text = "";
+
             }
 
         }

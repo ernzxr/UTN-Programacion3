@@ -69,7 +69,7 @@
                             Analiza cuántos turnos se otorgaron en diferentes franjas horarias (por ejemplo, mañana, tarde) para cada especialidad.
                         </p>
                         <asp:HyperLink ID="hlReporteHorario" runat="server" NavigateUrl="ReporteHorarios.aspx" CssClass="btn btn-primary">
-                            Consultar Informe
+                            Consultar Reporte
                         </asp:HyperLink>
                     </div>
                 </div>

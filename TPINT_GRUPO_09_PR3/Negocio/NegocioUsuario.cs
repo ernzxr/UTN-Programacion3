@@ -56,7 +56,7 @@ namespace Negocio
         public string CambiarContraseña(string usuario, string email, string nuevaClave)
         {
             string resultado = _daoUsuario.VerificarYActualizarClave(usuario, email, nuevaClave);
-            return resultado; // Este debería devolver un mensaje, no un bool
+            return resultado; 
         }
 
 
