@@ -87,6 +87,7 @@
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:TextBox ID="eit_txtHoraInicio" class="form-control" runat="server" Text='<%# Eval("Hora_Inicio_HM") %>' TextMode="Time"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfv_txtHoraInicio" runat="server" ControlToValidate="eit_txtHoraInicio" ValidationGroup="grupo2" Text="(*) Complete el campo." Font-Size="X-Small" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                         <asp:CustomValidator ID="customHoraInicio" runat="server" ControlToValidate="eit_txtHoraInicio" ValidationGroup="grupo2" Text="(*) Ingrese solo horas." ForeColor="#CC0000" Font-Size="X-Small" OnServerValidate="customHoraInicio_ServerValidate" Display="Dynamic"></asp:CustomValidator>
                     </EditItemTemplate>
                 </asp:TemplateField>
@@ -96,6 +97,7 @@
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:TextBox ID="eit_txtHoraFin" class="form-control" runat="server" Text='<%# Eval("Hora_Fin_HM") %>' TextMode="Time"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfv_txtHoraFin" runat="server" ControlToValidate="eit_txtHoraFin" ValidationGroup="grupo2" Text="(*) Complete el campo." Font-Size="X-Small" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                         <asp:CustomValidator ID="customHoraFin" runat="server" ControlToValidate="eit_txtHoraFin" Text="(*) Ingrese solo horas." Font-Size="X-Small" ForeColor="#CC0000" OnServerValidate="customHoraFin_ServerValidate" ValidationGroup="grupo2"></asp:CustomValidator>
                         <asp:CompareValidator ID="cvHoraFin" runat="server" ControlToValidate="eit_txtHoraFin" ControlToCompare="eit_txtHoraInicio" Operator="GreaterThan" ForeColor="#CC0000" Font-Size="X-Small" Text="(*) La hora seleccionada debe ser mayor a la hora de entrada." ValidationGroup="grupo2" Display="Dynamic"></asp:CompareValidator>
                     </EditItemTemplate>
