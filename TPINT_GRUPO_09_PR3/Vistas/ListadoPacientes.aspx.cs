@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Linq;
 using System.Net;
@@ -94,35 +95,132 @@ namespace Vistas
 
             ddlLocalidad_M.Items.Insert(0, new ListItem("Seleccionar...", "0"));
         }
+
+        protected void btnFiltrarDNI_Click(object sender, EventArgs e)
+        {
+            rfvDNI.ValidationGroup = "filtrarDNI";
+            revDNI.ValidationGroup = "filtrarDNI";
+
+            Page.Validate("filtrarDNI");
+            if (Page.IsValid)
+            {
+                if (NegP.existePacienteDni(txtDNI.Text))
+                {
+                    DataTable dt = NegP.getPacienteXDNI(txtDNI.Text);
+                    Session["dtDNI"] = dt;
+                    gvPacientes.DataSource = dt;
+                    gvPacientes.DataBind();
+
+                    Session["contiene"] = 1;
+
+                    txtDNI.Text = "";
+                    ddlNacionalidad.SelectedValue = "0";
+                    lblError_Filtrar.Text = "";
+                }
+                else
+                {
+                    gvPacientes.DataSource = null;
+                    gvPacientes.DataBind();
+                    lblError_Filtrar.Text = "No existe un paciente con ese DNI.";
+                }
+
+            }
+
+        }
+
+        protected void btnFiltrarNacionalidad_Click(object sender, EventArgs e)
+        {
+            rfvNacionalidad.ValidationGroup = "filtrarNacionalidad";
+
+            Page.Validate("filtrarNacionalidad");
+            if (Page.IsValid)
+            {
+                int idNacionalidad = Convert.ToInt32(ddlNacionalidad.SelectedValue);
+                if (NegP.existePacienteNacionalidad(idNacionalidad))
+                {
+                    DataTable dt = NegP.getPacienteXNacionalidad(idNacionalidad);
+                    Session["dtNacionalidad"] = dt;
+                    gvPacientes.DataSource = dt;
+                    gvPacientes.DataBind();
+
+                    Session["contiene"] = 2;
+
+                    txtDNI.Text = "";
+                    ddlNacionalidad.SelectedValue = "0";
+                    lblError_Filtrar.Text = "";
+                }
+                else
+                {
+                    gvPacientes.DataSource = null;
+                    gvPacientes.DataBind();
+                    lblError_Filtrar.Text = "No existe un paciente que pertenezca a esa nacionalidad.";
+                }
+
+            }
+        }
+
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-            string dni = txtDNI.Text;
-            int idNacionalidad = int.Parse(ddlNacionalidad.SelectedValue);
-
-            if (NegP.existePaciente(dni, idNacionalidad))
+            rfvDNI.ValidationGroup = "filtrarAmbos";
+            revDNI.ValidationGroup = "filtrarAmbos";
+            rfvNacionalidad.ValidationGroup = "filtrarAmbos";
+            Page.Validate("filtrarAmbos");
+            if (Page.IsValid)
             {
-                gvPacientes.DataSource = NegP.getPaciente(dni, idNacionalidad);
-                gvPacientes.DataBind();
+                string dni = txtDNI.Text;
+                int idNacionalidad = int.Parse(ddlNacionalidad.SelectedValue);
 
-                txtDNI.Text = "";
-                ddlNacionalidad.SelectedValue = "0";
+                if (NegP.existePaciente(dni, idNacionalidad))
+                {
+                    DataTable dt = NegP.getPaciente(dni, idNacionalidad);
+                    Session["dtAmbos"] = dt;
+                    gvPacientes.DataSource = dt;
+                    gvPacientes.DataBind();
+                    Session["contiene"] = 3;
+
+                    txtDNI.Text = "";
+                    ddlNacionalidad.SelectedValue = "0";
+                    lblError_Filtrar.Text = "";
+
+                }
+                else
+                {
+                    gvPacientes.DataSource = null;
+                    gvPacientes.DataBind();
+                    lblError_Filtrar.Text = "No existe el paciente/fue dado de baja.";
+                }
+            }
+        }
+
+        protected void btnMostrarActivos_Click(object sender, EventArgs e)
+        {
+            gvPacientes.DataSource = NegP.getPacientes();
+            gvPacientes.DataBind();
+            Session["contiene"] = 4;
+
+            txtDNI.Text = "";
+            ddlNacionalidad.SelectedValue = "0";
+            lblError_Filtrar.Text = "";
+        }
+
+        protected void btnMostrarInactivos_Click(object sender, EventArgs e)
+        {
+            if (NegP.existenPacientesInactivos())
+            {
+                gvPacientes.DataSource = NegP.getPacientesInactivos();
+                gvPacientes.DataBind();
+                Session["contiene"] = 5;
+
                 lblError_Filtrar.Text = "";
 
             }
             else
             {
-                lblError_Filtrar.Text = "No existe el paciente/fue dado de baja";
+                lblError_Filtrar.Text = "No hay pacientes inactivos.";
             }
-        }
-
-        protected void btnMostrarTodo_Click(object sender, EventArgs e)
-        {
-            gvPacientes.DataSource = NegP.getPacientes();
-            gvPacientes.DataBind();
 
             txtDNI.Text = "";
             ddlNacionalidad.SelectedValue = "0";
-            lblError_Filtrar.Text = "";
         }
         protected void btnModificar_Command1(object sender, CommandEventArgs e)
         {
@@ -239,8 +337,33 @@ namespace Vistas
 
         protected void gvPacientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            int contiene = Convert.ToInt32(Session["contiene"]);
             gvPacientes.PageIndex = e.NewPageIndex;
-            gvPacientes.DataSource = NegP.getPacientes();
+
+            switch (contiene)
+            {
+                case 1:
+                    //filtra por dni
+                    gvPacientes.DataSource = Session["dtDNI"];
+                    break;
+                case 2:
+                    //filtra por nacionalidad
+                    gvPacientes.DataSource = Session["dtNacionalidad"];
+                    break;
+                case 3:
+                    //filtra por dni y nacionalidad
+                    gvPacientes.DataSource = Session["dtAmbos"];
+                    break;
+                case 4:
+                    //filtra todos los activos
+                    gvPacientes.DataSource = NegP.getPacientes();
+                    break;
+                case 5:
+                    //filtra todos los inactivos
+                    gvPacientes.DataSource = NegP.getPacientesInactivos();
+                    break;
+            }
+
             gvPacientes.DataBind();
         }
 
@@ -276,7 +399,7 @@ namespace Vistas
                     lblSexo.Text = "No disponible";
                 }
 
-                if(lblLocalidad != null && idLocalidad != DBNull.Value)
+                if (lblLocalidad != null && idLocalidad != DBNull.Value)
                 {
                     string descripcionLocalidad = negL.getDescripcionLocalidad(Convert.ToInt32(idLocalidad));
 
@@ -287,7 +410,7 @@ namespace Vistas
                     lblLocalidad.Text = "No Disponible";
                 }
 
-                if(lblProvincia != null && idLocalidad != DBNull.Value)
+                if (lblProvincia != null && idLocalidad != DBNull.Value)
                 {
                     int idProvincia = negL.getIdProvincia(Convert.ToInt32(idLocalidad));
 
@@ -302,7 +425,7 @@ namespace Vistas
                     lblProvincia.Text = "No Disponible";
                 }
 
-                if(lblNacionalidad != null && idNacionalidad != DBNull.Value)
+                if (lblNacionalidad != null && idNacionalidad != DBNull.Value)
                 {
                     string descripcionNacionalidad = negn.getDescripcionNacionalidad(Convert.ToInt32(idNacionalidad));
 

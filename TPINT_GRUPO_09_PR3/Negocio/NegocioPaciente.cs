@@ -92,6 +92,16 @@ namespace Negocio
             return dao.filtrarPaciente(dni, idNacionalidad);
         }
 
+        public DataTable getPacienteXDNI(string dni)
+        {
+            return dao.filtrarPacienteXDNI(dni);
+        }
+
+        public DataTable getPacienteXNacionalidad(int idNacionalidad)
+        {
+            return dao.filtrarPacienteXNacionalidad(idNacionalidad);
+        }
+
         public Paciente getPacienteAModificar(string dni, int idNacionalidad)
         {
             DataTable dtPaciente = new DataTable();
@@ -126,6 +136,11 @@ namespace Negocio
             return dao.filtrarPacientes();
         }
 
+        public DataTable getPacientesInactivos()
+        {
+            return dao.filtrarPacientesInactivos();
+        }
+
         public Boolean existePaciente(string dni, int idNacionalidad)
         {
             return dao.existePaciente(dni, idNacionalidad);
@@ -134,6 +149,16 @@ namespace Negocio
         public Boolean existePacienteDni(string dni)
         {
             return dao.existePacienteDni(dni);
+        }
+
+        public Boolean existePacienteNacionalidad(int idNacionalidad)
+        {
+            return dao.existePacienteNacionalidad(idNacionalidad);
+        }
+
+        public Boolean existenPacientesInactivos()
+        {
+            return dao.existenPacientesInactivos();
         }
 
         public Boolean existeEmail(string email)

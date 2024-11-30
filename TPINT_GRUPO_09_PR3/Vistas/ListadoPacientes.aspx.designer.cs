@@ -96,6 +96,24 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNacionalidad;
 
         /// <summary>
+        /// Control btnFiltrarDNI.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFiltrarDNI;
+
+        /// <summary>
+        /// Control btnFiltrarNacionalidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFiltrarNacionalidad;
+
+        /// <summary>
         /// Control btnFiltrar.
         /// </summary>
         /// <remarks>
@@ -112,6 +130,15 @@ namespace Vistas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnMostrarTodo;
+
+        /// <summary>
+        /// Control btnInactivos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnInactivos;
 
         /// <summary>
         /// Control lblError_Filtrar.
