@@ -56,7 +56,20 @@
 
         <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: stretch;">
             <asp:Label ID="lblInformeEspecialidad" runat="server" Text="" Style="margin-bottom: 15px; text-align: center;"></asp:Label>
-            <asp:GridView ID="gvPacientesConMasTurnos" CssClass="table table-hover" runat="server" Style="width: 100%;"></asp:GridView>
+            <asp:GridView ID="gvPacientesConMasTurnos" CssClass="table table-hover" runat="server" Style="width: 100%;" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:TemplateField HeaderText="Nombre Completo">
+                        <ItemTemplate>
+                            <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre_Completo") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Turnos Asistidos">
+                        <ItemTemplate>
+                            <asp:Label ID="lblTurnos" runat="server" Text='<%# Eval("Turnos_Asistidos") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
         </div>
     </div>
 </asp:Content>

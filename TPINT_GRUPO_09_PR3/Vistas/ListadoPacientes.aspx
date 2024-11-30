@@ -15,7 +15,7 @@
         }
     </script>
 
-    <title>Listado de Pacientes</title>
+    <title>Listado, Modificación y Baja de Pacientes</title>
     <style type="text/css">
         .auto-style1 {
             color: #006699;
@@ -133,7 +133,7 @@
 
             <div class="form-group">
                 <asp:Label ID="lblDNI" runat="server" Text="Ingrese el DNI del Paciente" CssClass="form-label"></asp:Label>
-                <asp:TextBox ID="txtDNI" class="form-control" runat="server" ValidationGroup="grupo1"></asp:TextBox>
+                <asp:TextBox ID="txtDNI" class="form-control" runat="server" ValidationGroup="grupo1" MaxLength="8"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ForeColor="#CC0000" ValidationGroup="grupo1" CssClass="error-message">(*) Complete el campo.</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ForeColor="#CC0000" ValidationExpression="^\d+$" ValidationGroup="grupo1" CssClass="error-message">(*) Ingrese solo números.</asp:RegularExpressionValidator>
             </div>
