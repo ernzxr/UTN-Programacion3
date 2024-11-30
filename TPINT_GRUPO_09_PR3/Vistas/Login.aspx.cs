@@ -53,7 +53,7 @@ namespace Vistas
             }
             else if (tipoUsuario == "Credenciales incorrectas")
             {
-                // Mostramos un mensaje de error si las credenciales no coinciden
+           
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "Usuario o contraseña incorrectos. Por favor, intente nuevamente.";
                 txtUsuario.Text = "";
@@ -61,7 +61,7 @@ namespace Vistas
             }
             else
             {
-                // Mensaje genérico para cualquier otro caso no esperado
+                
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "Ha ocurrido un error inesperado. Comuníquese con soporte.";
                 txtUsuario.Text = "";

@@ -246,6 +246,15 @@ namespace Dao
             SqlParametros.Value = int.Parse(idTurno);
             return ds.EjecutarProcedimientoAlmacenado(comando, "spReprogramarTurnoGestion") > 0;
         }
+
+        public DataTable BuscarTurnosPorFechas(DateTime fechaInicio, DateTime fechaFin)
+        {
+            SqlCommand comando = new SqlCommand();
+           
+            comando.Parameters.AddWithValue("@FechaInicio", fechaInicio);
+            comando.Parameters.AddWithValue("@FechaFin", fechaFin);
+            return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spBuscarTurnosPorFechas");
+        }
     }
    
 }

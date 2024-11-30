@@ -816,3 +816,11 @@ WHERE DNI_Pa = @DNI
   AND T.Estado_Tu = 1;
 END
 
+CREATE OR ALTER PROCEDURE spBuscarTurnosPorFechas
+    @FechaInicio DATE,
+    @FechaFin DATE
+AS
+BEGIN
+    SELECT * FROM Turnos
+    WHERE Fecha_Tu BETWEEN @FechaInicio AND @FechaFin  ORDER BY Fecha_Tu ASC;  
+END

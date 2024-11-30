@@ -64,11 +64,11 @@
             <div class="col-md-4">
                 <div class="card text-center mb-4">
                     <div class="card-body">
-                        <h5 class="card-title">Distribución de turnos por franja horaria</h5>
+                        <h5 class="card-title">Porcentaje de ausencias de turnos en un rango de fechas.</h5>
                         <p class="card-text">
-                            Analiza cuántos turnos se otorgaron en diferentes franjas horarias (por ejemplo, mañana, tarde) para cada especialidad.
+                         Permite al usuario seleccionar un período de fechas y ver un resumen de los turnos registrados en él, junto con el porcentaje de ausencias que se produjo entre esos turnos.
                         </p>
-                        <asp:HyperLink ID="hlReporteHorario" runat="server" NavigateUrl="ReporteHorarios.aspx" CssClass="btn btn-primary">
+                        <asp:HyperLink ID="hlReportePorcentaje" runat="server" NavigateUrl="ReportePorcentajeAusencias.aspx" CssClass="btn btn-primary">
                             Consultar Reporte
                         </asp:HyperLink>
                     </div>

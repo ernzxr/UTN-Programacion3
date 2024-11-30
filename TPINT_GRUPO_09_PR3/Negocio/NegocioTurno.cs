@@ -133,5 +133,10 @@ namespace Negocio
         {
             return daoTurno.ReprogramarTurnoGestion(idTurno);
         }
+
+        public DataTable ObtenerTurnosPorFechas(DateTime fechaInicio, DateTime fechaFin)
+        {
+            return daoTurno.BuscarTurnosPorFechas(fechaInicio, fechaFin);
+        }
     }
 }

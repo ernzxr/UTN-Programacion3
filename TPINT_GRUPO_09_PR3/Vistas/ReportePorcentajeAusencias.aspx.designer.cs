@@ -78,6 +78,15 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
+        /// Control cvFecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvFecha;
+
+        /// <summary>
         /// Control btnGenerar.
         /// </summary>
         /// <remarks>
@@ -105,21 +114,21 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblTotalTurnos;
 
         /// <summary>
-        /// Control lblNoAsistidos.
+        /// Control lblTurnosAusentes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoAsistidos;
+        protected global::System.Web.UI.WebControls.Label lblTurnosAusentes;
 
         /// <summary>
-        /// Control lblPorcentajeAusencias.
+        /// Control lblPorcentaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPorcentajeAusencias;
+        protected global::System.Web.UI.WebControls.Label lblPorcentaje;
     }
 }

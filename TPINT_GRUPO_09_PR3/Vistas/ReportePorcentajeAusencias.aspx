@@ -8,7 +8,7 @@
          font-size: x-large;
          font-family: Arial, Helvetica, sans-serif;
      }
- </style>
+    </style>
 </asp:Content>
         
 
@@ -23,7 +23,7 @@
      <div style="display: flex; gap: 10px; align-items: center;">
      <asp:TextBox ID="txtInicio" runat="server" TextMode="Date" CssClass="form-control mt-2" ValidationGroup="Grupo1"></asp:TextBox>
      <div style="display: flex; gap: 10px; align-items: center;">
-         <asp:RequiredFieldValidator ID="rfvInicio" runat="server" ControlToValidate="txtInicio" CssClass="text-danger" Text="* Requerido" Display="Dynamic" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>
+         <asp:RequiredFieldValidator ID="rfvInicio" runat="server" ControlToValidate="txtInicio" CssClass="text-danger" Text="(*) Campo requerido" Display="Dynamic" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>
      </div>
    </div>
  </div>
@@ -33,13 +33,15 @@
     <div style="display: flex; gap: 10px; align-items: center;">
     <asp:TextBox ID="txtFin" runat="server" TextMode="Date" CssClass="form-control mt-2" ValidationGroup="Grupo1"></asp:TextBox>
     <div style="display: flex; gap: 10px; align-items: center;">
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFin" CssClass="text-danger" Text="* Requerido" Display="Dynamic" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFin" CssClass="text-danger" Text="(*) Campo requerido" Display="Dynamic" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>
+        <asp:CompareValidator  ID="cvFecha" runat="server" ControlToValidate="txtFin" CssClass="text-danger"   ControlToCompare="txtInicio"  Operator="GreaterThan"  Type="Date" Text="La fecha fin debe ser mayor que la fecha inicio." Display="Dynamic" ValidationGroup="Grupo1" > </asp:CompareValidator>
+
     </div>
   </div>
 </div>
 
          <div class="form-group text-center mt-4">
-        <asp:Button ID="btnGenerar" runat="server" Text="Generar reporte" CssClass="btn btn-primary mt-2" OnClick="btnGenerar_Click" />
+        <asp:Button ID="btnGenerar" runat="server" Text="Generar reporte" CssClass="btn btn-primary mt-2" OnClick="btnGenerar_Click"  ValidationGroup="Grupo1" />
     </div>
 
 <asp:GridView 
@@ -104,9 +106,10 @@
 
     <!-- Resumen -->
     <div class="summary mt-3">
-        <p>Total de Turnos Dados: <asp:Label ID="lblTotalTurnos" runat="server"></asp:Label></p>
-        <p>Turnos No Asistidos: <asp:Label ID="lblNoAsistidos" runat="server"></asp:Label></p>
-        <p>Porcentaje de Ausencias: <asp:Label ID="lblPorcentajeAusencias" runat="server"></asp:Label>%</p>
+         <asp:Label ID="lblTotalTurnos" runat="server" Text=""></asp:Label>
+          <asp:Label ID="lblTurnosAusentes" runat="server" Text=""></asp:Label>
+          <asp:Label ID="lblPorcentaje" runat="server" Text="" ></asp:Label>
+          
     </div>
 
 
