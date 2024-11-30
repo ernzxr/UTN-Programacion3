@@ -101,71 +101,72 @@ namespace Dao
         private void ArmarParametrosNuevaClave(ref SqlCommand Comando, string usuario, string email, string nuevaClave)
         {
             SqlParameter SqlParametros = new SqlParameter();
+            SqlParametros = Comando.Parameters.Add("@Email", SqlDbType.VarChar, 100);
+            SqlParametros.Value = email;
             SqlParametros = Comando.Parameters.Add("@Usuario", SqlDbType.VarChar, 50);
             SqlParametros.Value = usuario;
             SqlParametros = Comando.Parameters.Add("@NuevaClave", SqlDbType.VarChar, 80);
             SqlParametros.Value = nuevaClave;
-            SqlParametros = Comando.Parameters.Add("@Email", SqlDbType.VarChar, 100);
-            SqlParametros.Value = email;
         }
 
-        public bool VerificarYActualizarClave(string usuario, string email, string nuevaClave)
-        {
-            string consulta = @"
-            SELECT TU.Id_Tipo_Usuario_TU
-            FROM Usuarios U
-            INNER JOIN Tipos_Usuarios TU ON U.Id_Tipo_Usuario_Us = TU.Id_Tipo_Usuario_TU
-            WHERE U.Usuario_Us = @Usuario AND U.Email_Us = @Email";
-
-            // Crear el comando y agregar los parámetros
-            SqlCommand comando = new SqlCommand(consulta);
-            comando.Parameters.AddWithValue("@Usuario", usuario);
-            comando.Parameters.AddWithValue("@Email", email);
-
-            // Obtener la conexión
-            SqlConnection conexion = _accesoDatos.ObtenerConexion();
-            if (conexion == null)
+     
+        
+            public string VerificarYActualizarClave(string usuario, string email, string nuevaClave)
             {
-                // Si no se pudo establecer la conexión, retornamos false
-                return false;
+                bool esValido = false;
+                int tipoUsuario = -1;
+
+                string consulta = @"
+                    SELECT U.Usuario_Us, U.Email_Us, U.Id_Tipo_Usuario_Us
+                    FROM Usuarios U
+                    WHERE U.Usuario_Us = @Usuario AND U.Email_Us = @Email";
+
+                using (SqlConnection conexion = _accesoDatos.ObtenerConexion())
+                {
+                    if (conexion == null)
+                    {
+                        // Si no se pudo obtener la conexión, simplemente retorna vacío o un valor de error controlado
+                        return string.Empty; // O puedes retornar null o cualquier otro valor para indicar el error
+                    }
+
+                    using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@Usuario", usuario);
+                        comando.Parameters.AddWithValue("@Email", email);
+
+                        SqlDataReader reader = comando.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            string usuarioDB = reader.GetString(0);
+                            string emailDB = reader.GetString(1);
+                            tipoUsuario = reader.GetInt32(2);
+
+                            // Verifica si las credenciales coinciden
+                            if (usuarioDB.Equals(usuario, StringComparison.Ordinal) && emailDB.Equals(email, StringComparison.Ordinal))
+                            {
+                                esValido = tipoUsuario == 2; // Solo si el tipo de usuario es 2
+                            }
+                        }
+
+                        reader.Close();
+                    }
+                }
+
+                // Si es válido, actualiza la contraseña
+                if (esValido)
+                {
+                    SqlCommand cmdActualizar = new SqlCommand();
+                    ArmarParametrosNuevaClave(ref cmdActualizar, usuario, email, nuevaClave);
+
+                    _accesoDatos.EjecutarProcedimientoAlmacenado(cmdActualizar, "ActualizarClave");
+                return "Contraseña actualizada correctamente.";
             }
 
-            // Asignar la conexión al comando
-            comando.Connection = conexion;
+            // Si no es válido, retorna vacío o un valor que indique que la operación no fue exitosa
 
-            // Ejecutar la consulta para verificar si existe el usuario y obtener el tipo de usuario
-            SqlDataReader reader = comando.ExecuteReader();
-
-            int tipoUsuario = -1; // Variable para almacenar el tipo de usuario
-            if (reader.Read())
-            {
-                tipoUsuario = reader.GetInt32(0); // Obtenemos el valor de Id_Tipo_Usuario_TU
-            }
-
-            // Cerrar la conexión y el lector
-            reader.Close();
-            conexion.Close();
-
-            if (tipoUsuario == 1)
-            {
-                return false;
-                
-            }
-
-            if (tipoUsuario == 2)
-            {
-                // Si el usuario es válido y no es administrador, procedemos a cambiar la clave
-                SqlCommand cmdActualizar = new SqlCommand();
-                ArmarParametrosNuevaClave(ref cmdActualizar, usuario, email, nuevaClave);
-
-                // Ejecutar el procedimiento almacenado para actualizar la contraseña
-                _accesoDatos.EjecutarProcedimientoAlmacenado(cmdActualizar, "ActualizarClave");
-
-                return true; // Contraseña actualizada correctamente
-            }
-
-            return false; // Usuario o email no encontrados
+            return "El usuario o el email no están registrados o las credenciales no son correctas.";
         }
+
 
         }
     }

@@ -53,17 +53,14 @@ namespace Negocio
 
         }
 
-        public bool CambiarContraseña(string usuario, string email, string nuevaClave)
+        public string CambiarContraseña(string usuario, string email, string nuevaClave)
         {
-            // Llamar al método de DaoUsuario para verificar y actualizar la contraseña
-            return _daoUsuario.VerificarYActualizarClave(usuario, email, nuevaClave);
-            
-            
+            string resultado = _daoUsuario.VerificarYActualizarClave(usuario, email, nuevaClave);
+            return resultado; // Este debería devolver un mensaje, no un bool
         }
 
-        
-            
-        
+
+
     }
 
 

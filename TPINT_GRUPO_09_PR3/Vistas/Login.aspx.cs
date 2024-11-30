@@ -18,15 +18,15 @@ namespace Vistas
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            // Capturamos los valores ingresados
+           
             string usuario = txtUsuario.Text;
             string contraseña = txtPass.Text;
 
-            // Instanciamos la capa de negocio
+         
             NegocioUsuario negocioUsuario = new NegocioUsuario();
             NegocioMedico negocioMedico = new NegocioMedico();
 
-            // Verificamos las credenciales
+
             string tipoUsuario = negocioUsuario.VerificarUsuario(usuario, contraseña);
 
             if (tipoUsuario == "Administrador")
