@@ -84,7 +84,6 @@ namespace Negocio
             return dao.existeLegajo(legajo);
         }
 
-
         public DataTable getMedico(string legajo)
         {
             return dao.filtrarMedico(legajo);

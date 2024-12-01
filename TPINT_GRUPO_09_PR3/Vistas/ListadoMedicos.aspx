@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Listado de Médicos" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ListadoMedicos.aspx.cs" Inherits="Vistas.ListadoMedicos" %>
+﻿<%@ Page Title="Listado, Modificación y Baja de Médicos" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ListadoMedicos.aspx.cs" Inherits="Vistas.ListadoMedicos" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -55,7 +55,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <div style="width: 100%; display: flex; flex-direction: column; align-items: center; position: relative;">
         <div style="width: 28%; display: flex; flex-direction: column; align-items: center;">
-            <asp:Label ID="lblTitulo" runat="server" Text="Listar médicos" CssClass="auto-style1 mb-4"></asp:Label>
+            <asp:Label ID="lblTitulo" runat="server" Text="Listado, Modificación y Baja de Médicos" CssClass="auto-style1 mb-4"></asp:Label>
 
             <asp:Label ID="lblLegajo" runat="server" Text="Ingrese el legajo del médico" CssClass="mb-2"></asp:Label>
             <asp:TextBox ID="txtLegajo" class="form-control" runat="server" ValidationGroup="grupo1" MaxLength="5"></asp:TextBox>

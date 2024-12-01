@@ -291,7 +291,6 @@ namespace Dao
             return ds.existe(consulta);
         }
 
-
         public DataTable filtrarMedico(string legajo)
         {
             string consulta = "SELECT Legajo_Me AS Legajo, Nombre_Me As Nombre, Apellido_Me AS Apellido,DNI_Me AS DNI, " +
