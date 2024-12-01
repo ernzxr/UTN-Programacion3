@@ -96,15 +96,9 @@ namespace Dao
             return ds.existe(consulta);
         }
 
-        //public Boolean existeMedico(string legajo)
-        //{
-        //    string consulta = "SELECT * FROM Medicos WHERE Legajo_Me = '" + legajo + "' AND Estado_ME = 1";
-        //    return ds.existe(consulta);
-        //}
-
         public Boolean existeMedicoLIKE(string legajo)
         {
-            string consulta = "SELECT * FROM Medicos WHERE Legajo_Me LIKE '%" + legajo + "%'  AND Estado_ME = 1";
+            string consulta = "SELECT * FROM Medicos WHERE Legajo_Me LIKE '%" + legajo + "%'";
             return ds.existe(consulta);
         }
 
@@ -316,17 +310,17 @@ namespace Dao
                 "Fecha_Nacimiento_Me AS Fecha_De_Nacimiento, Direccion_Me AS Direccion, Email_Me AS Email, Telefono_Me AS Telefono, Estado_Me AS Estado, " +
                 "Id_Especialidad_Me AS Id_Especialidad, Id_Genero_Me AS Id_Genero, Id_Nacionalidad_Me AS Id_Nacionalidad, " +
                 "Id_Localidad_Me AS Id_Localidad " +
-                "FROM Medicos WHERE Legajo_Me LIKE '%" + legajo + "%'" + " AND Estado_Me = " + 1;
+                "FROM Medicos WHERE Legajo_Me LIKE '%" + legajo + "%'";
             DataTable tabla = ds.ObtenerTabla("Medicos", consulta);
 
             return tabla;
         }
-        public DataTable filtrarMedico()
+        public DataTable filtrarMedicos()
         {
             string consulta = "SELECT Legajo_Me AS Legajo, Nombre_Me As Nombre, Apellido_Me AS Apellido, DNI_Me AS DNI, " +
                 "Fecha_Nacimiento_Me AS Fecha_De_Nacimiento, Direccion_Me AS Direccion, Email_Me AS Email, Telefono_Me AS Telefono, " +
                 "Estado_Me AS Estado, Id_Especialidad_Me AS Id_Especialidad, Id_Genero_Me AS Id_Genero, Id_Nacionalidad_Me AS Id_Nacionalidad, " +
-                "Id_Localidad_Me AS Id_Localidad FROM Medicos WHERE Estado_Me = " + 1;
+                "Id_Localidad_Me AS Id_Localidad FROM Medicos";
             DataTable tabla = ds.ObtenerTabla("Medicos", consulta);
 
             return tabla;

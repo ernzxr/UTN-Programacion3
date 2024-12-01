@@ -70,7 +70,7 @@
         </div>
 
         <div style="width: 100%; margin-top: 20px;">
-            <asp:GridView runat="server" ID="gvMedicos" OnRowDataBound="gvMedicos_RowDataBound" CssClass="table table-hover" AutoGenerateColumns="False">
+            <asp:GridView runat="server" ID="gvMedicos" OnRowDataBound="gvMedicos_RowDataBound" CssClass="table table-hover" AutoGenerateColumns="False" AllowPaging="True" PageSize="6" PagerStyle-HorizontalAlign="Center" OnPageIndexChanging="gvMedicos_PageIndexChanging">
                 <Columns>
                     <asp:BoundField AccessibleHeaderText="Legajo" DataField="Legajo" HeaderText="Legajo" />
                     <asp:TemplateField HeaderText="Especialidad">

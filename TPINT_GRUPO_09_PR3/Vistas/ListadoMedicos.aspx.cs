@@ -110,8 +110,11 @@ namespace Vistas
             
             if (Negm.existeMedicoLIKE(legajo))
             {
-                gvMedicos.DataSource = Negm.getMedicoLIKE(legajo);
+                DataTable dt = Negm.getMedicoLIKE(legajo);
+                Session["filtra"] = dt;
+                gvMedicos.DataSource = dt;
                 gvMedicos.DataBind();
+                Session["contiene"] = true;
 
                 txtLegajo.Text = "";
                 lblError_Filtrar.Text = "";
@@ -125,8 +128,9 @@ namespace Vistas
         }
         protected void btnMostrarTodo_Click(object sender, EventArgs e)
         {
-            gvMedicos.DataSource = Negm.getMedico();
+            gvMedicos.DataSource = Negm.getMedicos();
             gvMedicos.DataBind();
+            Session["contiene"] = false;
 
             txtLegajo.Text = "";
             lblError_Filtrar.Text = "";
@@ -228,7 +232,7 @@ namespace Vistas
         {
            bool borro = Negm.bajaMedico(txtLegajo_E.Text);
 
-           gvMedicos.DataSource = Negm.getMedico();
+           gvMedicos.DataSource = Negm.getMedicos();
            gvMedicos.DataBind();
           
         }
@@ -242,7 +246,7 @@ namespace Vistas
 
                 lblCatch.Text = "";
 
-                gvMedicos.DataSource = Negm.getMedico();
+                gvMedicos.DataSource = Negm.getMedicos();
                 gvMedicos.DataBind();
 
             }
@@ -347,6 +351,22 @@ namespace Vistas
                     lblLocalidad.Text = "No Disponible";
                 }
             }
+        }
+
+        protected void gvMedicos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvMedicos.PageIndex = e.NewPageIndex;
+            if (Convert.ToBoolean(Session["contiene"]))
+            {
+                //filtra
+                gvMedicos.DataSource = Session["filtra"];
+            }
+            else
+            {
+                //mostrar todos
+                gvMedicos.DataSource = Negm.getMedicos();
+            }
+            gvMedicos.DataBind();
         }
     }
 }

@@ -95,9 +95,9 @@ namespace Negocio
             return dao.filtrarMedicoLIKE(legajo);
         }
 
-        public DataTable getMedico()
+        public DataTable getMedicos()
         {
-            return dao.filtrarMedico();
+            return dao.filtrarMedicos();
         }
 
         public bool bajaMedico(string legajo)
