@@ -98,6 +98,7 @@
     <Content Include="MiPerfil.aspx" />
     <Content Include="MisTurnos.aspx" />
     <Content Include="HorariosMedicos.aspx" />
+    <Content Include="ModificarUsuario.aspx" />
     <Content Include="ReporteHorarios.aspx" />
     <Content Include="ReportePacientesFrecuentes.aspx" />
     <Content Include="ReportePorcentajeAusencias.aspx" />
@@ -232,6 +233,13 @@
     </Compile>
     <Compile Include="HorariosMedicos.aspx.designer.cs">
       <DependentUpon>HorariosMedicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarUsuario.aspx.cs">
+      <DependentUpon>ModificarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarUsuario.aspx.designer.cs">
+      <DependentUpon>ModificarUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main.Master.cs">

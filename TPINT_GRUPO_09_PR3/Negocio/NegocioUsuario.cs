@@ -59,7 +59,10 @@ namespace Negocio
             return resultado; 
         }
 
-
+        public Boolean existeIdUsuario(int idUsuario)
+        {
+            return _daoUsuario.existeIdUsuario(idUsuario);
+        }
 
     }
 

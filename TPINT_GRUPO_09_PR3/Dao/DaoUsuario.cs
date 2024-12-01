@@ -168,7 +168,16 @@ namespace Dao
         }
 
 
+        public Boolean existeIdUsuario(int idUsuario)
+        {
+            string consulta = "SELECT * FROM Usuarios WHERE Id_Usuario_Us = '" + idUsuario + "'";
+            return _accesoDatos.existe(consulta);
         }
+
+
+
+
+    }
     }
 
 
