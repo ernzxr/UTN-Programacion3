@@ -21,6 +21,7 @@ namespace Vistas
         NegocioAusenciaMedico negocioAusenciaMedico = new NegocioAusenciaMedico();
         NegocioPaciente negocioPaciente = new NegocioPaciente();
         NegocioTurno negocioTurno = new NegocioTurno();
+        NegocioNacionalidad negNacionalidad = new NegocioNacionalidad();
         Turno turno = new Turno();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -36,6 +37,7 @@ namespace Vistas
             {
                 LimpiarCampos();
                 CargarEspecialidades();
+                CargarNacionalidades();
             }
         }
 
@@ -77,6 +79,20 @@ namespace Vistas
             ddlProfesionales.Items.Insert(0, new ListItem("-- Seleccionar --", "0"));
             ddlProfesionales.Items[0].Attributes["disabled"] = "disabled";
             ddlProfesionales.Items[0].Selected = true;
+        }
+
+        private void CargarNacionalidades()
+        {
+            DataTable dt = negNacionalidad.getTablaNacionalidad();
+            ddlNacionalidades.DataSource = dt;
+            ddlNacionalidades.DataTextField = "Descripcion_Na";
+            ddlNacionalidades.DataValueField = "Id_Nacionalidad_Na";
+            ddlNacionalidades.DataBind();
+
+            ddlNacionalidades.Items.Insert(0, new ListItem("-- Seleccionar --", "0"));
+            ddlNacionalidades.Items[0].Attributes["disabled"] = "disabled";
+            ddlNacionalidades.Items[0].Selected = true;
+
         }
 
         protected void txtDia_TextChanged(object sender, EventArgs e)
@@ -251,8 +267,9 @@ namespace Vistas
             }
 
             string dni = Convert.ToString(txtDniPaciente.Text);
+            int id = Convert.ToInt32(ddlNacionalidades.SelectedValue);
 
-            if (negocioPaciente.existePacienteDni(dni))
+            if (negocioPaciente.existePaciente(dni, id))
             {
                 lblMensaje.Text = "";
 
@@ -270,10 +287,10 @@ namespace Vistas
                 turno.setLegajo_Medico(legajoMedico);
                 turno.setFecha(fechaSeleccionada);
                 turno.setHora(horaSeleccionada);
-                turno.setDni_Paciente(txtDniPaciente.Text);
+                turno.setDni_Paciente(dni);
                 turno.setIdLocalidadPaciente(negocioPaciente.ObtenerLocalidadPorDNI(dni));
                 turno.setAsistencia(false);
-                turno.setIdNacionalidad(negocioPaciente.ObtenerNacionalidadPorDNI(dni));
+                turno.setIdNacionalidad(id);
 
                 bool turnoAgregado = negocioTurno.AgregarTurno(turno);
 
@@ -317,6 +334,7 @@ namespace Vistas
             // Limpiar DropDownLists
             ddlEspecialidades.ClearSelection();
             ddlProfesionales.ClearSelection();
+            ddlNacionalidades.ClearSelection();
 
             // Restablecer la selección inicial
             if (ddlEspecialidades.Items.Count > 0)
@@ -329,6 +347,12 @@ namespace Vistas
             {
                 ddlProfesionales.SelectedIndex = -1; // Quitar selección
                 ddlProfesionales.Items[0].Selected = true; // Seleccionar el primer ítem (disabled)
+            }
+
+            if (ddlNacionalidades.Items.Count > 0)
+            {
+                ddlNacionalidades.SelectedIndex = -1; // Quitar selección
+                ddlNacionalidades.Items[0].Selected = true; // Seleccionar el primer ítem (disabled)
             }
 
         }

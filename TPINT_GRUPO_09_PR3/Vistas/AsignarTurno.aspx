@@ -70,6 +70,14 @@
                 InitialValue="-- Seleccionar --" ErrorMessage="Seleccione un profesional" 
                 style="color: red; font-size: 12px;"></asp:RequiredFieldValidator>
 
+            <asp:Label ID="lblNacionalidad" runat="server" Text="Nacionalidad:" 
+                 style="font-weight: bold;"></asp:Label>
+            <asp:DropDownList ID="ddlNacionalidades" runat="server" 
+                 style="width: 100%; padding: 5px;"></asp:DropDownList>
+            <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="ddlNacionalidades"
+                 InitialValue="0" ErrorMessage="Seleccione una nacionalidad" 
+                 style="color: red; font-size: 12px;"></asp:RequiredFieldValidator>
+
             <asp:Label ID="lblDniPaciente" runat="server" Text="Dni del paciente:" 
                 style="font-weight: bold;"></asp:Label>
             <asp:TextBox ID="txtDniPaciente" runat="server" MaxLength="8"
