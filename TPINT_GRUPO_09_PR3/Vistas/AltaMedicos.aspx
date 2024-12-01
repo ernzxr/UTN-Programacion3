@@ -87,7 +87,7 @@
 
                 <asp:Label ID="lblUsuario" runat="server" Text="Usuario" Style="align-self: flex-start"></asp:Label>
                 <asp:TextBox ID="txtUsuario" class="form-control" runat="server"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="rev" runat="server" ControlToValidate="txtUsuario" Text="*El usuario solo debe contener letras minúsculas" ValidationExpression="^[a-z]+$"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="rev" runat="server" ControlToValidate="txtUsuario" ValidationGroup="gpAgregar" Text="*El usuario solo debe contener letras minúsculas" ValidationExpression="^[a-z]+$"></asp:RegularExpressionValidator>
                 <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" ForeColor="#CC0000" ValidationGroup="gpAgregar">(*) Complete el campo.</asp:RequiredFieldValidator>
                 <asp:CustomValidator ID="cvExisteUsuario" OnServerValidate="cvExisteUsuario_ServerValidate" runat="server" ForeColor="#CC0000" ValidationGroup="gpAgregar" ControlToValidate="txtUsuario" Text="(*) El usuario ingresado ya existe"></asp:CustomValidator>
                
@@ -108,7 +108,7 @@
 
                 <asp:Label ID="lblLegajo" runat="server" Text="Legajo" Style="align-self: flex-start"></asp:Label>
                 <asp:TextBox ID="txtLegajo" class="form-control" runat="server" ValidationGroup="gpAgregar" MaxLength="5"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajo" ForeColor="#CC0000">(*) Complete el campo.</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajo" ValidationGroup="gpAgregar" ForeColor="#CC0000">(*) Complete el campo.</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txtLegajo" ForeColor="#CC0000" ValidationExpression="^\d+$" ValidationGroup="gpAgregar">(*) Ingrese solo números.</asp:RegularExpressionValidator>
                 <asp:CustomValidator ID="cvExisteLegajo" OnServerValidate="cvExisteLegajo_ServerValidate" runat="server" ForeColor="#CC0000" ValidationGroup="gpAgregar" ControlToValidate="txtUsuario" >(*) El legajo ingresado ya existe.></asp:CustomValidator>
 
@@ -133,7 +133,7 @@
 
                 <asp:Label ID="lblApellido" runat="server" Text="Apellido" Style="align-self: flex-start"></asp:Label>
                 <asp:TextBox ID="txtApellido" class="form-control" runat="server" ></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" ForeColor="#CC0000" >(*) Complete el campo.</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" ValidationGroup="gpAgregar" ForeColor="#CC0000" >(*) Complete el campo.</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revApellido" CssClass="mb-3" runat="server" ControlToValidate="txtApellido" ForeColor="#CC0000" ValidationExpression="^[a-zA-Z\s]+$" ValidationGroup="gpAgregar">(*) Ingrese solo letras.</asp:RegularExpressionValidator>
 
 
