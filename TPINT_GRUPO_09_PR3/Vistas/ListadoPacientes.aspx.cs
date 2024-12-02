@@ -192,32 +192,13 @@ namespace Vistas
             }
         }
 
-        protected void btnMostrarActivos_Click(object sender, EventArgs e)
+        protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
             gvPacientes.DataSource = NegP.getPacientes();
             gvPacientes.DataBind();
             Session["contiene"] = 4;
 
-            txtDNI.Text = "";
-            ddlNacionalidad.SelectedValue = "0";
             lblError_Filtrar.Text = "";
-        }
-
-        protected void btnMostrarInactivos_Click(object sender, EventArgs e)
-        {
-            if (NegP.existenPacientesInactivos())
-            {
-                gvPacientes.DataSource = NegP.getPacientesInactivos();
-                gvPacientes.DataBind();
-                Session["contiene"] = 5;
-
-                lblError_Filtrar.Text = "";
-
-            }
-            else
-            {
-                lblError_Filtrar.Text = "No hay pacientes inactivos.";
-            }
 
             txtDNI.Text = "";
             ddlNacionalidad.SelectedValue = "0";
@@ -274,12 +255,9 @@ namespace Vistas
         {
             bool borro = NegP.bajaPaciente(txtDNI_E.Text, int.Parse(ddlNacionalidad_E.SelectedValue));
 
-            if (borro)
-            {
-                gvPacientes.DataSource = NegP.getPacientes();
-                gvPacientes.DataBind();
+            gvPacientes.DataSource = NegP.getPacientes();
+            gvPacientes.DataBind();
 
-            }
         }
 
         protected void btnModificarM_Click(Object sender, EventArgs e)
@@ -355,12 +333,8 @@ namespace Vistas
                     gvPacientes.DataSource = Session["dtAmbos"];
                     break;
                 case 4:
-                    //filtra todos los activos
+                    //filtra todos los pacientes
                     gvPacientes.DataSource = NegP.getPacientes();
-                    break;
-                case 5:
-                    //filtra todos los inactivos
-                    gvPacientes.DataSource = NegP.getPacientesInactivos();
                     break;
             }
 
@@ -379,6 +353,8 @@ namespace Vistas
                 Label lblLocalidad = (Label)e.Row.FindControl("lblLocalidad");
                 Label lblProvincia = (Label)e.Row.FindControl("lblProvincia");
                 Label lblNacionalidad = (Label)e.Row.FindControl("lblNacionalidad");
+                CheckBox chkEstado = (CheckBox)e.Row.FindControl("chkEstado");
+                Button btnEliminar = (Button)e.Row.FindControl("btnEliminar");
 
                 if (lblSexo != null && idGenero != DBNull.Value)
                 {
@@ -435,6 +411,12 @@ namespace Vistas
                 {
                     lblNacionalidad.Text = "No Disponible";
                 }
+
+                if(!chkEstado.Checked)
+                {
+                    btnEliminar.Enabled = false;
+                }
+
 
             }
 

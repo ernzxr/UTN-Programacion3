@@ -170,14 +170,46 @@ namespace Dao
 
         public Boolean existeIdUsuario(int idUsuario)
         {
-            string consulta = "SELECT * FROM Usuarios WHERE Id_Usuario_Us = '" + idUsuario + "'";
+            string consulta = "SELECT * FROM Usuarios WHERE Id_Usuario_Us = '" + idUsuario + "' AND Id_Tipo_Usuario_Us = 2";
+            return _accesoDatos.existe(consulta);
+        }
+
+        public Boolean existeNombreUsuario(string user)
+        {
+            string consulta = "SELECT * FROM Usuarios WHERE Usuario_Us = '" + user + "'";
+            return _accesoDatos.existe(consulta);
+        }
+        public Boolean existeEmail(string email)
+        {
+            string consulta = "SELECT * FROM Usuarios WHERE Email_Us = '" + email + "'";
             return _accesoDatos.existe(consulta);
         }
 
 
+      /*  public int modificarUsuario(Usuario user)
+        {
+            SqlCommand comando = new SqlCommand();
+            ArmarParametrosModificarUsuario(ref comando, user);
+            return _accesoDatos.EjecutarProcedimientoAlmacenado(comando, "spModificarUsuario");
+        }
 
+        private void ArmarParametrosModificarUsuario(ref SqlCommand Comando, Usuario user)
+        {
+            // Agregar los parámetros necesarios para el procedimiento de modificación
+            SqlParameter SqlParametros = new SqlParameter();
 
+            SqlParametros = Comando.Parameters.Add("@USUARIO", SqlDbType.VarChar, 50);
+            SqlParametros.Value = user.GetUsuarioUs();
+
+            SqlParametros = Comando.Parameters.Add("@CLAVE", SqlDbType.VarChar, 80);
+            SqlParametros.Value = user.GetClaveUs(); 
+
+            SqlParametros = Comando.Parameters.Add("@EMAIL", SqlDbType.VarChar, 100);
+            SqlParametros.Value = user.GetEmailUs(); 
+        }
+
+        */
     }
-    }
+}
 
 

@@ -817,6 +817,7 @@ WHERE DNI_Pa = @DNI
   AND T.Fecha_Tu > CAST(GETDATE() AS DATE)
   AND T.Id_Ciclo_Turno_Tu = 1;
 END
+GO
 
 CREATE OR ALTER PROCEDURE spBuscarTurnosPorFechas
     @FechaInicio DATE,
@@ -824,5 +825,6 @@ CREATE OR ALTER PROCEDURE spBuscarTurnosPorFechas
 AS
 BEGIN
     SELECT * FROM Turnos
-    WHERE Fecha_Tu BETWEEN @FechaInicio AND @FechaFin  ORDER BY Fecha_Tu ASC;  
+    WHERE Fecha_Tu BETWEEN @FechaInicio AND @FechaFin ORDER BY Fecha_Tu ASC
 END
+GO

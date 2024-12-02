@@ -1,4 +1,5 @@
-﻿using Negocio;
+﻿using Entidades;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Vistas
     public partial class ModificarUsuario : System.Web.UI.Page
     {
         private NegocioUsuario negocioUsuario = new NegocioUsuario();
+        Usuario usuario = new Usuario();
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -22,17 +24,17 @@ namespace Vistas
         }
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-             int idUsuario;
+            int idUsuario;
             if (int.TryParse(txtIdUsuario.Text, out idUsuario))
             {
-              
+
                 bool existe = negocioUsuario.existeIdUsuario(idUsuario);
 
                 if (existe)
                 {
                     lblMensaje.Text = "";
                     pnlModificacion.Visible = true;
-                   
+
                     //CargarUsuario(idUsuario);
                 }
                 else
@@ -41,7 +43,7 @@ namespace Vistas
                     txtIdUsuario.Text = "";
                     pnlModificacion.Visible = false;
                     lblMensaje.Text = "El ID de usuario no existe.";
-                   
+
 
                 }
             }
@@ -53,10 +55,39 @@ namespace Vistas
             }
         }
 
-        
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
 
         }
+
+        protected void cvExisteUsuario_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (negocioUsuario.existeUsuario(txtUsuario.Text))
+            { 
+                args.IsValid = false;
+            }
+            else
+            {   
+                args.IsValid = true;
+            }
+        }
+
+        // Validación para el email
+        protected void cvExisteEmail_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            // Verificar si el email ya existe en la base de datos
+            if (negocioUsuario.existeEmail(txtEmail.Text))
+            {
+                // Si el email ya existe, la validación falla y se muestra el mensaje
+                args.IsValid = false;
+            }
+            else
+            {
+                // Si el email no existe, la validación es exitosa
+                args.IsValid = true;
+            }
+        }
     }
-}
+ }
+    

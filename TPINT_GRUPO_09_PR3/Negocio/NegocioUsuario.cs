@@ -64,6 +64,23 @@ namespace Negocio
             return _daoUsuario.existeIdUsuario(idUsuario);
         }
 
+        public bool existeNombreUsuario(string usuario)
+        {
+            return _daoUsuario.existeUsuario(usuario);
+        }
+
+        
+        public bool existeEmail(string email)
+        {
+            // Llamar al método de la capa de negocio o DAO para verificar si el email existe
+            return _daoUsuario.existeEmail(email);
+        }
+
+
+
+
+
+
     }
 
 

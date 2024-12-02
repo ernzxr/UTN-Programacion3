@@ -281,6 +281,8 @@ namespace Vistas
             Label lblNacionalidad = (Label)e.Row.FindControl("lblNacionalidad");
             Label lblProvincia = (Label)e.Row.FindControl("lblProvincia");
             Label lblLocalidad = (Label)e.Row.FindControl("lblLocalidad");
+            CheckBox chkEstado = (CheckBox)e.Row.FindControl("chkEstado");
+            Button btnEliminar = (Button)e.Row.FindControl("btnEliminar");
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -349,6 +351,11 @@ namespace Vistas
                 else
                 {
                     lblLocalidad.Text = "No Disponible";
+                }
+
+                if (!chkEstado.Checked)
+                {
+                    btnEliminar.Enabled = false;
                 }
             }
         }
