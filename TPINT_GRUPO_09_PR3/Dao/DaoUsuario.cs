@@ -184,31 +184,34 @@ namespace Dao
             string consulta = "SELECT * FROM Usuarios WHERE Email_Us = '" + email + "'";
             return _accesoDatos.existe(consulta);
         }
-
-
-      /*  public int modificarUsuario(Usuario user)
+        public int modificarUsuario(Usuario user)
         {
-            SqlCommand comando = new SqlCommand();
-            ArmarParametrosModificarUsuario(ref comando, user);
-            return _accesoDatos.EjecutarProcedimientoAlmacenado(comando, "spModificarUsuario");
+            try
+            {
+                SqlCommand comando = new SqlCommand();
+                ArmarParametrosModificarUsuario(comando, user);
+                return _accesoDatos.EjecutarProcedimientoAlmacenado(comando, "ModificarUsuario");  // Ejecutar el SP
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones, por ejemplo, podrías loguear el error o mostrar un mensaje
+                Console.WriteLine($"Error al modificar el usuario: {ex.Message}");
+                return -1; // Retorna un valor que indique que hubo un error
+            }
         }
 
-        private void ArmarParametrosModificarUsuario(ref SqlCommand Comando, Usuario user)
+        private void ArmarParametrosModificarUsuario(SqlCommand comando, Usuario user)
         {
-            // Agregar los parámetros necesarios para el procedimiento de modificación
-            SqlParameter SqlParametros = new SqlParameter();
+            // Agregar los parámetros para la modificación del usuario
+            comando.Parameters.Clear(); 
 
-            SqlParametros = Comando.Parameters.Add("@USUARIO", SqlDbType.VarChar, 50);
-            SqlParametros.Value = user.GetUsuarioUs();
-
-            SqlParametros = Comando.Parameters.Add("@CLAVE", SqlDbType.VarChar, 80);
-            SqlParametros.Value = user.GetClaveUs(); 
-
-            SqlParametros = Comando.Parameters.Add("@EMAIL", SqlDbType.VarChar, 100);
-            SqlParametros.Value = user.GetEmailUs(); 
+            comando.Parameters.Add("@idUsuario", SqlDbType.Int).Value = user.GetIdUsuario();  // ID del usuario
+            comando.Parameters.Add("@usuarioNuevo", SqlDbType.VarChar, 50).Value = user.GetUsuarioUs();  // Nuevo nombre de usuario
+            comando.Parameters.Add("@claveNueva", SqlDbType.VarChar, 80).Value = user.GetClaveUs();  // Nueva clave
+            comando.Parameters.Add("@emailNuevo", SqlDbType.VarChar, 100).Value = user.GetEmailUs();  // Nuevo email
         }
 
-        */
+
     }
 }
 

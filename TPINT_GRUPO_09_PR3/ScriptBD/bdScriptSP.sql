@@ -819,3 +819,17 @@ Id_Detalle_Turno_Tu = 4
 WHERE Id_Turno_Tu = @IDTURNO
 END
 GO
+
+CREATE OR ALTER PROCEDURE spModificarUsuario
+    @idUsuario INT,
+    @usuarioNuevo VARCHAR(50),
+    @claveNueva VARCHAR(100),
+    @emailNuevo VARCHAR(100)
+AS
+BEGIN
+    UPDATE Usuarios 
+	SET Usuario_Us = @usuarioNuevo, Clave_Us = @claveNueva, Email_Us = @emailNuevo
+	WHERE Id_Usuario_Us = @idUsuario 
+
+END
+GO

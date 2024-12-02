@@ -27,7 +27,6 @@ namespace Vistas
             int idUsuario;
             if (int.TryParse(txtIdUsuario.Text, out idUsuario))
             {
-
                 bool existe = negocioUsuario.existeIdUsuario(idUsuario);
 
                 if (existe)
@@ -35,7 +34,6 @@ namespace Vistas
                     lblMensaje.Text = "";
                     pnlModificacion.Visible = true;
 
-                    //CargarUsuario(idUsuario);
                 }
                 else
                 {
@@ -58,14 +56,52 @@ namespace Vistas
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            // Obtener los datos del usuario desde los TextBox
+            int idUsuario = Convert.ToInt32(txtIdUsuario.Text);
+            string usuarioNuevo = txtUsuario.Text;
+            string claveNueva = txtPassword.Text;
+            string emailNuevo = usuarioNuevo + "@clinica.com.ar";
 
+            // Crear el objeto Usuario con los nuevos datos
+            usuario.SetIdUsuario(idUsuario); 
+            usuario.SetUsuarioUs(usuarioNuevo);
+            usuario.SetClaveUs(claveNueva);
+            usuario.SetEmailUs(emailNuevo);
+
+            // Verificar si el nombre de usuario ya está en uso
+            if (negocioUsuario.existeNombreUsuario(usuarioNuevo))
+            {
+                // Si el nombre de usuario ya está en uso, mostrar un mensaje y no continuar
+                lblMensaje.Text = "El nombre de usuario ya está en uso. Elija otro.";
+                return;  
+            }
+            else
+            {
+                // Llamar al método de la capa de negocio para modificar el usuario
+                bool exito = negocioUsuario.modificarUsuario(usuario); 
+                                                                     
+                if (exito)
+                {
+                    lblMensaje.ForeColor = System.Drawing.Color.Green;
+                    lblMensaje.Text = "Usuario modificado correctamente.";
+                }
+                else
+                {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
+                    lblMensaje.Text = "Hubo un error al modificar el usuario.";
+                }
+            }
+
+          
         }
+   
 
         protected void cvExisteUsuario_ServerValidate(object source, ServerValidateEventArgs args)
         {
             if (negocioUsuario.existeUsuario(txtUsuario.Text))
             { 
                 args.IsValid = false;
+                txtUsuario.Text = "";
             }
             else
             {   
@@ -81,6 +117,7 @@ namespace Vistas
             {
                 // Si el email ya existe, la validación falla y se muestra el mensaje
                 args.IsValid = false;
+                txtEmail.Text = "";
             }
             else
             {

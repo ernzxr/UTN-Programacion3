@@ -100,7 +100,7 @@ CREATE TABLE Medicos (
 	CONSTRAINT FK_Medicos_Localidades FOREIGN KEY (Id_Localidad_Me) REFERENCES Localidades (Id_Localidad_Lo),
 	CONSTRAINT FK_Medicos_Especialidades FOREIGN KEY (Id_Especialidad_Me) REFERENCES Especialidades (Id_Especialidad_Es),
 	CONSTRAINT FK_Medicos_Generos FOREIGN KEY (Id_Genero_Me) REFERENCES Generos (Id_Genero_Ge),
-	CONSTRAINT FK_Medicos_Usuarios FOREIGN KEY (Usuario_Me) REFERENCES Usuarios (Usuario_Us),
+	CONSTRAINT FK_Medicos_Usuarios FOREIGN KEY (Usuario_Me) REFERENCES Usuarios (Usuario_Us)ON UPDATE CASCADE,
 	CONSTRAINT UK_Dni_Medicos UNIQUE (Id_Nacionalidad_Me, DNI_Me),
 	CONSTRAINT UK_Email_Medicos UNIQUE (Email_Me),
 	CONSTRAINT UK_Usuario_Medicos UNIQUE (Usuario_Me)

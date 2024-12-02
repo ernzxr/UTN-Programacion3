@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -75,10 +76,11 @@ namespace Negocio
             // Llamar al método de la capa de negocio o DAO para verificar si el email existe
             return _daoUsuario.existeEmail(email);
         }
-
-
-
-
+        public bool modificarUsuario(Usuario user)
+        {
+            int resultado = _daoUsuario.modificarUsuario(user); // Aquí sigue retornando int desde el DAO
+            return resultado > 0; // Si es mayor que 0, la operación fue exitosa
+        }
 
 
     }
