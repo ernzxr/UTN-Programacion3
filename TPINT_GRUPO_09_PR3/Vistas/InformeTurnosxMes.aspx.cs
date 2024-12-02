@@ -82,11 +82,18 @@ namespace Vistas
 
                 if (cantidadTurnos > 0)
                 {
-                    lblInforme.Text = $"En {ddlMes.SelectedItem.Text} de {anio} hubo {cantidadTurnos} turnos.";
+                    lblInforme.Text = $"En {ddlMes.SelectedItem.Text} de {anio} hubo {cantidadTurnos} turnos emitidos.";
                     lblInforme.ForeColor = System.Drawing.Color.Black;
+                    LimpiarCampos();
+                }
+                else
+                {
+                    lblInforme.Text = $"En {ddlMes.SelectedItem.Text}  {anio} no hubo turnos emitidos.";
+                    lblInforme.ForeColor = System.Drawing.Color.Black;
+                    LimpiarCampos();
+
                 }
 
-            
         }
     }
 }

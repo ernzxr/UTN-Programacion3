@@ -766,13 +766,13 @@ END
 GO
 
 CREATE OR ALTER PROCEDURE spContarTurnosPorMesYAnio
-    @Anio INT,
-    @Mes INT
+ @Anio INT,
+ @Mes INT
 AS
 BEGIN
     SELECT COUNT(*) AS TotalTurnos
     FROM Turnos
-    WHERE YEAR(Fecha_Tu) = @Anio AND MONTH(Fecha_Tu) = @Mes AND Estado_Tu = 1; 
+    WHERE YEAR(Fecha_Tu) = @Anio AND MONTH(Fecha_Tu) = @Mes;
 END
 GO
 

@@ -49,9 +49,9 @@
             <div class="col-md-4">
                 <div class="card text-center mb-4">
                     <div class="card-body">
-                        <h5 class="card-title"> Año y mes con mayor cantidad de turnos</h5>
+                        <h5 class="card-title"> Cantidad de turnos emitidos en un determinado año y mes</h5>
                         <p class="card-text">
-                           Muestra la cantidad de turnos según un año y mes seleccionados
+                           Muestra la cantidad de turnos que fueron emitidos en determinado año y mes , (sin importar su asistencia y ciclo).
                         </p>
                         <asp:HyperLink ID="hlMesMayorTurnos" runat="server" NavigateUrl="InformeTurnosxMes.aspx" CssClass="btn btn-primary">
                             Consultar Informe
