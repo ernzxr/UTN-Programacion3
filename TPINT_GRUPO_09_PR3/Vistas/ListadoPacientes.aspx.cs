@@ -264,7 +264,6 @@ namespace Vistas
         {
             try
             {
-                int idNacionalidad = int.Parse(ddlNacionalidad_M.SelectedValue);
 
                 bool modifico = NegP.ModificarPaciente(lblDNI2_M.Text, txtNombre_M.Text, txtApellido_M.Text, int.Parse(ddlSexo_M.SelectedValue), Convert.ToDateTime(txtFechaNacimiento_M.Text),
                     int.Parse(ddlNacionalidad_M.SelectedValue), int.Parse(ddlLocalidad_M.SelectedValue), txtDireccion_M.Text, txtEmail_M.Text, txtTelefono_M.Text, chkEstado_M.Checked);
