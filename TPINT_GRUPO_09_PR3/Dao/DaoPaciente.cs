@@ -255,5 +255,27 @@ namespace Dao
             DataTable tabla = ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spObtener5PacientesConMasTurnos");
             return tabla;
         }
+
+        private void ArmarParametrosMostrarTurnosProgramados(ref SqlCommand Comando, string dni, int idNacionalidadSeleccionada)
+        {
+
+            SqlParameter paramDni = new SqlParameter("@DNI", SqlDbType.Char, 8);
+            paramDni.Value = dni;
+            Comando.Parameters.Add(paramDni);
+
+
+            SqlParameter paramIdNacionalidad = new SqlParameter("@IDNACIONALIDAD", SqlDbType.Int);
+            paramIdNacionalidad.Value = idNacionalidadSeleccionada;
+            Comando.Parameters.Add(paramIdNacionalidad);
+        }
+
+
+        public DataTable ObtenerTurnosPorPaciente(string dni, int idNacionalidadSeleccionada)
+        {
+            SqlCommand comando = new SqlCommand();
+            ArmarParametrosMostrarTurnosProgramados(ref comando, dni, idNacionalidadSeleccionada);
+            DataTable tabla = ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spMostrarTurnosPendientesPorPaciente");
+            return tabla;
+        }
     }
 }

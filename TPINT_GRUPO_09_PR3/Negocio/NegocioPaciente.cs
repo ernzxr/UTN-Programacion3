@@ -180,5 +180,22 @@ namespace Negocio
         {
             return dao.reportePacientesConMasTurnos(especialidad, fechaInicial, fechaFinal);
         }
+
+        public DataTable ObtenerTurnosPorPaciente(string dni, int idNacionalidadSeleccionada)
+        {
+            if (string.IsNullOrEmpty(dni))
+            {
+                throw new ArgumentException("El DNI no puede estar vacío.");
+            }
+
+            if (idNacionalidadSeleccionada <= 0)
+            {
+                throw new ArgumentException("La nacionalidad seleccionada no es válida.");
+            }
+            
+            return dao.ObtenerTurnosPorPaciente(dni, idNacionalidadSeleccionada);
+        }
+
+
     }
 }

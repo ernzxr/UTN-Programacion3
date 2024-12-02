@@ -799,10 +799,11 @@ GO
 --Listado de turnos pendientes para el paciente
 
 CREATE OR ALTER PROCEDURE spMostrarTurnosPendientesPorPaciente
-@DNI CHAR(8)
+@DNI CHAR(8),
+@IDNACIONALIDAD INT
 AS
 BEGIN
-SELECT FORMAT(Fecha_Tu, 'dd-MM-yyyy') AS FECHA,
+SELECT Fecha_Tu AS FECHA,
 	   Hora_Tu AS TURNO,
        Descripcion_Es AS ESPECIALIDAD, 
        CONCAT(Nombre_Me, ' ', Apellido_Me) AS PROFESIONAL
@@ -810,10 +811,11 @@ SELECT FORMAT(Fecha_Tu, 'dd-MM-yyyy') AS FECHA,
 FROM Turnos AS T
 INNER JOIN Medicos AS M ON T.Legajo_Medico_Tu = M.Legajo_Me
 INNER JOIN Especialidades AS E ON M.Id_Especialidad_Me = E.Id_Especialidad_Es
-INNER JOIN Pacientes AS P ON T.DNI_Paciente_Tu = T.DNI_Paciente_Tu AND T.Id_Nacionalidad_Paciente_Tu = P.Id_Nacionalidad_Pa
+INNER JOIN Pacientes AS P ON T.DNI_Paciente_Tu = P.DNI_Pa AND T.Id_Nacionalidad_Paciente_Tu = P.Id_Nacionalidad_Pa
 WHERE DNI_Pa = @DNI
+  AND T.Id_Nacionalidad_Paciente_Tu = @IDNACIONALIDAD
   AND T.Fecha_Tu > CAST(GETDATE() AS DATE)
-  AND T.Estado_Tu = 1;
+  AND T.Id_Ciclo_Turno_Tu = 1;
 END
 
 CREATE OR ALTER PROCEDURE spBuscarTurnosPorFechas
