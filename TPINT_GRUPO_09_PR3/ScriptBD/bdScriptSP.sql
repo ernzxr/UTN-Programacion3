@@ -439,18 +439,7 @@ INNER JOIN
 INNER JOIN
 	Ciclos_Turnos AS CT ON Id_Ciclo_Turno_Tu = Id_Ciclo_Turno_CT
 WHERE 
-        CAST(Id_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
-        CAST(Id_Ciclo_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
-        CT.Descripcion_CT LIKE '%' + @Busqueda + '%' OR
-        CAST(Id_Detalle_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
-        DT.Descripcion_DT LIKE '%' + @Busqueda + '%' OR
-        Legajo_Medico_Tu LIKE '%' + @Busqueda + '%' OR
-        CONVERT(VARCHAR, Fecha_Tu, 120) LIKE '%' + @Busqueda + '%' OR
-        CONVERT(VARCHAR, Hora_Tu, 120) LIKE '%' + @Busqueda + '%' OR
-        DNI_Paciente_Tu LIKE '%' + @Busqueda + '%' OR
-        CAST(Id_Nacionalidad_Paciente_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
-        CAST(Asistencia_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
-        Observaciones_Tu LIKE '%' + @Busqueda + '%'
+        CT.Descripcion_CT LIKE '%' + @Busqueda + '%'   
 END
 GO
 
@@ -638,18 +627,9 @@ BEGIN
     WHERE 
         Legajo_Medico_Tu = @LEGAJO AND
         (
-            CAST(Id_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
-            CAST(Id_Ciclo_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
-            CT.Descripcion_CT LIKE '%' + @Busqueda + '%' OR
-            CAST(Id_Detalle_Turno_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
-            DT.Descripcion_DT LIKE '%' + @Busqueda + '%' OR
-            Legajo_Medico_Tu LIKE '%' + @Busqueda + '%' OR
             CONVERT(VARCHAR, Fecha_Tu, 120) LIKE '%' + @Busqueda + '%' OR
             CONVERT(VARCHAR, Hora_Tu, 120) LIKE '%' + @Busqueda + '%' OR
-            DNI_Paciente_Tu LIKE '%' + @Busqueda + '%' OR
-            CAST(Id_Nacionalidad_Paciente_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
-            CAST(Asistencia_Tu AS NVARCHAR) LIKE '%' + @Busqueda + '%' OR
-            Observaciones_Tu LIKE '%' + @Busqueda + '%'
+            DNI_Paciente_Tu LIKE '%' + @Busqueda + '%'
         )
 END
 GO
