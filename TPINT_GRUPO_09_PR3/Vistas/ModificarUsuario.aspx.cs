@@ -72,6 +72,10 @@ namespace Vistas
             if (negocioUsuario.existeNombreUsuario(usuarioNuevo))
             {
                 // Si el nombre de usuario ya está en uso, mostrar un mensaje y no continuar
+                txtIdUsuario.Text = "";
+                txtUsuario.Text = "";
+                txtPassword.Text = "";
+                txtEmail.Text = "";
                 lblMensaje.Text = "El nombre de usuario ya está en uso. Elija otro.";
                 return;  
             }
@@ -82,11 +86,20 @@ namespace Vistas
                                                                      
                 if (exito)
                 {
+                    txtIdUsuario.Text = "";
+                    txtUsuario.Text = "";
+                    txtPassword.Text = "";
+                    txtEmail.Text = "";
                     lblMensaje.ForeColor = System.Drawing.Color.Green;
                     lblMensaje.Text = "Usuario modificado correctamente.";
+                 
                 }
                 else
                 {
+                    txtIdUsuario.Text = "";
+                    txtUsuario.Text = "";
+                    txtPassword.Text = "";
+                    txtEmail.Text = "";
                     lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblMensaje.Text = "Hubo un error al modificar el usuario.";
                 }
