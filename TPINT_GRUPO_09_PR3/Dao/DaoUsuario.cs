@@ -190,7 +190,7 @@ namespace Dao
             {
                 SqlCommand comando = new SqlCommand();
                 ArmarParametrosModificarUsuario(comando, user);
-                return _accesoDatos.EjecutarProcedimientoAlmacenado(comando, "ModificarUsuario");  // Ejecutar el SP
+                return _accesoDatos.EjecutarProcedimientoAlmacenado(comando, "spModificarUsuario");  // Ejecutar el SP
             }
             catch (Exception ex)
             {

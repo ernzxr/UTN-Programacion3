@@ -63,7 +63,7 @@ namespace Vistas
             string emailNuevo = usuarioNuevo + "@clinica.com.ar";
 
             // Crear el objeto Usuario con los nuevos datos
-            usuario.SetIdUsuario(idUsuario); 
+            usuario.SetIdUsuario(idUsuario);
             usuario.SetUsuarioUs(usuarioNuevo);
             usuario.SetClaveUs(claveNueva);
             usuario.SetEmailUs(emailNuevo);
@@ -72,59 +72,56 @@ namespace Vistas
             if (negocioUsuario.existeNombreUsuario(usuarioNuevo))
             {
                 // Si el nombre de usuario ya está en uso, mostrar un mensaje y no continuar
+                txtIdUsuario.Text = "";
+                txtUsuario.Text = "";
+                txtPassword.Text = "";
+
                 lblMensaje.Text = "El nombre de usuario ya está en uso. Elija otro.";
-                return;  
+                return;
             }
             else
             {
                 // Llamar al método de la capa de negocio para modificar el usuario
-                bool exito = negocioUsuario.modificarUsuario(usuario); 
-                                                                     
+                bool exito = negocioUsuario.modificarUsuario(usuario);
+
                 if (exito)
                 {
+                    txtIdUsuario.Text = "";
+                    txtUsuario.Text = "";
+                    txtPassword.Text = "";
+
                     lblMensaje.ForeColor = System.Drawing.Color.Green;
                     lblMensaje.Text = "Usuario modificado correctamente.";
+
                 }
                 else
                 {
+                    txtIdUsuario.Text = "";
+                    txtUsuario.Text = "";
+                    txtPassword.Text = "";
+
                     lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblMensaje.Text = "Hubo un error al modificar el usuario.";
                 }
             }
 
-          
+
         }
-   
+
 
         protected void cvExisteUsuario_ServerValidate(object source, ServerValidateEventArgs args)
         {
             if (negocioUsuario.existeUsuario(txtUsuario.Text))
-            { 
+            {
                 args.IsValid = false;
                 txtUsuario.Text = "";
             }
             else
-            {   
+            {
                 args.IsValid = true;
             }
         }
 
-        // Validación para el email
-        protected void cvExisteEmail_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            // Verificar si el email ya existe en la base de datos
-            if (negocioUsuario.existeEmail(txtEmail.Text))
-            {
-                // Si el email ya existe, la validación falla y se muestra el mensaje
-                args.IsValid = false;
-                txtEmail.Text = "";
-            }
-            else
-            {
-                // Si el email no existe, la validación es exitosa
-                args.IsValid = true;
-            }
-        }
     }
- }
-    
+}
+

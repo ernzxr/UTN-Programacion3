@@ -1,5 +1,24 @@
 ﻿<%@ Page Title="Modificar Usuario" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ModificarUsuario.aspx.cs" Inherits="Vistas.ModificarUsuario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+      <script type="text/javascript">
+    // Función para mostrar el modal
+    function mostrarModal() {
+        // Mostrar el modal
+        var modal = new bootstrap.Modal(document.getElementById('ConfirmarModal'));
+        modal.show();
+
+        // Evitar el postback inmediato
+        return false; 
+    }
+
+    // Función que se ejecuta cuando el usuario hace clic en "Sí"
+    function confirmarAccion() {
+        // Ejecutar el postback manualmente
+        __doPostBack('<%= btnGuardar.UniqueID %>', '');
+    }
+    </script>
+
 </asp:Content>
 
 
@@ -26,7 +45,7 @@
     <asp:Panel ID="pnlModificacion" runat="server" Visible="False">
         
         <div>
-            <asp:Label ID="lblUsuario" runat="server" Text="Nuevo Usuario:" AssociatedControlID="txtUsuario"></asp:Label>
+            <asp:Label ID="lblUsuario" runat="server" Text="Nuevo nombre de Usuario:" AssociatedControlID="txtUsuario"></asp:Label>
             <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control mt-2" ValidationGroup="grupo1"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" ForeColor="#CC0000"  Display="Dynamic" ValidationGroup="grupo2">(*) Complete el campo.</asp:RequiredFieldValidator>
             <asp:CustomValidator ID="cvExisteUsuario" OnServerValidate="cvExisteUsuario_ServerValidate" runat="server" ForeColor="#CC0000" ValidationGroup="grupo2" ControlToValidate="txtUsuario"  Display="Dynamic" Text="(*) El usuario ingresado ya existe."></asp:CustomValidator>
@@ -39,18 +58,9 @@
             <asp:RequiredFieldValidator ID="rfvPass" runat="server" ControlToValidate="txtPassword" ForeColor="#CC0000"  Display="Dynamic" ValidationGroup="grupo2">(*) Complete el campo.</asp:RequiredFieldValidator>
              <asp:RegularExpressionValidator ID="revPass" runat="server" ValidationGroup="grupo2" ValidationExpression="^\d{3,8}$" ControlToValidate="txtPassword" ForeColor="#CC0000"  Display="Dynamic" ViewStateMode="Inherit" Text="(*) Solo se permiten números con entre 3 y 8 dígitos."></asp:RegularExpressionValidator>
         </div>
-
+             
         <div>
-            <asp:Label ID="lblEmail" runat="server" Text="Nuevo Email:" AssociatedControlID="txtEmail"></asp:Label>
-            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control mt-2" ValidationGroup="grupo1"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ForeColor="#CC0000" ValidationGroup="grupo2">(*) Complete el campo.</asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" CssClass="mb-3" ForeColor="#CC0000" ValidationExpression="^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$"  Display="Dynamic" ValidationGroup="grupo2">(*)Debe ingresar un Email válido</asp:RegularExpressionValidator>
-            <asp:CustomValidator ID="cvExisteEmail" OnServerValidate="cvExisteEmail_ServerValidate" runat="server" ForeColor="#CC0000" ValidationGroup="grupo2" ControlToValidate="txtEmail"  Display="Dynamic" Text="(*) El email ingresado ya existe."></asp:CustomValidator>
-
-        </div>
-
-        <div>
-            <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" CssClass="btn btn-primary" ValidationGroup="grupo2" OnClick="btnGuardar_Click" />
+            <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" CssClass="btn btn-primary" ValidationGroup="grupo2" OnClick="btnGuardar_Click" OnClientClick="return mostrarModal();" />
         </div>
 
         <div>
@@ -58,5 +68,27 @@
         </div>
 
     </asp:Panel>
+
+    <div class="modal fade" id="ConfirmarModal" tabindex="-1" aria-labelledby="ConfirmarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ConfirmarModalLabel">Confirmar Modificación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de que desea guardar los cambios?</p>
+            </div>
+            <div class="modal-footer">
+                <!-- Botón de Confirmación -->
+                 <asp:Button ID="btnConfirm" runat="server" Text="Sí" CssClass="btn btn-success" OnClick="btnGuardar_Click" />
+                <!-- Botón de Cancelación -->
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 </asp:Content>

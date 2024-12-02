@@ -104,7 +104,6 @@
     <Content Include="ReportesInformes.aspx" />
     <Content Include="Styles\layout.css" />
     <Content Include="TicketTurnosPendientesPorPaciente.aspx" />
-    <Content Include="TurnosAsignados.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -276,13 +275,6 @@
     </Compile>
     <Compile Include="TicketTurnosPendientesPorPaciente.aspx.designer.cs">
       <DependentUpon>TicketTurnosPendientesPorPaciente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TurnosAsignados.aspx.cs">
-      <DependentUpon>TurnosAsignados.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TurnosAsignados.aspx.designer.cs">
-      <DependentUpon>TurnosAsignados.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

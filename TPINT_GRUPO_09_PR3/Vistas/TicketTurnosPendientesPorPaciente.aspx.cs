@@ -51,103 +51,65 @@ namespace Vistas
         protected void btnFiltrarPaciente_Click(object sender, EventArgs e)
 
         {
-             /* rfvDniPaciente.ValidationGroup = "Grupo1";
-             revDniPaciente.ValidationGroup = "Grupo1";
-             rfvNacionalidad.ValidationGroup = "Grupo1";
+            string dni = txtDniPaciente.Text;
+            int idNacionalidad = int.Parse(ddlNacionalidad.SelectedValue);
 
-             if (Page.IsValid)
-             {
+            if (NegPac.existePaciente(dni, idNacionalidad))
+            {
+                DataTable dt = NegPac.ObtenerTurnosPorPaciente(dni, idNacionalidad);
 
-                 string dni = txtDniPaciente.Text.Trim();
-                 int idNacionalidadSeleccionada = Convert.ToInt32(ddlNacionalidad.SelectedValue);
+                gvTicketTurnos.DataSource = dt;
+                gvTicketTurnos.DataBind();
+                Session["DatosFiltrados"] = dt;
 
-
-                 if (NegPac.existePaciente(dni, idNacionalidadSeleccionada))
-                 {
-                     DataTable dt = NegPac.getPaciente(dni, idNacionalidadSeleccionada);
-
-                     if (dt.Rows.Count == 0)
-                     {
-                         lblError_Filtrar.Text = "No se encontraron turnos para el paciente.";
-                         gvTicketTurnos.DataSource = null;
-                         gvTicketTurnos.DataBind();
-                         return;
-                     }
-
-
-                     if (!dt.Columns.Contains("FECHA"))
-                         dt.Columns.Add("FECHA", typeof(DateTime));
-
-                     if (!dt.Columns.Contains("TURNO"))
-                         dt.Columns.Add("TURNO", typeof(DateTime));
-
-                     if (!dt.Columns.Contains("ESPECIALIDAD"))
-                         dt.Columns.Add("ESPECIALIDAD", typeof(string));
-
-                     if (!dt.Columns.Contains("PROFESIONAL"))
-                         dt.Columns.Add("PROFESIONAL", typeof(string));
-
-
-
-                     gvTicketTurnos.DataSource = dt;
-                     gvTicketTurnos.DataBind();
-
-
-
-                     LimpiarCampos();
-                     lblError_Filtrar.Text = "";
-                 }
-                 else
-                 {
-                     gvTicketTurnos.DataSource = null;
-                     gvTicketTurnos.DataBind();
-                     lblError_Filtrar.Text = "No existe el paciente/fue dado de baja.";
-                 }
-            */
-                string dni = txtDniPaciente.Text;
-                int idNacionalidad = int.Parse(ddlNacionalidad.SelectedValue);
-
-                if (NegPac.existePaciente(dni, idNacionalidad))
-                {
-                    DataTable dt = NegPac.ObtenerTurnosPorPaciente(dni, idNacionalidad);
-                   
-                    gvTicketTurnos.DataSource = dt;
-                    gvTicketTurnos.DataBind();
-                   
-
-                    txtDniPaciente.Text = "";
-                    ddlNacionalidad.SelectedValue = "0";
-                    lblError_Filtrar.Text = "";
-
-                }
-                else
-                {
-                    gvTicketTurnos.DataSource = null;
-                    gvTicketTurnos.DataBind();
-                    lblError_Filtrar.Text = "No existe el paciente/fue dado de baja.";
-                }
-
+                txtDniPaciente.Text = "";
+                ddlNacionalidad.SelectedValue = "0";
+                lblError_Filtrar.Text = "";
 
             }
-        
+            else
+            {
+                gvTicketTurnos.DataSource = null;
+                gvTicketTurnos.DataBind();
+                lblError_Filtrar.Text = "No existe el paciente/fue dado de baja.";
+            }
+
+
+        }
+
 
         protected void gvTicketTurno_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            int contiene = Convert.ToInt32(Session["contiene"]);
             gvTicketTurnos.PageIndex = e.NewPageIndex;
-            gvTicketTurnos.DataSource = Session["dtAmbos"];
-            gvTicketTurnos.DataBind();
+
+            // Verificar si hay datos filtrados almacenados en Session
+            if (Session["DatosFiltrados"] != null)
+            {
+                // Recuperar los datos filtrados
+                DataTable dt = (DataTable)Session["DatosFiltrados"];
+
+                // Recargar el GridView con los datos filtrados
+                gvTicketTurnos.DataSource = dt;
+                gvTicketTurnos.DataBind();
+            }
+            else
+            {
+                gvTicketTurnos.DataSource = null;
+                gvTicketTurnos.DataBind();
+                lblError_Filtrar.Text = "No existe el paciente/fue dado de baja.";
+
+            }
         }
 
         protected void btnImprimir_Click(object sender, EventArgs e)
         {
             string script = "<script type='text/javascript'>window.print();</script>";
             ClientScript.RegisterStartupScript(this.GetType(), "print", script);
-           
+
         }
     }
 
- }
+}
 
 
 
