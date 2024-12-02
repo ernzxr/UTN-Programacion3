@@ -808,3 +808,14 @@ BEGIN
     WHERE Fecha_Tu BETWEEN @FechaInicio AND @FechaFin ORDER BY Fecha_Tu ASC
 END
 GO
+
+CREATE OR ALTER PROCEDURE spCancelarTurno
+@IDTURNO INT
+AS
+BEGIN
+UPDATE Turnos SET
+Id_Ciclo_Turno_Tu = 5,
+Id_Detalle_Turno_Tu = 4
+WHERE Id_Turno_Tu = @IDTURNO
+END
+GO
