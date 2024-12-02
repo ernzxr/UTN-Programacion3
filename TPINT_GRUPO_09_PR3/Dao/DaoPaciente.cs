@@ -130,13 +130,13 @@ namespace Dao
 
         public Boolean existePacienteDni(string dni)
         {
-            string consulta = "SELECT * FROM Pacientes WHERE Estado_Pa = '1' AND Dni_Pa LIKE '%" + dni + "%'";
+            string consulta = "SELECT * FROM Pacientes WHERE Dni_Pa LIKE '%" + dni + "%'";
             return ds.existe(consulta);
         }
 
         public Boolean existePacienteNacionalidad(int idNacionalidad)
         {
-            string consulta = "SELECT * FROM Pacientes WHERE Estado_Pa = '1' AND Id_Nacionalidad_Pa = " + idNacionalidad;
+            string consulta = "SELECT * FROM Pacientes WHERE Id_Nacionalidad_Pa = " + idNacionalidad;
             return ds.existe(consulta);
         }
 
@@ -151,7 +151,7 @@ namespace Dao
             string consulta = "SELECT Dni_Pa AS DNI, Nombre_Pa AS Nombre, Apellido_Pa AS Apellido, " +
                 "Fecha_Nacimiento_Pa as Fecha_De_Nacimiento, Direccion_Pa AS Direccion, Email_Pa as Email, " +
                 "Telefono_Pa as Telefono, Estado_Pa as Estado, Id_Genero_Pa AS Id_Genero, Id_Localidad_Pa AS Id_Localidad, Id_Nacionalidad_Pa AS Id_Nacionalidad" +
-                " FROM Pacientes WHERE DNI_Pa = '" + dni + "' AND Id_Nacionalidad_Pa = " + idNacionalidad  + " AND Estado_Pa = " + 1;
+                " FROM Pacientes WHERE DNI_Pa = '" + dni + "' AND Id_Nacionalidad_Pa = " + idNacionalidad;
             DataTable tabla = ds.ObtenerTabla("Pacientes", consulta);
 
             return tabla;
@@ -162,7 +162,7 @@ namespace Dao
             string consulta = "SELECT Dni_Pa AS DNI, Nombre_Pa AS Nombre, Apellido_Pa AS Apellido, " +
                 "Fecha_Nacimiento_Pa as Fecha_De_Nacimiento, Direccion_Pa AS Direccion, Email_Pa as Email, " +
                 "Telefono_Pa as Telefono, Estado_Pa as Estado, Id_Genero_Pa AS Id_Genero, Id_Localidad_Pa AS Id_Localidad, Id_Nacionalidad_Pa AS Id_Nacionalidad" +
-                " FROM Pacientes WHERE DNI_Pa LIKE '%" + dni + "%' AND Estado_Pa = 1";
+                " FROM Pacientes WHERE DNI_Pa LIKE '%" + dni + "%'";
             DataTable tabla = ds.ObtenerTabla("Pacientes", consulta);
 
             return tabla;
@@ -173,7 +173,7 @@ namespace Dao
             string consulta = "SELECT Dni_Pa AS DNI, Nombre_Pa AS Nombre, Apellido_Pa AS Apellido, " +
                 "Fecha_Nacimiento_Pa as Fecha_De_Nacimiento, Direccion_Pa AS Direccion, Email_Pa as Email, " +
                 "Telefono_Pa as Telefono, Estado_Pa as Estado, Id_Genero_Pa AS Id_Genero, Id_Localidad_Pa AS Id_Localidad, Id_Nacionalidad_Pa AS Id_Nacionalidad" +
-                " FROM Pacientes WHERE Id_Nacionalidad_Pa = " + idNacionalidad + " AND Estado_Pa = 1";
+                " FROM Pacientes WHERE Id_Nacionalidad_Pa = " + idNacionalidad;
             DataTable tabla = ds.ObtenerTabla("Pacientes", consulta);
 
             return tabla;
@@ -183,17 +183,7 @@ namespace Dao
         {
             string consulta = "SELECT Dni_Pa AS DNI, Nombre_Pa AS Nombre, Apellido_Pa AS Apellido," +
                 " Fecha_Nacimiento_Pa as Fecha_De_Nacimiento, Direccion_Pa AS Direccion, " +
-                "Email_Pa as Email, Telefono_Pa as Telefono, Estado_Pa as Estado, Id_Genero_Pa AS Id_Genero, Id_Localidad_Pa AS Id_Localidad, Id_Nacionalidad_Pa AS Id_Nacionalidad FROM Pacientes WHERE Estado_Pa = " + 1;
-            DataTable tabla = ds.ObtenerTabla("Pacientes", consulta);
-
-            return tabla;
-        }
-
-        public DataTable filtrarPacientesInactivos()
-        {
-            string consulta = "SELECT Dni_Pa AS DNI, Nombre_Pa AS Nombre, Apellido_Pa AS Apellido," +
-                " Fecha_Nacimiento_Pa as Fecha_De_Nacimiento, Direccion_Pa AS Direccion, " +
-                "Email_Pa as Email, Telefono_Pa as Telefono, Estado_Pa as Estado, Id_Genero_Pa AS Id_Genero, Id_Localidad_Pa AS Id_Localidad, Id_Nacionalidad_Pa AS Id_Nacionalidad FROM Pacientes WHERE Estado_Pa = 0";
+                "Email_Pa as Email, Telefono_Pa as Telefono, Estado_Pa as Estado, Id_Genero_Pa AS Id_Genero, Id_Localidad_Pa AS Id_Localidad, Id_Nacionalidad_Pa AS Id_Nacionalidad FROM Pacientes";
             DataTable tabla = ds.ObtenerTabla("Pacientes", consulta);
 
             return tabla;

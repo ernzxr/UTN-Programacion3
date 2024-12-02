@@ -123,22 +123,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Button btnFiltrar;
 
         /// <summary>
-        /// Control btnMostrarTodo.
+        /// Control btnMostrarTodos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMostrarTodo;
-
-        /// <summary>
-        /// Control btnInactivos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnInactivos;
+        protected global::System.Web.UI.WebControls.Button btnMostrarTodos;
 
         /// <summary>
         /// Control lblError_Filtrar.

@@ -297,7 +297,7 @@ namespace Dao
                 "Fecha_Nacimiento_Me AS Fecha_De_Nacimiento, Direccion_Me AS Direccion, Email_Me AS Email, Telefono_Me AS Telefono, Estado_Me AS Estado, " +
                 "Id_Especialidad_Me AS Id_Especialidad, Id_Genero_Me AS Id_Genero, Id_Nacionalidad_Me AS Id_Nacionalidad, " +
                 "Id_Localidad_Me AS Id_Localidad " +
-                "FROM Medicos WHERE Legajo_Me = '" + legajo + "'" + " AND Estado_Me = " + 1;
+                "FROM Medicos WHERE Legajo_Me = '" + legajo + "'";
             DataTable tabla = ds.ObtenerTabla("Medicos", consulta);
 
             return tabla;

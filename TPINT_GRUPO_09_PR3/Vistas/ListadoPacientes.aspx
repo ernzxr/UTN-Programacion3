@@ -151,8 +151,7 @@
 
             <div class="button-group">
                 <asp:Button ID="btnFiltrar" class="btn btn-secondary" runat="server" Text="Filtrar" ValidationGroup="filtrarAmbos" OnClick="btnFiltrar_Click" />
-                <asp:Button ID="btnMostrarTodo" class="btn btn-success" runat="server" Text="Mostrar Activos" OnClick="btnMostrarActivos_Click" />
-                <asp:Button ID="btnInactivos" class="btn btn-danger" runat="server" Text="Mostrar Inactivos" OnClick="btnMostrarInactivos_Click" />
+                <asp:Button ID="btnMostrarTodos" class="btn btn-success" runat="server" Text="Mostrar Todos" OnClick="btnMostrarTodos_Click" />
             </div>
 
             <asp:Label ID="lblError_Filtrar" runat="server" CssClass="error-message" />

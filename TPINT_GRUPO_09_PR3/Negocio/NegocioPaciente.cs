@@ -136,11 +136,6 @@ namespace Negocio
             return dao.filtrarPacientes();
         }
 
-        public DataTable getPacientesInactivos()
-        {
-            return dao.filtrarPacientesInactivos();
-        }
-
         public Boolean existePaciente(string dni, int idNacionalidad)
         {
             return dao.existePaciente(dni, idNacionalidad);
