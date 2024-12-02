@@ -8,6 +8,7 @@ namespace Entidades
 {
     public class Turno
     {
+        private int _idTurno;
         private string _legajo_Medico;
         private DateTime _fecha;
         private TimeSpan _hora;
@@ -23,8 +24,9 @@ namespace Entidades
 
         }
 
-        public Turno(string legajo_Medico, DateTime fecha, TimeSpan hora, string Dni_Paciente, int idNacionalidad, int idLocalidadPaciente, bool asistencia, string observacion)
+        public Turno(int idturno, string legajo_Medico, DateTime fecha, TimeSpan hora, string Dni_Paciente, int idNacionalidad, int idLocalidadPaciente, bool asistencia, string observacion)
         {
+            this._idTurno = idturno;
             this._legajo_Medico = legajo_Medico;
             this._fecha = fecha;
             this._hora = hora;
@@ -33,6 +35,11 @@ namespace Entidades
             this._IdLocalidadPaciente = idLocalidadPaciente;
             this._asistencia = asistencia;
             this._observacion = observacion;
+        }
+
+        public int getIdTurno()
+        {
+            return _idTurno;
         }
 
         public int getIdEspecialidad()
@@ -106,6 +113,11 @@ namespace Entidades
         public void setObservacion(string observacion)
         {
             this._observacion = observacion;
+        }
+
+        public void setIdTurno(int idTurno)
+        {
+            this._idTurno=idTurno;
         }
 
     }

@@ -255,6 +255,21 @@ namespace Dao
             comando.Parameters.AddWithValue("@FechaFin", fechaFin);
             return ds.EjecutarProcedimientoAlmacenadoLectura(comando, "spBuscarTurnosPorFechas");
         }
+
+        private void ArmarParametrosCancelarTurno(ref SqlCommand comando, Turno turno)
+        {
+            SqlParameter SqlParametros = new SqlParameter();
+
+            SqlParametros = comando.Parameters.Add("@IDTURNO", SqlDbType.Int);
+            SqlParametros.Value = turno.getIdTurno();
+        }
+
+        public int CancelarTurno(Turno turno)
+        {
+            SqlCommand comando = new SqlCommand();
+            ArmarParametrosCancelarTurno(ref comando, turno);
+            return ds.EjecutarProcedimientoAlmacenado(comando, "spCancelarTurno");
+        }
     }
    
 }

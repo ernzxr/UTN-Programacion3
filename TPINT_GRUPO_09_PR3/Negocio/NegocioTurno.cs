@@ -138,5 +138,22 @@ namespace Negocio
         {
             return daoTurno.BuscarTurnosPorFechas(fechaInicio, fechaFin);
         }
+
+        public bool CancelarTurno(int idTurno)
+        {
+            int cantFilas = 0;
+            Turno turno = new Turno();
+            turno.setIdTurno(idTurno);
+
+            cantFilas = daoTurno.CancelarTurno(turno);
+            if (cantFilas == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

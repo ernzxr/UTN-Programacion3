@@ -67,7 +67,7 @@ namespace Vistas
                 lblMensajeError.Text = "Ingrese un valor para buscar.";
             }
         }
-       
+
         protected void btnFiltrarLegajo_Click(object sender, EventArgs e)
         {
             if (negocioMedico.existeLegajo(txtLegajo.Text.Trim()))
@@ -203,6 +203,29 @@ namespace Vistas
         {
             gvTurnos.DataSource = null;
             gvTurnos.DataBind();
+        }
+
+        protected void gvTurnos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string s_idTurno = ((Label)gvTurnos.Rows[e.RowIndex].FindControl("lblIdTurno")).Text;
+            Session["IdTurno"] = s_idTurno;
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showDeleteModal", "showDeleteModal();", true);
+
+        }
+
+        protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        {
+            bool elimino = negocioTurno.CancelarTurno(Convert.ToInt32(Session["IdTurno"]));
+            if (Session["DatosFiltrados"] == null)
+            {
+                CargarTurnos();
+            }
+            else
+            {
+                gvTurnos.DataSource = (DataTable)Session["DatosFiltrados"];
+                gvTurnos.DataBind();
+            }
         }
     }
 }
