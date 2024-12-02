@@ -251,7 +251,7 @@ namespace Vistas
 
         }
 
-        protected void btnConfirmDelete_Click(Object sender, EventArgs e)
+        protected void btnConfirmarEliminado_Click(Object sender, EventArgs e)
         {
             bool borro = NegP.bajaPaciente(txtDNI_E.Text, int.Parse(ddlNacionalidad_E.SelectedValue));
 
