@@ -19,15 +19,12 @@
             }
         </script>
 
-
-
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main-login" style="position: relative;">
 
-        
-
+      
         <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="form-label mb-3"></asp:Label>
         <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" ForeColor="#CC0000" ValidationGroup="grupo1">(*) Complete el campo.</asp:RequiredFieldValidator>

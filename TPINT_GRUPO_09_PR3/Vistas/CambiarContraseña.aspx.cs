@@ -15,7 +15,7 @@ namespace Vistas
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            _usuarioNegocio = new NegocioUsuario(); 
+            _usuarioNegocio = new NegocioUsuario();
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -34,7 +34,7 @@ namespace Vistas
             if (resultado == "Contraseña actualizada correctamente.")
             {
                
-                lblMensaje.ForeColor = System.Drawing.Color.Green; // Mensaje de éxito
+                lblMensaje.ForeColor = System.Drawing.Color.Green; 
                 txtUsuario.Text = "";
                 txtEmail.Text = "";
                 txtClave.Text = "";
@@ -42,13 +42,41 @@ namespace Vistas
             }
             else
             {
-                lblMensaje.ForeColor = System.Drawing.Color.Red; // Mensaje de error
+                lblMensaje.ForeColor = System.Drawing.Color.Red; 
                 txtUsuario.Text = "";
                 txtEmail.Text = "";
                 txtClave.Text = "";
                 txtConfirmarClave.Text = "";
             }
         }
+        protected void cvExisteUsuario_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (_usuarioNegocio.existeUsuario(txtUsuario.Text))
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+
+        // Validación para el email
+        protected void cvExisteEmail_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            // Verificar si el email ya existe en la base de datos
+            if (_usuarioNegocio.existeEmail(txtEmail.Text))
+            {
+                // Si el email ya existe no muestro nada
+                args.IsValid = true;
+            }
+            else
+            {
+                // Si el email no existe muestro mensaje
+                args.IsValid = false;
+            }
+        }
+        
     }
 }
            

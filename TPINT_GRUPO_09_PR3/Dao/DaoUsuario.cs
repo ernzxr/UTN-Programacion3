@@ -126,7 +126,7 @@ namespace Dao
                     if (conexion == null)
                     {
                         // Si no se pudo obtener la conexión, simplemente retorna vacío o un valor de error controlado
-                        return string.Empty; // O puedes retornar null o cualquier otro valor para indicar el error
+                        return string.Empty; // 
                     }
 
                     using (SqlCommand comando = new SqlCommand(consulta, conexion))
