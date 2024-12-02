@@ -302,12 +302,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnConfirmDelete" runat="server" Text="Sí" CssClass="btn btn-danger" OnClick="btnConfirmDelete_Click" />
+                    <asp:Button ID="btnConfirmarEliminado" runat="server" Text="Sí" CssClass="btn btn-danger" OnClick="btnConfirmarEliminado_Click" />
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                 </div>
             </div>
         </div>
-    </div>
-
     </div>
 </asp:Content>
