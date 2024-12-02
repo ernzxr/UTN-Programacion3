@@ -343,7 +343,15 @@ INSERT INTO Usuarios (Usuario_Us, Clave_Us, Email_Us, Id_Tipo_Usuario_Us) VALUES
 ('mperez', '123', 'mperez@clinica.com.ar', 2),
 ('erodriguez', '123', 'erodriguez@clinica.com.ar', 2),
 ('egarcia', '123', 'egarcia@clinica.com.ar', 2),
-('lfernandez', '123', 'lfernandez@clinica.com.ar', 2)
+('lfernandez', '123', 'lfernandez@clinica.com.ar', 2),
+('spatel', '123', 'SofiaPatel@clinica.com.ar', 2),
+('ibanlz', '123', 'IbanLopez@clinica.com.ar', 2),
+('isafer', '123', 'IsabelFernandez@clinica.com.ar', 2),
+('carlosma', '123', 'CarlosMartinez@clinica.com.ar', 2),
+('juliaro', '123', 'JuliaRomero@clinica.com.ar', 2),
+('mateosan', '123', 'MateoSanchez@clinica.com.ar', 2),
+('danyar', '123', 'Daniela@clinica.com.ar', 2),
+('gabyro', '123', 'GabrielRodriguez@clinica.com.ar', 2)
 GO
 
 -- CARGA DE DATOS PARA NACIONALIDADES
@@ -394,7 +402,18 @@ VALUES
 ('mperez','30000', 12, 1, 2, '13131313', 'mperez@gmail.com', 'Mercedes', 'Pérez', 2, '1984-09-22', 'Av. San Martín 456', '1234567890'),
 ('erodriguez','40000', 13, 2, 3, '14141414', 'erodriguez@gmail.com', 'Esteban', 'Rodríguez', 3, '1994-01-02', 'Calle de los Árboles 567', '1245678901'),
 ('egarcia','50000', 14, 3, 4, '15151515', 'egarcia@gmail.com', 'Elena', 'García', 3, '1983-06-25', 'Calle Azul 890', '1256789012'),
-('lfernandez','60000', 15, 1, 5, '16161616', 'lfernandez@gmail.com', 'Luis', 'Fernández', 1, '1991-04-03', 'Calle del Sol 321', '1267890123')
+('lfernandez','60000', 15, 1, 5, '16161616', 'lfernandez@gmail.com', 'Luis', 'Fernández', 1, '1991-04-03', 'Calle del Sol 321', '1267890123'),
+('spatel','10001', 2, 4, 5, '36161616', 'sofiapatel@gmail.com', 'Sofia', 'Patel', 2, '1991-04-03', 'Av. Central 859', '1167240124'),
+('ibanlz','10002', 3, 5, 5, '16100200', 'ibanlopez@gmail.com', 'Iban', 'Lopez', 1, '1991-04-03', 'Av. Sur 6014', '1166990123'),
+('isafer','10003', 4, 6, 5, '17161001', 'isabelfer82@gmail.com', 'Isabel', 'Fernández', 2, '1990-05-03', 'Avenida Hifalgo 821', '1167590121'),
+('carlosma','10004', 5, 7, 5, '24161616', 'carlosmar@gmail.com', 'Carlos', 'Martinez', 1, '1973-07-21', 'Paseo de la Reforma 48', '1120890103'),
+('juliaro','10005', 4, 8, 5, '23161616', 'juliarom@gmail.com', 'Julia', 'Romero', 2, '2000-01-18', 'Pte.Perón 1348', '1117890426'),
+('mateosan','10006', 2, 9, 5, '15161616', 'matysanchez@gmail.com', 'Mateo', 'Sanchez', 1, '1995-11-02', 'Constitución 1358', '1267890123'),
+('danyar','10007', 3, 10, 5, '12161616', 'danielalarcon@gmail.com', 'Daniela', 'Alarcon', 2, '1999-08-09', 'Estrada 413', '1267890123'),
+('gabyro','10008', 1, 11, 5, '40161616', 'gabyrod69@gmail.com', 'Gabriel', 'Rodriguez', 1, '1982-12-15', 'Gandolfo 649', '1267890123')
+
+
+
 GO
 
 -- CARGA DIAS DE LA SEMANA
