@@ -1,5 +1,24 @@
 ﻿<%@ Page Title="Modificar Usuario" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ModificarUsuario.aspx.cs" Inherits="Vistas.ModificarUsuario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+      <script type="text/javascript">
+    // Función para mostrar el modal
+    function mostrarModal() {
+        // Mostrar el modal
+        var modal = new bootstrap.Modal(document.getElementById('ConfirmarModal'));
+        modal.show();
+
+        // Evitar el postback inmediato
+        return false; 
+    }
+
+    // Función que se ejecuta cuando el usuario hace clic en "Sí"
+    function confirmarAccion() {
+        // Ejecutar el postback manualmente
+        __doPostBack('<%= btnGuardar.UniqueID %>', '');
+    }
+    </script>
+
 </asp:Content>
 
 
@@ -50,7 +69,7 @@
         </div>
 
         <div>
-            <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" CssClass="btn btn-primary" ValidationGroup="grupo2" OnClick="btnGuardar_Click" />
+            <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" CssClass="btn btn-primary" ValidationGroup="grupo2" OnClick="btnGuardar_Click" OnClientClick="return mostrarModal();" />
         </div>
 
         <div>
@@ -58,5 +77,27 @@
         </div>
 
     </asp:Panel>
+
+    <div class="modal fade" id="ConfirmarModal" tabindex="-1" aria-labelledby="ConfirmarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ConfirmarModalLabel">Confirmar Modificación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de que desea guardar los cambios?</p>
+            </div>
+            <div class="modal-footer">
+                <!-- Botón de Confirmación -->
+                 <asp:Button ID="btnConfirm" runat="server" Text="Sí" CssClass="btn btn-success" OnClick="btnGuardar_Click" />
+                <!-- Botón de Cancelación -->
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 </asp:Content>
