@@ -14,7 +14,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <asp:Label ID="lblTitulo" runat="server" Text="Reporte de Porcentaje de Ausencias" Font-Size="Large"></asp:Label>
+    <asp:Label ID="lblTitulo" runat="server" Text="Reporte de porcentaje de ausencias de pacientes a turnos" Font-Size="Large"></asp:Label>
 <br />
 
      <!-- Fecha inicio -->
@@ -28,7 +28,7 @@
    </div>
  </div>
      <!-- Fecha fin-->
-         <div class="form-group">
+     <div class="form-group">
     <asp:Label ID="lblFin" runat="server" Text="Fecha Fin" CssClass="form-label"></asp:Label>
     <div style="display: flex; gap: 10px; align-items: center;">
     <asp:TextBox ID="txtFin" runat="server" TextMode="Date" CssClass="form-control mt-2" ValidationGroup="Grupo1"></asp:TextBox>
