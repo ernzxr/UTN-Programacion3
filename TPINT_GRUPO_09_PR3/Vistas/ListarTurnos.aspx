@@ -52,13 +52,15 @@ border: 1px solid #3AC0F2;
     <div class="px-5 py-3 me-5 border rounded">
         <h3 class="text-center">Listado de Turnos</h3>
 
-        <!-- Búsqueda general -->
+        <!-- Búsqueda por Estado -->
         <div class="form-group">
-            <asp:Label ID="lblBuscar" runat="server" Text="Búsqueda" CssClass="form-label"></asp:Label>
-            <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control mt-2" ValidationGroup="GrupoBusqueda"></asp:TextBox>
+            <asp:Label ID="lblBuscar" runat="server" Text="Búsqueda por Estado" CssClass="form-label"></asp:Label>
+            <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control mt-2" MaxLength="50" ValidationGroup="GrupoBusqueda"></asp:TextBox>
             <div style="display: flex; gap: 10px; align-items: center;">
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary mt-2" ValidationGroup="GrupoBusqueda" OnClick="btnBuscar_Click" />
                 <asp:RequiredFieldValidator ID="rfvBuscar" runat="server" ControlToValidate="txtBuscar" CssClass="text-danger" Text="* Requerido" Display="Dynamic" ValidationGroup="GrupoBusqueda"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="revBuscar" runat="server" ControlToValidate="txtBuscar" CssClass="text-danger" ValidationExpression="^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$" 
+         ErrorMessage="Solo letras, sin espacios" Display="Dynamic" ValidationGroup="GrupoBusqueda"></asp:RegularExpressionValidator>
             </div>
         </div>
 
